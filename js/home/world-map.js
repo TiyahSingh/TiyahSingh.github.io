@@ -10,11 +10,11 @@ if (!mount || !pinsHost) throw new Error("Missing home map mount");
 
 const DESTINATIONS = [
   { id: "explore", label: "Explore", href: "/explore.html", color: "#ff3ec8", x: 0.6, z: 1.2, y: 4.8 },
-  { id: "about", label: "About Me", href: "/about.html", color: "#7af0ff", x: -7.2, z: -1.4, y: 4.2 },
-  { id: "skills", label: "Skills", href: "/skills.html", color: "#b14bff", x: 7.4, z: -0.6, y: 4.4 },
-  { id: "games", label: "Games", href: "/games.html", color: "#ff3ec8", x: -1.8, z: -5.6, y: 5.4 },
-  { id: "cv", label: "CV", href: "/cv.html", color: "#7af0ff", x: 5.2, z: -5.8, y: 4.6 },
-  { id: "contact", label: "Contact", href: "/contact.html", color: "#ff7ad9", x: -6.4, z: 4.6, y: 3.8 },
+  { id: "about", label: "About Me", href: "/explore.html#explore/about", color: "#7af0ff", x: -7.2, z: -1.4, y: 4.2 },
+  { id: "skills", label: "Skills", href: "/explore.html#explore/skills", color: "#b14bff", x: 7.4, z: -0.6, y: 4.4 },
+  { id: "games", label: "Games", href: "/explore.html#explore/games", color: "#ff3ec8", x: -1.8, z: -5.6, y: 5.4 },
+  { id: "cv", label: "CV", href: "/explore.html#explore/cv", color: "#7af0ff", x: 5.2, z: -5.8, y: 4.6 },
+  { id: "contact", label: "Contact", href: "/explore.html#explore/contact", color: "#ff7ad9", x: -6.4, z: 4.6, y: 3.8 },
 ];
 
 const BUILDINGS = [

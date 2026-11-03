@@ -41,11 +41,11 @@
         <p class="world-blurb">Collect games. Explore my world. Get to know me. Click a glowing marker on the city, or press start to walk the neon street.</p>
         <nav class="world-menu" aria-label="World destinations">
           <a href="/explore.html"><span>&#9654;</span> Explore</a>
-          <a href="/games.html">Games</a>
-          <a href="/about.html">About</a>
-          <a href="/skills.html">Skills</a>
-          <a href="/cv.html">CV</a>
-          <a href="/contact.html">Contact</a>
+          <a href="/explore.html#explore/games">Games</a>
+          <a href="/explore.html#explore/about">About</a>
+          <a href="/explore.html#explore/skills">Skills</a>
+          <a href="/explore.html#explore/cv">CV</a>
+          <a href="/explore.html#explore/contact">Contact</a>
         </nav>
         <a class="pixel-btn world-start" href="/explore.html">Press Start</a>
       </div>
@@ -61,7 +61,7 @@
     }
   }
   </script>
-  <script type="module" src="/js/home/world-map.js?v=5"></script>
+  <script type="module" src="/js/home/world-map.js?v=6"></script>
   <script>
   if (location.hash === "#play" || location.hash.indexOf("#explore/") === 0) {
     location.replace("/explore.html" + location.hash);
