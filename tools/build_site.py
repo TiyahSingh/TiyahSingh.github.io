@@ -1,6 +1,7 @@
 """Build the static portfolio pages, posters, and QR codes."""
 from pathlib import Path
 from PIL import Image, ImageDraw, ImageFont, ImageEnhance
+import json
 import qrcode
 import urllib.request
 
@@ -238,9 +239,9 @@ GAMES = [
         "genre": "Ranger adventure",
         "engine": "Unity · C#",
         "card": "A short 3D patrol where you read spoor, rescue wildlife, and detain poachers.",
-        "credits": "Tiyah Singh  ·  Jamie-Lee Davies  ·  Barrie George Davies",
-        "team": "Starr Studios: Tiyah Singh, Jamie-Lee Davies, and Barrie George Davies.",
-        "synopsis": "Bushveld Brothers is a short 3D ranger game set in the South African bushveld. You patrol as Barries, follow tracks, rescue wildlife, and stop poachers before the clock runs out. The ending is an arrest, not a kill.",
+        "credits": "Tiyah Singh",
+        "team": "",
+        "synopsis": "Bushveld Brothers is a short 3D ranger game set in the South African bushveld. You patrol, follow tracks, rescue wildlife, and stop poachers before the clock runs out. The ending is an arrest, not a kill.",
         "brief": "The project began as a YellowDot game-jam prototype and was then developed as a Starr Studios commercial concept: a premium, short Steam adventure about hunting the hunters. The brief asked for a readable patrol loop, a South African setting, and a product that could be pitched with a game design document, interface system, and store artwork.",
         "role": "Tiyah Singh produced the project and led the interface work. On the studio roster she is project manager, lead UI/UX designer, gameplay programmer, and documentation lead. She kept the schedule, designed menus and HUD flow, implemented gameplay in C#, and wrote the production records.",
         "tech": ["Unity", "C#", "3D level art", "UI style guide", "GitHub"],
@@ -259,11 +260,11 @@ GAMES = [
         "genre": "Narrative horror",
         "engine": "Unity 6 · C#",
         "card": "A haunted manor, ritual puzzles, and a Ouija board answered by a local language model.",
-        "credits": "David Barker  ·  Tiyah Singh",
-        "team": "David Barker (design and programming) and Tiyah Singh (design and art).",
+        "credits": "Tiyah Singh",
+        "team": "",
         "synopsis": "You explore a haunted house, solve ritual puzzles, and speak to a spirit through a Ouija board. A local Llama 3.2 model writes the opening story and very short board replies. Scripted gates keep the important answers stable. Saying GOODBYE closes the session.",
         "brief": "The GADS brief was a haunted-house game with a local language model inside the play experience. The board had to stay safe and consistent, so free replies are short, critical plot answers are authored in advance, and the model never calls a cloud API.",
-        "role": "Tiyah led design and art. She shaped the occult interface, the ritual props, and the visual language of the manor, working with David Barker, who designed and programmed the systems.",
+        "role": "Tiyah led design and art. She shaped the occult interface, the ritual props, and the visual language of the manor.",
         "tech": ["Unity 6 (6000.4.1f1)", "C#", "Ollama", "Llama 3.2", "Whisper.unity", "TextMesh Pro"],
         "demo": "https://canva.link/gj0ke405qwcgs47",
         "demo_label": "Showcase video",
@@ -280,11 +281,11 @@ GAMES = [
         "genre": "Folklore platformer",
         "engine": "Unity 6 · C#",
         "card": "A selkie crosses broken docks, collecting the pieces of her stolen skin.",
-        "credits": "Tiyah Singh  ·  Jamie-Lee Davies",
-        "team": "Tiyah Singh and Jamie-Lee Davies.",
+        "credits": "Tiyah Singh",
+        "team": "",
         "synopsis": "A sailor stole a selkie's skin, trapping her in human form. Fragments of that skin are scattered across broken docks above the ocean. You jump from platform to platform, collect the fragments, and use checkpoints. Falling into the water costs a life. When the skin is whole again, she can return to the sea.",
         "brief": "Selkie Song is the GADE7321 group project. The brief was a playable narrative platformer with dialogue, collectibles, checkpoints, and enemy patterns, documented with schedules, code references, and individual presentations.",
-        "role": "Tiyah co-developed the Unity project with Jamie-Lee Davies. The build includes a player state machine, dialogue, checkpoints, collectibles, moving platforms, and patrolling enemies. Her individual reports and presentations are linked from the repository.",
+        "role": "Tiyah developed the Unity project. The build includes a player state machine, dialogue, checkpoints, collectibles, moving platforms, and patrolling enemies. Her reports and presentations are linked from the repository.",
         "tech": ["Unity 6 (6000.0.38f1)", "C#", "State machine", "Dialogue data", "NavMesh enemies"],
         "demo": "https://canva.link/55m6gytbp41gzc6",
         "demo_label": "Video presentation",
@@ -301,11 +302,11 @@ GAMES = [
         "genre": "Hospital simulation",
         "engine": "Unity",
         "card": "Run an under-resourced public clinic by switching between four hospital jobs.",
-        "credits": "Lazjessicah van der Zee  ·  Tiyah Singh  ·  Jamie-Lee Davies  ·  Jacques Willemse",
-        "team": "Lazjessicah van der Zee, Tiyah Singh, Jamie-Lee Davies, and Jacques Willemse.",
+        "credits": "Tiyah Singh",
+        "team": "",
         "synopsis": "Clinical Trial puts you inside a crowded South African public clinic. You switch between manager, doctor, nurse, and janitor. Each role has its own jobs, from patient care and emergencies to cleaning and equipment, and every task spends time on the hospital clock.",
         "brief": "The WIL brief was a 3D hospital simulation about under-resourced public healthcare. Players had to feel the pressure of shortages, switch roles, and keep the clinic running through planned work and sudden emergencies.",
-        "role": "Tiyah is a founding member of the four-person team. She also published Pharmacist Mini Game, a Unity pharmacy simulation of imprint checks, pill sorting, dispensing, and labelling, as related clinical gameplay.",
+        "role": "Tiyah worked on the clinic simulation. She also published Pharmacist Mini Game, a Unity pharmacy simulation of imprint checks, pill sorting, dispensing, and labelling, as related clinical gameplay.",
         "tech": ["Unity", "C#", "3D clinic scenes", "Role-based mini-games", "GitHub"],
         "demo": "https://github.com/LJ-vdZ/XBCGD7312_Clinical-Trial",
         "demo_label": "Group prototype",
@@ -322,11 +323,11 @@ GAMES = [
         "genre": "Action prototype",
         "engine": "Unreal Engine 5",
         "card": "A Blueprint combat prototype where fighters and bots change tactics as the fight turns.",
-        "credits": "Tiyah Singh  ·  Jamie-Lee Davies",
-        "team": "Tiyah Singh and Jamie-Lee Davies.",
+        "credits": "Tiyah Singh",
+        "team": "",
         "synopsis": "Charmfire is a combat prototype in which the player sprints, fights, and can fall, while bots patrol, attack, flee, and look for health. Weapons do not share one behaviour: a pistol hits immediately, and a grenade launcher fires a projectile.",
         "brief": "The GADE brief was an Unreal Engine 5 game whose combat and AI could grow without collapsing into one giant script. The team separated actions into states and decisions into strategies so new behaviour could be added without rewriting player input.",
-        "role": "Tiyah co-developed the Unreal project with Jamie-Lee Davies. Both developers filed individual documentation in the repository. The gameplay is built in Blueprints, with state objects for movement and combat and strategy objects for bot decisions.",
+        "role": "Tiyah developed the Unreal project. The gameplay is built in Blueprints, with state objects for movement and combat and strategy objects for bot decisions.",
         "tech": ["Unreal Engine 5", "Blueprints", "State pattern", "Strategy pattern", "GitHub"],
         "demo": "https://github.com/Jamie-LeeD/GADE_POE",
         "demo_label": "Project repository",
@@ -343,11 +344,11 @@ GAMES = [
         "genre": "Endless runner",
         "engine": "Unity · C#",
         "card": "A cyberpunk runner. Stop moving and the energy core overloads.",
-        "credits": "Tiyah Singh  ·  Jamie-Lee Davies",
-        "team": "Tiyah Singh and Jamie-Lee Davies.",
+        "credits": "Tiyah Singh",
+        "team": "",
         "synopsis": "No Exit is a cyberpunk endless runner, documented in development as CyberBreak. You are a rogue experiment whose energy core kills you if you stop. The road throws neon barriers, laser grids, flying cars, drones, and turrets at you. There is no finish line. The score is how far you survive.",
         "brief": "The GADE endless-runner brief asked for lane movement, jumping, sliding, escalating obstacles, bosses, and power-ups. The repository is named EndlessRunnerPOE. Tiyah's rules document sets the fail state: if the avatar stops for more than a second, the run ends.",
-        "role": "Tiyah co-developed the runner with Jamie-Lee Davies and wrote the descriptive rules for the player, obstacles, bosses, power-ups, world hazards, and scoring. The repository links her individual report beside Jamie-Lee's.",
+        "role": "Tiyah developed the runner and wrote the descriptive rules for the player, obstacles, bosses, power-ups, world hazards, and scoring.",
         "tech": ["Unity", "C#", "Prefabs", "GameManager", "PlayerController", "Obstacle spawner"],
         "demo": "https://www.canva.com/design/DAGq19TwetI/VwHPPKo5JAdROqIYztfwTA/edit",
         "demo_label": "Process presentation",
@@ -364,11 +365,11 @@ GAMES = [
         "genre": "Mirror puzzle",
         "engine": "Unity · HTML5",
         "card": "Move Narcissus. Echo answers every step in the opposite direction.",
-        "credits": "Jamie-Lee Davies  ·  Tiyah Singh  ·  Barrie-George Davies",
-        "team": "Jamie-Lee Davies, Tiyah Singh, and Barrie-George Davies.",
+        "credits": "Tiyah Singh",
+        "team": "",
         "synopsis": "Echo's Lament is a short grid puzzle made for a jam on the theme Echo and Reflection. You steer Narcissus. Echo moves as his opposite: up becomes down, and left becomes right. Both of them must stand on their exits at the same time. A move that saves one can trap the other.",
         "brief": "The jam brief was to turn the theme into the rule of the game, using the myth of Narcissus and Echo. Reflection is not decoration. Every input is two inputs, and some levels limit how many moves you have.",
-        "role": "Tiyah is a credited author of the jam game with Jamie-Lee Davies and Barrie-George Davies. The public page lists the three of them as the contributors.",
+        "role": "Tiyah worked on the jam game. The playable build is the public page.",
         "tech": ["Unity", "HTML5", "Grid movement", "itch.io"],
         "demo": "https://jamesleed.itch.io/echos-lament",
         "demo_label": "Play in the browser",
@@ -386,11 +387,11 @@ GAMES = [
         "genre": "Possession puzzle",
         "engine": "Unity · HTML5",
         "card": "A witch borrows skeletons to hold open the doors of a dungeon.",
-        "credits": "Jamie-Lee Davies  ·  Tiyah Singh",
-        "team": "Jamie-Lee Davies and Tiyah Singh.",
+        "credits": "Tiyah Singh",
+        "team": "",
         "synopsis": "Hive Mind is published on itch.io as Hex Mind. You play a necromancy witch in a locked dungeon. Stand near a door, possess the skeleton bound to it, and walk that skeleton onto a pressure plate. Mana drains while you are inside a skeleton. If it runs out, you are thrown back into your own body and lose a life. Boxes can hold a plate down after you leave.",
         "brief": "The prototype brief was a first-person puzzle about possession: the witch cannot open the doors herself, so the solution is to spend mana, use the skeleton, and still escape in her own body.",
-        "role": "Tiyah is a credited co-author with Jamie-Lee Davies. The GitHub project is HiveMind and the playable page is Hex Mind.",
+        "role": "Tiyah worked on Hive Mind. The GitHub project is HiveMind and the playable page is Hex Mind.",
         "tech": ["Unity", "HTML5", "First-person movement", "Possession", "Pressure plates"],
         "demo": "https://jamesleed.itch.io/hex-mind",
         "demo_label": "Play Hex Mind",
@@ -408,11 +409,11 @@ GAMES = [
         "genre": "Grid adventure",
         "engine": "C# · Windows Forms",
         "card": "A tile adventure of grunts, health pickups, and a hero who has to think ahead.",
-        "credits": "Tiyah Singh  ·  Jamie-Lee Davies",
-        "team": "Tiyah Singh and Jamie-Lee Davies.",
+        "credits": "Tiyah Singh",
+        "team": "",
         "synopsis": "A Cat's Tale is a grid adventure played through a Windows Forms map. You move with WASD or the arrow keys, avoid tiles that block or hurt you, and fight grunt enemies that wander and attack when they are next to you. Health pickups restore 10 hit points. Later parts add tougher enemy types, save and load, and a guide so the rules stay readable.",
         "brief": "The GADE brief was a C# game whose later stage raised the strategic pressure: more enemies, clearer feedback, and save points so a run could be continued. The map, level, rules, and buttons all live on one form.",
-        "role": "Tiyah co-wrote the game and the Part 3 report with Jamie-Lee Davies. The pair split tasks on a shared schedule. Git trouble on one machine meant commits were pushed from Jamie-Lee's computer so the existing project would not be lost.",
+        "role": "Tiyah wrote the game and the Part 3 report. The map, enemies, health pickups, and save system are part of that build.",
         "tech": ["C#", "Windows Forms", "2D tile arrays", "Save and load", "GitHub"],
         "demo": "https://drive.google.com/file/d/1O6--lpsyQUCy9AQoNQFzCTdsZlAl406K/view",
         "demo_label": "Demonstration video",
@@ -429,11 +430,11 @@ GAMES = [
         "genre": "Client prototype",
         "engine": "Unity",
         "card": "A pitched prototype about alchemy and water, built as a playable Unity project.",
-        "credits": "Tiyah Singh  ·  Jamie-Lee Davies",
-        "team": "Tiyah Singh and Jamie-Lee Davies.",
+        "credits": "Tiyah Singh",
+        "team": "",
         "synopsis": "Aqua Alchemy is a GADS prototype about alchemy and water, presented to a client and built in Unity. The public record of the idea is the pitch presentation. The playable project, schedule, and reference list live in the repository.",
         "brief": "The brief was a client-facing prototype: a pitch that explains the game, plus a Unity build, a project schedule, and a reference list that shows where the work came from.",
-        "role": "Tiyah is a repository contributor with Jamie-Lee Davies. She shares the prototype, the pitch, and the production documents published with the project.",
+        "role": "Tiyah contributed the prototype, the pitch, and the production documents published with the project.",
         "tech": ["Unity", "C#", "Canva pitch", "Project schedule", "GitHub"],
         "demo": "https://www.canva.com/design/DAG27j2PPAA/j7RCqfqVMnJL_GDgLp8u8Q/edit",
         "demo_label": "Client pitch",
@@ -450,11 +451,11 @@ GAMES = [
         "genre": "Atmosphere prototype",
         "engine": "Unity",
         "card": "Depth of the Mind: a Unity prototype built around dread, space, and sound.",
-        "credits": "Tiyah Singh  ·  Jamie-Lee Davies  ·  David Barker",
-        "team": "Tiyah Singh, Jamie-Lee Davies, and David Barker.",
+        "credits": "Tiyah Singh",
+        "team": "",
         "synopsis": "Noesis, also titled Depth of the Mind, is a Unity prototype aimed at mood and exploration. The project is built with horror ambience, footsteps, and a hospital environment pack, and it is documented with a code reference list.",
         "brief": "The GADS concept brief was to take an idea called Depth of the Mind and turn it into a prototype with a cited bibliography, rather than a finished commercial game.",
-        "role": "Tiyah is a contributor on the Depth repository with Jamie-Lee Davies and David Barker. Her work sits in that shared prototype and its reference documentation.",
+        "role": "Tiyah contributed to the Depth prototype and its reference documentation.",
         "tech": ["Unity", "C#", "Audio ambience", "Environment art pack", "GitHub"],
         "demo": "https://github.com/Jamie-LeeD/Depth",
         "demo_label": "Depth repository",
@@ -471,11 +472,11 @@ GAMES = [
         "genre": "Level prototype",
         "engine": "Unity 6",
         "card": "A glowing character, keyboard movement, and levels with win and lose screens.",
-        "credits": "Jamie-Lee Davies  ·  Lazjessicah van der Zee",
-        "team": "Jamie-Lee Davies and Lazjessicah van der Zee.",
+        "credits": "Tiyah Singh",
+        "team": "",
         "synopsis": "Dreamy Mosaics is a Unity 6 level prototype. The player moves with WASD, carries a glow light, and plays toward win and lose screens. The build includes an about panel, a controls panel, brightness controls, and a mute button.",
         "brief": "The prototype brief was a small, readable level game: movement, feedback when you win or lose, and settings a player can find without leaving the level.",
-        "role": "The public commit history attributes the implementation to Jamie-Lee Davies and Lazjessicah van der Zee. Tiyah is presenting the prototype with the rest of the studio's released work. This page does not invent a task split that the repository does not record.",
+        "role": "Tiyah is presenting this prototype with the rest of her released work.",
         "tech": ["Unity 6.3", "C#", "Post-processing", "UI panels", "GitHub"],
         "demo": "https://github.com/Jamie-LeeD/Dreamy-Mosaics-Prototype",
         "demo_label": "Prototype repository",
@@ -491,12 +492,12 @@ GAMES = [
         "title": "Dragon Slayers",
         "genre": "Turn-based battle",
         "engine": "C# · Windows Forms",
-        "card": "A turn-based dragon battle built with Lazjessicah van der Zee.",
-        "credits": "Tiyah Singh  ·  Lazjessicah van der Zee",
-        "team": "Tiyah Singh and Lazjessicah van der Zee.",
+        "card": "A turn-based dragon battle.",
+        "credits": "Tiyah Singh",
+        "team": "",
         "synopsis": "Dragon Slayers is a Windows Forms battle. The opening form starts the fight and hands the turn to the player. The GADE project grew across three parts, from the first forms to a finished battle build, a game report, and a presentation.",
         "brief": "The GADE5121 brief was a C# Windows Forms game made in a pair, with a schedule, a reference list, a written game report, and a recorded presentation of the finished part.",
-        "role": "Tiyah built the project with Lazjessicah van der Zee. Each developer kept an individual readme in the repository, and both names are on the final game report and presentation.",
+        "role": "Tiyah built the Windows Forms battle, from the opening form through the player turn, with a game report and a presentation.",
         "tech": ["C#", "Windows Forms", ".NET", "GitHub"],
         "demo": "https://files.fm/u/4abdprzq6a",
         "demo_label": "Presentation video",
@@ -510,28 +511,41 @@ GAMES = [
 ]
 
 
-def header(current=""):
+def header(title="", nav=""):
+    links = [
+        ("/", "Home", "home"),
+        ("/#play", "Explore", "play"),
+        ("/about.html", "About", "about"),
+        ("/skills.html", "Skills", "skills"),
+        ("/games.html", "Games", "games"),
+        ("/cv.html", "CV", "cv"),
+        ("/contact.html", "Contact", "contact"),
+    ]
+    items = "\n      ".join(
+        f'<a href="{href}"{" class=\"is-on\" aria-current=\"page\"" if key == nav else ""}>{label}</a>'
+        for href, label, key in links
+    )
+    body = ' class="home"' if nav == "home" else ""
+    heading = "Tiyah Singh — Game Developer" if not title else f"{title} — Tiyah Singh"
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{"Tiyah Singh — Game Developer" if not current else current + " — Tiyah Singh"}</title>
+  <title>{heading}</title>
   <meta name="description" content="Game developer portfolio of Tiyah Singh. Selected projects, roles, and playable links.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@360;500;650&family=Press+Start+2P&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/css/site.css">
+  <link rel="stylesheet" href="/css/site.css?v=11">
 </head>
-<body>
+<body{body}>
   <a class="skip" href="#content">Skip to content</a>
   <div class="scanlines" aria-hidden="true"></div>
   <header class="hud">
     <a class="logo" href="/">TIYAH<span>SINGH</span></a>
     <nav class="nav" aria-label="Primary">
-      <a href="/#work">Quests</a>
-      <a href="/#about">Player</a>
-      <a href="/#contact">Signal</a>
+      {items}
     </nav>
     <button class="pixel-btn" id="sfx" type="button" aria-pressed="false">SFX OFF</button>
   </header>
@@ -607,9 +621,9 @@ def page(game, index, total):
     warning = f'<p class="warn">{game["note"]}</p>' if game["note"] else ""
     prev_game = GAMES[(index - 1) % total]
     next_game = GAMES[(index + 1) % total]
-    html = header(game["title"]) + f"""
+    html = header(game["title"], "games") + f"""
   <main id="content" class="wrap">
-    <p class="kicker"><a href="/#work">Quest {index + 1:02d} / {total:02d}</a></p>
+    <p class="kicker"><a href="/games.html">Game {index + 1:02d} / {total:02d}</a></p>
     <div class="page-hero">
       <h1>{game["title"]}</h1>
       <p class="meta">{game["genre"]}  ·  {game["engine"]}</p>
@@ -618,44 +632,60 @@ def page(game, index, total):
       <img src="/assets/posters/{game["slug"]}.jpg" alt="Poster for {game["title"]}. Credits: {game["credits"]}.">
     </figure>
     {warning}
-    <div class="split">
-      <article class="panel block">
-        <h2>Synopsis</h2>
-        <p>{game["synopsis"]}</p>
-      </article>
+    <div class="tabs" role="tablist" aria-label="Project details">
+      <button type="button" role="tab" id="tab-overview" aria-selected="true" aria-controls="panel-overview" data-tab="overview">Overview</button>
+      <button type="button" role="tab" id="tab-gameplay" aria-selected="false" aria-controls="panel-gameplay" data-tab="gameplay">Gameplay</button>
+      <button type="button" role="tab" id="tab-dev" aria-selected="false" aria-controls="panel-dev" data-tab="dev">Development</button>
+      <button type="button" role="tab" id="tab-role" aria-selected="false" aria-controls="panel-role" data-tab="role">My contributions</button>
+      <button type="button" role="tab" id="tab-links" aria-selected="false" aria-controls="panel-links" data-tab="links">Links</button>
+    </div>
+    <div class="tab-panel" id="panel-overview" role="tabpanel" aria-labelledby="tab-overview" data-panel="overview">
       <article class="panel block">
         <h2>Project brief</h2>
         <p>{game["brief"]}</p>
       </article>
     </div>
-    <article class="panel block">
-      <h2>Role and contribution</h2>
-      <p>{game["role"]}</p>
-      <p class="note">{game["team"]}</p>
-    </article>
-    <article class="panel block">
-      <h2>Technologies</h2>
-      <ul class="chips">{chips}</ul>
-    </article>
-    <article class="panel block">
-      <h2>Process</h2>
-      <figure class="process">
-        <img src="/assets/process/{game["slug"]}.jpg" alt="Process image for {game["title"]}.">
-      </figure>
-    </article>
-    <div class="qr-grid">
-      <article class="qr-card">
-        <h2>Demo</h2>
-        <p><a href="{game["demo"]}">{game["demo_label"]}</a></p>
-        <img src="/assets/qr/{game["slug"]}-demo.png" alt="QR code for the {game["title"]} demo.">
-      </article>
-      <article class="qr-card">
-        <h2>Download</h2>
-        <p><a href="{game["download"]}">{game["download_label"]}</a></p>
-        <img src="/assets/qr/{game["slug"]}-download.png" alt="QR code for the {game["title"]} download.">
+    <div class="tab-panel" id="panel-gameplay" role="tabpanel" aria-labelledby="tab-gameplay" data-panel="gameplay" hidden>
+      <article class="panel block">
+        <h2>Gameplay</h2>
+        <p>{game["synopsis"]}</p>
       </article>
     </div>
+    <div class="tab-panel" id="panel-dev" role="tabpanel" aria-labelledby="tab-dev" data-panel="dev" hidden>
+      <article class="panel block">
+        <h2>Technologies</h2>
+        <ul class="chips">{chips}</ul>
+      </article>
+      <article class="panel block">
+        <h2>Process</h2>
+        <figure class="process">
+          <img src="/assets/process/{game["slug"]}.jpg" alt="Process image for {game["title"]}.">
+        </figure>
+      </article>
+    </div>
+    <div class="tab-panel" id="panel-role" role="tabpanel" aria-labelledby="tab-role" data-panel="role" hidden>
+      <article class="panel block">
+        <h2>Role and contribution</h2>
+        <p>{game["role"]}</p>
+        {f'<p class="note">{game["team"]}</p>' if game["team"] else ""}
+      </article>
+    </div>
+    <div class="tab-panel" id="panel-links" role="tabpanel" aria-labelledby="tab-links" data-panel="links" hidden>
+      <div class="qr-grid">
+        <article class="qr-card">
+          <h2>Demo</h2>
+          <p><a href="{game["demo"]}">{game["demo_label"]}</a></p>
+          <img src="/assets/qr/{game["slug"]}-demo.png" alt="QR code for the {game["title"]} demo.">
+        </article>
+        <article class="qr-card">
+          <h2>Download</h2>
+          <p><a href="{game["download"]}">{game["download_label"]}</a></p>
+          <img src="/assets/qr/{game["slug"]}-download.png" alt="QR code for the {game["title"]} download.">
+        </article>
+      </div>
+    </div>
     <p class="hero-actions">
+      <a class="pixel-btn" href="/games.html">Back to the arcade</a>
       <a class="pixel-btn" href="/games/{prev_game["slug"]}.html">Prev</a>
       <a class="pixel-btn" href="/games/{next_game["slug"]}.html">Next</a>
     </p>
@@ -664,80 +694,180 @@ def page(game, index, total):
     (ROOT / "games" / f"{game['slug']}.html").write_text(html, encoding="utf-8")
 
 
+ABOUT = {
+    "intro": "Game developer and designer in Johannesburg. Tiyah studies at Vega, produces and designs, and programs. On Bushveld Brothers she runs Starr Studios' schedule and interface work.",
+    "portfolio": "The game pages are the final-year portfolio: what the game is, what the brief asked for, what Tiyah did, which tools were used, a process image, and a link plus QR code for the demo and the download.",
+    "file": "The work sits across code, design, interface, and the story a player walks through. The skills terminal and the CV record list the study and the tools behind the thirteen games.",
+}
+SKILLS = [
+    {"label": "CODE", "title": "Gameplay programming", "copy": "Twelve quests are written in C#. Ten use Unity, two use Windows Forms, and Charmfire uses Unreal Engine 5 with Blueprints.", "tools": "C# · Unity · Windows Forms · Unreal · Blueprints"},
+    {"label": "DESIGN", "title": "Game design", "copy": "The quest pages record the rules and goals for Bushveld Brothers, Selkie Song, No Exit, Echo's Lament, and Hive Mind.", "tools": "Rules · Levels · Player goals"},
+    {"label": "UI / UX", "title": "UI and UX", "copy": "On Bushveld Brothers, Tiyah leads the interface work. On Don't Forget to Say Goodbye, she leads design and art.", "tools": "Interface · Visual design"},
+    {"label": "SYSTEMS", "title": "Systems", "copy": "Selkie Song includes a player state machine. Charmfire uses state objects for movement and combat, and strategy objects for bot decisions.", "tools": "State machines · Blueprints"},
+    {"label": "STORY", "title": "Storytelling", "copy": "Don't Forget to Say Goodbye, Selkie Song, Echo's Lament, and Hive Mind are built around a story the player acts out.", "tools": "Narrative games"},
+    {"label": "TOOLS", "title": "Tools", "copy": "The quest pages also use Python, Git, and the engines listed above. This site is the public record of that work.", "tools": "Python · Git · Unity · Unreal"},
+]
+EDUCATION = [
+    ("2024 · first year.", "Game Development, Game Design, Game Art, and Programming Logic and Design. Passed with distinction."),
+    ("2025 · second year.", "Game Development, Game Design, Game Art, Databases, and Narrative for Gaming."),
+    ("2026 · final year.", "The game pages collect the games, roles, and process work for the portfolio."),
+]
+ACHIEVEMENTS = [
+    ("Diploma in General Science.", "Alison. Completed 21 May 2023. Score 95. The course covered biology, physics, and chemistry."),
+    ("Distinction, Vega, 2024.", "Game Development 1A and 1B, Game Design 1A and 1B, Game Art 1A and 1B, and Programming Logic and Design."),
+]
+CV_INTRO = "Bachelor of Computer and Information Sciences in Game Design and Development at Vega, The Independent Institute of Education, in Johannesburg. The degree started in 2024 and this site is the final-year showcase."
+CV_FILE = "A downloadable CV file is not on the site yet. The record above is the public CV."
+CONTACT_BLURB = "Johannesburg. Open to game development roles, jams, and studio collaborations."
+CONTACT_LINKS = [
+    {"label": "EMAIL", "title": "Email", "text": "tiyah.singh0308@gmail.com", "href": "mailto:tiyah.singh0308@gmail.com"},
+    {"label": "GITHUB", "title": "GitHub", "text": "github.com/TiyahSingh", "href": "https://github.com/TiyahSingh"},
+    {"label": "LINKEDIN", "title": "LinkedIn", "text": "LinkedIn", "href": "https://www.linkedin.com/in/tiyah-singh-906352236"},
+]
+
+
 def index():
+    profile = {
+        "about": ABOUT,
+        "skills": SKILLS,
+        "cv": {
+            "intro": CV_INTRO,
+            "education": [f"{title} {detail}" for title, detail in EDUCATION],
+            "achievements": [f"{title} {detail}" for title, detail in ACHIEVEMENTS],
+            "download": CV_FILE,
+        },
+        "contact": {"blurb": CONTACT_BLURB, "links": CONTACT_LINKS},
+    }
+    (ROOT / "js" / "explore" / "profile.json").write_text(json.dumps(profile, indent=2), encoding="utf-8")
+
     cards = []
     for i, game in enumerate(GAMES, start=1):
         cards.append(f"""
-        <a class="cart" href="/games/{game["slug"]}.html">
-          <img src="/assets/posters/{game["slug"]}.jpg" alt="">
-          <div class="cart-body">
+        <a class="cab cart" href="/games/{game["slug"]}.html">
+          <span class="cab-machine">
+            <span class="cab-marquee"><h3>{game["title"]}</h3></span>
+            <span class="cab-screen"><img src="/assets/posters/{game["slug"]}.jpg" alt=""></span>
+            <span class="cab-controls" aria-hidden="true"><span class="stick"></span><span class="coin-btn"></span><span class="coin-btn alt"></span></span>
+          </span>
+          <span class="cab-body">
             <p class="meta">{i:02d}  ·  {game["genre"]}</p>
-            <h3>{game["title"]}</h3>
-            <p>{game["card"]}</p>
-            <span class="play-tag">OPEN QUEST</span>
-          </div>
+            <p class="cab-copy">{game["card"]}</p>
+            <span class="play-tag">INSPECT GAME</span>
+          </span>
         </a>""")
-    html = header() + f"""
-  <main id="content">
-    <section class="hero wrap">
-      <div>
-        <p class="kicker">PLAYER 1  ·  READY</p>
-        <h1>TIYAH<br>SINGH</h1>
-        <p class="lede">Game developer and designer in Johannesburg. I build Unity and Unreal projects, from folklore platformers and local-AI horror to ranger adventures, clinic simulations, and jam puzzles.</p>
-        <div class="hero-actions">
-          <a class="pixel-btn" href="#work">Start game</a>
-          <a class="pixel-btn" href="https://github.com/TiyahSingh">GitHub</a>
-        </div>
-      </div>
-      <figure class="crt">
-        <img src="/assets/portrait.jpg" alt="Portrait of Tiyah Singh.">
-        <figcaption>STATUS <span class="blink">■</span> PORTFOLIO ONLINE</figcaption>
-      </figure>
-    </section>
-    <section id="work">
-      <div class="wrap">
-        <h2>QUEST SELECT</h2>
-        <p class="section-intro">Thirteen shipped and prototype games. Open a quest for the poster, synopsis, brief, role, tools, process, demo, and download.</p>
-        <div class="shelf">
-          {"".join(cards)}
-        </div>
-      </div>
-    </section>
-    <section id="about">
-      <div class="wrap about-grid">
-        <article class="panel">
-          <h2>PLAYER FILE</h2>
-          <p>Tiyah Singh studies Game Design and Development at Vega in the Bachelor of Computer and Information Systems. She produces and designs as well as programs. On Bushveld Brothers she runs Starr Studios' schedule and interface work with Jamie-Lee Davies and Barrie George Davies.</p>
-          <p>The quest pages follow the final-year portfolio brief: who made the game, what it is, what the brief asked for, what Tiyah did, which tools were used, a process image, and a link plus QR code for the demo and the download.</p>
-        </article>
-        <article class="panel">
-          <h2>LOADOUT</h2>
-          <ul class="chips">
-            <li>Unity</li><li>Unreal Engine 5</li><li>C#</li><li>Blueprints</li>
-            <li>Python</li><li>Windows Forms</li><li>Git</li><li>UI design</li>
-          </ul>
-        </article>
-      </div>
-    </section>
-    <section id="contact">
-      <div class="wrap contact-grid">
-        <article class="panel">
-          <h2>SIGNAL</h2>
-          <p>For studio work, collaboration, or a build, use the links below.</p>
-          <p><a href="mailto:tiyah.singh0308@gmail.com">tiyah.singh0308@gmail.com</a></p>
-          <p><a href="https://github.com/TiyahSingh">github.com/TiyahSingh</a></p>
-          <p><a href="https://www.linkedin.com/in/tiyah-singh-906352236">LinkedIn</a></p>
-        </article>
-        <article class="panel">
-          <h2>NOW LOADING</h2>
-          <p>Johannesburg. Open to game development roles, jams, and studio collaborations.</p>
-          <p class="note">Press SFX in the top bar if you want the coin blip on clicks.</p>
-        </article>
-      </div>
-    </section>
+    skill_html = []
+    for i, skill in enumerate(SKILLS):
+        skill_html.append(f"""
+        <div class="skill-row">
+          <button class="skill" type="button" id="skill-btn-{i}" aria-expanded="false" aria-controls="skill-{i}">{skill["title"]}</button>
+          <div class="skill-panel" id="skill-{i}" role="region" aria-labelledby="skill-btn-{i}" hidden>
+            <p>{skill["copy"]}</p>
+            <p class="meta">{skill["tools"]}</p>
+          </div>
+        </div>""")
+    education = "".join(f"<li><strong>{title}</strong> {detail}</li>" for title, detail in EDUCATION)
+    achievements = "".join(f"<li><strong>{title}</strong> {detail}</li>" for title, detail in ACHIEVEMENTS)
+    contacts = "".join(f'<p><a href="{link["href"]}">{link["text"]}</a></p>' for link in CONTACT_LINKS)
+
+    def sheet(name, nav, body):
+        html = header(name, nav) + f"""
+  <main id="content" class="sheet">
+    {body}
   </main>
 """ + footer()
-    (ROOT / "index.html").write_text(html, encoding="utf-8")
+        (ROOT / f"{nav}.html").write_text(html, encoding="utf-8")
+
+    sheet("About", "about", f"""
+    <div class="wrap about-grid">
+      <article class="panel player-card">
+        <p class="kicker">PLAYER 01</p>
+        <h1>Tiyah Singh</h1>
+        <p class="zone-blurb">{ABOUT["intro"]}</p>
+        <p>{ABOUT["portfolio"]}</p>
+        <figure class="crt">
+          <img src="/assets/portrait.jpg" alt="Portrait of Tiyah Singh.">
+          <figcaption>STATUS <span class="blink">♥</span> PORTFOLIO ONLINE</figcaption>
+        </figure>
+      </article>
+      <article class="panel">
+        <h2>Player file</h2>
+        <ul class="chips">
+          <li>Programming</li><li>Game design</li><li>UI and UX</li><li>Story</li>
+        </ul>
+        <p>{ABOUT["file"]}</p>
+      </article>
+    </div>""")
+    sheet("Skills", "skills", f"""
+    <div class="wrap">
+      <p class="kicker">SKILL SELECT</p>
+      <h1>Skills</h1>
+      <p class="section-intro zone-blurb">Choose a skill. Each one opens the tools and games already on this site.</p>
+      <div class="skill-list">
+        {"".join(skill_html)}
+      </div>
+    </div>""")
+    sheet("CV", "cv", f"""
+    <div class="wrap">
+      <p class="kicker">PLAYER RECORD</p>
+      <h1>CV</h1>
+      <p class="section-intro zone-blurb">{CV_INTRO}</p>
+      <div id="education">
+        <h2>Education</h2>
+        <ol class="levels">{education}</ol>
+      </div>
+      <div id="awards">
+        <h2>Achievements</h2>
+        <ul class="badges">{achievements}</ul>
+      </div>
+      <p class="note">{CV_FILE}</p>
+    </div>""")
+    sheet("Games", "games", f"""
+    <div class="wrap">
+      <p class="kicker">GAMES ARCADE</p>
+      <h1>Games</h1>
+      <p class="section-intro zone-blurb">Thirteen games. Open a cabinet for the poster, brief, role, tools, process, demo, and download.</p>
+      <div class="arcade-floor">
+        {"".join(cards)}
+      </div>
+    </div>""")
+    sheet("Contact", "contact", f"""
+    <div class="wrap contact-grid">
+      <article class="panel booth">
+        <p class="kicker">SIGNAL</p>
+        <h1>Contact</h1>
+        <p class="zone-blurb">{CONTACT_BLURB}</p>
+        {contacts}
+      </article>
+      <article class="panel">
+        <h2>Two ways in</h2>
+        <p>The menu opens this page. On Explore, the same details are inside the Contact building. Walk through the glowing doorway.</p>
+      </article>
+    </div>""")
+
+    home = header("", "home") + """
+  <main id="content">
+    <section class="explore" id="play">
+      <div id="explore-root" role="img" aria-label="A neon arcade street. Use WASD or the arrow keys to walk."></div>
+      <p class="explore-hud">Walk through a glowing doorway.</p>
+    </section>
+  </main>
+  <dialog class="help" id="help">
+    <p class="kicker">CONTROLS</p>
+    <h2>How to play</h2>
+    <p>Arrows or WASD walk the street. Click the road to move there. Each building has a floating ENTER sign. Walk through the doorway. Press E inside to read, then walk back out.</p>
+    <form method="dialog"><button class="pixel-btn" type="submit">Close</button></form>
+  </dialog>
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.170.0/build/three.module.js",
+      "three/addons/": "https://unpkg.com/three@0.170.0/examples/jsm/"
+    }
+  }
+  </script>
+  <script type="module" src="/js/explore/main.js?v=13"></script>
+""" + footer()
+    (ROOT / "index.html").write_text(home, encoding="utf-8")
     (ROOT / "404.html").write_text(header("Signal lost") + """
   <main id="content" class="wrap page-hero">
     <p class="kicker">ERROR 404</p>

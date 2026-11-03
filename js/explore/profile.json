@@ -1,0 +1,81 @@
+{
+  "about": {
+    "intro": "Game developer and designer in Johannesburg. Tiyah studies at Vega, produces and designs, and programs. On Bushveld Brothers she runs Starr Studios' schedule and interface work.",
+    "portfolio": "The game pages are the final-year portfolio: what the game is, what the brief asked for, what Tiyah did, which tools were used, a process image, and a link plus QR code for the demo and the download.",
+    "file": "The work sits across code, design, interface, and the story a player walks through. The skills terminal and the CV record list the study and the tools behind the thirteen games."
+  },
+  "skills": [
+    {
+      "label": "CODE",
+      "title": "Gameplay programming",
+      "copy": "Twelve quests are written in C#. Ten use Unity, two use Windows Forms, and Charmfire uses Unreal Engine 5 with Blueprints.",
+      "tools": "C# \u00b7 Unity \u00b7 Windows Forms \u00b7 Unreal \u00b7 Blueprints"
+    },
+    {
+      "label": "DESIGN",
+      "title": "Game design",
+      "copy": "The quest pages record the rules and goals for Bushveld Brothers, Selkie Song, No Exit, Echo's Lament, and Hive Mind.",
+      "tools": "Rules \u00b7 Levels \u00b7 Player goals"
+    },
+    {
+      "label": "UI / UX",
+      "title": "UI and UX",
+      "copy": "On Bushveld Brothers, Tiyah leads the interface work. On Don't Forget to Say Goodbye, she leads design and art.",
+      "tools": "Interface \u00b7 Visual design"
+    },
+    {
+      "label": "SYSTEMS",
+      "title": "Systems",
+      "copy": "Selkie Song includes a player state machine. Charmfire uses state objects for movement and combat, and strategy objects for bot decisions.",
+      "tools": "State machines \u00b7 Blueprints"
+    },
+    {
+      "label": "STORY",
+      "title": "Storytelling",
+      "copy": "Don't Forget to Say Goodbye, Selkie Song, Echo's Lament, and Hive Mind are built around a story the player acts out.",
+      "tools": "Narrative games"
+    },
+    {
+      "label": "TOOLS",
+      "title": "Tools",
+      "copy": "The quest pages also use Python, Git, and the engines listed above. This site is the public record of that work.",
+      "tools": "Python \u00b7 Git \u00b7 Unity \u00b7 Unreal"
+    }
+  ],
+  "cv": {
+    "intro": "Bachelor of Computer and Information Sciences in Game Design and Development at Vega, The Independent Institute of Education, in Johannesburg. The degree started in 2024 and this site is the final-year showcase.",
+    "education": [
+      "2024 \u00b7 first year. Game Development, Game Design, Game Art, and Programming Logic and Design. Passed with distinction.",
+      "2025 \u00b7 second year. Game Development, Game Design, Game Art, Databases, and Narrative for Gaming.",
+      "2026 \u00b7 final year. The game pages collect the games, roles, and process work for the portfolio."
+    ],
+    "achievements": [
+      "Diploma in General Science. Alison. Completed 21 May 2023. Score 95. The course covered biology, physics, and chemistry.",
+      "Distinction, Vega, 2024. Game Development 1A and 1B, Game Design 1A and 1B, Game Art 1A and 1B, and Programming Logic and Design."
+    ],
+    "download": "A downloadable CV file is not on the site yet. The record above is the public CV."
+  },
+  "contact": {
+    "blurb": "Johannesburg. Open to game development roles, jams, and studio collaborations.",
+    "links": [
+      {
+        "label": "EMAIL",
+        "title": "Email",
+        "text": "tiyah.singh0308@gmail.com",
+        "href": "mailto:tiyah.singh0308@gmail.com"
+      },
+      {
+        "label": "GITHUB",
+        "title": "GitHub",
+        "text": "github.com/TiyahSingh",
+        "href": "https://github.com/TiyahSingh"
+      },
+      {
+        "label": "LINKEDIN",
+        "title": "LinkedIn",
+        "text": "LinkedIn",
+        "href": "https://www.linkedin.com/in/tiyah-singh-906352236"
+      }
+    ]
+  }
+}

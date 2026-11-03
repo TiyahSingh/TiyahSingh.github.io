@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@360;500;650&family=Press+Start+2P&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/css/site.css">
+  <link rel="stylesheet" href="/css/site.css?v=11">
 </head>
 <body>
   <a class="skip" href="#content">Skip to content</a>
@@ -16,62 +16,82 @@
   <header class="hud">
     <a class="logo" href="/">TIYAH<span>SINGH</span></a>
     <nav class="nav" aria-label="Primary">
-      <a href="/#work">Quests</a>
-      <a href="/#about">Player</a>
-      <a href="/#contact">Signal</a>
+      <a href="/">Home</a>
+      <a href="/#play">Explore</a>
+      <a href="/about.html">About</a>
+      <a href="/skills.html">Skills</a>
+      <a href="/games.html" class="is-on" aria-current="page">Games</a>
+      <a href="/cv.html">CV</a>
+      <a href="/contact.html">Contact</a>
     </nav>
     <button class="pixel-btn" id="sfx" type="button" aria-pressed="false">SFX OFF</button>
   </header>
   <div class="marquee" aria-hidden="true"><p>INSERT COIN  ·  BUSHVELD BROTHERS  ·  SELKIE SONG  ·  DON'T FORGET TO SAY GOODBYE  ·  CLINICAL TRIAL  ·  CHARMFIRE  ·  NO EXIT  ·  ECHO'S LAMENT  ·  HIVE MIND  ·  A CAT'S TALE  ·  AQUA ALCHEMY  ·  NOESIS  ·  DREAMY MOSAICS  ·  DRAGON SLAYERS  ·  INSERT COIN  ·  BUSHVELD BROTHERS  ·  SELKIE SONG  ·  DON'T FORGET TO SAY GOODBYE  ·  </p></div>
 
   <main id="content" class="wrap">
-    <p class="kicker"><a href="/#work">Quest 05 / 13</a></p>
+    <p class="kicker"><a href="/games.html">Game 05 / 13</a></p>
     <div class="page-hero">
       <h1>Charmfire</h1>
       <p class="meta">Action prototype  ·  Unreal Engine 5</p>
     </div>
     <figure class="poster">
-      <img src="/assets/posters/charmfire.jpg" alt="Poster for Charmfire. Credits: Tiyah Singh  ·  Jamie-Lee Davies.">
+      <img src="/assets/posters/charmfire.jpg" alt="Poster for Charmfire. Credits: Tiyah Singh.">
     </figure>
     <p class="warn">A separate gameplay video is not published. The repository is both the demo record and the download.</p>
-    <div class="split">
-      <article class="panel block">
-        <h2>Synopsis</h2>
-        <p>Charmfire is a combat prototype in which the player sprints, fights, and can fall, while bots patrol, attack, flee, and look for health. Weapons do not share one behaviour: a pistol hits immediately, and a grenade launcher fires a projectile.</p>
-      </article>
+    <div class="tabs" role="tablist" aria-label="Project details">
+      <button type="button" role="tab" id="tab-overview" aria-selected="true" aria-controls="panel-overview" data-tab="overview">Overview</button>
+      <button type="button" role="tab" id="tab-gameplay" aria-selected="false" aria-controls="panel-gameplay" data-tab="gameplay">Gameplay</button>
+      <button type="button" role="tab" id="tab-dev" aria-selected="false" aria-controls="panel-dev" data-tab="dev">Development</button>
+      <button type="button" role="tab" id="tab-role" aria-selected="false" aria-controls="panel-role" data-tab="role">My contributions</button>
+      <button type="button" role="tab" id="tab-links" aria-selected="false" aria-controls="panel-links" data-tab="links">Links</button>
+    </div>
+    <div class="tab-panel" id="panel-overview" role="tabpanel" aria-labelledby="tab-overview" data-panel="overview">
       <article class="panel block">
         <h2>Project brief</h2>
         <p>The GADE brief was an Unreal Engine 5 game whose combat and AI could grow without collapsing into one giant script. The team separated actions into states and decisions into strategies so new behaviour could be added without rewriting player input.</p>
       </article>
     </div>
-    <article class="panel block">
-      <h2>Role and contribution</h2>
-      <p>Tiyah co-developed the Unreal project with Jamie-Lee Davies. Both developers filed individual documentation in the repository. The gameplay is built in Blueprints, with state objects for movement and combat and strategy objects for bot decisions.</p>
-      <p class="note">Tiyah Singh and Jamie-Lee Davies.</p>
-    </article>
-    <article class="panel block">
-      <h2>Technologies</h2>
-      <ul class="chips"><li>Unreal Engine 5</li><li>Blueprints</li><li>State pattern</li><li>Strategy pattern</li><li>GitHub</li></ul>
-    </article>
-    <article class="panel block">
-      <h2>Process</h2>
-      <figure class="process">
-        <img src="/assets/process/charmfire.jpg" alt="Process image for Charmfire.">
-      </figure>
-    </article>
-    <div class="qr-grid">
-      <article class="qr-card">
-        <h2>Demo</h2>
-        <p><a href="https://github.com/Jamie-LeeD/GADE_POE">Project repository</a></p>
-        <img src="/assets/qr/charmfire-demo.png" alt="QR code for the Charmfire demo.">
-      </article>
-      <article class="qr-card">
-        <h2>Download</h2>
-        <p><a href="https://github.com/Jamie-LeeD/GADE_POE">Unreal project</a></p>
-        <img src="/assets/qr/charmfire-download.png" alt="QR code for the Charmfire download.">
+    <div class="tab-panel" id="panel-gameplay" role="tabpanel" aria-labelledby="tab-gameplay" data-panel="gameplay" hidden>
+      <article class="panel block">
+        <h2>Gameplay</h2>
+        <p>Charmfire is a combat prototype in which the player sprints, fights, and can fall, while bots patrol, attack, flee, and look for health. Weapons do not share one behaviour: a pistol hits immediately, and a grenade launcher fires a projectile.</p>
       </article>
     </div>
+    <div class="tab-panel" id="panel-dev" role="tabpanel" aria-labelledby="tab-dev" data-panel="dev" hidden>
+      <article class="panel block">
+        <h2>Technologies</h2>
+        <ul class="chips"><li>Unreal Engine 5</li><li>Blueprints</li><li>State pattern</li><li>Strategy pattern</li><li>GitHub</li></ul>
+      </article>
+      <article class="panel block">
+        <h2>Process</h2>
+        <figure class="process">
+          <img src="/assets/process/charmfire.jpg" alt="Process image for Charmfire.">
+        </figure>
+      </article>
+    </div>
+    <div class="tab-panel" id="panel-role" role="tabpanel" aria-labelledby="tab-role" data-panel="role" hidden>
+      <article class="panel block">
+        <h2>Role and contribution</h2>
+        <p>Tiyah developed the Unreal project. The gameplay is built in Blueprints, with state objects for movement and combat and strategy objects for bot decisions.</p>
+        
+      </article>
+    </div>
+    <div class="tab-panel" id="panel-links" role="tabpanel" aria-labelledby="tab-links" data-panel="links" hidden>
+      <div class="qr-grid">
+        <article class="qr-card">
+          <h2>Demo</h2>
+          <p><a href="https://github.com/Jamie-LeeD/GADE_POE">Project repository</a></p>
+          <img src="/assets/qr/charmfire-demo.png" alt="QR code for the Charmfire demo.">
+        </article>
+        <article class="qr-card">
+          <h2>Download</h2>
+          <p><a href="https://github.com/Jamie-LeeD/GADE_POE">Unreal project</a></p>
+          <img src="/assets/qr/charmfire-download.png" alt="QR code for the Charmfire download.">
+        </article>
+      </div>
+    </div>
     <p class="hero-actions">
+      <a class="pixel-btn" href="/games.html">Back to the arcade</a>
       <a class="pixel-btn" href="/games/clinical-trial.html">Prev</a>
       <a class="pixel-btn" href="/games/no-exit.html">Next</a>
     </p>

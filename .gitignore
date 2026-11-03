@@ -1,3 +1,8 @@
 __pycache__/
 _research/
 assets/raw/
+assets/models/_src/
+assets/models/_preview/
+assets/models/_preview_roads/
+assets/models/_extract_c/
+assets/models/_extract_r/

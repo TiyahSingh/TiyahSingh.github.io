@@ -1,0 +1,12 @@
+CYBERPUNK CITY - FREE SAMPLE - 5 assets, 2109 tris, 1338 verts total
+
+Every asset ships as .blend, .fbx, .obj and .glb.
+Flat-shaded low poly, solid colours, emissive neon,
+no textures, origins at the object base, metres.
+
+category   asset                    tris    verts
+signs      sign_tall                 480      308
+signs      street_lamp               132       82
+props      vending_machine           468      300
+props      noodle_cart               864      528
+street     road_tile                 165      120
