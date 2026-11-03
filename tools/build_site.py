@@ -514,7 +514,7 @@ GAMES = [
 def header(title="", nav=""):
     links = [
         ("/", "Home", "home"),
-        ("/#play", "Explore", "play"),
+        ("/explore.html", "Explore", "play"),
         ("/about.html", "About", "about"),
         ("/skills.html", "Skills", "skills"),
         ("/games.html", "Games", "games"),
@@ -525,7 +525,12 @@ def header(title="", nav=""):
         f'<a href="{href}"{" class=\"is-on\" aria-current=\"page\"" if key == nav else ""}>{label}</a>'
         for href, label, key in links
     )
-    body = ' class="home"' if nav == "home" else ""
+    if nav == "home":
+        body = ' class="home"'
+    elif nav == "play":
+        body = ' class="explore-page"'
+    else:
+        body = ""
     heading = "Tiyah Singh — Game Developer" if not title else f"{title} — Tiyah Singh"
     return f"""<!DOCTYPE html>
 <html lang="en">
@@ -537,7 +542,7 @@ def header(title="", nav=""):
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@360;500;650&family=Press+Start+2P&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/css/site.css?v=11">
+  <link rel="stylesheet" href="/css/site.css?v=15">
 </head>
 <body{body}>
   <a class="skip" href="#content">Skip to content</a>
@@ -840,11 +845,52 @@ def index():
       </article>
       <article class="panel">
         <h2>Two ways in</h2>
-        <p>The menu opens this page. On Explore, the same details are inside the Contact building. Walk through the glowing doorway.</p>
+        <p>The menu opens this page. On Home, the Contact marker opens this page. In Explore, walk through the glowing Contact doorway.</p>
       </article>
     </div>""")
 
     home = header("", "home") + """
+  <main id="content" class="world">
+    <section class="world-stage" aria-label="Map of Tiyah's world">
+      <div class="world-art" aria-hidden="true"></div>
+      <div id="world-map" class="world-canvas" role="img" aria-label="Floating neon city map. Drag to look around. Click a glowing marker to open that page."></div>
+      <div class="world-veil" aria-hidden="true"></div>
+      <div id="world-pins" class="world-pins"></div>
+      <div class="world-copy">
+        <p class="kicker">PLAYER 01</p>
+        <h1>Welcome to<br><span>Tiyah's world</span></h1>
+        <p class="world-tag">Game developer &amp; creative</p>
+        <p class="world-blurb">Collect games. Explore my world. Get to know me. Click a glowing marker on the city, or press start to walk the neon street.</p>
+        <nav class="world-menu" aria-label="World destinations">
+          <a href="/explore.html"><span>&#9654;</span> Explore</a>
+          <a href="/games.html">Games</a>
+          <a href="/about.html">About</a>
+          <a href="/skills.html">Skills</a>
+          <a href="/cv.html">CV</a>
+          <a href="/contact.html">Contact</a>
+        </nav>
+        <a class="pixel-btn world-start" href="/explore.html">Press Start</a>
+      </div>
+      <p class="world-hint">Drag to look · click a marker</p>
+      <p class="world-hearts" aria-hidden="true">♥ ♥ ♥ · LVL 01</p>
+    </section>
+  </main>
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.170.0/build/three.module.js",
+      "three/addons/": "https://unpkg.com/three@0.170.0/examples/jsm/"
+    }
+  }
+  </script>
+  <script type="module" src="/js/home/world-map.js?v=5"></script>
+  <script>
+  if (location.hash === "#play" || location.hash.indexOf("#explore/") === 0) {
+    location.replace("/explore.html" + location.hash);
+  }
+  </script>
+""" + footer()
+    explore = header("Explore", "play") + """
   <main id="content">
     <section class="explore" id="play">
       <div id="explore-root" role="img" aria-label="A neon arcade street. Use WASD or the arrow keys to walk."></div>
@@ -865,9 +911,10 @@ def index():
     }
   }
   </script>
-  <script type="module" src="/js/explore/main.js?v=13"></script>
+  <script type="module" src="/js/explore/main.js?v=14"></script>
 """ + footer()
     (ROOT / "index.html").write_text(home, encoding="utf-8")
+    (ROOT / "explore.html").write_text(explore, encoding="utf-8")
     (ROOT / "404.html").write_text(header("Signal lost") + """
   <main id="content" class="wrap page-hero">
     <p class="kicker">ERROR 404</p>

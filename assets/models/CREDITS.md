@@ -1,6 +1,27 @@
 # 3D asset record
 
-Used on the Games street in the portfolio explore view. All of these files were downloaded and loaded as real models. Attribution is not required for any of them. Credit is still included here.
+Used on the Home world map and the Explore street. All of these files were downloaded and loaded as real models. Attribution is not required for any of them. Credit is still included here.
+
+## Home world map
+
+The Home landing is a floating neon island overview built in Three.js, with glowing HTML markers.
+
+### Kenney — City Kit (Commercial) + EH98 free sample
+
+- Same packs listed under “In the scene” below.
+- Home places Kenney commercial buildings and EH98 lamps/vending on custom floating platforms with neon bridges. Platforms, beams, starfield, and markers are custom site art, not from the packs.
+- Fallback imagery if WebGL fails: Eon Cire Neon Building birdseye render.
+
+### Eon Cire — Simple 3D Neon Building (CC0)
+
+- Source: https://opengameart.org/content/simple-3d-neon-building
+- Zip: https://opengameart.org/sites/default/files/NeonBuilding.zip
+- Licence: CC0
+- Used imagery: `assets/images/home/city-birdseye.png` / `.jpg` and `neon-city.png` / `.jpg` (pack reference renders)
+- Also kept locally: `assets/models/neonbuilding/NeonBuilding.fbx` and `BuildingTexture.png`
+- Markers on the Home map are custom HTML overlays and are not part of the pack.
+
+papptimus Cyber City (CC-BY) was attempted via itch PWYW; the download endpoint rate-limited. Quaternius Downtown / Cyberpunk Drive Google Drive quota was exceeded.
 
 ## In the scene
 

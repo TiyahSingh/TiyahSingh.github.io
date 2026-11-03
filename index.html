@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@360;500;650&family=Press+Start+2P&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/css/site.css?v=11">
+  <link rel="stylesheet" href="/css/site.css?v=15">
 </head>
 <body class="home">
   <a class="skip" href="#content">Skip to content</a>
@@ -17,7 +17,7 @@
     <a class="logo" href="/">TIYAH<span>SINGH</span></a>
     <nav class="nav" aria-label="Primary">
       <a href="/" class="is-on" aria-current="page">Home</a>
-      <a href="/#play">Explore</a>
+      <a href="/explore.html">Explore</a>
       <a href="/about.html">About</a>
       <a href="/skills.html">Skills</a>
       <a href="/games.html">Games</a>
@@ -28,18 +28,31 @@
   </header>
   <div class="marquee" aria-hidden="true"><p>INSERT COIN  ·  BUSHVELD BROTHERS  ·  SELKIE SONG  ·  DON'T FORGET TO SAY GOODBYE  ·  CLINICAL TRIAL  ·  CHARMFIRE  ·  NO EXIT  ·  ECHO'S LAMENT  ·  HIVE MIND  ·  A CAT'S TALE  ·  AQUA ALCHEMY  ·  NOESIS  ·  DREAMY MOSAICS  ·  DRAGON SLAYERS  ·  INSERT COIN  ·  BUSHVELD BROTHERS  ·  SELKIE SONG  ·  DON'T FORGET TO SAY GOODBYE  ·  </p></div>
 
-  <main id="content">
-    <section class="explore" id="play">
-      <div id="explore-root" role="img" aria-label="A neon arcade street. Use WASD or the arrow keys to walk."></div>
-      <p class="explore-hud">Walk through a glowing doorway.</p>
+  <main id="content" class="world">
+    <section class="world-stage" aria-label="Map of Tiyah's world">
+      <div class="world-art" aria-hidden="true"></div>
+      <div id="world-map" class="world-canvas" role="img" aria-label="Floating neon city map. Drag to look around. Click a glowing marker to open that page."></div>
+      <div class="world-veil" aria-hidden="true"></div>
+      <div id="world-pins" class="world-pins"></div>
+      <div class="world-copy">
+        <p class="kicker">PLAYER 01</p>
+        <h1>Welcome to<br><span>Tiyah's world</span></h1>
+        <p class="world-tag">Game developer &amp; creative</p>
+        <p class="world-blurb">Collect games. Explore my world. Get to know me. Click a glowing marker on the city, or press start to walk the neon street.</p>
+        <nav class="world-menu" aria-label="World destinations">
+          <a href="/explore.html"><span>&#9654;</span> Explore</a>
+          <a href="/games.html">Games</a>
+          <a href="/about.html">About</a>
+          <a href="/skills.html">Skills</a>
+          <a href="/cv.html">CV</a>
+          <a href="/contact.html">Contact</a>
+        </nav>
+        <a class="pixel-btn world-start" href="/explore.html">Press Start</a>
+      </div>
+      <p class="world-hint">Drag to look · click a marker</p>
+      <p class="world-hearts" aria-hidden="true">♥ ♥ ♥ · LVL 01</p>
     </section>
   </main>
-  <dialog class="help" id="help">
-    <p class="kicker">CONTROLS</p>
-    <h2>How to play</h2>
-    <p>Arrows or WASD walk the street. Click the road to move there. Each building has a floating ENTER sign. Walk through the doorway. Press E inside to read, then walk back out.</p>
-    <form method="dialog"><button class="pixel-btn" type="submit">Close</button></form>
-  </dialog>
   <script type="importmap">
   {
     "imports": {
@@ -48,7 +61,12 @@
     }
   }
   </script>
-  <script type="module" src="/js/explore/main.js?v=13"></script>
+  <script type="module" src="/js/home/world-map.js?v=5"></script>
+  <script>
+  if (location.hash === "#play" || location.hash.indexOf("#explore/") === 0) {
+    location.replace("/explore.html" + location.hash);
+  }
+  </script>
   <footer>
     <span>TIYAH SINGH · GAME DEVELOPER</span>
     <span>tiyahsingh.co.za</span>

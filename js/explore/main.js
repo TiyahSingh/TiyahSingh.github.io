@@ -16,6 +16,7 @@ const WRITTEN = {
   "#contact": "/contact.html",
   "#education": "/cv.html",
   "#awards": "/cv.html",
+  "#play": "/explore.html#play",
 };
 const EXPLORE = {
   "#explore/about": "about",

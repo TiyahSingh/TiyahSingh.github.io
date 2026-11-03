@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Explore — Tiyah Singh</title>
+  <meta name="description" content="Game developer portfolio of Tiyah Singh. Selected projects, roles, and playable links.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@360;500;650&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/site.css?v=15">
+</head>
+<body class="explore-page">
+  <a class="skip" href="#content">Skip to content</a>
+  <div class="scanlines" aria-hidden="true"></div>
+  <header class="hud">
+    <a class="logo" href="/">TIYAH<span>SINGH</span></a>
+    <nav class="nav" aria-label="Primary">
+      <a href="/">Home</a>
+      <a href="/explore.html" class="is-on" aria-current="page">Explore</a>
+      <a href="/about.html">About</a>
+      <a href="/skills.html">Skills</a>
+      <a href="/games.html">Games</a>
+      <a href="/cv.html">CV</a>
+      <a href="/contact.html">Contact</a>
+    </nav>
+    <button class="pixel-btn" id="sfx" type="button" aria-pressed="false">SFX OFF</button>
+  </header>
+  <div class="marquee" aria-hidden="true"><p>INSERT COIN  ·  BUSHVELD BROTHERS  ·  SELKIE SONG  ·  DON'T FORGET TO SAY GOODBYE  ·  CLINICAL TRIAL  ·  CHARMFIRE  ·  NO EXIT  ·  ECHO'S LAMENT  ·  HIVE MIND  ·  A CAT'S TALE  ·  AQUA ALCHEMY  ·  NOESIS  ·  DREAMY MOSAICS  ·  DRAGON SLAYERS  ·  INSERT COIN  ·  BUSHVELD BROTHERS  ·  SELKIE SONG  ·  DON'T FORGET TO SAY GOODBYE  ·  </p></div>
+
+  <main id="content">
+    <section class="explore" id="play">
+      <div id="explore-root" role="img" aria-label="A neon arcade street. Use WASD or the arrow keys to walk."></div>
+      <p class="explore-hud">Walk through a glowing doorway.</p>
+    </section>
+  </main>
+  <dialog class="help" id="help">
+    <p class="kicker">CONTROLS</p>
+    <h2>How to play</h2>
+    <p>Arrows or WASD walk the street. Click the road to move there. Each building has a floating ENTER sign. Walk through the doorway. Press E inside to read, then walk back out.</p>
+    <form method="dialog"><button class="pixel-btn" type="submit">Close</button></form>
+  </dialog>
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.170.0/build/three.module.js",
+      "three/addons/": "https://unpkg.com/three@0.170.0/examples/jsm/"
+    }
+  }
+  </script>
+  <script type="module" src="/js/explore/main.js?v=14"></script>
+  <footer>
+    <span>TIYAH SINGH · GAME DEVELOPER</span>
+    <span>tiyahsingh.co.za</span>
+  </footer>
+  <script src="/js/arcade.js"></script>
+</body>
+</html>
