@@ -138,29 +138,26 @@ async function boot() {
   addBridge(city, islands[6], islands[7]);
   addBridge(city, islands[5], islands[6]);
 
-  const anchors = DESTINATIONS.map(function (dest) {
+  const anchors = DESTINATIONS.map(function (dest, index) {
+    const board = makeBuildingBillboard(dest.label, dest.color);
+    /* Mount on the building face like a fixed neon billboard */
+    board.position.set(dest.x, Math.max(2.4, dest.y * 0.62), dest.z);
+    board.rotation.y = Math.atan2(dest.x, dest.z) + Math.PI;
+    board.rotation.y += (index % 2 === 0 ? -0.18 : 0.22);
+    city.add(board);
+
     const marker = new THREE.Object3D();
-    marker.position.set(dest.x, dest.y, dest.z);
+    marker.position.set(dest.x, board.position.y + 0.55, dest.z);
     city.add(marker);
-    const beam = new THREE.Mesh(
-      new THREE.CylinderGeometry(0.06, 0.22, dest.y + 0.4, 10, 1, true),
-      new THREE.MeshBasicMaterial({
-        color: dest.color,
-        transparent: true,
-        opacity: 0.28,
-        depthWrite: false,
-        blending: THREE.AdditiveBlending,
-      })
-    );
-    beam.position.set(dest.x, dest.y * 0.5 - 0.1, dest.z);
-    city.add(beam);
+
     const pin = document.createElement("a");
     pin.className = "map-pin";
     pin.href = dest.href;
     pin.style.setProperty("--pin", dest.color);
-    pin.innerHTML = "<span class='map-pin-dot'></span><span class='map-pin-label'>" + dest.label + "</span>";
+    pin.setAttribute("aria-label", dest.label);
+    pin.innerHTML = "<span class='map-pin-label'>" + dest.label + "</span>";
     pinsHost.appendChild(pin);
-    return { marker: marker, pin: pin, beam: beam };
+    return { marker: marker, pin: pin, beam: board };
   });
 
   const composer = new EffectComposer(renderer);
@@ -246,13 +243,17 @@ async function boot() {
     if (starLayers[1]) starLayers[1].rotation.y = -t * 0.018;
     if (starLayers[0]) starLayers[0].rotation.x = Math.sin(t * 0.08) * 0.04;
     anchors.forEach(function (item, index) {
-      item.beam.material.opacity = 0.18 + Math.sin(t * 2.2 + index) * 0.08;
+      if (item.beam && item.beam.userData && item.beam.userData.pulseMats) {
+        item.beam.userData.pulseMats.forEach(function (mat) {
+          mat.emissiveIntensity = 1.05 + Math.sin(t * 2.1 + index) * 0.35;
+        });
+      }
       const pos = item.marker.getWorldPosition(new THREE.Vector3());
       pos.project(camera);
       const x = (pos.x * 0.5 + 0.5) * lastW;
       const y = (-pos.y * 0.5 + 0.5) * lastH;
       const visible = pos.z < 1 && x > -40 && y > -40 && x < lastW + 40 && y < lastH + 40;
-      item.pin.style.display = visible ? "grid" : "none";
+      item.pin.style.display = visible ? "block" : "none";
       item.pin.style.left = x + "px";
       item.pin.style.top = y + "px";
     });
@@ -376,11 +377,6 @@ function scatterBuildings(city, templates, props, island, seed) {
     building.rotation.y = ((seed + index) % 8) * Math.PI * 0.25;
     city.add(building);
 
-    if (index === 0 && DESTINATIONS[seed]) {
-      const sign = makeSign(DESTINATIONS[seed].label, DESTINATIONS[seed].color, 2.6, 0.75);
-      sign.position.set(slot[0], island.h * 0.5 + scale * 2.35, slot[1] + 1.15);
-      city.add(sign);
-    }
   });
 
   if (props[0]) {
@@ -482,6 +478,70 @@ function addVoidGlow(scene) {
   scene.add(disc);
 }
 
+function makeBuildingBillboard(label, colorHex) {
+  const group = new THREE.Group();
+  const color = new THREE.Color(colorHex);
+
+  const pole = new THREE.Mesh(
+    new THREE.CylinderGeometry(0.07, 0.09, 2.4, 8),
+    new THREE.MeshStandardMaterial({
+      color: 0x1a0b22,
+      metalness: 0.55,
+      roughness: 0.35,
+      emissive: color,
+      emissiveIntensity: 0.25,
+    })
+  );
+  pole.position.set(0, 0.05, -0.55);
+  group.add(pole);
+
+  const arm = new THREE.Mesh(
+    new THREE.BoxGeometry(0.12, 0.12, 0.7),
+    new THREE.MeshStandardMaterial({
+      color: 0x120818,
+      metalness: 0.4,
+      roughness: 0.4,
+      emissive: color,
+      emissiveIntensity: 0.35,
+    })
+  );
+  arm.position.set(0, 1.15, -0.2);
+  group.add(arm);
+
+  const back = new THREE.Mesh(
+    new THREE.BoxGeometry(2.85, 1.05, 0.16),
+    new THREE.MeshStandardMaterial({
+      color: 0x09040f,
+      metalness: 0.2,
+      roughness: 0.55,
+      emissive: color,
+      emissiveIntensity: 0.45,
+    })
+  );
+  back.position.set(0, 1.15, 0.12);
+  group.add(back);
+
+  const frame = new THREE.Mesh(
+    new THREE.BoxGeometry(3.05, 1.22, 0.08),
+    new THREE.MeshStandardMaterial({
+      color: 0x1a0b22,
+      emissive: color,
+      emissiveIntensity: 1.2,
+      metalness: 0.35,
+      roughness: 0.3,
+    })
+  );
+  frame.position.set(0, 1.15, 0.02);
+  group.add(frame);
+
+  const face = makeSign(label, colorHex, 2.7, 0.9);
+  face.position.set(0, 1.15, 0.22);
+  group.add(face);
+
+  group.userData.pulseMats = [frame.material, back.material, face.material];
+  return group;
+}
+
 function placeCssPins() {
   DESTINATIONS.forEach(function (dest, index) {
     const pin = document.createElement("a");
@@ -490,8 +550,8 @@ function placeCssPins() {
     pin.style.setProperty("--pin", dest.color);
     pin.style.left = (58 + dest.x * 3.2) + "%";
     pin.style.top = (42 + dest.z * 3.1) + "%";
-    pin.style.animationDelay = (index * 0.18) + "s";
-    pin.innerHTML = "<span class='map-pin-dot'></span><span class='map-pin-label'>" + dest.label + "</span>";
+    pin.setAttribute("aria-label", dest.label);
+    pin.innerHTML = "<span class='map-pin-label'>" + dest.label + "</span>";
     pinsHost.appendChild(pin);
   });
 }

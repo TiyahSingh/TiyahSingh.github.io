@@ -656,8 +656,10 @@ body.explore-page .site-footer {
 .gba-title-row .world-start {
   margin: 0;
   flex: 0 0 auto;
-  padding: 0.35rem 0.75rem;
-  font-size: clamp(0.62rem, 1.2vw, 0.74rem);
+  padding: 0.55rem 1.15rem 0.62rem;
+  font-size: clamp(0.82rem, 1.7vw, 1.05rem);
+  letter-spacing: 0.04em;
+  line-height: 1.1;
 }
 
 .gba-screen h1 {
@@ -1301,56 +1303,36 @@ body.explore-page .explore { min-height: 0; }
 
 .map-pin {
   position: absolute;
-  display: grid;
-  justify-items: center;
-  gap: 0.4rem;
+  display: block;
+  width: 7.5rem;
+  height: 3.1rem;
   text-decoration: none;
-  color: white;
+  color: transparent;
   pointer-events: auto;
-  transform: translate(-50%, -100%);
-  animation: pin-bob 2.6s ease-in-out infinite;
+  transform: translate(-50%, -50%);
   will-change: left, top;
+  border-radius: 0.2rem;
 }
 
-.map-pin-dot {
-  width: 1.15rem;
-  height: 1.15rem;
-  border-radius: 50%;
-  background: var(--pin, var(--pink));
-  box-shadow:
-    0 0 0 4px color-mix(in srgb, var(--pin, var(--pink)) 28%, transparent),
-    0 0 24px var(--pin, var(--pink)),
-    0 0 48px rgba(177, 75, 255, 0.55);
-}
+.map-pin-dot { display: none; }
 
 .map-pin-label {
-  font-family: var(--font-ui);
-  font-size: clamp(0.72rem, 1.3vw, 0.88rem);
-  font-weight: 400;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #fff;
-  padding: 0.48rem 0.85rem 0.55rem;
-  background: rgba(12, 6, 22, 0.94);
-  border: 2.5px solid var(--pin, var(--pink));
-  border-radius: 999px;
-  box-shadow:
-    0 0 18px color-mix(in srgb, var(--pin, var(--pink)) 45%, transparent),
-    3px 3px 0 #2a0838;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
   white-space: nowrap;
+  border: 0;
 }
 
-.map-pin:hover .map-pin-label,
-.map-pin:focus-visible .map-pin-label {
-  background: var(--pin, var(--pink));
-  color: #140814;
-  border-color: #fff;
-  box-shadow: 0 0 22px color-mix(in srgb, var(--pin, var(--pink)) 70%, transparent), 3px 3px 0 #2a0838;
-}
-
-.map-pin:hover .map-pin-dot,
-.map-pin:focus-visible .map-pin-dot {
-  transform: scale(1.18);
+.map-pin:hover,
+.map-pin:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--pin, var(--pink)) 80%, white);
+  outline-offset: 2px;
+  box-shadow: 0 0 18px color-mix(in srgb, var(--pin, var(--pink)) 55%, transparent);
 }
 
 .world-hint {
