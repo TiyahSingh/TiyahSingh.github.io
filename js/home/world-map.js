@@ -65,9 +65,9 @@ async function boot() {
   const scene = new THREE.Scene();
   scene.fog = new THREE.FogExp2(0x090614, 0.018);
 
-  const camera = new THREE.PerspectiveCamera(38, mount.clientWidth / Math.max(mount.clientHeight, 1), 0.1, 120);
-  camera.position.set(14, 13.5, 16);
-  camera.lookAt(0, 1.5, 0);
+  const camera = new THREE.PerspectiveCamera(36, mount.clientWidth / Math.max(mount.clientHeight, 1), 0.1, 160);
+  camera.position.set(20, 18, 22);
+  camera.lookAt(0, 1.2, 0);
 
   scene.add(new THREE.AmbientLight(0x9a70c4, 2.1));
   const key = new THREE.DirectionalLight(0xffb0f0, 2.4);
@@ -171,10 +171,10 @@ async function boot() {
 
   let dragging = false;
   let lastX = 0;
-  let yaw = 0.35;
-  let pitch = 0.42;
-  const target = new THREE.Vector3(0, 1.4, 0);
-  const radius = 22;
+  let yaw = 0.38;
+  let pitch = 0.48;
+  const target = new THREE.Vector3(0, 1.1, 0);
+  const radius = 32;
 
   function applyOrbit() {
     camera.position.set(

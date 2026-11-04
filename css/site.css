@@ -647,27 +647,19 @@ footer {
 
 .world-copy .world-menu a {
   font-family: var(--font-ui);
-  font-size: clamp(0.88rem, 1.6vw, 1.05rem);
+  font-size: clamp(0.82rem, 1.5vw, 0.95rem);
   font-weight: 400;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: #fff;
-  border-left: none;
-  background: rgba(255, 78, 184, 0.16);
-  border: 2px solid rgba(255, 154, 240, 0.55);
-  border-radius: 0.55rem;
-  padding: 0.42rem 0.7rem;
-  width: 100%;
-  box-shadow: inset 0 0 12px rgba(255, 46, 182, 0.12);
+  color: var(--paper);
+  border-left-color: transparent;
 }
 
 .world-copy .world-menu a:hover,
 .world-copy .world-menu a:focus-visible {
-  color: #1a0614;
-  background: #ff4eb8;
-  border-color: #ff9cf0;
+  color: var(--pink-2);
+  border-left-color: var(--pink);
   text-shadow: none;
-  box-shadow: 0 0 16px rgba(255, 78, 184, 0.55);
 }
 
 .world-copy .world-start {
@@ -962,7 +954,7 @@ footer {
     top: calc(var(--hud-h) + 0.45rem);
   }
   .gba-screen h1 { font-size: clamp(1.2rem, 6vw, 1.7rem); -webkit-text-stroke-width: 2px; }
-  .world-menu a { font-size: 0.92rem; }
+  .world-menu a { font-size: 0.88rem; }
   .map-pin-label { font-size: 0.78rem; }
   .explore-hud { bottom: calc(5.6rem + env(safe-area-inset-bottom, 0px)); }
   .explore-act { bottom: calc(1.1rem + env(safe-area-inset-bottom, 0px)); }
@@ -1086,25 +1078,30 @@ body.explore-page .explore { min-height: 0; }
 
 .world-menu {
   display: grid;
-  gap: 0.45rem;
+  gap: 0.4rem;
   margin-bottom: 1.05rem;
 }
 
 .world-menu a {
-  display: block;
-  box-sizing: border-box;
+  width: fit-content;
   font-family: var(--font-ui);
-  font-size: clamp(0.88rem, 1.6vw, 1.05rem);
+  font-size: clamp(0.82rem, 1.5vw, 0.95rem);
   letter-spacing: 0.06em;
   text-transform: uppercase;
   text-decoration: none;
-  color: #fff;
+  color: var(--paper);
+  padding: 0.45rem 0.2rem;
+  border-left: 3px solid transparent;
 }
 
-.world-menu a span { color: var(--pink-2); margin-right: 0.45rem; }
+.world-menu a span { color: var(--pink); margin-right: 0.4rem; }
 
-.world-menu a:hover span,
-.world-menu a:focus-visible span { color: #1a0614; }
+.world-menu a:hover,
+.world-menu a:focus-visible {
+  color: white;
+  border-left-color: var(--pink);
+  text-shadow: 0 0 12px rgba(255, 62, 200, 0.7);
+}
 
 .world-start {
   display: inline-block;
