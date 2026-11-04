@@ -10,7 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Spicy+Rice&display=swap" rel="stylesheet">
   <link rel="icon" href="/assets/brand/favicon.png" type="image/png">
   <link rel="stylesheet" href="/css/site.css?v=62">
-  <link rel="stylesheet" href="/css/galaxy.css?v=6">
+  <link rel="stylesheet" href="/css/galaxy.css?v=7">
 </head>
 <body class="skills-galaxy-page">
   <a class="skip" href="#content">Skip to content</a>
@@ -54,11 +54,11 @@
     <div class="galaxy-panel" id="galaxy-skill-panel" role="dialog" aria-modal="true" hidden></div>
   </main>
   <script src="/js/skills/galaxy-data.js?v=4"></script>
-  <script src="/js/skills/galaxy.js?v=6"></script>
+  <script src="/js/skills/galaxy.js?v=7"></script>
   <script>
   (function () {
     var params = new URLSearchParams(location.search);
-    var fromExplore = params.get("from") === "explore" || document.referrer.indexOf("/explore.html") !== -1;
+    var fromExplore = params.get("from") === "explore";
     var exit = document.getElementById("about-street-exit");
     if (exit && fromExplore) {
       exit.hidden = false;

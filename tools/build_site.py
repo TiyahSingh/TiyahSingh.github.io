@@ -535,7 +535,7 @@ def header(title="", nav=""):
         body = ' class="skills-galaxy-page"'
     else:
         body = ""
-    extra_css = '\n  <link rel="stylesheet" href="/css/galaxy.css?v=6">' if nav == "skills" else ""
+    extra_css = '\n  <link rel="stylesheet" href="/css/galaxy.css?v=7">' if nav == "skills" else ""
     heading = "Tiyah Singh — Game Developer" if not title else f"{title} — Tiyah Singh"
     return f"""<!DOCTYPE html>
 <html lang="en">
@@ -937,11 +937,11 @@ def index():
     <div class="galaxy-panel" id="galaxy-skill-panel" role="dialog" aria-modal="true" hidden></div>
   </main>
   <script src="/js/skills/galaxy-data.js?v=4"></script>
-  <script src="/js/skills/galaxy.js?v=6"></script>
+  <script src="/js/skills/galaxy.js?v=7"></script>
   <script>
   (function () {
     var params = new URLSearchParams(location.search);
-    var fromExplore = params.get("from") === "explore" || document.referrer.indexOf("/explore.html") !== -1;
+    var fromExplore = params.get("from") === "explore";
     var exit = document.getElementById("about-street-exit");
     if (exit && fromExplore) {
       exit.hidden = false;

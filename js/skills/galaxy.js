@@ -12,7 +12,16 @@
 
   if (!system) return;
 
-  /* ---------- build orbits ---------- */
+  /* deliberate constellation layout — not nested spinning rings */
+  const LAYOUT = [
+    { x: 50, y: 12, hue: 320 }, /* Design — top */
+    { x: 86, y: 32, hue: 280 }, /* Games — upper right */
+    { x: 86, y: 70, hue: 190 }, /* Code — lower right */
+    { x: 50, y: 90, hue: 145 }, /* Data — bottom */
+    { x: 14, y: 70, hue: 45 },  /* Story — lower left */
+    { x: 14, y: 32, hue: 0 },   /* Extra — upper left */
+  ];
+
   function levelMeta(level) {
     return DATA.levels[level] || DATA.levels.discovered;
   }
@@ -20,10 +29,23 @@
   function buildSystem() {
     system.innerHTML = "";
 
+    const art = document.createElement("div");
+    art.className = "galaxy-orbit-art";
+    art.setAttribute("aria-hidden", "true");
+    art.innerHTML = `
+      <svg class="galaxy-orbit-svg" viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMid meet">
+        <ellipse class="galaxy-orbit-line" cx="500" cy="500" rx="210" ry="170" transform="rotate(-18 500 500)" />
+        <ellipse class="galaxy-orbit-line galaxy-orbit-line--b" cx="500" cy="500" rx="310" ry="250" transform="rotate(12 500 500)" />
+        <ellipse class="galaxy-orbit-line galaxy-orbit-line--c" cx="500" cy="500" rx="400" ry="330" transform="rotate(-8 500 500)" />
+        <ellipse class="galaxy-orbit-line galaxy-orbit-line--d" cx="500" cy="500" rx="470" ry="390" transform="rotate(22 500 500)" />
+      </svg>
+    `;
+    system.appendChild(art);
+
     const core = document.createElement("button");
     core.type = "button";
     core.className = "galaxy-core";
-    core.setAttribute("aria-label", DATA.title);
+    core.setAttribute("aria-label", "skill galaxy");
     core.innerHTML = `
       <span class="galaxy-core__glow"></span>
       <span class="galaxy-core__body"></span>
@@ -32,37 +54,21 @@
     core.addEventListener("click", () => closeAll());
     system.appendChild(core);
 
-    const neonHues = [320, 280, 190, 145, 45, 0];
     DATA.orbits.forEach((orbit, index) => {
-      /* spaced wide so rings read clearly */
-      const size = 44 + index * 14;
-      const ring = document.createElement("div");
-      ring.className = "galaxy-ring";
-      ring.dataset.orbit = orbit.id;
-      ring.style.setProperty("--i", String(index));
-      ring.style.setProperty("--hue", String(neonHues[index % neonHues.length]));
-      ring.style.setProperty("--size", `${size}%`);
-      ring.style.setProperty("--spin", `${(70 + index * 22) * (index % 2 ? 1 : -1)}s`);
-      ring.style.setProperty("--tilt", `${index % 2 ? 0.86 : 0.92}`);
-
-      const path = document.createElement("div");
-      path.className = "galaxy-ring__path";
-      ring.appendChild(path);
-
-      /* fan planets around so they don't cluster */
-      const angle = index * 57 + (index % 2 ? 18 : -10);
-      const holder = document.createElement("div");
-      holder.className = "galaxy-ring__holder";
-      holder.style.setProperty("--angle", `${angle}deg`);
-
+      const spot = LAYOUT[index] || { x: 50, y: 50, hue: 300 };
       const planet = document.createElement("button");
       planet.type = "button";
       planet.className = `galaxy-planet galaxy-planet--${orbit.planet} galaxy-planet--neon`;
+      if (orbit.planet === "ringed" || index === 1 || index === 4) {
+        planet.classList.add("has-rings");
+      }
       planet.dataset.orbitId = orbit.id;
-      planet.style.setProperty("--hue", String(neonHues[index % neonHues.length]));
+      planet.style.setProperty("--hue", String(spot.hue));
+      planet.style.setProperty("--x", spot.x + "%");
+      planet.style.setProperty("--y", spot.y + "%");
+      planet.style.setProperty("--delay", (index * 0.35).toFixed(2) + "s");
       planet.setAttribute("aria-expanded", "false");
       planet.setAttribute("aria-controls", "galaxy-category-panel");
-      if (orbit.planet === "ringed" || index === 1 || index === 4) planet.classList.add("has-rings");
       planet.innerHTML = `
         <span class="galaxy-planet__halo"></span>
         <span class="galaxy-planet__body"></span>
@@ -75,9 +81,7 @@
         e.stopPropagation();
         openCategory(orbit, planet);
       });
-      holder.appendChild(planet);
-      ring.appendChild(holder);
-      system.appendChild(ring);
+      system.appendChild(planet);
     });
   }
 
@@ -95,7 +99,6 @@
     ).join("");
   }
 
-  /* ---------- panels ---------- */
   let activePlanet = null;
 
   function openCategory(orbit, planetBtn) {
@@ -112,7 +115,7 @@
       .map((sk) => {
         const meta = levelMeta(sk.level);
         return `
-          <button type="button" class="galaxy-skill-chip" data-skill="${escapeHtml(sk.id)}" data-orbit="${escapeHtml(orbit.id)}" style="--hue:${orbit.hue}">
+          <button type="button" class="galaxy-skill-chip" data-skill="${escapeHtml(sk.id)}" data-orbit="${escapeHtml(orbit.id)}" style="--hue:${planetBtn.style.getPropertyValue("--hue") || orbit.hue}">
             <span class="galaxy-skill-chip__glow" data-level="${escapeHtml(sk.level)}"></span>
             <span class="galaxy-skill-chip__name">${escapeHtml(sk.name)}</span>
             <span class="galaxy-skill-chip__lvl">${escapeHtml(meta.label)}</span>
@@ -213,20 +216,13 @@
     }
   });
 
-  /* soft parallax on pointer */
   if (!reduceMotion) {
     const stage = document.querySelector(".galaxy-stage");
     stage?.addEventListener("pointermove", (e) => {
-      const x = (e.clientX / window.innerWidth - 0.5) * 12;
-      const y = (e.clientY / window.innerHeight - 0.5) * 10;
+      const x = (e.clientX / window.innerWidth - 0.5) * 8;
+      const y = (e.clientY / window.innerHeight - 0.5) * 6;
       system.style.transform = `translate(${x}px, ${y}px)`;
     });
-  }
-
-  /* explore exit */
-  const params = new URLSearchParams(location.search);
-  if (params.get("from") === "explore") {
-    document.body.classList.add("from-explore");
   }
 
   buildSystem();
