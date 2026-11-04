@@ -541,7 +541,7 @@ def header(title="", nav=""):
     if nav == "skills":
         extra_css = '\n  <link rel="stylesheet" href="/css/galaxy.css?v=12">'
     elif nav == "cv":
-        extra_css = '\n  <link rel="stylesheet" href="/css/cv.css?v=2">'
+        extra_css = '\n  <link rel="stylesheet" href="/css/cv.css?v=3">'
     heading = "Tiyah Singh — Game Developer" if not title else f"{title} — Tiyah Singh"
     return f"""<!DOCTYPE html>
 <html lang="en">

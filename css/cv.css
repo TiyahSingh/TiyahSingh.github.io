@@ -29,20 +29,34 @@
   text-transform: uppercase;
 }
 
-.cv-page p,
-.cv-page li,
-.cv-page span,
-.cv-page em,
-.cv-page time,
-.cv-page b,
-.cv-page a,
-.cv-page .cv-bio,
-.cv-page .cv-meta,
-.cv-page .cv-list,
-.cv-page .cv-chips,
-.cv-page .cv-job,
-.cv-page .cv-lang {
+.cv-page .nav a {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+}
+
+.cv-desktop p,
+.cv-desktop li,
+.cv-desktop span,
+.cv-desktop em,
+.cv-desktop time,
+.cv-desktop b,
+.cv-desktop a,
+.cv-desktop .cv-bio,
+.cv-desktop .cv-meta,
+.cv-desktop .cv-list,
+.cv-desktop .cv-chips,
+.cv-desktop .cv-job,
+.cv-desktop .cv-lang {
   font-family: var(--font-body);
+}
+
+.cv-desktop .cv-win__title,
+.cv-desktop .cv-name,
+.cv-desktop .cv-download,
+.cv-desktop h1,
+.cv-desktop h2,
+.cv-desktop h3 {
+  font-family: var(--font-display);
 }
 
 .cv-page .scanlines {
