@@ -64,8 +64,8 @@ async function boot() {
   const scene = new THREE.Scene();
   scene.fog = new THREE.FogExp2(0x090614, 0.018);
 
-  const camera = new THREE.PerspectiveCamera(40, 1, 0.1, 200);
-  camera.position.set(18, 14, 20);
+  const camera = new THREE.PerspectiveCamera(36, 1, 0.1, 200);
+  camera.position.set(14, 11, 16);
   camera.lookAt(0, 2.2, 0);
 
   scene.add(new THREE.AmbientLight(0x9a70c4, 2.1));
@@ -171,10 +171,10 @@ async function boot() {
   let dragging = false;
   let lastX = 0;
   let yaw = 0.55;
-  let pitch = 0.36;
-  /* Aim at mid-city height so tops and bases both fit; closer fill */
-  const target = new THREE.Vector3(0.4, 2.4, 0);
-  const radius = 30;
+  let pitch = 0.34;
+  /* Closer fill so the island reads large after refresh / layout settle */
+  const target = new THREE.Vector3(0.35, 2.1, 0.15);
+  const radius = 22;
 
   function applyOrbit() {
     camera.position.set(
@@ -200,31 +200,45 @@ async function boot() {
   mount.addEventListener("pointerup", function () { dragging = false; });
   mount.addEventListener("pointercancel", function () { dragging = false; });
 
-  function syncSize() {
-    const w = Math.max(1, Math.floor(mount.clientWidth));
-    const h = Math.max(1, Math.floor(mount.clientHeight));
-    if (w < 2 || h < 2) return;
+  let lastW = 0;
+  let lastH = 0;
+  function syncSize(force) {
+    const frame = mount.parentElement || mount;
+    const w = Math.max(1, Math.floor(frame.clientWidth || mount.clientWidth));
+    const h = Math.max(1, Math.floor(frame.clientHeight || mount.clientHeight));
+    if (w < 8 || h < 8) return false;
+    if (!force && w === lastW && h === lastH) return false;
+    lastW = w;
+    lastH = h;
     camera.aspect = w / h;
     camera.updateProjectionMatrix();
     renderer.setSize(w, h, false);
     composer.setSize(w, h);
     bloom.setSize(w, h);
+    return true;
   }
 
-  syncSize();
-  requestAnimationFrame(syncSize);
-  window.addEventListener("resize", syncSize);
+  syncSize(true);
+  requestAnimationFrame(function () { syncSize(true); });
+  requestAnimationFrame(function () {
+    requestAnimationFrame(function () { syncSize(true); });
+  });
+  window.addEventListener("resize", function () { syncSize(true); });
+  window.addEventListener("load", function () { syncSize(true); });
   if (typeof ResizeObserver !== "undefined") {
-    const ro = new ResizeObserver(function () { syncSize(); });
+    const ro = new ResizeObserver(function () { syncSize(true); });
     ro.observe(mount);
     if (mount.parentElement) ro.observe(mount.parentElement);
+    const stage = mount.closest(".world-stage");
+    if (stage) ro.observe(stage);
   }
   if (document.fonts && document.fonts.ready) {
-    document.fonts.ready.then(function () { syncSize(); });
+    document.fonts.ready.then(function () { syncSize(true); });
   }
 
   const clock = new THREE.Clock();
   function frame() {
+    syncSize(false);
     const t = clock.getElapsedTime();
     if (!dragging) yaw += 0.00055;
     city.position.y = Math.sin(t * 0.55) * 0.12;
@@ -235,9 +249,9 @@ async function boot() {
       item.beam.material.opacity = 0.18 + Math.sin(t * 2.2 + index) * 0.08;
       const pos = item.marker.getWorldPosition(new THREE.Vector3());
       pos.project(camera);
-      const x = (pos.x * 0.5 + 0.5) * mount.clientWidth;
-      const y = (-pos.y * 0.5 + 0.5) * mount.clientHeight;
-      const visible = pos.z < 1 && x > -40 && y > -40 && x < mount.clientWidth + 40 && y < mount.clientHeight + 40;
+      const x = (pos.x * 0.5 + 0.5) * lastW;
+      const y = (-pos.y * 0.5 + 0.5) * lastH;
+      const visible = pos.z < 1 && x > -40 && y > -40 && x < lastW + 40 && y < lastH + 40;
       item.pin.style.display = visible ? "grid" : "none";
       item.pin.style.left = x + "px";
       item.pin.style.top = y + "px";
