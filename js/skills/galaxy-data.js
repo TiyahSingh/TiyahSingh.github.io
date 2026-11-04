@@ -9,23 +9,23 @@ window.SKILL_GALAXY = {
   tagline: "tap a planet",
   levels: {
     discovered: {
-      label: "just found it",
-      blurb: "Brand new to me — still peeking in.",
+      label: "new",
+      blurb: "",
       stars: 1,
     },
     exploring: {
       label: "learning",
-      blurb: "Playing with it and getting better.",
+      blurb: "",
       stars: 2,
     },
     orbiting: {
-      label: "comfy with it",
-      blurb: "I use this a lot and feel good about it.",
+      label: "solid",
+      blurb: "",
       stars: 3,
     },
     mastered: {
-      label: "love this one",
-      blurb: "One of my favourites — I feel really confident here.",
+      label: "pro",
+      blurb: "",
       stars: 4,
     },
   },

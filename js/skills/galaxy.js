@@ -116,10 +116,8 @@
         const meta = levelMeta(sk.level);
         return `
           <button type="button" class="galaxy-skill-chip" data-skill="${escapeHtml(sk.id)}" data-orbit="${escapeHtml(orbit.id)}" style="--hue:${planetBtn.style.getPropertyValue("--hue") || orbit.hue}">
-            <span class="galaxy-skill-chip__glow" data-level="${escapeHtml(sk.level)}"></span>
             <span class="galaxy-skill-chip__name">${escapeHtml(sk.name)}</span>
-            <span class="galaxy-skill-chip__lvl">${escapeHtml(meta.label)}</span>
-            <span class="galaxy-skill-chip__stars">${starsMarkup(meta.stars)}</span>
+            <span class="galaxy-skill-chip__stars" aria-label="${escapeHtml(meta.label)}">${starsMarkup(meta.stars)}</span>
           </button>
         `;
       })
@@ -132,18 +130,11 @@
         <span class="galaxy-planet-frame__glow" aria-hidden="true"></span>
         <div class="galaxy-planet-frame__surface">
           <button type="button" class="galaxy-panel__close" aria-label="Close">×</button>
-          <p class="galaxy-panel__eyebrow">${escapeHtml(orbit.cute || "skills")}</p>
-          <h2 class="galaxy-panel__title">${escapeHtml(orbit.name)}</h2>
-          <p class="galaxy-panel__desc">${escapeHtml(orbit.description)}</p>
-          <div class="galaxy-panel__legend" aria-hidden="true">
-            ${Object.entries(DATA.levels)
-              .map(
-                ([key, lv]) =>
-                  `<span class="galaxy-legend" data-level="${key}"><span class="galaxy-legend__dot"></span>${escapeHtml(lv.label)}</span>`
-              )
-              .join("")}
+          <div class="galaxy-planet-frame__scroll">
+            <h2 class="galaxy-panel__title">${escapeHtml(orbit.name)}</h2>
+            <p class="galaxy-panel__desc">${escapeHtml(orbit.description)}</p>
+            <div class="galaxy-panel__skills" role="list">${skillsHtml}</div>
           </div>
-          <div class="galaxy-panel__skills" role="list">${skillsHtml}</div>
         </div>
       </div>
     `;
@@ -173,16 +164,13 @@
         <span class="galaxy-planet-frame__glow" aria-hidden="true"></span>
         <div class="galaxy-planet-frame__surface">
           <button type="button" class="galaxy-panel__close" aria-label="Close">×</button>
-          <p class="galaxy-panel__eyebrow">${escapeHtml(orbit.short)}</p>
-          <h3 class="galaxy-panel__title galaxy-panel__title--sm">${escapeHtml(skill.name)}</h3>
-          <p class="galaxy-panel__tech">${escapeHtml(skill.tech || "")}</p>
-          <div class="galaxy-panel__level" data-level="${escapeHtml(skill.level)}">
-            <span class="galaxy-panel__level-label">${escapeHtml(meta.label)}</span>
-            <span class="galaxy-panel__level-stars">${starsMarkup(meta.stars)}</span>
-            <span class="galaxy-panel__level-blurb">${escapeHtml(meta.blurb)}</span>
+          <div class="galaxy-planet-frame__scroll">
+            <h3 class="galaxy-panel__title galaxy-panel__title--sm">${escapeHtml(skill.name)}</h3>
+            <p class="galaxy-panel__tech">${escapeHtml(skill.tech || "")}</p>
+            <p class="galaxy-panel__level-simple">${starsMarkup(meta.stars)} <span>${escapeHtml(meta.label)}</span></p>
+            <p class="galaxy-panel__desc">${escapeHtml(skill.note || "")}</p>
+            <button type="button" class="galaxy-panel__back">← back</button>
           </div>
-          <p class="galaxy-panel__desc">${escapeHtml(skill.note || "")}</p>
-          <button type="button" class="galaxy-panel__back">← back</button>
         </div>
       </div>
     `;

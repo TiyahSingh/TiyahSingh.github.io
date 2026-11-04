@@ -535,7 +535,7 @@ def header(title="", nav=""):
         body = ' class="skills-galaxy-page"'
     else:
         body = ""
-    extra_css = '\n  <link rel="stylesheet" href="/css/galaxy.css?v=8">' if nav == "skills" else ""
+    extra_css = '\n  <link rel="stylesheet" href="/css/galaxy.css?v=9">' if nav == "skills" else ""
     heading = "Tiyah Singh — Game Developer" if not title else f"{title} — Tiyah Singh"
     return f"""<!DOCTYPE html>
 <html lang="en">
@@ -921,13 +921,15 @@ def index():
       <div class="galaxy-bg__nebula"></div>
       <div class="galaxy-bg__vignette"></div>
     </div>
-    <header class="galaxy-hero-title">
-      <span class="galaxy-hero-frame" aria-hidden="true">
-        <i class="gf gf-tl"></i><i class="gf gf-tr"></i><i class="gf gf-bl"></i><i class="gf gf-br"></i>
-        <i class="gf gf-star gf-star-l"></i><i class="gf gf-star gf-star-r"></i>
-      </span>
-      <h1>explore my skills galaxy</h1>
-      <p>tap a planet to open it</p>
+    <header class="galaxy-controller" aria-label="Skills title">
+      <div class="gc-shell">
+        <div class="gc-dpad" aria-hidden="true"><span></span></div>
+        <div class="gc-screen">
+          <h1>explore my skills galaxy</h1>
+          <p>tap a planet</p>
+        </div>
+        <div class="gc-btns" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+      </div>
     </header>
     <div class="galaxy-system-wrap">
       <div id="galaxy-system" aria-label="Interactive skill galaxy"></div>
@@ -936,8 +938,8 @@ def index():
     <div class="galaxy-panel" id="galaxy-category-panel" role="dialog" aria-modal="true" hidden></div>
     <div class="galaxy-panel" id="galaxy-skill-panel" role="dialog" aria-modal="true" hidden></div>
   </main>
-  <script src="/js/skills/galaxy-data.js?v=5"></script>
-  <script src="/js/skills/galaxy.js?v=8"></script>
+  <script src="/js/skills/galaxy-data.js?v=6"></script>
+  <script src="/js/skills/galaxy.js?v=9"></script>
   <script>
   (function () {
     var params = new URLSearchParams(location.search);
