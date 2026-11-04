@@ -54,7 +54,6 @@ async function boot() {
   }
 
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.75));
-  renderer.setSize(mount.clientWidth, mount.clientHeight);
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 1.55;
@@ -65,7 +64,7 @@ async function boot() {
   const scene = new THREE.Scene();
   scene.fog = new THREE.FogExp2(0x090614, 0.018);
 
-  const camera = new THREE.PerspectiveCamera(40, mount.clientWidth / Math.max(mount.clientHeight, 1), 0.1, 200);
+  const camera = new THREE.PerspectiveCamera(40, 1, 0.1, 200);
   camera.position.set(18, 14, 20);
   camera.lookAt(0, 2.2, 0);
 
@@ -201,15 +200,28 @@ async function boot() {
   mount.addEventListener("pointerup", function () { dragging = false; });
   mount.addEventListener("pointercancel", function () { dragging = false; });
 
-  window.addEventListener("resize", function () {
-    const w = mount.clientWidth;
-    const h = Math.max(mount.clientHeight, 1);
+  function syncSize() {
+    const w = Math.max(1, Math.floor(mount.clientWidth));
+    const h = Math.max(1, Math.floor(mount.clientHeight));
+    if (w < 2 || h < 2) return;
     camera.aspect = w / h;
     camera.updateProjectionMatrix();
-    renderer.setSize(w, h);
+    renderer.setSize(w, h, false);
     composer.setSize(w, h);
     bloom.setSize(w, h);
-  });
+  }
+
+  syncSize();
+  requestAnimationFrame(syncSize);
+  window.addEventListener("resize", syncSize);
+  if (typeof ResizeObserver !== "undefined") {
+    const ro = new ResizeObserver(function () { syncSize(); });
+    ro.observe(mount);
+    if (mount.parentElement) ro.observe(mount.parentElement);
+  }
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(function () { syncSize(); });
+  }
 
   const clock = new THREE.Clock();
   function frame() {

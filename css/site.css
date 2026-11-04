@@ -30,6 +30,8 @@ html {
   scroll-behavior: smooth;
   scrollbar-width: thin;
   scrollbar-color: #ff4eb8 #220818;
+  /* Keep layout from jumping left when the pink scrollbar appears after refresh */
+  scrollbar-gutter: stable;
 }
 
 html::-webkit-scrollbar,
