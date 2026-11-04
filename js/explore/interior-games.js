@@ -35,6 +35,31 @@ export function createGamesInterior(scene, cache, projects) {
   sign.rotation.y = 0;
   group.add(sign);
 
+  /* Clear exit doorway facing the spawn so players can find the way out */
+  const exitFrame = new THREE.Group();
+  exitFrame.position.set(0, 0, 4.9);
+  const exitMat = new THREE.MeshStandardMaterial({
+    color: 0x7af0ff,
+    emissive: 0x7af0ff,
+    emissiveIntensity: 1.5,
+    roughness: 0.4,
+  });
+  [-1.15, 1.15].forEach(function (offset) {
+    const post = new THREE.Mesh(new THREE.BoxGeometry(0.16, 2.8, 0.16), exitMat);
+    post.position.set(offset, 1.4, 0);
+    exitFrame.add(post);
+  });
+  const exitBar = new THREE.Mesh(new THREE.BoxGeometry(2.45, 0.14, 0.16), exitMat);
+  exitBar.position.set(0, 2.8, 0);
+  exitFrame.add(exitBar);
+  const exitSign = makeSign("EXIT", "#7af0ff", 1.9, 0.7, "TO STREET");
+  exitSign.material.side = THREE.DoubleSide;
+  exitSign.position.set(0, 1.55, -0.08);
+  exitSign.rotation.y = Math.PI;
+  exitFrame.add(exitSign);
+  exitFrame.userData.isExit = true;
+  group.add(exitFrame);
+
   const machines = [];
   const left = [-2.4, -0.8, 0.8, 2.4, 4];
   left.forEach(function (z, index) {

@@ -118,15 +118,20 @@ export async function createStreet(scene, options) {
     entrance("contact", -7.55, 3, -Math.PI / 2, "CONTACT", "#ff3ec8", -4.6, Math.PI / 2),
   ];
   doors.forEach(function (door) {
-    markers.push(addPortal(group, door.x, door.z, door.yaw, door.label, door.color));
+    markers.push(addPortal(group, door.x, door.z, door.yaw, door.label, door.color, door.id));
   });
-  const gamesSign = makeSign("ENTER", "#ff3ec8", 1.8, 0.72, "GAMES");
+  const gamesSign = makeSign("GAMES", "#ff3ec8", 2.1, 0.85, "ARCADE");
   gamesSign.material.side = THREE.DoubleSide;
   gamesSign.position.set(0, 3.5, -12.7);
+  gamesSign.userData.doorId = "games";
   group.add(gamesSign);
   markers.push({ mesh: gamesSign, base: 3.5, phase: 0.4 });
   doors.push({
     id: "games",
+    x: 0,
+    z: -14.6,
+    label: "GAMES",
+    color: "#ff3ec8",
     minX: -1.35,
     maxX: 1.35,
     minZ: -15.6,
@@ -203,10 +208,11 @@ function entrance(id, x, z, yaw, label, color, exitX, yawOut) {
   };
 }
 
-function addPortal(group, x, z, yaw, label, color) {
+function addPortal(group, x, z, yaw, label, color, doorId) {
   const frame = new THREE.Group();
   frame.position.set(x, 0, z);
   frame.rotation.y = yaw;
+  frame.userData.doorId = doorId;
   const material = new THREE.MeshStandardMaterial({
     color: color,
     emissive: color,
@@ -217,18 +223,22 @@ function addPortal(group, x, z, yaw, label, color) {
   [-1.1, 1.1].forEach(function (offset) {
     const mesh = new THREE.Mesh(post, material);
     mesh.position.set(offset, 1.35, 0);
+    mesh.userData.doorId = doorId;
     frame.add(mesh);
   });
   const bar = new THREE.Mesh(new THREE.BoxGeometry(2.35, 0.12, 0.14), material);
   bar.position.set(0, 2.7, 0);
+  bar.userData.doorId = doorId;
   frame.add(bar);
-  const sign = makeSign("ENTER", color, 1.35, 0.5);
+  /* Place name on the doorway — Enter is an HTML hover/click button instead */
+  const sign = makeSign(label, color, 1.55, 0.58);
   sign.material.side = THREE.DoubleSide;
   sign.position.set(0, 1.55, 0.05);
   sign.rotation.y = -yaw;
+  sign.userData.doorId = doorId;
   frame.add(sign);
   group.add(frame);
-  return { mesh: sign, base: 1.55, phase: x + z };
+  return { mesh: sign, base: 1.55, phase: x + z, doorId: doorId };
 }
 
 function glow(scene, x, y, z, color, intensity, distance) {

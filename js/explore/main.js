@@ -1,8 +1,8 @@
 import * as THREE from "three";
-import { createStreet } from "./environment.js?v=14";
-import { createPlayer } from "./player.js?v=6";
+import { createStreet } from "./environment.js?v=15";
+import { createPlayer } from "./player.js?v=7";
 import { createCamera } from "./camera.js?v=6";
-import { createLocations } from "./locations.js?v=19";
+import { createLocations } from "./locations.js?v=20";
 
 const WRITTEN = {
   "#about": "/about.html",
@@ -89,11 +89,15 @@ async function boot(mount) {
   const panel = createPanel();
   const hud = document.querySelector(".explore-hud");
   const act = document.getElementById("explore-act");
+  let hoveredDoorId = null;
   if (act) {
     act.addEventListener("click", function (event) {
       event.preventDefault();
       event.stopPropagation();
-      openMachine();
+      const next = places.action(hoveredDoorId);
+      if (!next) return;
+      if (next.kind === "enter" || next.kind === "exit") places.go(next.id);
+      else openMachine();
     });
   }
 
@@ -164,7 +168,11 @@ async function boot(mount) {
     else if (key === "s" || key === "arrowdown") input.back = down;
     else if (key === "a" || key === "arrowleft") input.left = down;
     else if (key === "d" || key === "arrowright") input.right = down;
-    else if (down && (key === "e" || key === "enter")) openMachine();
+    else if (down && (key === "e" || key === "enter")) {
+      const next = places.action(hoveredDoorId);
+      if (next && (next.kind === "enter" || next.kind === "exit")) places.go(next.id);
+      else openMachine();
+    }
     else if (down && key === "escape") panel.hidden = true;
     else return;
     event.preventDefault();
@@ -175,6 +183,29 @@ async function boot(mount) {
     if (!project) return;
     fillPanel(panel, project);
     panel.hidden = false;
+  }
+
+  function doorIdFromObject(object) {
+    let node = object;
+    while (node) {
+      if (node.userData && node.userData.doorId) return node.userData.doorId;
+      node = node.parent;
+    }
+    return null;
+  }
+
+  function pickDoor(clientX, clientY) {
+    if (places.place() !== "street") return null;
+    const rect = renderer.domElement.getBoundingClientRect();
+    pointer.x = ((clientX - rect.left) / rect.width) * 2 - 1;
+    pointer.y = -((clientY - rect.top) / rect.height) * 2 + 1;
+    raycaster.setFromCamera(pointer, rig.camera);
+    const hits = raycaster.intersectObjects(street.group.children, true);
+    for (let i = 0; i < hits.length; i += 1) {
+      const id = doorIdFromObject(hits[i].object);
+      if (id) return id;
+    }
+    return null;
   }
 
   window.addEventListener("keydown", function (event) { setKey(event, true); });
@@ -197,8 +228,26 @@ async function boot(mount) {
     if (places.place() !== "street") places.go("street");
   });
 
+  renderer.domElement.addEventListener("pointermove", function (event) {
+    hoveredDoorId = pickDoor(event.clientX, event.clientY);
+    renderer.domElement.style.cursor = hoveredDoorId ? "pointer" : "";
+  });
+
   renderer.domElement.addEventListener("pointerdown", function (event) {
     if (!panel.hidden && panel.contains(event.target)) return;
+    const doorId = pickDoor(event.clientX, event.clientY);
+    if (doorId) {
+      hoveredDoorId = doorId;
+      const door = places.doorById(doorId);
+      if (door) {
+        const center = places.doorCenter(door);
+        const dx = center.x - player.group.position.x;
+        const dz = center.z - player.group.position.z;
+        if (Math.hypot(dx, dz) < 3.2) places.go(doorId);
+        else player.walkTo(center);
+      }
+      return;
+    }
     const rect = renderer.domElement.getBoundingClientRect();
     pointer.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
     pointer.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
@@ -225,15 +274,17 @@ async function boot(mount) {
     const world = places.active();
     player.update(dt, input, rig.camera, world.colliders, world.bounds);
     places.update();
-    if (hud) hud.textContent = places.prompt();
+    if (hud) hud.textContent = places.prompt(hoveredDoorId);
     if (act) {
-      const next = places.action();
+      const next = places.action(hoveredDoorId);
       if (next) {
         act.hidden = false;
         act.textContent = next.label + " · " + next.detail;
         act.setAttribute("aria-label", next.label + " " + next.detail);
+        act.dataset.kind = next.kind || "";
       } else {
         act.hidden = true;
+        act.dataset.kind = "";
       }
     }
     rig.update(dt, player.group, reduced);

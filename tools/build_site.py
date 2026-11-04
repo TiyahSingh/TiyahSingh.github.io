@@ -558,7 +558,7 @@ def header(title="", nav=""):
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Spicy+Rice&display=swap" rel="stylesheet">
   <link rel="icon" href="/assets/brand/favicon.png" type="image/png">
-  <link rel="stylesheet" href="/css/site.css?v=67">{extra_css}
+  <link rel="stylesheet" href="/css/site.css?v=68">{extra_css}
 </head>
 <body{body}>
   <a class="skip" href="#content">Skip to content</a>
@@ -1285,8 +1285,8 @@ def index():
   <main id="content">
     <section class="explore" id="play">
       <div id="explore-root" aria-label="A neon arcade street. Tap the road to walk, or use WASD on a keyboard."></div>
-      <p class="explore-hud">Walk through a glowing doorway.</p>
-      <button type="button" class="explore-act" id="explore-act" hidden>Read</button>
+      <p class="explore-hud">Arrows move. Hover a doorway for Enter.</p>
+      <button type="button" class="explore-act" id="explore-act" hidden>Enter</button>
     </section>
   </main>
   <dialog class="help" id="help">
@@ -1303,7 +1303,7 @@ def index():
     }
   }
   </script>
-  <script type="module" src="/js/explore/main.js?v=27"></script>
+  <script type="module" src="/js/explore/main.js?v=28"></script>
 """ + footer()
     (ROOT / "index.html").write_text(home, encoding="utf-8")
     (ROOT / "explore.html").write_text(explore, encoding="utf-8")

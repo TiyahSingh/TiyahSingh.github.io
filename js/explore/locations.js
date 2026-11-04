@@ -1,4 +1,4 @@
-import { createGamesInterior } from "./interior-games.js?v=7";
+import { createGamesInterior } from "./interior-games.js?v=8";
 import { createInterior } from "./interior-rooms.js?v=1";
 
 const LABEL = {
@@ -204,10 +204,10 @@ export function createLocations(options) {
     return nearest.info;
   }
 
-  function nearDoor() {
+  function nearDoor(maxDist) {
     const point = player.group.position;
     let best = null;
-    let score = 4.2;
+    let score = maxDist == null ? 4.8 : maxDist;
     street.doors.forEach(function (door) {
       const centerX = (door.minX + door.maxX) / 2;
       const centerZ = (door.minZ + door.maxZ) / 2;
@@ -220,20 +220,63 @@ export function createLocations(options) {
     return best;
   }
 
-  function action() {
-    if (place !== "street" && nearest && nearest.info) {
-      return { label: "Read", detail: nearest.info.title };
+  function nearExit() {
+    if (place === "street") return false;
+    const interior = interiors[place];
+    if (!interior || !interior.exit) return false;
+    const point = player.group.position;
+    const centerX = (interior.exit.minX + interior.exit.maxX) / 2;
+    const centerZ = (interior.exit.minZ + interior.exit.maxZ) / 2;
+    return Math.hypot(centerX - point.x, centerZ - point.z) < 3.6;
+  }
+
+  function doorById(id) {
+    return street.doors.find(function (door) { return door.id === id; }) || null;
+  }
+
+  function doorCenter(door) {
+    return {
+      x: (door.minX + door.maxX) / 2,
+      y: 0,
+      z: (door.minZ + door.maxZ) / 2,
+    };
+  }
+
+  function action(hoveredId) {
+    if (place === "street") {
+      const door = (hoveredId && doorById(hoveredId)) || nearDoor(5.2);
+      if (door) {
+        return {
+          kind: "enter",
+          id: door.id,
+          label: "Enter",
+          detail: LABEL[door.id] || door.label || door.id,
+        };
+      }
+      return null;
+    }
+    if (nearExit()) {
+      return {
+        kind: "exit",
+        id: "street",
+        label: "Exit",
+        detail: place === "games" ? "Arcade → Street" : "Back to street",
+      };
+    }
+    if (nearest && nearest.info) {
+      return { kind: "read", label: "Read", detail: nearest.info.title };
     }
     return null;
   }
 
-  function prompt() {
-    const next = action();
-    if (next) return next.detail;
+  function prompt(hoveredId) {
+    const next = action(hoveredId);
+    if (next && next.kind === "enter") return "Enter " + next.detail + " — tap the button or walk in";
+    if (next && next.kind === "exit") return next.detail + " — tap Exit or walk through the door";
+    if (next && next.kind === "read") return next.detail;
+    if (place === "games") return "Walk to a cabinet, then tap Read. Find the cyan EXIT door to leave.";
     if (place !== "street") return "Walk to a glowing sign, then tap Read. Walk out the door to return.";
-    const door = nearDoor();
-    if (door) return "Walk in · " + LABEL[door.id];
-    return "Tap the road to walk. Walk through a glowing doorway.";
+    return "Arrows move. Tap the road to walk. Hover a doorway for Enter.";
   }
 
   return {
@@ -245,6 +288,9 @@ export function createLocations(options) {
     arrive: arrive,
     standOutside: standOutside,
     active: active,
+    nearDoor: nearDoor,
+    doorById: doorById,
+    doorCenter: doorCenter,
     place: function () { return place; },
   };
 }

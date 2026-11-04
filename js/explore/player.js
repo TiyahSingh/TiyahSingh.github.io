@@ -34,9 +34,6 @@ export async function createPlayer(options) {
 
   const velocity = new THREE.Vector3();
   const desired = new THREE.Vector3();
-  const forward = new THREE.Vector3();
-  const right = new THREE.Vector3();
-  const up = new THREE.Vector3(0, 1, 0);
   const target = new THREE.Vector3();
   let hasTarget = false;
   let moving = false;
@@ -48,20 +45,14 @@ export async function createPlayer(options) {
   }
 
   function update(dt, input, camera, colliders, bounds) {
-    camera.getWorldDirection(forward);
-    forward.y = 0;
-    if (forward.lengthSq() < 0.0001) forward.set(0, 0, -1);
-    forward.normalize();
-    right.crossVectors(up, forward).normalize();
-
+    /* Street camera sits on +Z, so Up/W = into the street (-Z), Right/D = +X */
     const ix = (input.right ? 1 : 0) - (input.left ? 1 : 0);
     const iz = (input.forward ? 1 : 0) - (input.back ? 1 : 0);
     if (ix !== 0 || iz !== 0) hasTarget = false;
 
     desired.set(0, 0, 0);
     if (ix !== 0 || iz !== 0) {
-      desired.addScaledVector(right, ix);
-      desired.addScaledVector(forward, iz);
+      desired.set(ix, 0, -iz);
       desired.normalize();
     } else if (hasTarget) {
       desired.subVectors(target, group.position);
@@ -70,8 +61,8 @@ export async function createPlayer(options) {
       else desired.normalize();
     }
 
-    desired.multiplyScalar(desired.lengthSq() ? 4.2 : 0);
-    velocity.lerp(desired, 1 - Math.exp(-8 * dt));
+    desired.multiplyScalar(desired.lengthSq() ? 4.6 : 0);
+    velocity.lerp(desired, 1 - Math.exp(-12 * dt));
 
     let nextX = group.position.x + velocity.x * dt;
     let nextZ = group.position.z + velocity.z * dt;

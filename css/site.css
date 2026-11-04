@@ -1786,6 +1786,20 @@ body.explore-page .explore { min-height: 420px; }
 
 .explore-act[hidden] { display: none !important; }
 
+.explore-act[data-kind="enter"],
+.explore-act[data-kind="exit"] {
+  background: linear-gradient(180deg, #ffe0f6, #ff4eb8);
+}
+
+.explore-act[data-kind="exit"] {
+  background: linear-gradient(180deg, #d8fbff, #7af0ff);
+  color: #0a1820;
+  box-shadow:
+    0 0 0 4px rgba(122, 240, 255, 0.28),
+    0 0 28px rgba(122, 240, 255, 0.5),
+    4px 4px 0 #1a4060;
+}
+
 @keyframes act-pulse {
   0%, 100% { transform: translateX(-50%) scale(1); }
   50% { transform: translateX(-50%) scale(1.04); }
