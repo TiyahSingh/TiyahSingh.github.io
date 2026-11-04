@@ -125,21 +125,26 @@
       })
       .join("");
 
+    const hue = planetBtn.style.getPropertyValue("--hue") || orbit.hue;
     categoryPanel.innerHTML = `
-      <div class="galaxy-panel__chrome">
-        <button type="button" class="galaxy-panel__close" aria-label="Close">×</button>
-        <p class="galaxy-panel__eyebrow">${escapeHtml(orbit.cute || "skills")}</p>
-        <h2 class="galaxy-panel__title">${escapeHtml(orbit.name)}</h2>
-        <p class="galaxy-panel__desc">${escapeHtml(orbit.description)}</p>
-        <div class="galaxy-panel__legend" aria-hidden="true">
-          ${Object.entries(DATA.levels)
-            .map(
-              ([key, lv]) =>
-                `<span class="galaxy-legend" data-level="${key}"><span class="galaxy-legend__dot"></span>${escapeHtml(lv.label)}</span>`
-            )
-            .join("")}
+      <div class="galaxy-planet-frame" style="--hue:${escapeHtml(String(hue))}">
+        <span class="galaxy-planet-frame__ring" aria-hidden="true"></span>
+        <span class="galaxy-planet-frame__glow" aria-hidden="true"></span>
+        <div class="galaxy-planet-frame__surface">
+          <button type="button" class="galaxy-panel__close" aria-label="Close">×</button>
+          <p class="galaxy-panel__eyebrow">${escapeHtml(orbit.cute || "skills")}</p>
+          <h2 class="galaxy-panel__title">${escapeHtml(orbit.name)}</h2>
+          <p class="galaxy-panel__desc">${escapeHtml(orbit.description)}</p>
+          <div class="galaxy-panel__legend" aria-hidden="true">
+            ${Object.entries(DATA.levels)
+              .map(
+                ([key, lv]) =>
+                  `<span class="galaxy-legend" data-level="${key}"><span class="galaxy-legend__dot"></span>${escapeHtml(lv.label)}</span>`
+              )
+              .join("")}
+          </div>
+          <div class="galaxy-panel__skills" role="list">${skillsHtml}</div>
         </div>
-        <div class="galaxy-panel__skills" role="list">${skillsHtml}</div>
       </div>
     `;
 
@@ -163,18 +168,22 @@
   function openSkill(orbit, skill) {
     const meta = levelMeta(skill.level);
     skillPanel.innerHTML = `
-      <div class="galaxy-panel__chrome galaxy-panel__chrome--skill">
-        <button type="button" class="galaxy-panel__close" aria-label="Close">×</button>
-        <p class="galaxy-panel__eyebrow">${escapeHtml(orbit.short)}</p>
-        <h3 class="galaxy-panel__title galaxy-panel__title--sm">${escapeHtml(skill.name)}</h3>
-        <p class="galaxy-panel__tech">${escapeHtml(skill.tech || "")}</p>
-        <div class="galaxy-panel__level" data-level="${escapeHtml(skill.level)}">
-          <span class="galaxy-panel__level-label">${escapeHtml(meta.label)}</span>
-          <span class="galaxy-panel__level-stars">${starsMarkup(meta.stars)}</span>
-          <span class="galaxy-panel__level-blurb">${escapeHtml(meta.blurb)}</span>
+      <div class="galaxy-planet-frame galaxy-planet-frame--mini" style="--hue:${escapeHtml(String(orbit.hue))}">
+        <span class="galaxy-planet-frame__ring" aria-hidden="true"></span>
+        <span class="galaxy-planet-frame__glow" aria-hidden="true"></span>
+        <div class="galaxy-planet-frame__surface">
+          <button type="button" class="galaxy-panel__close" aria-label="Close">×</button>
+          <p class="galaxy-panel__eyebrow">${escapeHtml(orbit.short)}</p>
+          <h3 class="galaxy-panel__title galaxy-panel__title--sm">${escapeHtml(skill.name)}</h3>
+          <p class="galaxy-panel__tech">${escapeHtml(skill.tech || "")}</p>
+          <div class="galaxy-panel__level" data-level="${escapeHtml(skill.level)}">
+            <span class="galaxy-panel__level-label">${escapeHtml(meta.label)}</span>
+            <span class="galaxy-panel__level-stars">${starsMarkup(meta.stars)}</span>
+            <span class="galaxy-panel__level-blurb">${escapeHtml(meta.blurb)}</span>
+          </div>
+          <p class="galaxy-panel__desc">${escapeHtml(skill.note || "")}</p>
+          <button type="button" class="galaxy-panel__back">← back</button>
         </div>
-        <p class="galaxy-panel__desc">${escapeHtml(skill.note || "")}</p>
-        <button type="button" class="galaxy-panel__back">← back</button>
       </div>
     `;
     categoryPanel.classList.add("is-dimmed");

@@ -99,87 +99,89 @@
 .galaxy-hero-title {
   position: relative;
   z-index: 20;
-  width: min(94vw, 820px);
-  margin: 1.25rem auto 0;
-  padding: 0.35rem 1rem 0.85rem;
+  width: fit-content;
+  max-width: min(94vw, 40rem);
+  margin: 1.35rem auto 0.35rem;
+  padding: 0.85rem 1.75rem 0.95rem;
   text-align: center;
+  isolation: isolate;
 }
 
 .galaxy-hero-title h1 {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   margin: 0;
   font-family: "Spicy Rice", cursive;
-  font-size: clamp(2.1rem, 7.5vw, 3.75rem);
-  line-height: 1.08;
+  font-size: clamp(1.7rem, 5.8vw, 3rem);
+  line-height: 1.12;
   letter-spacing: 0.01em;
   color: #fff;
   text-shadow:
-    0 0 20px rgba(255, 110, 210, 0.9),
-    0 0 48px rgba(180, 80, 255, 0.5);
+    0 0 16px rgba(255, 110, 210, 0.85),
+    0 2px 0 rgba(120, 30, 140, 0.35);
+  filter: none;
 }
 
 .galaxy-hero-title p {
   position: relative;
-  z-index: 1;
-  margin: 0.65rem 0 0;
+  z-index: 2;
+  margin: 0.4rem 0 0;
   font-family: "Fredoka", system-ui, sans-serif;
-  font-size: clamp(0.85rem, 2vw, 1rem);
-  color: rgba(240, 220, 255, 0.78);
+  font-size: clamp(0.8rem, 1.8vw, 0.95rem);
+  color: rgba(255, 230, 250, 0.88);
+  filter: none;
 }
 
 .galaxy-hero-frame {
   position: absolute;
-  left: 50%;
-  top: 50%;
-  width: min(100%, 34rem);
-  height: 4.6rem;
-  transform: translate(-50%, -58%);
+  inset: 0;
+  z-index: 0;
   pointer-events: none;
-  border: 2px solid rgba(255, 170, 230, 0.55);
+  border: 2.5px solid #ff9adf;
   border-radius: 999px;
   box-shadow:
-    0 0 0 3px rgba(90, 20, 120, 0.35),
-    0 0 28px rgba(255, 100, 200, 0.3);
-  background: rgba(20, 6, 40, 0.28);
-  backdrop-filter: blur(8px);
+    0 0 0 3px rgba(120, 40, 160, 0.45),
+    0 0 22px rgba(255, 100, 200, 0.4);
+  background: rgba(28, 8, 48, 0.72);
+  /* no blur — keeps title crisp */
 }
 
 .galaxy-hero-frame::before {
   content: "";
   position: absolute;
-  inset: 5px;
-  border: 1px dashed rgba(255, 200, 245, 0.35);
+  inset: 6px;
+  border: 1.5px dashed rgba(255, 200, 245, 0.5);
   border-radius: 999px;
 }
 
 .gf {
   position: absolute;
   display: block;
+  z-index: 1;
 }
 
 .gf-tl, .gf-tr, .gf-bl, .gf-br {
-  width: 16px;
-  height: 16px;
-  border: 2.5px solid #ff9adf;
-  box-shadow: 0 0 10px rgba(255, 120, 220, 0.75);
+  width: 14px;
+  height: 14px;
+  border: 2.5px solid #fff;
+  box-shadow: 0 0 8px rgba(255, 140, 220, 0.9);
 }
 
-.gf-tl { top: 8px; left: 14px; border-right: 0; border-bottom: 0; border-radius: 5px 0 0 0; }
-.gf-tr { top: 8px; right: 14px; border-left: 0; border-bottom: 0; border-radius: 0 5px 0 0; }
-.gf-bl { bottom: 8px; left: 14px; border-right: 0; border-top: 0; border-radius: 0 0 0 5px; }
-.gf-br { bottom: 8px; right: 14px; border-left: 0; border-top: 0; border-radius: 0 0 5px 0; }
+.gf-tl { top: 10px; left: 18px; border-right: 0; border-bottom: 0; border-radius: 4px 0 0 0; }
+.gf-tr { top: 10px; right: 18px; border-left: 0; border-bottom: 0; border-radius: 0 4px 0 0; }
+.gf-bl { bottom: 10px; left: 18px; border-right: 0; border-top: 0; border-radius: 0 0 0 4px; }
+.gf-br { bottom: 10px; right: 18px; border-left: 0; border-top: 0; border-radius: 0 0 4px 0; }
 
 .gf-star {
-  width: 12px;
-  height: 12px;
+  width: 11px;
+  height: 11px;
   background: #fff;
   clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
-  filter: drop-shadow(0 0 8px #ff7ad9);
+  filter: drop-shadow(0 0 6px #ff7ad9);
 }
 
-.gf-star-l { left: -2px; top: 50%; transform: translateY(-50%); }
-.gf-star-r { right: -2px; top: 50%; transform: translateY(-50%); }
+.gf-star-l { left: 4px; top: 50%; transform: translateY(-50%); }
+.gf-star-r { right: 4px; top: 50%; transform: translateY(-50%); }
 
 /* ---------- system ---------- */
 .galaxy-system-wrap {
@@ -489,10 +491,10 @@
   z-index: 60;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -46%) scale(0.94);
-  width: min(92vw, 520px);
-  max-height: min(78vh, 640px);
-  overflow: auto;
+  transform: translate(-50%, -46%) scale(0.92);
+  width: min(92vw, 460px);
+  max-height: none;
+  overflow: visible;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.35s ease, transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
@@ -509,46 +511,100 @@
 
 #galaxy-skill-panel {
   z-index: 70;
-  width: min(90vw, 360px);
+  width: min(88vw, 340px);
 }
 
 #galaxy-category-panel.is-dimmed {
-  opacity: 0.28;
-  filter: blur(2px);
+  opacity: 0.3;
+  filter: none;
   pointer-events: none;
-  transform: translate(-50%, -50%) scale(0.96);
+  transform: translate(-50%, -50%) scale(0.94);
 }
 
-.galaxy-panel__chrome {
+/* planet-shaped popup */
+.galaxy-planet-frame {
   position: relative;
-  padding: 1.4rem 1.25rem 1.15rem;
-  border-radius: 18px;
-  background: linear-gradient(155deg, rgba(40, 18, 70, 0.88), rgba(20, 8, 42, 0.92));
-  border: 1px solid rgba(200, 160, 255, 0.35);
-  box-shadow:
-    0 0 0 1px rgba(255, 255, 255, 0.06) inset,
-    0 24px 60px rgba(0, 0, 20, 0.55);
-  backdrop-filter: blur(20px) saturate(1.2);
-  color: var(--gal-silver);
+  width: 100%;
+  aspect-ratio: 1;
+  max-height: min(82vh, 460px);
+  margin: 0 auto;
+  filter: drop-shadow(0 18px 40px rgba(20, 0, 50, 0.55));
 }
 
-.galaxy-panel__chrome--skill {
-  background: linear-gradient(155deg, rgba(48, 20, 80, 0.95), rgba(18, 6, 36, 0.97));
+.galaxy-planet-frame--mini {
+  max-height: min(72vh, 340px);
 }
 
-.galaxy-panel__chrome::before {
-  content: "";
+.galaxy-planet-frame__glow {
   position: absolute;
-  inset: 7px;
-  border-radius: 14px;
-  border: 1px solid rgba(200, 160, 255, 0.12);
+  inset: -8%;
+  border-radius: 50%;
+  background: radial-gradient(circle, hsla(var(--hue, 300), 100%, 65%, 0.45), transparent 68%);
   pointer-events: none;
+  z-index: 0;
+}
+
+.galaxy-planet-frame__ring {
+  position: absolute;
+  left: -18%;
+  right: -18%;
+  top: 42%;
+  height: 28%;
+  border-radius: 50%;
+  border: 3px solid rgba(255, 220, 255, 0.75);
+  border-top-color: transparent;
+  transform: rotateX(68deg);
+  box-shadow: 0 0 16px hsla(var(--hue, 300), 100%, 70%, 0.45);
+  pointer-events: none;
+  z-index: 3;
+}
+
+.galaxy-planet-frame__surface {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border-radius: 50%;
+  overflow: hidden;
+  padding: 12% 11% 11%;
+  color: #fff8fc;
+  background:
+    radial-gradient(circle at 28% 22%, rgba(255, 255, 255, 0.35) 0%, transparent 28%),
+    repeating-linear-gradient(
+      180deg,
+      hsl(var(--hue, 300), 70%, 72%) 0 12%,
+      hsl(var(--hue, 300), 65%, 58%) 12% 24%,
+      hsl(calc(var(--hue, 300) + 15), 60%, 48%) 24% 36%,
+      hsl(var(--hue, 300), 55%, 40%) 36% 48%,
+      hsl(calc(var(--hue, 300) - 10), 60%, 50%) 48% 60%,
+      hsl(var(--hue, 300), 65%, 60%) 60% 72%,
+      hsl(var(--hue, 300), 70%, 70%) 72% 84%,
+      hsl(var(--hue, 300), 75%, 78%) 84% 100%
+    ),
+    url("/assets/galaxy/panel-space.jpg") center / cover;
+  background-blend-mode: soft-light, normal, soft-light;
+  border: 3px solid rgba(255, 255, 255, 0.55);
+  box-shadow:
+    inset -16px -20px 40px rgba(40, 0, 60, 0.45),
+    inset 10px 12px 24px rgba(255, 255, 255, 0.25),
+    0 0 0 4px hsla(var(--hue, 300), 90%, 55%, 0.35);
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.galaxy-planet-frame__surface::-webkit-scrollbar {
+  width: 4px;
+}
+
+.galaxy-planet-frame__surface::-webkit-scrollbar-thumb {
+  background: rgba(255, 200, 240, 0.5);
+  border-radius: 999px;
 }
 
 .galaxy-panel__close {
   position: absolute;
-  top: 0.65rem;
-  right: 0.7rem;
+  top: 10%;
+  right: 12%;
   width: 2rem;
   height: 2rem;
   border: 0;
@@ -559,7 +615,7 @@
   line-height: 1;
   cursor: pointer;
   box-shadow: 0 4px 14px rgba(200, 60, 160, 0.45);
-  z-index: 2;
+  z-index: 4;
 }
 
 .galaxy-panel__close:hover,
@@ -570,53 +626,56 @@
 }
 
 .galaxy-panel__eyebrow {
-  margin: 0 2rem 0.35rem 0;
+  margin: 0.35rem 1.5rem 0.25rem;
   font-family: "Fredoka", system-ui, sans-serif;
   font-size: 0.72rem;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.03em;
   text-transform: none;
-  color: var(--gal-pink);
-  font-weight: 500;
+  color: #ffe0f5;
+  font-weight: 600;
+  text-shadow: 0 1px 4px rgba(40, 0, 60, 0.5);
 }
 
 .galaxy-panel__title {
-  margin: 0 2rem 0.5rem 0;
+  margin: 0 1.2rem 0.35rem;
   font-family: "Spicy Rice", cursive;
-  font-size: clamp(1.2rem, 3vw, 1.55rem);
+  font-size: clamp(1.25rem, 3.4vw, 1.7rem);
   letter-spacing: 0.02em;
   text-transform: none;
-  line-height: 1.15;
+  line-height: 1.1;
   color: #fff;
-  text-shadow: 0 0 18px rgba(180, 100, 255, 0.45);
+  text-shadow: 0 0 14px rgba(255, 120, 220, 0.65), 0 2px 0 rgba(80, 0, 100, 0.35);
 }
 
 .galaxy-panel__title--sm {
-  font-size: clamp(1.05rem, 2.5vw, 1.3rem);
+  font-size: clamp(1.05rem, 2.6vw, 1.35rem);
 }
 
 .galaxy-panel__desc {
-  margin: 0 0 0.85rem;
+  margin: 0 1rem 0.65rem;
   font-family: "Fredoka", system-ui, sans-serif;
-  font-size: 0.9rem;
-  line-height: 1.45;
-  color: rgba(235, 220, 255, 0.88);
+  font-size: 0.82rem;
+  line-height: 1.4;
+  color: rgba(255, 245, 255, 0.92);
+  text-shadow: 0 1px 3px rgba(40, 0, 60, 0.45);
 }
 
 .galaxy-panel__tech {
-  margin: 0 0 0.75rem;
+  margin: 0 1rem 0.55rem;
   font-family: "Fredoka", system-ui, sans-serif;
-  font-size: 0.75rem;
-  letter-spacing: 0.04em;
+  font-size: 0.72rem;
+  letter-spacing: 0.03em;
   text-transform: none;
-  color: var(--gal-lav);
-  font-weight: 500;
+  color: #ffd0f0;
+  font-weight: 600;
 }
 
 .galaxy-panel__legend {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.4rem 0.7rem;
-  margin-bottom: 0.85rem;
+  justify-content: center;
+  gap: 0.3rem 0.45rem;
+  margin: 0 0.75rem 0.55rem;
 }
 
 .galaxy-legend {
@@ -649,12 +708,16 @@
 .galaxy-panel__skills {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.45rem;
-  max-height: 42vh;
+  justify-content: center;
+  gap: 0.35rem;
+  flex: 1;
+  min-height: 0;
   overflow: auto;
-  padding: 0.15rem 0.1rem 0.4rem;
+  padding: 0.15rem 0.35rem 0.85rem;
   scrollbar-width: thin;
-  scrollbar-color: rgba(255, 150, 220, 0.5) transparent;
+  scrollbar-color: rgba(255, 180, 230, 0.55) transparent;
+  -webkit-mask-image: radial-gradient(circle at center, #000 58%, transparent 78%);
+  mask-image: radial-gradient(circle at center, #000 58%, transparent 78%);
 }
 
 .galaxy-skill-chip {
@@ -662,26 +725,27 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 0.15rem;
-  padding: 0.5rem 0.65rem 0.45rem;
-  border-radius: 12px;
-  border: 1px solid rgba(200, 160, 255, 0.28);
-  background: rgba(255, 255, 255, 0.06);
+  gap: 0.1rem;
+  padding: 0.4rem 0.55rem 0.35rem;
+  border-radius: 999px;
+  border: 1.5px solid rgba(255, 255, 255, 0.55);
+  background: rgba(30, 8, 50, 0.45);
   color: #fff;
   cursor: pointer;
   text-align: left;
-  min-width: 7.5rem;
-  flex: 1 1 7.5rem;
+  min-width: 0;
+  flex: 0 1 auto;
   max-width: 100%;
   transition: transform 0.2s, border-color 0.2s, background 0.2s;
   overflow: hidden;
+  box-shadow: 0 3px 0 rgba(80, 20, 100, 0.25);
 }
 
 .galaxy-skill-chip:hover,
 .galaxy-skill-chip:focus-visible {
-  transform: translateY(-2px);
-  border-color: rgba(230, 180, 255, 0.55);
-  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px) scale(1.03);
+  border-color: #fff;
+  background: rgba(60, 16, 80, 0.55);
   outline: none;
 }
 
@@ -804,9 +868,12 @@
     max-height: min(64vh, 640px);
   }
 
-  .galaxy-hero-frame {
-    height: 3.8rem;
-    width: min(100%, 22rem);
+  .galaxy-hero-title {
+    padding: 0.75rem 1.2rem 0.8rem;
+  }
+
+  .galaxy-planet-frame {
+    max-height: min(78vh, 380px);
   }
 
   .galaxy-planet__name {

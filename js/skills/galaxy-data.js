@@ -33,11 +33,11 @@ window.SKILL_GALAXY = {
     {
       id: "creative",
       orbit: "01",
-      name: "Creative & Design",
-      short: "Design",
-      cute: "pretty pictures & vibes",
+      name: "Art Desk",
+      short: "art desk",
+      cute: "stickers, screens & sparkle",
       description:
-        "Making things look cute — posters, UI, 3D, video, and all the pink sparkly bits in between.",
+        "Posters, UI, 3D, video — anything that needs to look cute and intentional.",
       planet: "pearl",
       hue: 320,
       skills: [
@@ -66,11 +66,11 @@ window.SKILL_GALAXY = {
     {
       id: "gamedev",
       orbit: "02",
-      name: "Game Dev",
-      short: "Games",
-      cute: "playable little worlds",
+      name: "Arcade",
+      short: "arcade",
+      cute: "press start to play",
       description:
-        "Building games in Unity and Unreal — levels, mechanics, UI, and the fun bits that make people want to play.",
+        "Unity, Unreal, levels, mechanics and the little moments that make a game feel good.",
       planet: "ringed",
       hue: 295,
       skills: [
@@ -99,11 +99,11 @@ window.SKILL_GALAXY = {
     {
       id: "programming",
       orbit: "03",
-      name: "Code & Software",
-      short: "Code",
-      cute: "typing pretty things into existence",
+      name: "Scripts",
+      short: "scripts",
+      cute: "typed into existence",
       description:
-        "Languages and tools I use to build websites, apps, and game-side systems.",
+        "Languages and tools for websites, apps, and the systems behind my games.",
       planet: "glass",
       hue: 265,
       skills: [
@@ -133,11 +133,11 @@ window.SKILL_GALAXY = {
     {
       id: "data",
       orbit: "04",
-      name: "Data & Databases",
-      short: "Data",
-      cute: "organising the chaos",
+      name: "Vault",
+      short: "vault",
+      cute: "everything in its place",
       description:
-        "Keeping info tidy — SQL, spreadsheets, and figuring out how data should fit together.",
+        "SQL, spreadsheets, and keeping information neat so projects stay organised.",
       planet: "moon",
       hue: 255,
       skills: [
@@ -164,11 +164,11 @@ window.SKILL_GALAXY = {
     {
       id: "narrative",
       orbit: "05",
-      name: "Stories & Media",
-      short: "Story",
-      cute: "feelings, choices & sound",
+      name: "Storybook",
+      short: "storybook",
+      cute: "choices, feelings & sound",
       description:
-        "Interactive stories, branching narratives, storyboards, and the audio that makes moments land.",
+        "Branching stories, storyboards, and audio that make moments feel like something.",
       planet: "y2k",
       hue: 330,
       skills: [
@@ -191,11 +191,11 @@ window.SKILL_GALAXY = {
     {
       id: "advanced",
       orbit: "06",
-      name: "Advanced Tech",
-      short: "Extra",
-      cute: "the spicy deep-dive stuff",
+      name: "Lab",
+      short: "lab",
+      cute: "experiments in progress",
       description:
-        "Shaders, networking, cloud tools, and the more advanced bits I'm still collecting.",
+        "Shaders, networking, cloud tools, and the deeper tech I'm still collecting.",
       planet: "halo",
       hue: 280,
       skills: [
