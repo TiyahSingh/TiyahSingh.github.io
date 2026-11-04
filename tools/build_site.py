@@ -545,7 +545,7 @@ def header(title="", nav=""):
     elif nav == "cv":
         extra_css = '\n  <link rel="stylesheet" href="/css/cv.css?v=4">'
     elif nav == "contact":
-        extra_css = '\n  <link rel="stylesheet" href="/css/contact.css?v=2">'
+        extra_css = '\n  <link rel="stylesheet" href="/css/contact.css?v=3">'
     heading = "Tiyah Singh — Game Developer" if not title else f"{title} — Tiyah Singh"
     return f"""<!DOCTYPE html>
 <html lang="en">
@@ -1154,7 +1154,6 @@ def index():
             <span class="pad__grip pad__grip--r" aria-hidden="true"></span>
             <div class="pad__dpad" aria-hidden="true"><span></span></div>
             <div class="pad__screen">
-              <div class="pad__led" aria-hidden="true"><b></b><span>Online</span></div>
               <p class="contact-kicker">Player 01</p>
               <h1 class="contact-heading">Get in touch</h1>
               <p class="contact-blurb">{CONTACT_BLURB}</p>
@@ -1173,7 +1172,6 @@ def index():
             <span class="pad__grip pad__grip--r" aria-hidden="true"></span>
             <div class="pad__dpad" aria-hidden="true"><span></span></div>
             <div class="pad__screen">
-              <div class="pad__led" aria-hidden="true"><b></b><span>Input ready</span></div>
               <h2 class="contact-form-title">Send a message</h2>
               <form class="contact-form" id="contact-form" data-email="{CONTACT_EMAIL}" novalidate>
                 <div class="contact-form__row">

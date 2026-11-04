@@ -222,65 +222,43 @@ body.contact-page .hud .nav a:hover {
     0 0 18px rgba(255, 100, 200, 0.25);
 }
 
-.pad__led {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  margin-bottom: 0.55rem;
-}
-
-.pad__led b {
-  width: 0.55rem;
-  height: 0.55rem;
-  border-radius: 50%;
-  background: #7dffb0;
-  box-shadow: 0 0 10px #7dffb0;
-  animation: contact-blink 2.4s ease-in-out infinite;
-}
-
-.pad__led span {
-  font-family: Fredoka, var(--font-body), sans-serif;
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: #ff9ad8;
-}
-
 .contact-kicker {
-  margin: 0 0 0.3rem;
+  margin: 0 0 0.35rem;
   font-family: Fredoka, var(--font-body), sans-serif;
-  font-size: 0.75rem;
-  font-weight: 600;
+  font-size: 0.82rem;
+  font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: #ff9ad8;
+  color: #ffc8ec;
 }
 
 .contact-heading {
   margin: 0;
   font-family: "Spicy Rice", var(--font-display), cursive;
-  font-size: clamp(1.85rem, 4.8vw, 2.8rem);
-  line-height: 0.95;
+  font-size: clamp(2rem, 5vw, 3rem);
+  line-height: 1;
   color: #fff;
-  text-shadow: 0 0 14px rgba(255, 120, 220, 0.85), 3px 3px 0 rgba(120, 20, 90, 0.55);
+  text-shadow: 0 2px 0 rgba(90, 16, 72, 0.55), 0 0 10px rgba(255, 140, 220, 0.45);
   text-transform: uppercase;
+  -webkit-font-smoothing: antialiased;
 }
 
 .contact-blurb {
-  margin: 0.75rem 0 0;
+  margin: 0.8rem 0 0;
   font-family: Fredoka, var(--font-body), sans-serif;
-  font-size: 0.95rem;
-  line-height: 1.5;
-  color: var(--c-muted);
+  font-size: 1.02rem;
+  font-weight: 500;
+  line-height: 1.55;
+  color: #ffe6f5;
 }
 
 .contact-mail {
   display: inline-block;
-  margin-top: 0.75rem;
+  margin-top: 0.8rem;
   font-family: Fredoka, var(--font-body), sans-serif;
-  font-weight: 600;
-  color: #ffb8e8;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #fff;
   text-decoration: none;
 }
 
@@ -307,7 +285,7 @@ body.contact-page .hud .nav a:hover {
   color: #fff;
   text-decoration: none;
   font-family: "Spicy Rice", var(--font-display), cursive;
-  font-size: 0.72rem;
+  font-size: 0.8rem;
   letter-spacing: 0.03em;
   text-transform: uppercase;
   box-shadow: 0 0 12px rgba(255, 78, 184, 0.25);
@@ -331,13 +309,14 @@ body.contact-page .hud .nav a:hover {
 }
 
 .contact-form-title {
-  margin: 0 0 0.85rem;
+  margin: 0 0 0.9rem;
   font-family: "Spicy Rice", var(--font-display), cursive;
-  font-size: clamp(1.35rem, 3.2vw, 1.85rem);
+  font-size: clamp(1.5rem, 3.4vw, 2rem);
   color: #fff;
   text-transform: uppercase;
   letter-spacing: 0.02em;
-  text-shadow: 0 0 12px rgba(255, 120, 220, 0.7);
+  text-shadow: 0 2px 0 rgba(90, 16, 72, 0.55), 0 0 10px rgba(255, 140, 220, 0.4);
+  -webkit-font-smoothing: antialiased;
 }
 
 .contact-form {
@@ -362,9 +341,9 @@ body.contact-page .hud .nav a:hover {
 
 .contact-field label {
   font-family: Fredoka, var(--font-body), sans-serif;
-  font-size: 0.82rem;
-  font-weight: 600;
-  color: #ffb8e8;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #ffe6f5;
 }
 
 .contact-field label span {
@@ -376,14 +355,15 @@ body.contact-page .hud .nav a:hover {
   width: 100%;
   box-sizing: border-box;
   margin: 0;
-  padding: 0.68rem 0.8rem;
-  border: 2px solid rgba(255, 120, 210, 0.35);
+  padding: 0.72rem 0.85rem;
+  border: 2px solid rgba(255, 180, 230, 0.5);
   border-radius: 0.75rem;
-  background: rgba(255, 230, 248, 0.1);
+  background: rgba(255, 240, 250, 0.14);
   color: #fff;
   font-family: Fredoka, var(--font-body), sans-serif;
-  font-size: 0.92rem;
-  line-height: 1.35;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.4;
   outline: none;
   transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
 }
@@ -402,7 +382,7 @@ body.contact-page .hud .nav a:hover {
 
 .contact-field input::placeholder,
 .contact-field textarea::placeholder {
-  color: rgba(255, 184, 232, 0.45);
+  color: rgba(255, 220, 245, 0.55);
 }
 
 .pad__startrow {
@@ -495,7 +475,6 @@ body.contact-page .hud .nav a:hover {
 
 @media (prefers-reduced-motion: reduce) {
   .pad,
-  .pad__led b,
   .contact-stage::before {
     animation: none !important;
   }
@@ -518,7 +497,3 @@ body.contact-page .hud .nav a:hover {
   to { opacity: 0.65; }
 }
 
-@keyframes contact-blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.35; }
-}
