@@ -541,7 +541,7 @@ def header(title="", nav=""):
     if nav == "skills":
         extra_css = '\n  <link rel="stylesheet" href="/css/galaxy.css?v=12">'
     elif nav == "cv":
-        extra_css = '\n  <link rel="stylesheet" href="/css/cv.css?v=1">'
+        extra_css = '\n  <link rel="stylesheet" href="/css/cv.css?v=2">'
     heading = "Tiyah Singh — Game Developer" if not title else f"{title} — Tiyah Singh"
     return f"""<!DOCTYPE html>
 <html lang="en">
@@ -915,10 +915,10 @@ def index():
     def win(area, title, body):
         return f"""
       <section class="cv-win cv-{area}">
-        <header class="cv-win__bar">
+        <div class="cv-win__bar">
           <span class="cv-win__dots" aria-hidden="true"><i></i><i></i><i></i></span>
           <h2 class="cv-win__title">{title}</h2>
-        </header>
+        </div>
         <div class="cv-win__body">{body}</div>
       </section>"""
 
@@ -1070,10 +1070,10 @@ def index():
       <span class="cv-sparkle" aria-hidden="true"></span>
       <div class="cv-board">
         <section class="cv-win cv-hero">
-          <header class="cv-win__bar">
+          <div class="cv-win__bar">
             <span class="cv-win__dots" aria-hidden="true"><i></i><i></i><i></i></span>
             <p class="cv-win__title">Player Record</p>
-          </header>
+          </div>
           <div class="cv-win__body">
             <div class="cv-hero__grid">
               <figure class="cv-hero__photo">
@@ -1090,6 +1090,9 @@ def index():
                   <a href="https://github.com/TiyahSingh" target="_blank" rel="noopener noreferrer">GitHub</a>
                   <a href="https://www.linkedin.com/in/tiyah-singh-906352236/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
                   <a href="https://tiyahsingh.itch.io/" target="_blank" rel="noopener noreferrer">itch.io</a>
+                </p>
+                <p class="cv-download-wrap">
+                  <a class="cv-download" href="/resume/Tiyah-Singh-Resume.pdf" download="Tiyah-Singh-Resume.pdf">Download CV</a>
                 </p>
               </div>
             </div>
