@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Spicy+Rice&display=swap" rel="stylesheet">
   <link rel="icon" href="/assets/brand/favicon.png" type="image/png">
-  <link rel="stylesheet" href="/css/site.css?v=59">
+  <link rel="stylesheet" href="/css/site.css?v=60">
 </head>
 <body class="about-page">
   <a class="skip" href="#content">Skip to content</a>
@@ -31,6 +31,7 @@
 
   <main id="content" class="sheet">
     
+    <a class="about-street-exit" id="about-street-exit" href="/explore.html#play" hidden aria-label="Back to the street">×</a>
     <div class="wrap about-editorial">
       <header class="about-lead">
         <div class="about-lead-copy">
@@ -97,6 +98,17 @@
       </article>
       </div>
     </div>
+    <script>
+    (function () {
+      var params = new URLSearchParams(location.search);
+      var fromExplore = params.get("from") === "explore" || document.referrer.indexOf("/explore.html") !== -1;
+      var exit = document.getElementById("about-street-exit");
+      if (exit && fromExplore) {
+        exit.hidden = false;
+        document.body.classList.add("about-from-explore");
+      }
+    })();
+    </script>
   </main>
   <footer class="site-footer">
     <a class="footer-logo" href="/" aria-label="Tiyah Singh home">
