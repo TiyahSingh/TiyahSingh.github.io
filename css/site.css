@@ -1088,7 +1088,7 @@ body.explore-page .explore { min-height: 0; }
   justify-self: start;
   width: 100%;
   max-width: 340px;
-  margin: 0.35rem 0 0;
+  margin: max(0.35rem, calc((var(--logo-h) - var(--hud-h)) * 0.45)) 0 0;
   pointer-events: auto;
 }
 
