@@ -1274,7 +1274,7 @@ def index():
     }
   }
   </script>
-  <script type="module" src="/js/home/world-map.js?v=28"></script>
+  <script type="module" src="/js/home/world-map.js?v=29"></script>
   <script>
   if (location.hash === "#play" || location.hash.indexOf("#explore/") === 0) {
     location.replace("/explore.html" + location.hash);

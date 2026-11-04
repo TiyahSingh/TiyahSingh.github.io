@@ -53,36 +53,36 @@ async function boot() {
     return;
   }
 
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.75));
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.4));
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 1.55;
+  renderer.toneMappingExposure = 1.05;
   renderer.setClearColor(0x000000, 0);
   mount.appendChild(renderer.domElement);
   mount.classList.add("is-live");
 
   const scene = new THREE.Scene();
-  scene.fog = new THREE.FogExp2(0x090614, 0.018);
+  scene.fog = new THREE.FogExp2(0x090614, 0.02);
 
   const camera = new THREE.PerspectiveCamera(40, 1, 0.1, 200);
   camera.position.set(22, 16, 24);
   camera.lookAt(0, 2.2, 0);
 
-  scene.add(new THREE.AmbientLight(0x9a70c4, 2.1));
-  const key = new THREE.DirectionalLight(0xffb0f0, 2.4);
+  scene.add(new THREE.AmbientLight(0x9a70c4, 0.85));
+  const key = new THREE.DirectionalLight(0xffb0f0, 1.05);
   key.position.set(8, 16, 6);
   scene.add(key);
-  const fill = new THREE.DirectionalLight(0x9af8ff, 1.7);
+  const fill = new THREE.DirectionalLight(0x9af8ff, 0.55);
   fill.position.set(-10, 10, -4);
   scene.add(fill);
-  scene.add(new THREE.HemisphereLight(0xff8ae0, 0x241438, 1.35));
-  const rim = new THREE.PointLight(0xff3ec8, 70, 48, 2);
+  scene.add(new THREE.HemisphereLight(0xff8ae0, 0x241438, 0.55));
+  const rim = new THREE.PointLight(0xff3ec8, 18, 42, 2);
   rim.position.set(0, 8, 0);
   scene.add(rim);
-  const cyan = new THREE.PointLight(0x7af0ff, 55, 42, 2);
+  const cyan = new THREE.PointLight(0x7af0ff, 12, 36, 2);
   cyan.position.set(-4, 6, 6);
   scene.add(cyan);
-  const magenta = new THREE.PointLight(0xb14bff, 45, 40, 2);
+  const magenta = new THREE.PointLight(0xb14bff, 10, 34, 2);
   magenta.position.set(6, 7, -5);
   scene.add(magenta);
 
@@ -162,7 +162,7 @@ async function boot() {
 
   const composer = new EffectComposer(renderer);
   composer.addPass(new RenderPass(scene, camera));
-  const bloom = new UnrealBloomPass(new THREE.Vector2(mount.clientWidth, mount.clientHeight), 0.85, 0.55, 0.35);
+  const bloom = new UnrealBloomPass(new THREE.Vector2(mount.clientWidth, mount.clientHeight), 0.22, 0.35, 0.72);
   composer.addPass(bloom);
 
   let dragging = false;
@@ -245,7 +245,7 @@ async function boot() {
     anchors.forEach(function (item, index) {
       if (item.beam && item.beam.userData && item.beam.userData.pulseMats) {
         item.beam.userData.pulseMats.forEach(function (mat) {
-          mat.emissiveIntensity = 1.05 + Math.sin(t * 2.1 + index) * 0.35;
+          mat.emissiveIntensity = 0.55 + Math.sin(t * 1.6 + index) * 0.12;
         });
       }
       const pos = item.marker.getWorldPosition(new THREE.Vector3());
@@ -271,9 +271,8 @@ function boostGlow(root) {
     list.forEach(function (material) {
       if (!material) return;
       if (material.emissiveIntensity != null) {
-        material.emissiveIntensity = Math.max(material.emissiveIntensity * 2.8, 2.2);
+        material.emissiveIntensity = Math.min(Math.max(material.emissiveIntensity * 1.15, 0.35), 1.1);
       }
-      if (material.color) material.color.multiplyScalar(1.15);
       material.needsUpdate = true;
     });
   });
@@ -526,7 +525,7 @@ function makeBuildingBillboard(label, colorHex) {
     new THREE.MeshStandardMaterial({
       color: 0x1a0b22,
       emissive: color,
-      emissiveIntensity: 1.2,
+      emissiveIntensity: 0.55,
       metalness: 0.35,
       roughness: 0.3,
     })
