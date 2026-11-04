@@ -45,11 +45,12 @@
     const core = document.createElement("button");
     core.type = "button";
     core.className = "galaxy-core";
-    core.setAttribute("aria-label", "skill galaxy");
+    core.setAttribute("aria-label", "my skills galaxy");
     core.innerHTML = `
       <span class="galaxy-core__glow"></span>
       <span class="galaxy-core__body"></span>
       <span class="galaxy-core__ring"></span>
+      <span class="galaxy-core__label">my skills galaxy</span>
     `;
     core.addEventListener("click", () => closeAll());
     system.appendChild(core);
