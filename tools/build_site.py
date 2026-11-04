@@ -543,7 +543,7 @@ def header(title="", nav=""):
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Spicy+Rice&display=swap" rel="stylesheet">
   <link rel="icon" href="/assets/brand/favicon.png" type="image/png">
-  <link rel="stylesheet" href="/css/site.css?v=38">
+  <link rel="stylesheet" href="/css/site.css?v=39">
 </head>
 <body{body}>
   <a class="skip" href="#content">Skip to content</a>
@@ -856,15 +856,7 @@ def index():
     home = header("", "home") + """
   <main id="content" class="world">
     <section class="world-stage" aria-label="Map of Tiyah's world">
-      <div class="world-map-frame">
-        <div class="world-stars" aria-hidden="true"></div>
-        <div class="world-art" aria-hidden="true"></div>
-        <div id="world-map" class="world-canvas" role="img" aria-label="Floating neon city map. Drag to look around. Click a glowing marker to open that page."></div>
-        <div class="world-veil" aria-hidden="true"></div>
-        <div id="world-pins" class="world-pins"></div>
-        <p class="world-hint">DRAG TO LOOK · CLICK A MARKER</p>
-        <p class="world-hearts" aria-hidden="true">♥ ♥ ♥ · LVL 01</p>
-      </div>
+      <div class="world-stars" aria-hidden="true"></div>
       <div class="world-copy gba-shell">
         <span class="gba-heart gba-heart-tl" aria-hidden="true">♥</span>
         <span class="gba-heart gba-heart-tr" aria-hidden="true">♥</span>
@@ -892,6 +884,14 @@ def index():
           <span class="gba-buttons"><i></i><i></i><i></i><i></i></span>
         </div>
       </div>
+      <div class="world-map-frame">
+        <div class="world-art" aria-hidden="true"></div>
+        <div id="world-map" class="world-canvas" role="img" aria-label="Floating neon city map. Drag to look around. Click a glowing marker to open that page."></div>
+        <div class="world-veil" aria-hidden="true"></div>
+        <div id="world-pins" class="world-pins"></div>
+        <p class="world-hint">DRAG TO LOOK · CLICK A MARKER</p>
+        <p class="world-hearts" aria-hidden="true">♥ ♥ ♥ · LVL 01</p>
+      </div>
     </section>
   </main>
   <script type="importmap">
@@ -902,7 +902,7 @@ def index():
     }
   }
   </script>
-  <script type="module" src="/js/home/world-map.js?v=15"></script>
+  <script type="module" src="/js/home/world-map.js?v=16"></script>
   <script>
   if (location.hash === "#play" || location.hash.indexOf("#explore/") === 0) {
     location.replace("/explore.html" + location.hash);

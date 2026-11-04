@@ -174,8 +174,8 @@ async function boot() {
   let yaw = 0.4;
   let pitch = 0.5;
   /* Bias look a bit right so the city reads behind/beside the panel */
-  const target = new THREE.Vector3(3.2, -0.15, 0.2);
-  const radius = 44;
+  const target = new THREE.Vector3(0.6, -0.15, 0.2);
+  const radius = 42;
 
   function applyOrbit() {
     camera.position.set(

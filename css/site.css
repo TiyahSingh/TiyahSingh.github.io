@@ -652,8 +652,9 @@ footer {
   padding: 0.65rem 0.65rem 0.5rem;
   pointer-events: auto;
   overflow: visible;
-  background: linear-gradient(160deg, rgba(255, 94, 200, 0.92) 0%, rgba(255, 46, 182, 0.9) 50%, rgba(224, 24, 154, 0.92) 100%);
-  backdrop-filter: blur(2px);
+  /* Slightly translucent so the drifting sky reads behind the panel */
+  background: linear-gradient(160deg, rgba(255, 94, 200, 0.88) 0%, rgba(255, 46, 182, 0.86) 50%, rgba(224, 24, 154, 0.88) 100%);
+  backdrop-filter: blur(3px);
 }
 
 .world-copy.gba-shell .gba-screen {
@@ -999,36 +1000,41 @@ body.explore-page .explore { min-height: 0; }
   min-height: calc(100dvh - var(--hud-h) - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px));
   height: auto;
   overflow: visible;
-  background: #090314;
+  background: #05040c;
 }
 
 .world-stage {
   position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 1.25rem;
   min-height: inherit;
-  padding: 0 0 1.25rem;
+  padding: 0.85rem max(0.75rem, 1.5vw) 1.25rem;
   isolation: isolate;
-}
-
-.world-stage::before {
-  content: "";
-  display: block;
-  min-height: calc(100dvh - var(--hud-h) - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px));
+  background:
+    radial-gradient(ellipse 80% 70% at 70% 45%, rgba(177, 75, 255, 0.18), transparent 62%),
+    radial-gradient(ellipse 50% 45% at 18% 30%, rgba(255, 62, 200, 0.12), transparent 65%),
+    #05040c;
 }
 
 .world-map-frame {
-  position: absolute;
-  inset: 0;
+  position: relative;
   z-index: 1;
+  flex: 1 1 auto;
+  min-width: 0;
+  width: 100%;
+  min-height: calc(100dvh - var(--hud-h) - 2.5rem);
   border: 0;
   border-radius: 0;
   overflow: hidden;
-  background: #05040c;
+  background: transparent;
   box-shadow: none;
 }
 
 .world-stars {
   position: absolute;
-  inset: -10%;
+  inset: -12%;
   z-index: 0;
   pointer-events: none;
   background-image:
@@ -1041,15 +1047,17 @@ body.explore-page .explore { min-height: 0; }
     radial-gradient(2px 2px at 86% 16%, rgba(224, 176, 255, 0.9), transparent),
     radial-gradient(1px 1px at 12% 78%, rgba(255, 200, 255, 0.85), transparent),
     radial-gradient(1.5px 1.5px at 58% 88%, rgba(255, 255, 255, 0.75), transparent),
-    radial-gradient(1px 1px at 92% 72%, rgba(122, 240, 255, 0.9), transparent);
-  background-size: 220px 220px;
-  animation: world-stars-drift 48s linear infinite;
-  opacity: 0.7;
+    radial-gradient(1px 1px at 92% 72%, rgba(122, 240, 255, 0.9), transparent),
+    radial-gradient(1.5px 1.5px at 28% 58%, rgba(255, 255, 255, 0.7), transparent),
+    radial-gradient(1px 1px at 80% 40%, rgba(255, 180, 255, 0.85), transparent);
+  background-size: 240px 240px;
+  animation: world-stars-drift 42s linear infinite;
+  opacity: 0.85;
 }
 
 @keyframes world-stars-drift {
   from { transform: translate3d(0, 0, 0); }
-  to { transform: translate3d(-110px, -60px, 0); }
+  to { transform: translate3d(-120px, -70px, 0); }
 }
 
 .world-art {
@@ -1095,18 +1103,18 @@ body.explore-page .explore { min-height: 0; }
   inset: 0;
   z-index: 2;
   background:
-    radial-gradient(ellipse 58% 62% at 64% 48%, transparent 0%, rgba(5, 4, 12, 0.05) 55%, rgba(5, 4, 12, 0.45) 100%),
-    linear-gradient(90deg, rgba(5, 4, 12, 0.55) 0%, rgba(5, 4, 12, 0.18) 34%, transparent 58%),
-    linear-gradient(180deg, rgba(5, 4, 12, 0.22) 0%, transparent 16%, transparent 78%, rgba(5, 4, 12, 0.42) 100%);
+    radial-gradient(ellipse 62% 64% at 50% 48%, transparent 0%, rgba(5, 4, 12, 0.06) 58%, rgba(5, 4, 12, 0.35) 100%),
+    linear-gradient(180deg, rgba(5, 4, 12, 0.16) 0%, transparent 16%, transparent 78%, rgba(5, 4, 12, 0.35) 100%);
   pointer-events: none;
 }
 
 .world-copy {
   position: relative;
-  z-index: 5;
-  width: min(360px, calc(100% - 1.6rem));
-  max-width: 360px;
-  margin: 1rem max(0.75rem, 1.5vw);
+  z-index: 3;
+  flex: 0 0 clamp(270px, 30vw, 350px);
+  width: clamp(270px, 30vw, 350px);
+  max-width: 350px;
+  margin: 0;
   pointer-events: auto;
 }
 
@@ -1264,13 +1272,13 @@ body.explore-page .explore { min-height: 0; }
 
 @media (max-width: 820px) {
   .world-stage {
-    display: flex;
     flex-direction: column;
     padding: 0.65rem 0.55rem 1rem;
     gap: 0.85rem;
   }
   .world-copy {
     order: 1;
+    flex: 0 0 auto;
     width: 100%;
     max-width: none;
     margin: 0;
@@ -1280,12 +1288,10 @@ body.explore-page .explore { min-height: 0; }
   }
   .world-map-frame {
     order: 2;
-    position: relative;
-    inset: auto;
+    flex: 0 0 auto;
     width: 100%;
     min-height: 58vh;
     height: 62vh;
-    border-radius: 1rem;
   }
   .gba-screen { padding: 0.85rem; }
   .gba-controls { display: none; }
