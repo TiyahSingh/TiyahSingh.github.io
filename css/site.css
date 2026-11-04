@@ -571,12 +571,18 @@ footer {
 }
 
 .gba-bio {
-  margin: 0 0 0.55rem;
+  margin: 0 0 0.7rem;
   font-family: var(--font-body);
-  font-size: 0.92rem;
+  font-size: clamp(0.78rem, 1.4vw, 0.88rem);
   font-weight: 500;
-  line-height: 1.5;
+  line-height: 1.55;
   color: var(--muted);
+}
+
+.gba-bio.gba-cta {
+  margin: 0 0 0.75rem;
+  color: var(--paper);
+  font-weight: 600;
 }
 
 .gba-controls {
@@ -626,7 +632,7 @@ footer {
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-width: 340px;
+  max-width: 380px;
   padding: 0.65rem 0.65rem 0.5rem;
   pointer-events: auto;
   overflow: visible;
@@ -1045,7 +1051,7 @@ body.explore-page .explore { min-height: 0; }
   grid-column: 1;
   justify-self: start;
   width: 100%;
-  max-width: 340px;
+  max-width: 380px;
   margin: 0.35rem 0 0;
   pointer-events: auto;
 }
