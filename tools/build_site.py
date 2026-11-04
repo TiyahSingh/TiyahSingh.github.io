@@ -545,7 +545,7 @@ def header(title="", nav=""):
     elif nav == "cv":
         extra_css = '\n  <link rel="stylesheet" href="/css/cv.css?v=4">'
     elif nav == "contact":
-        extra_css = '\n  <link rel="stylesheet" href="/css/contact.css?v=4">'
+        extra_css = '\n  <link rel="stylesheet" href="/css/contact.css?v=5">'
     heading = "Tiyah Singh — Game Developer" if not title else f"{title} — Tiyah Singh"
     return f"""<!DOCTYPE html>
 <html lang="en">
@@ -1154,7 +1154,6 @@ def index():
             <span class="pad__grip pad__grip--r" aria-hidden="true"></span>
             <div class="pad__dpad" aria-hidden="true"><span></span></div>
             <div class="pad__screen">
-              <p class="contact-kicker">Player 01</p>
               <h1 class="contact-heading">Get in touch</h1>
               <p class="contact-blurb">{CONTACT_BLURB}</p>
               <a class="contact-mail" href="mailto:{CONTACT_EMAIL}">{CONTACT_EMAIL}</a>
