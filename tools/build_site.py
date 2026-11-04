@@ -543,7 +543,7 @@ def header(title="", nav=""):
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Spicy+Rice&display=swap" rel="stylesheet">
   <link rel="icon" href="/assets/brand/favicon.png" type="image/png">
-  <link rel="stylesheet" href="/css/site.css?v=53">
+  <link rel="stylesheet" href="/css/site.css?v=54">
 </head>
 <body{body}>
   <a class="skip" href="#content">Skip to content</a>
@@ -594,6 +594,30 @@ def build_images():
     top = max(0, (portrait.height - side) // 2 - 40)
     portrait = portrait.crop((left, top, left + side, top + side)).resize((900, 900), Image.Resampling.LANCZOS)
     portrait.save(ROOT / "assets" / "portrait.jpg", "JPEG", quality=84, optimize=True)
+
+    about_dir = ROOT / "assets" / "about"
+    about_dir.mkdir(parents=True, exist_ok=True)
+    # Scrapbook snaps from the same portrait (different crops) for the My Scene-style strip
+    snap_specs = [
+        ("snap-1.jpg", (0.08, 0.02, 0.78, 0.72)),
+        ("snap-2.jpg", (0.22, 0.08, 0.95, 0.82)),
+        ("snap-3.jpg", (0.12, 0.18, 0.88, 0.95)),
+        ("snap-4.jpg", (0.28, 0.0, 0.98, 0.7)),
+        ("snap-5.jpg", (0.05, 0.12, 0.7, 0.78)),
+        ("snap-6.jpg", (0.18, 0.22, 0.92, 0.98)),
+    ]
+    for name, (x0, y0, x1, y1) in snap_specs:
+        box = (
+            int(portrait.width * x0),
+            int(portrait.height * y0),
+            int(portrait.width * x1),
+            int(portrait.height * y1),
+        )
+        snap = portrait.crop(box).resize((420, 420), Image.Resampling.LANCZOS)
+        snap.save(about_dir / name, "JPEG", quality=86, optimize=True)
+    portrait.resize((1100, 1100), Image.Resampling.LANCZOS).save(
+        about_dir / "hero.jpg", "JPEG", quality=88, optimize=True
+    )
 
     for game in GAMES:
         poster_path = POSTERS / f"{game['slug']}.jpg"
@@ -799,25 +823,96 @@ def index():
 """ + footer()
         (ROOT / f"{nav}.html").write_text(html, encoding="utf-8")
 
+    fav_games = GAMES[:4]
+    fav_html = "".join(
+        f'<a class="scene-wall-card" href="/games/{g["slug"]}.html">'
+        f'<img src="/assets/posters/{g["slug"]}.jpg" alt="">'
+        f'<span>{g["title"]}</span></a>'
+        for g in fav_games
+    )
+    phone_games = GAMES[:3]
+    phone_html = "".join(
+        f'<a class="scene-phone-game" href="/games/{g["slug"]}.html">'
+        f'<img src="/assets/posters/{g["slug"]}.jpg" alt="">'
+        f'<span>{g["title"]}</span></a>'
+        for g in phone_games
+    )
     sheet("About", "about", f"""
-    <div class="wrap about-grid">
-      <article class="panel player-card">
-        <p class="kicker">PLAYER 01</p>
-        <h1>Tiyah Singh</h1>
-        <p class="zone-blurb">{ABOUT["intro"]}</p>
-        <p>{ABOUT["portfolio"]}</p>
-        <figure class="crt">
-          <img src="/assets/portrait.jpg" alt="Portrait of Tiyah Singh.">
-          <figcaption>STATUS <span class="blink">♥</span> PORTFOLIO ONLINE</figcaption>
-        </figure>
-      </article>
-      <article class="panel">
-        <h2>Player file</h2>
-        <ul class="chips">
-          <li>Programming</li><li>Game design</li><li>UI and UX</li><li>Story</li>
-        </ul>
-        <p>{ABOUT["file"]}</p>
-      </article>
+    <div class="wrap scene-board">
+      <aside class="scene-friends" aria-label="Photo strip">
+        <p class="scene-friends-title">MY SNAPS</p>
+        <div class="scene-friends-grid">
+          <a class="scene-polaroid tilt-a" href="#all-about-me"><img src="/assets/about/snap-1.jpg" alt="Tiyah Singh"></a>
+          <a class="scene-polaroid tilt-b" href="#all-about-me"><img src="/assets/about/snap-2.jpg" alt="Tiyah Singh"></a>
+          <a class="scene-polaroid tilt-c" href="#all-about-me"><img src="/assets/about/snap-3.jpg" alt="Tiyah Singh"></a>
+          <a class="scene-polaroid tilt-d" href="#all-about-me"><img src="/assets/about/snap-4.jpg" alt="Tiyah Singh"></a>
+          <a class="scene-polaroid tilt-a" href="#all-about-me"><img src="/assets/about/snap-5.jpg" alt="Tiyah Singh"></a>
+          <a class="scene-polaroid tilt-b" href="#all-about-me"><img src="/assets/about/snap-6.jpg" alt="Tiyah Singh"></a>
+        </div>
+        <a class="scene-back pixel-btn" href="/">HOME</a>
+      </aside>
+
+      <div class="scene-center">
+        <article class="scene-card scene-about" id="all-about-me">
+          <div class="scene-card-head">
+            <h1>ALL ABOUT ME</h1>
+            <span class="scene-sticker" aria-hidden="true">♥</span>
+          </div>
+          <div class="scene-about-body">
+            <figure class="scene-hero-pic">
+              <img src="/assets/about/hero.jpg" alt="Portrait of Tiyah Singh.">
+              <figcaption>PLAYER 01 · ONLINE</figcaption>
+            </figure>
+            <div class="scene-about-copy">
+              <p class="gba-role">TIYAH SINGH</p>
+              <p>{ABOUT["intro"]}</p>
+              <p>{ABOUT["portfolio"]}</p>
+              <ul class="chips">
+                <li>Programming</li><li>Game design</li><li>UI and UX</li><li>Story</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <div class="scene-mid">
+          <article class="scene-card scene-walls">
+            <div class="scene-card-head">
+              <h2>MY GAMES</h2>
+              <span class="scene-sticker spark" aria-hidden="true">✦</span>
+            </div>
+            <div class="scene-wall-grid">
+              {fav_html}
+            </div>
+            <p class="scene-more"><a href="/games.html">SEE ALL GAMES →</a></p>
+          </article>
+
+          <article class="scene-card scene-blog">
+            <div class="scene-card-head">
+              <h2>PLAYER FILE</h2>
+            </div>
+            <div class="scene-paper">
+              <p class="scene-paper-kicker">FROM THE CARTRIDGE</p>
+              <p>{ABOUT["file"]}</p>
+              <p>Johannesburg · Vega · Starr Studios on Bushveld Brothers.</p>
+              <p class="scene-paper-sign">— Tiyah</p>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <aside class="scene-phone-wrap" aria-label="Phone widget">
+        <div class="scene-phone">
+          <p class="scene-phone-label">MY PHONE</p>
+          <div class="scene-phone-screen">
+            <p class="scene-phone-kicker">GREAT GAMES</p>
+            <div class="scene-phone-list">
+              {phone_html}
+            </div>
+            <a class="pixel-btn scene-phone-cta" href="/explore.html">PRESS START</a>
+          </div>
+          <div class="scene-phone-hinge" aria-hidden="true"></div>
+        </div>
+      </aside>
     </div>""")
     sheet("Skills", "skills", f"""
     <div class="wrap">
