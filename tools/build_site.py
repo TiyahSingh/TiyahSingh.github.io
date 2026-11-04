@@ -545,7 +545,7 @@ def header(title="", nav=""):
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Spicy+Rice&display=swap" rel="stylesheet">
   <link rel="icon" href="/assets/brand/favicon.png" type="image/png">
-  <link rel="stylesheet" href="/css/site.css?v=56">
+  <link rel="stylesheet" href="/css/site.css?v=57">
 </head>
 <body{body}>
   <a class="skip" href="#content">Skip to content</a>
@@ -756,7 +756,7 @@ ABOUT = {
         {
             "title": "Finding my world at Vega",
             "copy": "My journey as a game developer began at Vega School, where I discovered just how much could be achieved through the combination of programming, art and design. Each year introduced me to new ways of creating interactive experiences, from developing gameplay mechanics and programming systems to crafting visual identities, immersive environments and meaningful narratives. It was where I began to understand that game development was the perfect intersection of my technical and creative interests.",
-            "frame": "switch",
+            "frame": "window",
         },
         {
             "title": "More than just a game",
@@ -766,12 +766,12 @@ ABOUT = {
         {
             "title": "The best of both worlds",
             "copy": "I aspire to grow as a well-rounded game developer, with a particular interest in gameplay programming and C# development alongside UI/UX design and visual development. I'm equally fascinated by the logic behind how a game functions and the creative decisions that shape how it looks, feels and is experienced. I'm drawn to the challenge of taking an idea from its initial concept and visual direction all the way through to a fully functioning, interactive experience. Why choose between the art and the code when I can bring both together?",
-            "frame": "window",
+            "frame": "target",
         },
         {
             "title": "Beyond the screen",
             "copy": "When I'm not working on a project, I'm usually finding inspiration in other games, exploring different visual styles, experimenting with creative ideas or getting carried away with a new project. I'm naturally drawn to the little details that give things personality, whether it's an interesting colour palette, a beautifully designed interface or an entire fictional world. I believe inspiration can come from just about anywhere, and I'm always collecting ideas for what I could create next.",
-            "frame": "target",
+            "frame": "switch",
         },
     ],
 }
@@ -853,31 +853,53 @@ def index():
 """ + footer()
         (ROOT / f"{nav}.html").write_text(html, encoding="utf-8")
 
+    frame_src = {
+        "target": "/assets/about/frames/textbox-target.png",
+        "switch": "/assets/about/frames/textbox-switch.png",
+        "folder": "/assets/about/frames/textbox-folder.png",
+        "window": "/assets/about/frames/textbox-window.png",
+    }
     about_blocks = []
     for i, section in enumerate(ABOUT["sections"]):
         frame = section["frame"]
+        tilt = ["tilt-a", "tilt-b", "tilt-c", "tilt-d", "tilt-a"][i]
         about_blocks.append(f"""
-      <article class="pix-box pix-{frame}">
-        <div class="pix-screen">
-          <p class="pix-kicker">SLOT {i + 1:02d}</p>
-          <h2>{section["title"]}</h2>
-          <p>{section["copy"]}</p>
-        </div>
-      </article>""")
+        <article class="frame-card frame-{frame} {tilt}">
+          <img class="frame-art" src="{frame_src[frame]}" alt="" draggable="false">
+          <div class="frame-text">
+            <p class="frame-kicker">SLOT {i + 1:02d}</p>
+            <h2>{section["title"]}</h2>
+            <p>{section["copy"]}</p>
+          </div>
+        </article>""")
+    snap_tilts = ["tilt-a", "tilt-b", "tilt-c", "tilt-d", "tilt-a", "tilt-b"]
+    snap_strip = "".join(
+        f'<figure class="scrap-polaroid {snap_tilts[i]}"><img src="/assets/about/snap-{i + 1}.jpg" alt="Tiyah Singh"></figure>'
+        for i in range(6)
+    )
     sheet("About", "about", f"""
-    <div class="wrap about-arcade">
-      <header class="about-hero">
-        <figure class="about-polaroid">
-          <img src="/assets/about/portrait-polaroid.png" alt="Portrait of Tiyah Singh in a polaroid frame.">
-        </figure>
-        <div class="about-hero-copy">
-          <p class="kicker">ABOUT ME</p>
-          <h1>{ABOUT["headline"]}</h1>
-          <p class="about-hero-tag">TIYAH SINGH · GAME DESIGNER &amp; DEVELOPER</p>
+    <div class="wrap about-scrap">
+      <aside class="scrap-friends" aria-label="Photo strip">
+        <p class="scrap-friends-title">MY SNAPS</p>
+        <div class="scrap-friends-rail">
+          {snap_strip}
         </div>
-      </header>
-      <div class="about-consoles">
-        {"".join(about_blocks)}
+      </aside>
+      <div class="scrap-stage">
+        <header class="scrap-hero">
+          <figure class="scrap-hero-polaroid">
+            <img src="/assets/about/portrait-polaroid.png" alt="Portrait of Tiyah Singh in polaroid frames.">
+          </figure>
+          <div class="scrap-hero-note">
+            <p class="kicker">ALL ABOUT ME</p>
+            <h1>{ABOUT["headline"]}</h1>
+            <p class="about-hero-tag">TIYAH SINGH · GAME DESIGNER &amp; DEVELOPER</p>
+            <p class="scrap-hero-blurb">{ABOUT["intro"]}</p>
+          </div>
+        </header>
+        <div class="scrap-story">
+          {"".join(about_blocks)}
+        </div>
       </div>
     </div>""")
     sheet("Skills", "skills", f"""

@@ -13,7 +13,7 @@
       {
         "title": "Finding my world at Vega",
         "copy": "My journey as a game developer began at Vega School, where I discovered just how much could be achieved through the combination of programming, art and design. Each year introduced me to new ways of creating interactive experiences, from developing gameplay mechanics and programming systems to crafting visual identities, immersive environments and meaningful narratives. It was where I began to understand that game development was the perfect intersection of my technical and creative interests.",
-        "frame": "switch"
+        "frame": "window"
       },
       {
         "title": "More than just a game",
@@ -23,12 +23,12 @@
       {
         "title": "The best of both worlds",
         "copy": "I aspire to grow as a well-rounded game developer, with a particular interest in gameplay programming and C# development alongside UI/UX design and visual development. I'm equally fascinated by the logic behind how a game functions and the creative decisions that shape how it looks, feels and is experienced. I'm drawn to the challenge of taking an idea from its initial concept and visual direction all the way through to a fully functioning, interactive experience. Why choose between the art and the code when I can bring both together?",
-        "frame": "window"
+        "frame": "target"
       },
       {
         "title": "Beyond the screen",
         "copy": "When I'm not working on a project, I'm usually finding inspiration in other games, exploring different visual styles, experimenting with creative ideas or getting carried away with a new project. I'm naturally drawn to the little details that give things personality, whether it's an interesting colour palette, a beautifully designed interface or an entire fictional world. I believe inspiration can come from just about anywhere, and I'm always collecting ideas for what I could create next.",
-        "frame": "target"
+        "frame": "switch"
       }
     ]
   },
