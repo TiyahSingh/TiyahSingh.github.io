@@ -14,8 +14,8 @@
   --font-display: "Spicy Rice", "Segoe UI", cursive;
   --font-ui: "Spicy Rice", "Segoe UI", cursive;
   --font-body: "TT Lakes Neue", Barlow, "Segoe UI", sans-serif;
-  --hud-h: 5.4rem; /* locked pink bar height */
-  --logo-h: clamp(6.4rem, 12vw, 8.6rem); /* larger than the bar */
+  --hud-h: 5.4rem; /* locked pink bar height on every page */
+  --logo-inset: 0.2rem; /* tiny gap inside the dark pink outline */
   --panel-gap: 0.85rem;
   --gba: #ff2eb6;
   --gba-deep: #e0189a;
@@ -124,9 +124,10 @@ a:hover { color: white; }
   height: calc(var(--hud-h) + env(safe-area-inset-top, 0px));
   min-height: calc(var(--hud-h) + env(safe-area-inset-top, 0px));
   max-height: calc(var(--hud-h) + env(safe-area-inset-top, 0px));
-  padding: 0 max(1rem, 2.5vw);
-  padding-top: env(safe-area-inset-top, 0px);
-  overflow: visible; /* logo can sit larger than the locked bar */
+  padding: var(--logo-inset) max(1rem, 2.5vw);
+  padding-top: calc(var(--logo-inset) + env(safe-area-inset-top, 0px));
+  /* Clip the logo so it never crosses the dark pink outline */
+  overflow: hidden;
   background:
     radial-gradient(circle at 12% 40%, rgba(255, 255, 255, 0.4) 0 1px, transparent 2px),
     linear-gradient(180deg, #ffe6f5 0%, var(--header-pink) 55%, #ffc8e9 100%);
@@ -136,41 +137,34 @@ a:hover { color: white; }
 }
 
 .logo {
-  position: relative;
-  display: block;
+  display: flex;
+  align-items: center;
+  align-self: stretch;
   flex: 0 0 auto;
-  align-self: center;
-  /* Layout footprint stays inside the bar; image paints larger */
-  width: calc(var(--logo-h) * 1.68);
   height: 100%;
+  min-height: 0;
+  width: auto;
+  max-height: 100%;
   text-decoration: none;
-  filter: drop-shadow(0 0 12px rgba(255, 46, 182, 0.5));
+  filter: drop-shadow(0 0 10px rgba(255, 46, 182, 0.45));
   transition: filter 0.2s ease;
-  z-index: 3;
-  overflow: visible;
+  z-index: 2;
+  overflow: hidden;
 }
 
 .logo:hover {
-  filter: drop-shadow(0 0 18px rgba(255, 78, 184, 0.85));
-}
-
-.logo:hover img {
-  transform: translateY(-50%) scale(1.04) rotate(-0.8deg);
+  filter: drop-shadow(0 0 16px rgba(255, 78, 184, 0.8));
 }
 
 .logo img {
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  height: var(--logo-h);
+  /* Fill the light pink panel edge-to-edge inside the outline */
+  height: 100%;
   width: auto;
   max-width: none;
-  max-height: none;
+  max-height: 100%;
   object-fit: contain;
+  object-position: left center;
   display: block;
-  transition: transform 0.2s ease;
-  pointer-events: none;
 }
 
 .nav {
@@ -956,15 +950,15 @@ footer {
 @media (max-width: 860px) {
   :root {
     --hud-h: 4.6rem;
-    --logo-h: clamp(5.4rem, 22vw, 7rem);
+    --logo-inset: 0.16rem;
   }
   .hero, .about-grid, .contact-grid, .split, .qr-grid, .shelf { grid-template-columns: 1fr; }
   .crt img { height: 220px; }
   .hud {
     flex-wrap: nowrap;
     gap: 0.45rem;
-    padding: 0 0.7rem;
-    padding-top: env(safe-area-inset-top, 0px);
+    padding: var(--logo-inset) 0.7rem;
+    padding-top: calc(var(--logo-inset) + env(safe-area-inset-top, 0px));
     grid-template-columns: auto 1fr;
   }
   .nav a, .pixel-btn, button.pixel-btn { padding: 0.22rem 0.55rem 0.3rem; font-size: 0.68rem; }
@@ -1088,7 +1082,7 @@ body.explore-page .explore { min-height: 0; }
   justify-self: start;
   width: 100%;
   max-width: 340px;
-  margin: max(0.35rem, calc((var(--logo-h) - var(--hud-h)) * 0.45)) 0 0;
+  margin: 0.35rem 0 0;
   pointer-events: auto;
 }
 
@@ -1255,7 +1249,7 @@ body.explore-page .explore { min-height: 0; }
 @media (max-width: 520px) {
   :root {
     --hud-h: 4.1rem;
-    --logo-h: clamp(4.8rem, 28vw, 6.2rem);
+    --logo-inset: 0.14rem;
   }
   .world { min-height: 360px; }
   .explore { min-height: 360px; }
