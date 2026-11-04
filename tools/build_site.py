@@ -887,7 +887,7 @@ def index():
         </div>
       </article>""")
     sheet("About", "about", f"""
-    <a class="about-street-exit" id="about-street-exit" href="/explore.html#explore/at/about" hidden aria-label="Back to the street">×</a>
+    <a class="about-street-exit" id="about-street-exit" href="/explore.html?door=about" hidden aria-label="Back to the street">×</a>
     <div class="wrap about-editorial">
       <header class="about-lead">
         <div class="about-lead-copy">
@@ -985,7 +985,7 @@ def index():
           <nav class="world-menu" aria-label="World destinations">
             <a href="/explore.html"><span>&#9654;</span> EXPLORE</a>
             <a href="/explore.html#explore/games">GAMES</a>
-            <a href="/explore.html#explore/at/about">ABOUT</a>
+            <a href="/explore.html?door=about">ABOUT</a>
             <a href="/explore.html#explore/skills">SKILLS</a>
             <a href="/explore.html#explore/cv">CV</a>
             <a href="/explore.html#explore/contact">CONTACT</a>
@@ -1015,7 +1015,7 @@ def index():
     }
   }
   </script>
-  <script type="module" src="/js/home/world-map.js?v=23"></script>
+  <script type="module" src="/js/home/world-map.js?v=24"></script>
   <script>
   if (location.hash === "#play" || location.hash.indexOf("#explore/") === 0) {
     location.replace("/explore.html" + location.hash);
@@ -1044,7 +1044,7 @@ def index():
     }
   }
   </script>
-  <script type="module" src="/js/explore/main.js?v=20"></script>
+  <script type="module" src="/js/explore/main.js?v=21"></script>
 """
     (ROOT / "index.html").write_text(home, encoding="utf-8")
     (ROOT / "explore.html").write_text(explore, encoding="utf-8")

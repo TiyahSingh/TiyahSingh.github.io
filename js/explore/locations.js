@@ -47,12 +47,7 @@ export function createLocations(options) {
     return interiors[id];
   }
 
-  async function arrive(doorId) {
-    if (busy) return;
-    busy = true;
-    fade.textContent = "Outside " + (LABEL[doorId] || "door");
-    fade.classList.add("is-on");
-    await wait(320);
+  function standOutside(doorId) {
     Object.keys(interiors).forEach(function (id) { interiors[id].group.visible = false; });
     street.group.visible = true;
     const door = street.doors.find(function (item) { return item.id === doorId; });
@@ -65,12 +60,25 @@ export function createLocations(options) {
     camera.setOccluders(street.occluders);
     place = "street";
     nearest = null;
-    const hash = "#explore/at/" + doorId;
-    if (location.hash !== hash) history.pushState({ place: "street", at: doorId }, "", hash);
     onPlace("street");
-    fade.classList.remove("is-on");
-    await wait(320);
-    busy = false;
+  }
+
+  async function arrive(doorId) {
+    if (busy) return;
+    busy = true;
+    try {
+      fade.textContent = "Outside " + (LABEL[doorId] || "door");
+      fade.classList.add("is-on");
+      await wait(180);
+      standOutside(doorId);
+      const hash = "#explore/at/" + doorId;
+      if (location.hash !== hash) {
+        history.replaceState({ place: "street", at: doorId }, "", "/explore.html" + hash);
+      }
+    } finally {
+      fade.classList.remove("is-on");
+      busy = false;
+    }
   }
 
   async function go(next) {
@@ -211,6 +219,7 @@ export function createLocations(options) {
     prompt: prompt,
     go: go,
     arrive: arrive,
+    standOutside: standOutside,
     active: active,
     place: function () { return place; },
   };

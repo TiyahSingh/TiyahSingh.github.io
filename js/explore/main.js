@@ -6,7 +6,7 @@ import { UnrealBloomPass } from "three/addons/postprocessing/UnrealBloomPass.js"
 import { createStreet } from "./environment.js?v=13";
 import { createPlayer } from "./player.js?v=5";
 import { createCamera } from "./camera.js?v=6";
-import { createLocations } from "./locations.js?v=13";
+import { createLocations } from "./locations.js?v=14";
 
 const WRITTEN = {
   "#about": "/about.html",
@@ -182,9 +182,7 @@ async function boot(mount) {
     rig.resize(width / height);
   }
   window.addEventListener("resize", resize);
-
-  if (ARRIVE[location.hash]) places.arrive(ARRIVE[location.hash]);
-  else if (EXPLORE[location.hash]) places.go(EXPLORE[location.hash]);
+  resize();
 
   let last = 0;
   function frame(now) {
@@ -209,6 +207,17 @@ async function boot(mount) {
     requestAnimationFrame(frame);
   }
   requestAnimationFrame(frame);
+
+  const doorParam = new URLSearchParams(location.search).get("door");
+  const arriveId = doorParam || ARRIVE[location.hash];
+  if (arriveId) {
+    places.standOutside(arriveId);
+    if (doorParam) {
+      history.replaceState({ place: "street", at: arriveId }, "", "/explore.html#explore/at/" + arriveId);
+    }
+  } else if (EXPLORE[location.hash]) {
+    places.go(EXPLORE[location.hash]);
+  }
 }
 
 function createPanel() {
