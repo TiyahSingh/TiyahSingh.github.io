@@ -5,8 +5,8 @@
  * Add/remove skills freely; the galaxy rebuilds from this file.
  */
 window.SKILL_GALAXY = {
-  title: "my little skill galaxy ♡",
-  tagline: "come poke around ♡",
+  title: "skill galaxy",
+  tagline: "tap a planet",
   levels: {
     discovered: {
       label: "just found it",
@@ -39,7 +39,7 @@ window.SKILL_GALAXY = {
       description:
         "Making things look cute — posters, UI, 3D, video, and all the pink sparkly bits in between.",
       planet: "pearl",
-      hue: 330,
+      hue: 320,
       skills: [
         { id: "graphic-design", name: "Graphic Design", tech: "Design systems", level: "orbiting", note: "Layouts, posters, campaign visuals and brand pieces." },
         { id: "canva", name: "Canva", tech: "Canva", level: "orbiting", note: "Fast social, deck and marketing graphics." },
@@ -72,7 +72,7 @@ window.SKILL_GALAXY = {
       description:
         "Building games in Unity and Unreal — levels, mechanics, UI, and the fun bits that make people want to play.",
       planet: "ringed",
-      hue: 300,
+      hue: 295,
       skills: [
         { id: "unity", name: "Unity", tech: "Unity", level: "mastered", note: "Full gameplay prototypes and polished vertical slices." },
         { id: "unreal", name: "Unreal Engine", tech: "Unreal Engine", level: "orbiting", note: "Levels, Blueprints and cinematic tools." },
@@ -105,7 +105,7 @@ window.SKILL_GALAXY = {
       description:
         "Languages and tools I use to build websites, apps, and game-side systems.",
       planet: "glass",
-      hue: 310,
+      hue: 265,
       skills: [
         { id: "html", name: "HTML", tech: "HTML5", level: "orbiting", note: "Semantic structure for pages and apps." },
         { id: "css", name: "CSS", tech: "CSS3", level: "orbiting", note: "Layout, motion and responsive polish." },
@@ -139,7 +139,7 @@ window.SKILL_GALAXY = {
       description:
         "Keeping info tidy — SQL, spreadsheets, and figuring out how data should fit together.",
       planet: "moon",
-      hue: 320,
+      hue: 255,
       skills: [
         { id: "sql", name: "SQL", tech: "SQL", level: "exploring", note: "Queries, joins and basic optimisation." },
         { id: "mysql", name: "MySQL", tech: "MySQL", level: "exploring", note: "Relational storage and admin basics." },
@@ -170,7 +170,7 @@ window.SKILL_GALAXY = {
       description:
         "Interactive stories, branching narratives, storyboards, and the audio that makes moments land.",
       planet: "y2k",
-      hue: 335,
+      hue: 330,
       skills: [
         { id: "twine", name: "Twine", tech: "Twine", level: "exploring", note: "Hypertext branching fiction." },
         { id: "interactive-story", name: "Interactive Storytelling", tech: "Narrative systems", level: "orbiting", note: "Choices that reshape meaning." },
@@ -197,7 +197,7 @@ window.SKILL_GALAXY = {
       description:
         "Shaders, networking, cloud tools, and the more advanced bits I'm still collecting.",
       planet: "halo",
-      hue: 315,
+      hue: 280,
       skills: [
         { id: "adv-cpp", name: "Advanced C++", tech: "Modern C++", level: "discovered", note: "Deeper engine and systems work." },
         { id: "shaders", name: "Shader Programming", tech: "Shaders", level: "discovered", note: "Custom look and lighting tricks." },

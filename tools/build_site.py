@@ -535,7 +535,7 @@ def header(title="", nav=""):
         body = ' class="skills-galaxy-page"'
     else:
         body = ""
-    extra_css = '\n  <link rel="stylesheet" href="/css/galaxy.css?v=3">' if nav == "skills" else ""
+    extra_css = '\n  <link rel="stylesheet" href="/css/galaxy.css?v=5">' if nav == "skills" else ""
     heading = "Tiyah Singh — Game Developer" if not title else f"{title} — Tiyah Singh"
     return f"""<!DOCTYPE html>
 <html lang="en">
@@ -923,33 +923,26 @@ def index():
     </div>
     <div class="galaxy-rail">
       <div>
-        <p class="galaxy-brand">tiyah's skill galaxy ♡</p>
+        <p class="galaxy-brand">skill galaxy</p>
         <nav class="galaxy-side-nav" aria-label="Galaxy destinations">
           <a href="/">home</a>
           <a href="/about.html">about</a>
           <a href="/skills.html" aria-current="page">skills</a>
-          <a href="/games.html">my work</a>
+          <a href="/games.html">work</a>
           <a href="/contact.html">contact</a>
         </nav>
       </div>
-      <div class="galaxy-tags" aria-hidden="true">
-        <span class="galaxy-tag">come hang out ♡</span>
-        <span class="galaxy-tag">poke the planets</span>
-        <span class="galaxy-tag">made with love</span>
-        <span class="galaxy-tag">pink forever</span>
-      </div>
     </div>
     <div class="galaxy-system-wrap">
-      <div id="galaxy-decor" aria-hidden="true"></div>
       <div id="galaxy-system" aria-label="Interactive skill galaxy"></div>
     </div>
-    <p class="galaxy-footer-note">tap a planet to peek inside ♡</p>
+    <p class="galaxy-footer-note">tap a planet to open it</p>
     <div class="galaxy-backdrop" id="galaxy-backdrop" hidden></div>
     <div class="galaxy-panel" id="galaxy-category-panel" role="dialog" aria-modal="true" hidden></div>
     <div class="galaxy-panel" id="galaxy-skill-panel" role="dialog" aria-modal="true" hidden></div>
   </main>
-  <script src="/js/skills/galaxy-data.js?v=2"></script>
-  <script src="/js/skills/galaxy.js?v=3"></script>
+  <script src="/js/skills/galaxy-data.js?v=4"></script>
+  <script src="/js/skills/galaxy.js?v=5"></script>
   <script>
   (function () {
     var params = new URLSearchParams(location.search);
