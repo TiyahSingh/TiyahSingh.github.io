@@ -5,27 +5,27 @@
  * Add/remove skills freely; the galaxy rebuilds from this file.
  */
 window.SKILL_GALAXY = {
-  title: "MY SKILL UNIVERSE",
-  tagline: "EXPLORE MY UNIVERSE",
+  title: "my little skill galaxy ♡",
+  tagline: "come poke around ♡",
   levels: {
     discovered: {
-      label: "DISCOVERED",
-      blurb: "Just starting to explore this skill.",
+      label: "just found it",
+      blurb: "Brand new to me — still peeking in.",
       stars: 1,
     },
     exploring: {
-      label: "EXPLORING",
-      blurb: "Learning and developing this skill.",
+      label: "learning",
+      blurb: "Playing with it and getting better.",
       stars: 2,
     },
     orbiting: {
-      label: "ORBITING",
-      blurb: "Comfortable using this skill.",
+      label: "comfy with it",
+      blurb: "I use this a lot and feel good about it.",
       stars: 3,
     },
     mastered: {
-      label: "MASTERED",
-      blurb: "Highly confident and experienced.",
+      label: "love this one",
+      blurb: "One of my favourites — I feel really confident here.",
       stars: 4,
     },
   },
@@ -33,12 +33,13 @@ window.SKILL_GALAXY = {
     {
       id: "creative",
       orbit: "01",
-      name: "CREATIVE & DESIGN",
-      short: "DESIGN",
+      name: "Creative & Design",
+      short: "Design",
+      cute: "pretty pictures & vibes",
       description:
-        "Visual storytelling, brand worlds, UI surfaces and motion craft across 2D, 3D and video.",
+        "Making things look cute — posters, UI, 3D, video, and all the pink sparkly bits in between.",
       planet: "pearl",
-      hue: 320,
+      hue: 330,
       skills: [
         { id: "graphic-design", name: "Graphic Design", tech: "Design systems", level: "orbiting", note: "Layouts, posters, campaign visuals and brand pieces." },
         { id: "canva", name: "Canva", tech: "Canva", level: "orbiting", note: "Fast social, deck and marketing graphics." },
@@ -65,12 +66,13 @@ window.SKILL_GALAXY = {
     {
       id: "gamedev",
       orbit: "02",
-      name: "GAME DEVELOPMENT",
-      short: "GAMES",
+      name: "Game Dev",
+      short: "Games",
+      cute: "playable little worlds",
       description:
-        "Prototype-to-play loops in Unity and Unreal — systems, levels, UI and shipping hygiene.",
+        "Building games in Unity and Unreal — levels, mechanics, UI, and the fun bits that make people want to play.",
       planet: "ringed",
-      hue: 280,
+      hue: 300,
       skills: [
         { id: "unity", name: "Unity", tech: "Unity", level: "mastered", note: "Full gameplay prototypes and polished vertical slices." },
         { id: "unreal", name: "Unreal Engine", tech: "Unreal Engine", level: "orbiting", note: "Levels, Blueprints and cinematic tools." },
@@ -97,12 +99,13 @@ window.SKILL_GALAXY = {
     {
       id: "programming",
       orbit: "03",
-      name: "PROGRAMMING & SOFTWARE",
-      short: "CODE",
+      name: "Code & Software",
+      short: "Code",
+      cute: "typing pretty things into existence",
       description:
-        "Languages, web stacks and software craft for tools, sites and game-adjacent systems.",
+        "Languages and tools I use to build websites, apps, and game-side systems.",
       planet: "glass",
-      hue: 200,
+      hue: 310,
       skills: [
         { id: "html", name: "HTML", tech: "HTML5", level: "orbiting", note: "Semantic structure for pages and apps." },
         { id: "css", name: "CSS", tech: "CSS3", level: "orbiting", note: "Layout, motion and responsive polish." },
@@ -130,12 +133,13 @@ window.SKILL_GALAXY = {
     {
       id: "data",
       orbit: "04",
-      name: "DATABASES & DATA",
-      short: "DATA",
+      name: "Data & Databases",
+      short: "Data",
+      cute: "organising the chaos",
       description:
-        "Storing, querying and shaping data — from SQL schemas to dashboards and NoSQL stores.",
+        "Keeping info tidy — SQL, spreadsheets, and figuring out how data should fit together.",
       planet: "moon",
-      hue: 170,
+      hue: 320,
       skills: [
         { id: "sql", name: "SQL", tech: "SQL", level: "exploring", note: "Queries, joins and basic optimisation." },
         { id: "mysql", name: "MySQL", tech: "MySQL", level: "exploring", note: "Relational storage and admin basics." },
@@ -160,12 +164,13 @@ window.SKILL_GALAXY = {
     {
       id: "narrative",
       orbit: "05",
-      name: "INTERACTIVE MEDIA & NARRATIVE",
-      short: "STORY",
+      name: "Stories & Media",
+      short: "Story",
+      cute: "feelings, choices & sound",
       description:
-        "Branching stories, interactive media and sound that wrap players in feeling.",
+        "Interactive stories, branching narratives, storyboards, and the audio that makes moments land.",
       planet: "y2k",
-      hue: 340,
+      hue: 335,
       skills: [
         { id: "twine", name: "Twine", tech: "Twine", level: "exploring", note: "Hypertext branching fiction." },
         { id: "interactive-story", name: "Interactive Storytelling", tech: "Narrative systems", level: "orbiting", note: "Choices that reshape meaning." },
@@ -186,12 +191,13 @@ window.SKILL_GALAXY = {
     {
       id: "advanced",
       orbit: "06",
-      name: "ADVANCED TECH & SYSTEMS",
-      short: "SYSTEMS",
+      name: "Advanced Tech",
+      short: "Extra",
+      cute: "the spicy deep-dive stuff",
       description:
-        "Shaders, networking, cloud, CI and deeper engine systems for ambitious builds.",
+        "Shaders, networking, cloud tools, and the more advanced bits I'm still collecting.",
       planet: "halo",
-      hue: 250,
+      hue: 315,
       skills: [
         { id: "adv-cpp", name: "Advanced C++", tech: "Modern C++", level: "discovered", note: "Deeper engine and systems work." },
         { id: "shaders", name: "Shader Programming", tech: "Shaders", level: "discovered", note: "Custom look and lighting tricks." },

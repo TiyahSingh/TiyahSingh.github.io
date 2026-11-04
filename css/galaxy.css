@@ -3,18 +3,24 @@
    ========================================================= */
 
 .skills-galaxy-page {
-  --gal-deep: #0a0418;
-  --gal-mid: #1a0a3a;
-  --gal-purple: #4b1d8f;
-  --gal-pink: #ff7ad9;
-  --gal-lav: #c9a8ff;
-  --gal-ice: #9fe8ff;
-  --gal-silver: #e8e4ff;
-  --gal-chrome: linear-gradient(135deg, #fff 0%, #c8b8ff 35%, #ff9de8 70%, #a8e8ff 100%);
+  --gal-deep: #1a0824;
+  --gal-mid: #3a1048;
+  --gal-purple: #c44ec8;
+  --gal-pink: #ff8ad8;
+  --gal-hot: #ff4fb8;
+  --gal-lav: #ffc0ec;
+  --gal-ice: #ffd6f5;
+  --gal-silver: #fff5fb;
+  --gal-chrome: linear-gradient(135deg, #fff 0%, #ffd0ef 40%, #ff9adf 75%, #ffc8f8 100%);
   min-height: 100vh;
   background: var(--gal-deep);
   color: var(--gal-silver);
   overflow-x: hidden;
+}
+
+.skills-galaxy-page .scanlines {
+  opacity: 0.12;
+  mix-blend-mode: soft-light;
 }
 
 .skills-galaxy-page .site-header,
@@ -47,29 +53,38 @@
   z-index: 0;
   pointer-events: none;
   background:
-    radial-gradient(ellipse 80% 55% at 20% 15%, rgba(180, 60, 160, 0.35), transparent 55%),
-    radial-gradient(ellipse 70% 50% at 85% 25%, rgba(80, 40, 180, 0.4), transparent 50%),
-    radial-gradient(ellipse 90% 60% at 50% 90%, rgba(40, 20, 120, 0.55), transparent 55%),
-    radial-gradient(ellipse 50% 40% at 60% 40%, rgba(255, 120, 200, 0.12), transparent 60%),
-    linear-gradient(165deg, #12062a 0%, #1a0a42 35%, #0c0520 70%, #160830 100%);
+    linear-gradient(180deg, rgba(40, 8, 48, 0.55), rgba(70, 12, 70, 0.45) 40%, rgba(30, 6, 40, 0.7)),
+    url("/assets/galaxy/pink-galaxy.jpg") center / cover no-repeat,
+    #2a0a38;
+}
+
+.galaxy-bg__photo {
+  position: absolute;
+  inset: 0;
+  background:
+    url("/assets/galaxy/nebula.jpg") 20% 30% / cover no-repeat;
+  opacity: 0.45;
+  mix-blend-mode: screen;
+  filter: saturate(1.35) hue-rotate(-12deg);
 }
 
 .galaxy-bg__nebula {
   position: absolute;
   inset: -10%;
   background:
-    radial-gradient(circle at 30% 40%, rgba(255, 100, 200, 0.18), transparent 28%),
-    radial-gradient(circle at 70% 55%, rgba(120, 80, 255, 0.22), transparent 32%),
-    radial-gradient(circle at 45% 70%, rgba(80, 180, 255, 0.1), transparent 30%);
+    radial-gradient(circle at 30% 40%, rgba(255, 120, 210, 0.35), transparent 28%),
+    radial-gradient(circle at 75% 50%, rgba(255, 80, 180, 0.28), transparent 34%),
+    radial-gradient(circle at 50% 80%, rgba(200, 80, 220, 0.22), transparent 30%);
   filter: blur(28px);
   animation: galaxy-nebula 28s ease-in-out infinite alternate;
-  opacity: 0.9;
+  opacity: 0.95;
 }
 
 .galaxy-bg__vignette {
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at center, transparent 35%, rgba(5, 0, 20, 0.65) 100%);
+  background:
+    radial-gradient(ellipse at center, transparent 30%, rgba(40, 8, 40, 0.35) 70%, rgba(25, 4, 30, 0.72) 100%);
 }
 
 #galaxy-stars {
@@ -104,42 +119,43 @@
 
 .galaxy-brand {
   font-family: "Spicy Rice", cursive;
-  font-size: clamp(1.1rem, 2.5vw, 1.45rem);
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  background: var(--gal-chrome);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  text-shadow: 0 0 24px rgba(255, 140, 220, 0.35);
-  margin: 0;
+  font-size: clamp(1.2rem, 2.8vw, 1.65rem);
+  letter-spacing: 0.02em;
+  text-transform: none;
+  color: #fff;
+  text-shadow:
+    0 0 18px rgba(255, 100, 200, 0.8),
+    2px 3px 0 rgba(180, 40, 140, 0.45);
+  margin: 0 0 0.55rem;
 }
 
 .galaxy-side-nav {
   display: flex;
   flex-direction: column;
-  gap: 0.35rem;
-  padding: 0.75rem 0.9rem;
-  background: linear-gradient(145deg, rgba(255, 255, 255, 0.12), rgba(80, 40, 140, 0.25));
-  border: 1px solid rgba(255, 180, 240, 0.35);
-  border-radius: 12px;
-  backdrop-filter: blur(12px);
+  gap: 0.3rem;
+  padding: 0.85rem 1rem;
+  background:
+    linear-gradient(160deg, rgba(255, 210, 240, 0.35), rgba(255, 120, 200, 0.22) 50%, rgba(160, 60, 160, 0.28));
+  border: 2px solid rgba(255, 190, 230, 0.65);
+  border-radius: 18px;
+  backdrop-filter: blur(14px);
   box-shadow:
-    0 0 0 1px rgba(255, 255, 255, 0.08) inset,
-    0 12px 40px rgba(20, 0, 40, 0.35);
+    0 0 0 1px rgba(255, 255, 255, 0.25) inset,
+    4px 6px 0 rgba(190, 50, 150, 0.25),
+    0 14px 36px rgba(80, 0, 60, 0.3);
   min-width: 9.5rem;
 }
 
 .galaxy-side-nav a {
   font-family: "Fredoka", system-ui, sans-serif;
-  font-size: 0.72rem;
+  font-size: 0.78rem;
   font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: rgba(255, 230, 255, 0.85);
+  letter-spacing: 0.06em;
+  text-transform: none;
+  color: #fff6fb;
   text-decoration: none;
-  padding: 0.2rem 0;
-  border-bottom: 1px dotted rgba(255, 180, 230, 0.25);
+  padding: 0.15rem 0;
+  border-bottom: 1px dotted rgba(255, 180, 230, 0.35);
   transition: color 0.2s, text-shadow 0.2s;
 }
 
@@ -161,16 +177,17 @@
 
 .galaxy-tag {
   font-family: "Fredoka", system-ui, sans-serif;
-  font-size: 0.58rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  padding: 0.28rem 0.55rem;
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  padding: 0.35rem 0.7rem;
   border-radius: 999px;
-  border: 1px solid rgba(255, 200, 240, 0.4);
-  background: rgba(40, 10, 70, 0.45);
-  color: var(--gal-lav);
+  border: 2px solid rgba(255, 210, 240, 0.7);
+  background: linear-gradient(180deg, rgba(255, 180, 230, 0.45), rgba(255, 100, 190, 0.35));
+  color: #fff;
   backdrop-filter: blur(6px);
   white-space: nowrap;
+  box-shadow: 2px 3px 0 rgba(160, 40, 120, 0.3);
 }
 
 /* ---------- system ---------- */
@@ -218,12 +235,12 @@
   inset: 8%;
   border-radius: 50%;
   background:
-    radial-gradient(circle at 32% 28%, #fff 0%, #ffc8f0 18%, #c080ff 42%, #5020a0 70%, #1a0840 100%);
+    radial-gradient(circle at 32% 28%, #fff 0%, #ffe0f4 16%, #ff9ad8 38%, #ff4fb8 62%, #a01878 100%);
   box-shadow:
-    0 0 40px rgba(255, 120, 220, 0.55),
-    0 0 80px rgba(140, 80, 255, 0.35),
-    inset -12px -16px 30px rgba(20, 0, 60, 0.45),
-    inset 10px 12px 24px rgba(255, 255, 255, 0.35);
+    0 0 40px rgba(255, 100, 200, 0.75),
+    0 0 80px rgba(255, 60, 180, 0.4),
+    inset -12px -16px 30px rgba(120, 20, 80, 0.35),
+    inset 10px 12px 24px rgba(255, 255, 255, 0.45);
 }
 
 .galaxy-core__ring {
@@ -241,15 +258,15 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 80%;
+  width: 82%;
   font-family: "Spicy Rice", cursive;
-  font-size: clamp(0.55rem, 1.4vw, 0.78rem);
-  letter-spacing: 0.06em;
-  line-height: 1.15;
+  font-size: clamp(0.58rem, 1.5vw, 0.82rem);
+  letter-spacing: 0.02em;
+  line-height: 1.2;
   text-align: center;
-  text-transform: uppercase;
+  text-transform: none;
   color: #fff;
-  text-shadow: 0 0 10px rgba(80, 0, 120, 0.9), 0 1px 2px rgba(0, 0, 0, 0.6);
+  text-shadow: 0 0 12px rgba(255, 80, 180, 0.9), 0 1px 2px rgba(80, 0, 60, 0.55);
   pointer-events: none;
 }
 
@@ -431,20 +448,18 @@
   pointer-events: none;
 }
 
-.galaxy-planet__orbit-num {
-  font-family: "Fredoka", system-ui, sans-serif;
-  font-size: 0.48rem;
-  letter-spacing: 0.18em;
-  color: rgba(255, 200, 240, 0.75);
-}
-
 .galaxy-planet__title {
   font-family: "Spicy Rice", cursive;
-  font-size: clamp(0.55rem, 1.3vw, 0.72rem);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  font-size: clamp(0.62rem, 1.4vw, 0.82rem);
+  letter-spacing: 0.03em;
+  text-transform: none;
   color: #fff;
-  text-shadow: 0 0 10px hsla(var(--hue), 90%, 50%, 0.9), 0 1px 3px rgba(0, 0, 0, 0.7);
+  text-shadow: 0 0 12px hsla(var(--hue), 90%, 60%, 0.95), 0 2px 0 rgba(120, 20, 90, 0.55);
+  background: rgba(255, 120, 200, 0.28);
+  border: 1.5px solid rgba(255, 220, 245, 0.55);
+  border-radius: 999px;
+  padding: 0.15rem 0.55rem;
+  backdrop-filter: blur(4px);
 }
 
 /* planet variants */
@@ -504,83 +519,25 @@
 
 .galaxy-float {
   position: absolute;
-  width: 22px;
-  height: 22px;
-  transform: scale(var(--scale, 1));
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  transform: scale(var(--scale, 1)) rotate(var(--rot, 0deg));
   animation: galaxy-float-y var(--d, 5s) ease-in-out var(--delay, 0s) infinite;
-  opacity: 0.72;
+  opacity: 0.92;
+  filter: drop-shadow(0 4px 6px rgba(120, 20, 90, 0.35));
+  pointer-events: none;
+  user-select: none;
 }
 
-.galaxy-float::before {
-  content: "";
-  display: block;
-  width: 100%;
-  height: 100%;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
+.galaxy-float--img {
+  width: 40px;
+  height: 40px;
 }
 
 @keyframes galaxy-float-y {
-  0%, 100% { translate: 0 0; rotate: -6deg; }
-  50% { translate: 0 -12px; rotate: 8deg; }
-}
-
-.galaxy-float--sparkle::before {
-  background: radial-gradient(circle, #fff 0%, #ffc0f0 40%, transparent 70%);
-  filter: drop-shadow(0 0 4px #ff9de8);
-}
-.galaxy-float--heart::before {
-  background: linear-gradient(135deg, #ff7ad9, #fff);
-  clip-path: path("M12 21 C12 21 2 13 2 8 C2 5 4 3 6.5 3 C8.5 3 10.5 4.5 12 6.5 C13.5 4.5 15.5 3 17.5 3 C20 3 22 5 22 8 C22 13 12 21 12 21Z");
-}
-.galaxy-float--butterfly::before {
-  border-radius: 50% 0 50% 0;
-  background: linear-gradient(45deg, #ff9de8, #9fe8ff);
-  box-shadow: 6px 0 0 0 #c9a8ff;
-  width: 10px;
-  height: 14px;
-  margin: 4px auto;
-}
-.galaxy-float--star::before {
-  background: #fff6;
-  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
-  background: linear-gradient(180deg, #fff, #ffc8f0);
-}
-.galaxy-float--moon::before {
-  border-radius: 50%;
-  background: radial-gradient(circle at 30% 30%, #fff, #e0d0ff);
-  box-shadow: inset -6px 0 0 1px #a890d0;
-}
-.galaxy-float--phone::before {
-  border-radius: 3px;
-  background: linear-gradient(180deg, #ff9de8, #c060b0);
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  box-shadow: inset 0 -4px 0 #fff3;
-}
-.galaxy-float--laptop::before {
-  background: linear-gradient(180deg, #c9a8ff 55%, #e8e4ff 55%);
-  border-radius: 2px 2px 1px 1px;
-  box-shadow: 0 2px 0 #fff8;
-}
-.galaxy-float--teddy::before {
-  border-radius: 50%;
-  background: radial-gradient(circle at 40% 35%, #f5d0b0, #c08060);
-  box-shadow: -5px -4px 0 -1px #c08060, 5px -4px 0 -1px #c08060;
-}
-.galaxy-float--sat::before {
-  border-radius: 2px;
-  background: linear-gradient(90deg, #9fe8ff, #fff, #c9a8ff);
-  box-shadow: -8px 4px 0 -2px #ff9de8, 8px 4px 0 -2px #ff9de8;
-}
-.galaxy-float--chrome::before {
-  clip-path: path("M12 21 C12 21 2 13 2 8 C2 5 4 3 6.5 3 C8.5 3 10.5 4.5 12 6.5 C13.5 4.5 15.5 3 17.5 3 C20 3 22 5 22 8 C22 13 12 21 12 21Z");
-  background: linear-gradient(135deg, #fff, #c8b8ff, #9fe8ff);
-}
-.galaxy-float--geo::before {
-  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.7), rgba(160, 220, 255, 0.4));
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 -14px; }
 }
 
 /* ---------- panels ---------- */
@@ -635,36 +592,59 @@
 
 .galaxy-panel__chrome {
   position: relative;
-  padding: 1.35rem 1.25rem 1.1rem;
-  border-radius: 18px;
+  padding: 1.5rem 1.3rem 1.2rem;
+  border-radius: 22px;
   background:
-    linear-gradient(145deg, rgba(255, 255, 255, 0.18), rgba(60, 20, 100, 0.55) 40%, rgba(30, 10, 60, 0.72));
-  border: 1px solid rgba(255, 190, 240, 0.45);
+    linear-gradient(155deg, rgba(255, 230, 245, 0.92), rgba(255, 170, 220, 0.88) 45%, rgba(255, 130, 200, 0.9));
+  border: 3px solid #fff;
   box-shadow:
-    0 0 0 1px rgba(255, 255, 255, 0.1) inset,
-    0 24px 60px rgba(10, 0, 40, 0.55),
-    0 0 40px rgba(255, 100, 200, 0.15);
-  backdrop-filter: blur(18px) saturate(1.3);
-  color: var(--gal-silver);
+    0 0 0 3px rgba(255, 120, 200, 0.55),
+    6px 10px 0 rgba(190, 40, 140, 0.28),
+    0 24px 50px rgba(80, 0, 60, 0.35);
+  color: #5a1848;
 }
 
 .galaxy-panel__chrome--skill {
   background:
-    linear-gradient(155deg, rgba(40, 12, 70, 0.96), rgba(20, 6, 40, 0.98) 55%, rgba(50, 16, 80, 0.96));
-  border-color: rgba(255, 170, 230, 0.65);
+    linear-gradient(160deg, #fff5fb 0%, #ffd6ef 50%, #ffb8e4 100%);
+  border-color: #fff;
   box-shadow:
-    0 0 0 1px rgba(255, 255, 255, 0.12) inset,
-    0 28px 70px rgba(5, 0, 30, 0.75),
-    0 0 50px rgba(255, 100, 200, 0.28);
+    0 0 0 3px rgba(255, 140, 210, 0.65),
+    6px 10px 0 rgba(200, 50, 150, 0.3),
+    0 28px 60px rgba(80, 0, 60, 0.4);
 }
 
 .galaxy-panel__chrome::before {
   content: "";
   position: absolute;
-  inset: 6px;
-  border-radius: 14px;
-  border: 1px dotted rgba(255, 200, 240, 0.28);
+  inset: 8px;
+  border-radius: 16px;
+  border: 2px dashed rgba(255, 100, 180, 0.35);
   pointer-events: none;
+}
+
+.galaxy-panel__sticker {
+  position: absolute;
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  z-index: 3;
+  filter: drop-shadow(0 3px 4px rgba(120, 20, 90, 0.35));
+  pointer-events: none;
+}
+
+.galaxy-panel__sticker--tl {
+  top: -12px;
+  left: -10px;
+  transform: rotate(-12deg);
+}
+
+.galaxy-panel__sticker--tr {
+  top: -10px;
+  right: 42px;
+  transform: rotate(14deg);
+  width: 30px;
+  height: 30px;
 }
 
 .galaxy-panel__close {
@@ -694,44 +674,44 @@
 .galaxy-panel__eyebrow {
   margin: 0 2rem 0.35rem 0;
   font-family: "Fredoka", system-ui, sans-serif;
-  font-size: 0.62rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--gal-pink);
+  font-size: 0.78rem;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  color: #c02088;
+  font-weight: 600;
 }
 
 .galaxy-panel__title {
   margin: 0 2rem 0.5rem 0;
   font-family: "Spicy Rice", cursive;
-  font-size: clamp(1.15rem, 3vw, 1.55rem);
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+  font-size: clamp(1.25rem, 3.2vw, 1.7rem);
+  letter-spacing: 0.02em;
+  text-transform: none;
   line-height: 1.15;
-  background: var(--gal-chrome);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: #9b1878;
+  text-shadow: 1px 2px 0 rgba(255, 255, 255, 0.65);
 }
 
 .galaxy-panel__title--sm {
-  font-size: clamp(1rem, 2.5vw, 1.3rem);
+  font-size: clamp(1.1rem, 2.6vw, 1.4rem);
 }
 
 .galaxy-panel__desc {
   margin: 0 0 0.85rem;
   font-family: "Fredoka", system-ui, sans-serif;
-  font-size: 0.88rem;
+  font-size: 0.92rem;
   line-height: 1.45;
-  color: rgba(240, 230, 255, 0.88);
+  color: #6a2858;
 }
 
 .galaxy-panel__tech {
   margin: 0 0 0.75rem;
   font-family: "Fredoka", system-ui, sans-serif;
-  font-size: 0.75rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--gal-ice);
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  color: #d040a0;
+  font-weight: 600;
 }
 
 .galaxy-panel__legend {
@@ -746,10 +726,13 @@
   align-items: center;
   gap: 0.3rem;
   font-family: "Fredoka", system-ui, sans-serif;
-  font-size: 0.55rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: rgba(230, 220, 255, 0.75);
+  font-size: 0.65rem;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  color: #8a3868;
+  background: rgba(255, 255, 255, 0.45);
+  border-radius: 999px;
+  padding: 0.15rem 0.45rem;
 }
 
 .galaxy-legend__dot {
@@ -760,10 +743,10 @@
   box-shadow: 0 0 6px currentColor;
 }
 
-.galaxy-legend[data-level="discovered"] { color: #a8a0c0; }
-.galaxy-legend[data-level="exploring"] { color: #9fe8ff; }
-.galaxy-legend[data-level="orbiting"] { color: #c9a8ff; }
-.galaxy-legend[data-level="mastered"] { color: #ff7ad9; }
+.galaxy-legend[data-level="discovered"] { color: #b07098; }
+.galaxy-legend[data-level="exploring"] { color: #e050b0; }
+.galaxy-legend[data-level="orbiting"] { color: #c02890; }
+.galaxy-legend[data-level="mastered"] { color: #ff2ea6; }
 
 .galaxy-panel__skills {
   display: flex;
@@ -782,11 +765,11 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 0.15rem;
-  padding: 0.45rem 0.6rem 0.4rem;
-  border-radius: 12px;
-  border: 1px solid rgba(255, 200, 240, 0.35);
-  background: rgba(20, 8, 50, 0.55);
-  color: #fff;
+  padding: 0.5rem 0.65rem 0.45rem;
+  border-radius: 14px;
+  border: 2px solid rgba(255, 255, 255, 0.85);
+  background: linear-gradient(160deg, #fff8fc, #ffe0f2);
+  color: #6a2058;
   cursor: pointer;
   text-align: left;
   min-width: 7.5rem;
@@ -794,22 +777,23 @@
   max-width: 100%;
   transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
   overflow: hidden;
+  box-shadow: 2px 3px 0 rgba(220, 80, 160, 0.25);
 }
 
 .galaxy-skill-chip:hover,
 .galaxy-skill-chip:focus-visible {
-  transform: translateY(-2px);
-  border-color: rgba(255, 220, 255, 0.75);
-  box-shadow: 0 0 18px hsla(var(--hue, 300), 90%, 60%, 0.35);
+  transform: translateY(-2px) rotate(-1deg);
+  border-color: #ff7ac8;
+  box-shadow: 3px 5px 0 rgba(220, 60, 150, 0.35);
   outline: none;
 }
 
 .galaxy-skill-chip__glow {
   position: absolute;
   inset: 0;
-  opacity: 0.35;
+  opacity: 0.4;
   pointer-events: none;
-  background: radial-gradient(circle at 20% 0%, hsla(var(--hue, 300), 90%, 70%, 0.5), transparent 55%);
+  background: radial-gradient(circle at 20% 0%, rgba(255, 150, 210, 0.55), transparent 55%);
 }
 
 .galaxy-skill-chip__glow[data-level="discovered"] { opacity: 0.15; }
@@ -817,24 +801,25 @@
 .galaxy-skill-chip__glow[data-level="orbiting"] { opacity: 0.5; }
 .galaxy-skill-chip__glow[data-level="mastered"] {
   opacity: 0.75;
-  background: radial-gradient(circle at 20% 0%, rgba(255, 140, 220, 0.65), transparent 55%);
+  background: radial-gradient(circle at 20% 0%, rgba(255, 100, 200, 0.7), transparent 55%);
 }
 
 .galaxy-skill-chip__name {
   position: relative;
   font-family: "Fredoka", system-ui, sans-serif;
-  font-size: 0.78rem;
+  font-size: 0.82rem;
   font-weight: 600;
   line-height: 1.2;
+  color: #7a2060;
 }
 
 .galaxy-skill-chip__lvl {
   position: relative;
   font-family: "Fredoka", system-ui, sans-serif;
-  font-size: 0.52rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--gal-lav);
+  font-size: 0.62rem;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  color: #d040a0;
 }
 
 .galaxy-skill-chip__stars,
@@ -859,10 +844,10 @@
 .galaxy-panel__hint {
   margin: 0.75rem 0 0;
   font-family: "Fredoka", system-ui, sans-serif;
-  font-size: 0.58rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: rgba(200, 180, 255, 0.65);
+  font-size: 0.72rem;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  color: #c04098;
   text-align: center;
 }
 
@@ -870,28 +855,28 @@
   display: grid;
   gap: 0.25rem;
   margin-bottom: 0.75rem;
-  padding: 0.65rem 0.75rem;
-  border-radius: 12px;
-  border: 1px solid rgba(255, 200, 240, 0.3);
-  background: rgba(20, 8, 50, 0.4);
+  padding: 0.7rem 0.8rem;
+  border-radius: 14px;
+  border: 2px solid rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.55);
 }
 
 .galaxy-panel__level-label {
   font-family: "Spicy Rice", cursive;
-  font-size: 0.95rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--gal-pink);
+  font-size: 1rem;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  color: #d02898;
 }
 
-.galaxy-panel__level[data-level="mastered"] .galaxy-panel__level-label { color: #ff7ad9; }
-.galaxy-panel__level[data-level="orbiting"] .galaxy-panel__level-label { color: #c9a8ff; }
-.galaxy-panel__level[data-level="exploring"] .galaxy-panel__level-label { color: #9fe8ff; }
+.galaxy-panel__level[data-level="mastered"] .galaxy-panel__level-label { color: #ff2ea6; }
+.galaxy-panel__level[data-level="orbiting"] .galaxy-panel__level-label { color: #c02890; }
+.galaxy-panel__level[data-level="exploring"] .galaxy-panel__level-label { color: #e050b0; }
 
 .galaxy-panel__level-blurb {
   font-family: "Fredoka", system-ui, sans-serif;
-  font-size: 0.75rem;
-  color: rgba(230, 220, 255, 0.8);
+  font-size: 0.78rem;
+  color: #6a2858;
 }
 
 .galaxy-panel__back {
@@ -900,18 +885,18 @@
   border: 0;
   background: transparent;
   font-family: "Fredoka", system-ui, sans-serif;
-  font-size: 0.7rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--gal-ice);
+  font-size: 0.8rem;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  color: #c02890;
   cursor: pointer;
   padding: 0.35rem 0;
+  font-weight: 600;
 }
 
 .galaxy-panel__back:hover,
 .galaxy-panel__back:focus-visible {
-  color: #fff;
-  text-shadow: 0 0 10px rgba(160, 230, 255, 0.8);
+  color: #ff2ea6;
   outline: none;
 }
 
@@ -926,11 +911,12 @@
   z-index: 15;
   text-align: center;
   font-family: "Fredoka", system-ui, sans-serif;
-  font-size: 0.62rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: rgba(200, 180, 255, 0.55);
+  font-size: 0.78rem;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  color: rgba(255, 210, 240, 0.85);
   margin: 0 auto 1rem;
+  text-shadow: 0 2px 8px rgba(80, 0, 60, 0.5);
 }
 
 /* ---------- responsive ---------- */
@@ -983,12 +969,8 @@
     height: 3rem;
   }
 
-  .galaxy-planet__orbit-num {
-    display: none;
-  }
-
   .galaxy-core__label {
-    font-size: 0.5rem;
+    font-size: 0.52rem;
   }
 
   .galaxy-float {

@@ -100,26 +100,31 @@
     }
   }
 
-  /* ---------- decorations ---------- */
-  const DECOR_KINDS = [
-    "sparkle", "heart", "butterfly", "star", "moon",
-    "phone", "laptop", "teddy", "sat", "chrome", "geo",
+  /* ---------- decorations (real sticker images) ---------- */
+  const STICKERS = [
+    "heart.png", "sparkles.png", "star.png", "moon.png", "butterfly.png",
+    "phone.png", "laptop.png", "teddy.png", "satellite.png", "planet.png",
+    "dizzy.png", "cherry.png", "ribbon.png", "crystal.png", "kiss.png",
   ];
 
   function placeDecor() {
     if (!decor) return;
     decor.innerHTML = "";
-    const n = window.matchMedia("(max-width: 720px)").matches ? 10 : 18;
+    const n = window.matchMedia("(max-width: 720px)").matches ? 12 : 20;
     for (let i = 0; i < n; i++) {
-      const el = document.createElement("span");
-      const kind = DECOR_KINDS[i % DECOR_KINDS.length];
-      el.className = `galaxy-float galaxy-float--${kind}`;
+      const el = document.createElement("img");
+      const file = STICKERS[i % STICKERS.length];
+      el.className = "galaxy-float galaxy-float--img";
+      el.src = "/assets/galaxy/" + file;
+      el.alt = "";
       el.setAttribute("aria-hidden", "true");
-      el.style.left = `${8 + Math.random() * 84}%`;
-      el.style.top = `${10 + Math.random() * 75}%`;
-      el.style.setProperty("--d", `${(Math.random() * 6 + 4).toFixed(1)}s`);
+      el.draggable = false;
+      el.style.left = `${6 + Math.random() * 88}%`;
+      el.style.top = `${8 + Math.random() * 78}%`;
+      el.style.setProperty("--d", `${(Math.random() * 5 + 4.5).toFixed(1)}s`);
       el.style.setProperty("--delay", `${(-Math.random() * 8).toFixed(1)}s`);
-      el.style.setProperty("--scale", `${(0.55 + Math.random() * 0.7).toFixed(2)}`);
+      el.style.setProperty("--scale", `${(0.7 + Math.random() * 0.85).toFixed(2)}`);
+      el.style.setProperty("--rot", `${(Math.random() * 36 - 18).toFixed(0)}deg`);
       decor.appendChild(el);
     }
   }
@@ -177,7 +182,6 @@
         <span class="galaxy-planet__shine"></span>
         <span class="galaxy-planet__sat" aria-hidden="true"></span>
         <span class="galaxy-planet__name">
-          <span class="galaxy-planet__orbit-num">ORBIT ${escapeHtml(orbit.orbit)}</span>
           <span class="galaxy-planet__title">${escapeHtml(orbit.short)}</span>
         </span>
       `;
@@ -246,8 +250,10 @@
 
     categoryPanel.innerHTML = `
       <div class="galaxy-panel__chrome">
-        <button type="button" class="galaxy-panel__close" aria-label="Close category panel">×</button>
-        <p class="galaxy-panel__eyebrow">ORBIT ${escapeHtml(orbit.orbit)} · SKILL SYSTEM ONLINE</p>
+        <img class="galaxy-panel__sticker galaxy-panel__sticker--tl" src="/assets/galaxy/heart.png" alt="" aria-hidden="true">
+        <img class="galaxy-panel__sticker galaxy-panel__sticker--tr" src="/assets/galaxy/sparkles.png" alt="" aria-hidden="true">
+        <button type="button" class="galaxy-panel__close" aria-label="Close">×</button>
+        <p class="galaxy-panel__eyebrow">${escapeHtml(orbit.cute || "a little corner of my galaxy")}</p>
         <h2 class="galaxy-panel__title">${escapeHtml(orbit.name)}</h2>
         <p class="galaxy-panel__desc">${escapeHtml(orbit.description)}</p>
         <div class="galaxy-panel__legend" aria-hidden="true">
@@ -259,7 +265,7 @@
             .join("")}
         </div>
         <div class="galaxy-panel__skills" role="list">${skillsHtml}</div>
-        <p class="galaxy-panel__hint">TAP A SKILL NODE TO ZOOM IN ✦</p>
+        <p class="galaxy-panel__hint">tap a skill for more ♡</p>
       </div>
     `;
 
@@ -284,8 +290,9 @@
     const meta = levelMeta(skill.level);
     skillPanel.innerHTML = `
       <div class="galaxy-panel__chrome galaxy-panel__chrome--skill">
-        <button type="button" class="galaxy-panel__close" aria-label="Close skill panel">×</button>
-        <p class="galaxy-panel__eyebrow">${escapeHtml(orbit.short)} · NODE DETAIL</p>
+        <img class="galaxy-panel__sticker galaxy-panel__sticker--tl" src="/assets/galaxy/star.png" alt="" aria-hidden="true">
+        <button type="button" class="galaxy-panel__close" aria-label="Close">×</button>
+        <p class="galaxy-panel__eyebrow">from ${escapeHtml(orbit.short.toLowerCase())}</p>
         <h3 class="galaxy-panel__title galaxy-panel__title--sm">${escapeHtml(skill.name)}</h3>
         <p class="galaxy-panel__tech">${escapeHtml(skill.tech || "")}</p>
         <div class="galaxy-panel__level" data-level="${escapeHtml(skill.level)}">
@@ -294,7 +301,7 @@
           <span class="galaxy-panel__level-blurb">${escapeHtml(meta.blurb)}</span>
         </div>
         <p class="galaxy-panel__desc">${escapeHtml(skill.note || "")}</p>
-        <button type="button" class="galaxy-panel__back">← BACK TO ORBIT</button>
+        <button type="button" class="galaxy-panel__back">← back</button>
       </div>
     `;
     categoryPanel.classList.add("is-dimmed");
