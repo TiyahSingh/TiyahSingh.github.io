@@ -545,7 +545,7 @@ def header(title="", nav=""):
     elif nav == "cv":
         extra_css = '\n  <link rel="stylesheet" href="/css/cv.css?v=4">'
     elif nav == "contact":
-        extra_css = '\n  <link rel="stylesheet" href="/css/contact.css?v=3">'
+        extra_css = '\n  <link rel="stylesheet" href="/css/contact.css?v=4">'
     heading = "Tiyah Singh — Game Developer" if not title else f"{title} — Tiyah Singh"
     return f"""<!DOCTYPE html>
 <html lang="en">
@@ -1199,7 +1199,7 @@ def index():
                   <textarea id="message" name="message" rows="6" placeholder="Say hi, ask about a game, or pitch a collab…"></textarea>
                 </div>
                 <div class="pad__startrow" aria-hidden="true"><span class="pad__pill"></span><span class="pad__pill"></span></div>
-                <button class="contact-submit" type="submit">Press Start</button>
+                <button class="contact-submit" type="submit">Send</button>
                 <p class="contact-note" id="contact-note" hidden></p>
               </form>
             </div>
@@ -1208,7 +1208,7 @@ def index():
         </article>
       </div>
     </div>
-    <script src="/js/contact.js?v=1"></script>
+    <script src="/js/contact.js?v=2"></script>
     <script>
     (function () {{
       var params = new URLSearchParams(location.search);
