@@ -31,14 +31,17 @@
 .skills-galaxy-page footer.site-footer {
   position: relative;
   z-index: 40;
-  background: #ff9ad8;
-  border-top: 3px solid #ff5ec8;
-  border-bottom: 3px solid #ff5ec8;
-  color: #9a1868;
+  background:
+    radial-gradient(circle at 12% 40%, rgba(255, 255, 255, 0.4) 0 1px, transparent 2px),
+    linear-gradient(180deg, #ffe6f5 0%, var(--header-pink, #ffd0ea) 55%, #ffc8e9 100%);
+  border-top: 4px solid var(--header-edge, #ff4eb8);
+  border-bottom: 4px solid var(--header-edge, #ff4eb8);
+  box-shadow: 0 -4px 0 rgba(176, 20, 120, 0.12), 0 0 18px rgba(255, 78, 184, 0.18);
+  color: #b01078;
 }
 
 .skills-galaxy-page .site-footer a {
-  color: #9a1868;
+  color: #b01078;
 }
 
 .skills-galaxy-page .galaxy-panel[hidden],

@@ -535,7 +535,7 @@ def header(title="", nav=""):
         body = ' class="skills-galaxy-page"'
     else:
         body = ""
-    extra_css = '\n  <link rel="stylesheet" href="/css/galaxy.css?v=10">' if nav == "skills" else ""
+    extra_css = '\n  <link rel="stylesheet" href="/css/galaxy.css?v=11">' if nav == "skills" else ""
     heading = "Tiyah Singh — Game Developer" if not title else f"{title} — Tiyah Singh"
     return f"""<!DOCTYPE html>
 <html lang="en">
