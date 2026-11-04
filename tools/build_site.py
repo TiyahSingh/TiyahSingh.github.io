@@ -1044,7 +1044,7 @@ def index():
     }
   }
   </script>
-  <script type="module" src="/js/explore/main.js?v=18"></script>
+  <script type="module" src="/js/explore/main.js?v=19"></script>
 """
     (ROOT / "index.html").write_text(home, encoding="utf-8")
     (ROOT / "explore.html").write_text(explore, encoding="utf-8")
