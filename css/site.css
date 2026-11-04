@@ -457,9 +457,9 @@ body.about-page .scanlines {
 
 .about-lead {
   display: grid;
-  grid-template-columns: minmax(0, 1.15fr) minmax(220px, 0.85fr);
-  gap: 1.5rem 1.75rem;
-  align-items: center;
+  grid-template-columns: minmax(0, 1fr) minmax(180px, 250px);
+  gap: 1.25rem 1.5rem;
+  align-items: start;
 }
 
 .about-lead-copy {
@@ -467,7 +467,8 @@ body.about-page .scanlines {
   border: 3px solid #ff4eb8;
   box-shadow: 8px 10px 0 rgba(176, 16, 120, 0.22);
   border-radius: 1.4rem;
-  padding: 1.35rem 1.4rem 1.5rem;
+  padding: 1.25rem 1.3rem 1.35rem;
+  height: fit-content;
 }
 
 .about-lead-copy .kicker {
@@ -494,7 +495,7 @@ body.about-page .scanlines {
 }
 
 .about-lead-tagline {
-  margin: 0 0 0.85rem;
+  margin: 0;
   font-family: var(--font-body);
   font-weight: 600;
   font-size: clamp(1rem, 2vw, 1.15rem);
@@ -502,11 +503,19 @@ body.about-page .scanlines {
   color: #b01078;
 }
 
-.about-lead-intro {
+.about-intro-card {
+  background: rgba(255, 248, 253, 0.96);
+  border: 3px solid #ff4eb8;
+  box-shadow: 8px 10px 0 rgba(176, 16, 120, 0.18);
+  border-radius: 1.25rem;
+  padding: 1.25rem 1.35rem 1.4rem;
+}
+
+.about-intro-card p {
   margin: 0;
   font-family: var(--font-body);
-  font-size: 1rem;
-  line-height: 1.6;
+  font-size: clamp(0.95rem, 1.6vw, 1.05rem);
+  line-height: 1.65;
   color: #5b1a7a;
 }
 

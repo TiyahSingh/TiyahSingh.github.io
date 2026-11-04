@@ -545,7 +545,7 @@ def header(title="", nav=""):
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Spicy+Rice&display=swap" rel="stylesheet">
   <link rel="icon" href="/assets/brand/favicon.png" type="image/png">
-  <link rel="stylesheet" href="/css/site.css?v=60">
+  <link rel="stylesheet" href="/css/site.css?v=61">
 </head>
 <body{body}>
   <a class="skip" href="#content">Skip to content</a>
@@ -895,13 +895,15 @@ def index():
           <h1>{ABOUT["who"]}</h1>
           <p class="about-lead-role">{ABOUT["role"]}</p>
           <p class="about-lead-tagline">{ABOUT["headline"]}</p>
-          <p class="about-lead-intro">{ABOUT["intro"]}</p>
         </div>
         <figure class="about-polaroid about-polaroid-hero">
           <img src="/assets/about/portrait-look.jpg" alt="Portrait of Tiyah Singh.">
           <figcaption>Tiyah Singh</figcaption>
         </figure>
       </header>
+      <section class="about-intro-card">
+        <p>{ABOUT["intro"]}</p>
+      </section>
       <div class="about-chapters">
         {"".join(about_blocks)}
       </div>
@@ -983,7 +985,7 @@ def index():
           <nav class="world-menu" aria-label="World destinations">
             <a href="/explore.html"><span>&#9654;</span> EXPLORE</a>
             <a href="/explore.html#explore/games">GAMES</a>
-            <a href="/about.html?from=explore">ABOUT</a>
+            <a href="/explore.html#explore/at/about">ABOUT</a>
             <a href="/explore.html#explore/skills">SKILLS</a>
             <a href="/explore.html#explore/cv">CV</a>
             <a href="/explore.html#explore/contact">CONTACT</a>
@@ -1013,7 +1015,7 @@ def index():
     }
   }
   </script>
-  <script type="module" src="/js/home/world-map.js?v=22"></script>
+  <script type="module" src="/js/home/world-map.js?v=23"></script>
   <script>
   if (location.hash === "#play" || location.hash.indexOf("#explore/") === 0) {
     location.replace("/explore.html" + location.hash);
@@ -1042,7 +1044,7 @@ def index():
     }
   }
   </script>
-  <script type="module" src="/js/explore/main.js?v=17"></script>
+  <script type="module" src="/js/explore/main.js?v=18"></script>
 """
     (ROOT / "index.html").write_text(home, encoding="utf-8")
     (ROOT / "explore.html").write_text(explore, encoding="utf-8")
