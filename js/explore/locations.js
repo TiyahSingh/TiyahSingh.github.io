@@ -154,19 +154,26 @@ export function createLocations(options) {
     return best;
   }
 
-  function prompt() {
-    if (place !== "street") {
-      if (nearest && nearest.info) return "Press E · " + nearest.info.title;
-      return "Walk around. Press E to read. Walk out the door to return.";
+  function action() {
+    if (place !== "street" && nearest && nearest.info) {
+      return { label: "Read", detail: nearest.info.title };
     }
+    return null;
+  }
+
+  function prompt() {
+    const next = action();
+    if (next) return next.detail;
+    if (place !== "street") return "Walk to a glowing sign, then tap Read. Walk out the door to return.";
     const door = nearDoor();
     if (door) return "Walk in · " + LABEL[door.id];
-    return "Walk through a glowing doorway.";
+    return "Tap the road to walk. Walk through a glowing doorway.";
   }
 
   return {
     update: update,
     interact: interact,
+    action: action,
     prompt: prompt,
     go: go,
     active: active,

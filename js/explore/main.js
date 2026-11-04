@@ -6,7 +6,7 @@ import { UnrealBloomPass } from "three/addons/postprocessing/UnrealBloomPass.js"
 import { createStreet } from "./environment.js?v=13";
 import { createPlayer } from "./player.js?v=5";
 import { createCamera } from "./camera.js?v=6";
-import { createLocations } from "./locations.js?v=9";
+import { createLocations } from "./locations.js?v=10";
 
 const WRITTEN = {
   "#about": "/about.html",
@@ -59,6 +59,14 @@ async function boot(mount) {
   document.body.appendChild(fade);
   const panel = createPanel();
   const hud = document.querySelector(".explore-hud");
+  const act = document.getElementById("explore-act");
+  if (act) {
+    act.addEventListener("click", function (event) {
+      event.preventDefault();
+      event.stopPropagation();
+      openMachine();
+    });
+  }
 
   let street;
   let player;
@@ -174,6 +182,16 @@ async function boot(mount) {
     player.update(dt, input, rig.camera, world.colliders, world.bounds);
     places.update();
     if (hud) hud.textContent = places.prompt();
+    if (act) {
+      const next = places.action();
+      if (next) {
+        act.hidden = false;
+        act.textContent = next.label + " · " + next.detail;
+        act.setAttribute("aria-label", next.label + " " + next.detail);
+      } else {
+        act.hidden = true;
+      }
+    }
     rig.update(dt, player.group, reduced);
     composer.render();
     requestAnimationFrame(frame);

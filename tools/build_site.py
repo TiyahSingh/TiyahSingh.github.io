@@ -536,21 +536,21 @@ def header(title="", nav=""):
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>{heading}</title>
   <meta name="description" content="Game developer portfolio of Tiyah Singh. Selected projects, roles, and playable links.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@360;500;650&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&family=Oxanium:wght@500;700;800&family=Sora:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="icon" href="/assets/brand/favicon.png" type="image/png">
-  <link rel="stylesheet" href="/css/site.css?v=16">
+  <link rel="stylesheet" href="/css/site.css?v=17">
 </head>
 <body{body}>
   <a class="skip" href="#content">Skip to content</a>
   <div class="scanlines" aria-hidden="true"></div>
   <header class="hud">
     <a class="logo" href="/" aria-label="Tiyah Singh home">
-      <img src="/assets/brand/main-logo.png" alt="Tiyah Singh" width="104" height="104">
+      <img src="/assets/brand/main-logo.png" alt="Tiyah Singh" width="88" height="88">
     </a>
     <nav class="nav" aria-label="Primary">
       {items}
@@ -863,7 +863,6 @@ def index():
       <div class="world-veil" aria-hidden="true"></div>
       <div id="world-pins" class="world-pins"></div>
       <div class="world-copy">
-        <img class="brand-mark" src="/assets/brand/main-logo.png" alt="Tiyah Singh" width="220" height="220">
         <p class="kicker">PLAYER 01</p>
         <h1>Welcome to<br><span>Tiyah's world</span></h1>
         <p class="world-tag">Game developer &amp; creative · explore my world</p>
@@ -900,14 +899,15 @@ def index():
     explore = header("Explore", "play") + """
   <main id="content">
     <section class="explore" id="play">
-      <div id="explore-root" role="img" aria-label="A neon arcade street. Use WASD or the arrow keys to walk."></div>
+      <div id="explore-root" role="img" aria-label="A neon arcade street. Tap the road to walk, or use WASD on a keyboard."></div>
       <p class="explore-hud">Walk through a glowing doorway.</p>
+      <button type="button" class="explore-act" id="explore-act" hidden>Read</button>
     </section>
   </main>
   <dialog class="help" id="help">
     <p class="kicker">CONTROLS</p>
     <h2>How to play</h2>
-    <p>Arrows or WASD walk the street. Click the road to move there. Each building has a floating ENTER sign. Walk through the doorway. Press E inside to read, then walk back out.</p>
+    <p>On a phone, tap the road to walk. On a keyboard, use arrows or WASD. Walk through a glowing doorway. When a Read button appears, tap it (or press E) to open a sign or cabinet.</p>
     <form method="dialog"><button class="pixel-btn" type="submit">Close</button></form>
   </dialog>
   <script type="importmap">
@@ -918,7 +918,7 @@ def index():
     }
   }
   </script>
-  <script type="module" src="/js/explore/main.js?v=14"></script>
+  <script type="module" src="/js/explore/main.js?v=15"></script>
 """ + footer()
     (ROOT / "index.html").write_text(home, encoding="utf-8")
     (ROOT / "explore.html").write_text(explore, encoding="utf-8")
