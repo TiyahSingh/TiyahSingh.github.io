@@ -535,7 +535,7 @@ def header(title="", nav=""):
         body = ' class="skills-galaxy-page"'
     else:
         body = ""
-    extra_css = '\n  <link rel="stylesheet" href="/css/galaxy.css?v=11">' if nav == "skills" else ""
+    extra_css = '\n  <link rel="stylesheet" href="/css/galaxy.css?v=12">' if nav == "skills" else ""
     heading = "Tiyah Singh — Game Developer" if not title else f"{title} — Tiyah Singh"
     return f"""<!DOCTYPE html>
 <html lang="en">
@@ -548,7 +548,7 @@ def header(title="", nav=""):
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Spicy+Rice&display=swap" rel="stylesheet">
   <link rel="icon" href="/assets/brand/favicon.png" type="image/png">
-  <link rel="stylesheet" href="/css/site.css?v=62">{extra_css}
+  <link rel="stylesheet" href="/css/site.css?v=63">{extra_css}
 </head>
 <body{body}>
   <a class="skip" href="#content">Skip to content</a>

@@ -21,7 +21,7 @@
   --panel-gap: 0.85rem;
   --gba: #ff2eb6;
   --gba-deep: #e0189a;
-  --header-pink: #ffd0ea;
+  --header-pink: #ffd2eb;
   --header-edge: #ff4eb8;
   color-scheme: dark;
 }
@@ -176,12 +176,10 @@ button {
   padding-top: calc(var(--logo-inset) + env(safe-area-inset-top, 0px));
   /* Clip the logo so it never crosses the dark pink outline */
   overflow: hidden;
-  background:
-    radial-gradient(circle at 12% 40%, rgba(255, 255, 255, 0.4) 0 1px, transparent 2px),
-    linear-gradient(180deg, #ffe6f5 0%, var(--header-pink) 55%, #ffc8e9 100%);
+  background: linear-gradient(180deg, #ffe5f5 0%, var(--header-pink) 55%, #ffc9e9 100%);
   border-top: 4px solid var(--header-edge);
   border-bottom: 4px solid var(--header-edge);
-  box-shadow: 0 4px 0 rgba(176, 20, 120, 0.18), 0 0 18px rgba(255, 78, 184, 0.22);
+  box-shadow: none;
 }
 
 .logo {
@@ -740,9 +738,9 @@ footer.site-footer {
   box-sizing: border-box;
   padding: 2.1rem 4vw 1.65rem;
   margin: 0;
-  background: #f7b6e4;
-  border-top: 3px solid #e85db8;
-  border-bottom: 3px solid #e85db8;
+  background: linear-gradient(180deg, #ffe5f5 0%, #ffd2eb 55%, #ffc9e9 100%);
+  border-top: 4px solid #ff4eb8;
+  border-bottom: 4px solid #ff4eb8;
   box-shadow: none;
   color: #c2187a;
   text-align: center;

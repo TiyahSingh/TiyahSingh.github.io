@@ -27,21 +27,26 @@
   z-index: 50;
 }
 
+.skills-galaxy-page .hud {
+  background: linear-gradient(180deg, #ffe5f5 0%, #ffd2eb 55%, #ffc9e9 100%);
+  border-top: 4px solid #ff4eb8;
+  border-bottom: 4px solid #ff4eb8;
+  box-shadow: none;
+}
+
 .skills-galaxy-page .site-footer,
 .skills-galaxy-page footer.site-footer {
   position: relative;
   z-index: 40;
-  background:
-    radial-gradient(circle at 12% 40%, rgba(255, 255, 255, 0.4) 0 1px, transparent 2px),
-    linear-gradient(180deg, #ffe6f5 0%, var(--header-pink, #ffd0ea) 55%, #ffc8e9 100%);
-  border-top: 4px solid var(--header-edge, #ff4eb8);
-  border-bottom: 4px solid var(--header-edge, #ff4eb8);
-  box-shadow: 0 -4px 0 rgba(176, 20, 120, 0.12), 0 0 18px rgba(255, 78, 184, 0.18);
-  color: #b01078;
+  background: linear-gradient(180deg, #ffe5f5 0%, #ffd2eb 55%, #ffc9e9 100%);
+  border-top: 4px solid #ff4eb8;
+  border-bottom: 4px solid #ff4eb8;
+  box-shadow: none;
+  color: #c2187a;
 }
 
 .skills-galaxy-page .site-footer a {
-  color: #b01078;
+  color: #c2187a;
 }
 
 .skills-galaxy-page .galaxy-panel[hidden],
