@@ -529,6 +529,8 @@ def header(title="", nav=""):
         body = ' class="home"'
     elif nav == "play":
         body = ' class="explore-page"'
+    elif nav == "about":
+        body = ' class="about-page"'
     else:
         body = ""
     heading = "Tiyah Singh — Game Developer" if not title else f"{title} — Tiyah Singh"
@@ -543,7 +545,7 @@ def header(title="", nav=""):
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Spicy+Rice&display=swap" rel="stylesheet">
   <link rel="icon" href="/assets/brand/favicon.png" type="image/png">
-  <link rel="stylesheet" href="/css/site.css?v=54">
+  <link rel="stylesheet" href="/css/site.css?v=55">
 </head>
 <body{body}>
   <a class="skip" href="#content">Skip to content</a>
@@ -744,6 +746,34 @@ ABOUT = {
     "intro": "Game developer and designer in Johannesburg. Tiyah studies at Vega, produces and designs, and programs. On Bushveld Brothers she runs Starr Studios' schedule and interface work.",
     "portfolio": "The game pages are the final-year portfolio: what the game is, what the brief asked for, what Tiyah did, which tools were used, a process image, and a link plus QR code for the demo and the download.",
     "file": "The work sits across code, design, interface, and the story a player walks through. The skills terminal and the CV record list the study and the tools behind the thirteen games.",
+    "headline": "The person behind the pixels",
+    "sections": [
+        {
+            "title": "A little detour...",
+            "copy": "My journey into game development wasn't exactly a straight line. I initially pursued a BSc in Biomedicine, spending two years exploring a completely different field before realising I wanted something that allowed me to exercise my creativity alongside my technical interests. I wanted to design, experiment, build and bring ideas to life, which eventually led me to take a leap in a completely different direction.",
+            "shell": "gba",
+        },
+        {
+            "title": "Finding my world at Vega",
+            "copy": "My journey as a game developer began at Vega School, where I discovered just how much could be achieved through the combination of programming, art and design. Each year introduced me to new ways of creating interactive experiences, from developing gameplay mechanics and programming systems to crafting visual identities, immersive environments and meaningful narratives. It was where I began to understand that game development was the perfect intersection of my technical and creative interests.",
+            "shell": "pad",
+        },
+        {
+            "title": "More than just a game",
+            "copy": "One of the biggest things I've learnt is that games have the potential to be so much more than entertainment. They can teach, challenge perspectives, spark conversations and create emotional connections. I'm particularly drawn to the idea of creating experiences that leave players with something to think about long after they've put down the controller. Whether through storytelling, gameplay or visual communication, I believe every element of a game has the potential to say something.",
+            "shell": "arcade",
+        },
+        {
+            "title": "The best of both worlds",
+            "copy": "I aspire to grow as a well-rounded game developer, with a particular interest in gameplay programming and C# development alongside UI/UX design and visual development. I'm equally fascinated by the logic behind how a game functions and the creative decisions that shape how it looks, feels and is experienced. I'm drawn to the challenge of taking an idea from its initial concept and visual direction all the way through to a fully functioning, interactive experience. Why choose between the art and the code when I can bring both together?",
+            "shell": "handheld",
+        },
+        {
+            "title": "Beyond the screen",
+            "copy": "When I'm not working on a project, I'm usually finding inspiration in other games, exploring different visual styles, experimenting with creative ideas or getting carried away with a new project. I'm naturally drawn to the little details that give things personality, whether it's an interesting colour palette, a beautifully designed interface or an entire fictional world. I believe inspiration can come from just about anywhere, and I'm always collecting ideas for what I could create next.",
+            "shell": "cart",
+        },
+    ],
 }
 SKILLS = [
     {"label": "CODE", "title": "Gameplay programming", "copy": "Twelve quests are written in C#. Ten use Unity, two use Windows Forms, and Charmfire uses Unreal Engine 5 with Blueprints.", "tools": "C# · Unity · Windows Forms · Unreal · Blueprints"},
@@ -823,96 +853,44 @@ def index():
 """ + footer()
         (ROOT / f"{nav}.html").write_text(html, encoding="utf-8")
 
-    fav_games = GAMES[:4]
-    fav_html = "".join(
-        f'<a class="scene-wall-card" href="/games/{g["slug"]}.html">'
-        f'<img src="/assets/posters/{g["slug"]}.jpg" alt="">'
-        f'<span>{g["title"]}</span></a>'
-        for g in fav_games
-    )
-    phone_games = GAMES[:3]
-    phone_html = "".join(
-        f'<a class="scene-phone-game" href="/games/{g["slug"]}.html">'
-        f'<img src="/assets/posters/{g["slug"]}.jpg" alt="">'
-        f'<span>{g["title"]}</span></a>'
-        for g in phone_games
-    )
+    about_blocks = []
+    for i, section in enumerate(ABOUT["sections"]):
+        about_blocks.append(f"""
+      <article class="toy-shell toy-{section["shell"]}">
+        <div class="toy-bezel" aria-hidden="true">
+          <span class="toy-led"></span>
+          <span class="toy-led"></span>
+        </div>
+        <div class="toy-screen">
+          <p class="toy-kicker">SLOT {i + 1:02d}</p>
+          <h2>{section["title"]}</h2>
+          <p>{section["copy"]}</p>
+        </div>
+        <div class="toy-controls" aria-hidden="true">
+          <span class="toy-dpad"></span>
+          <span class="toy-btns"><i></i><i></i></span>
+        </div>
+      </article>""")
     sheet("About", "about", f"""
-    <div class="wrap scene-board">
-      <aside class="scene-friends" aria-label="Photo strip">
-        <p class="scene-friends-title">MY SNAPS</p>
-        <div class="scene-friends-grid">
-          <a class="scene-polaroid tilt-a" href="#all-about-me"><img src="/assets/about/snap-1.jpg" alt="Tiyah Singh"></a>
-          <a class="scene-polaroid tilt-b" href="#all-about-me"><img src="/assets/about/snap-2.jpg" alt="Tiyah Singh"></a>
-          <a class="scene-polaroid tilt-c" href="#all-about-me"><img src="/assets/about/snap-3.jpg" alt="Tiyah Singh"></a>
-          <a class="scene-polaroid tilt-d" href="#all-about-me"><img src="/assets/about/snap-4.jpg" alt="Tiyah Singh"></a>
-          <a class="scene-polaroid tilt-a" href="#all-about-me"><img src="/assets/about/snap-5.jpg" alt="Tiyah Singh"></a>
-          <a class="scene-polaroid tilt-b" href="#all-about-me"><img src="/assets/about/snap-6.jpg" alt="Tiyah Singh"></a>
-        </div>
-        <a class="scene-back pixel-btn" href="/">HOME</a>
-      </aside>
-
-      <div class="scene-center">
-        <article class="scene-card scene-about" id="all-about-me">
-          <div class="scene-card-head">
-            <h1>ALL ABOUT ME</h1>
-            <span class="scene-sticker" aria-hidden="true">♥</span>
+    <div class="wrap about-arcade">
+      <header class="about-hero">
+        <figure class="about-hero-pic">
+          <img src="/assets/about/hero.jpg" alt="Portrait of Tiyah Singh.">
+        </figure>
+        <div class="about-hero-copy">
+          <p class="kicker">ABOUT ME</p>
+          <h1>{ABOUT["headline"]}</h1>
+          <p class="about-hero-tag">TIYAH SINGH · GAME DESIGNER &amp; DEVELOPER</p>
+          <div class="about-hero-snaps" aria-hidden="true">
+            <img src="/assets/about/snap-1.jpg" alt="">
+            <img src="/assets/about/snap-3.jpg" alt="">
+            <img src="/assets/about/snap-5.jpg" alt="">
           </div>
-          <div class="scene-about-body">
-            <figure class="scene-hero-pic">
-              <img src="/assets/about/hero.jpg" alt="Portrait of Tiyah Singh.">
-              <figcaption>PLAYER 01 · ONLINE</figcaption>
-            </figure>
-            <div class="scene-about-copy">
-              <p class="gba-role">TIYAH SINGH</p>
-              <p>{ABOUT["intro"]}</p>
-              <p>{ABOUT["portfolio"]}</p>
-              <ul class="chips">
-                <li>Programming</li><li>Game design</li><li>UI and UX</li><li>Story</li>
-              </ul>
-            </div>
-          </div>
-        </article>
-
-        <div class="scene-mid">
-          <article class="scene-card scene-walls">
-            <div class="scene-card-head">
-              <h2>MY GAMES</h2>
-              <span class="scene-sticker spark" aria-hidden="true">✦</span>
-            </div>
-            <div class="scene-wall-grid">
-              {fav_html}
-            </div>
-            <p class="scene-more"><a href="/games.html">SEE ALL GAMES →</a></p>
-          </article>
-
-          <article class="scene-card scene-blog">
-            <div class="scene-card-head">
-              <h2>PLAYER FILE</h2>
-            </div>
-            <div class="scene-paper">
-              <p class="scene-paper-kicker">FROM THE CARTRIDGE</p>
-              <p>{ABOUT["file"]}</p>
-              <p>Johannesburg · Vega · Starr Studios on Bushveld Brothers.</p>
-              <p class="scene-paper-sign">— Tiyah</p>
-            </div>
-          </article>
         </div>
+      </header>
+      <div class="about-consoles">
+        {"".join(about_blocks)}
       </div>
-
-      <aside class="scene-phone-wrap" aria-label="Phone widget">
-        <div class="scene-phone">
-          <p class="scene-phone-label">MY PHONE</p>
-          <div class="scene-phone-screen">
-            <p class="scene-phone-kicker">GREAT GAMES</p>
-            <div class="scene-phone-list">
-              {phone_html}
-            </div>
-            <a class="pixel-btn scene-phone-cta" href="/explore.html">PRESS START</a>
-          </div>
-          <div class="scene-phone-hinge" aria-hidden="true"></div>
-        </div>
-      </aside>
     </div>""")
     sheet("Skills", "skills", f"""
     <div class="wrap">
