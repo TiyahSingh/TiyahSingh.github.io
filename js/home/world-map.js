@@ -86,7 +86,8 @@ async function boot() {
 
   const templates = await Promise.all(BUILDINGS.map(function (url) {
     return loadModel(url).then(function (gltf) {
-      tuneCity(gltf.scene, false, true);
+      /* Full neon tint — lite mode flattened buildings to one pink */
+      tuneCity(gltf.scene, false, false);
       return gltf.scene;
     });
   }));
@@ -97,7 +98,7 @@ async function boot() {
     loadModel("/assets/models/eh98/vending.glb"),
   ]).then(function (list) {
     return list.map(function (gltf) {
-      tuneCity(gltf.scene, false, true);
+      tuneCity(gltf.scene, false, false);
       return gltf.scene;
     });
   }).catch(function () { return []; });
@@ -245,20 +246,6 @@ async function boot() {
     requestAnimationFrame(frame);
   }
   requestAnimationFrame(frame);
-}
-
-function boostGlow(root) {
-  root.traverse(function (child) {
-    if (!child.isMesh) return;
-    const list = Array.isArray(child.material) ? child.material : [child.material];
-    list.forEach(function (material) {
-      if (!material) return;
-      if (material.emissiveIntensity != null) {
-        material.emissiveIntensity = Math.min(Math.max(material.emissiveIntensity * 1.15, 0.35), 1.1);
-      }
-      material.needsUpdate = true;
-    });
-  });
 }
 
 function makeIsland(spec) {
