@@ -91,6 +91,14 @@ export function createLocations(options) {
       location.assign("/about.html?from=explore");
       return;
     }
+    if (next === "skills") {
+      busy = true;
+      fade.textContent = "Skill Galaxy";
+      fade.classList.add("is-on");
+      await wait(320);
+      location.assign("/skills.html?from=explore");
+      return;
+    }
     busy = true;
     fade.classList.add("is-on");
     await wait(420);

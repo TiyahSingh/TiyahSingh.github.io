@@ -531,8 +531,11 @@ def header(title="", nav=""):
         body = ' class="explore-page"'
     elif nav == "about":
         body = ' class="about-page"'
+    elif nav == "skills":
+        body = ' class="skills-galaxy-page"'
     else:
         body = ""
+    extra_css = '\n  <link rel="stylesheet" href="/css/galaxy.css?v=2">' if nav == "skills" else ""
     heading = "Tiyah Singh — Game Developer" if not title else f"{title} — Tiyah Singh"
     return f"""<!DOCTYPE html>
 <html lang="en">
@@ -545,7 +548,7 @@ def header(title="", nav=""):
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Spicy+Rice&display=swap" rel="stylesheet">
   <link rel="icon" href="/assets/brand/favicon.png" type="image/png">
-  <link rel="stylesheet" href="/css/site.css?v=61">
+  <link rel="stylesheet" href="/css/site.css?v=62">{extra_css}
 </head>
 <body{body}>
   <a class="skip" href="#content">Skip to content</a>
@@ -843,16 +846,6 @@ def index():
             <span class="play-tag">INSPECT GAME</span>
           </span>
         </a>""")
-    skill_html = []
-    for i, skill in enumerate(SKILLS):
-        skill_html.append(f"""
-        <div class="skill-row">
-          <button class="skill" type="button" id="skill-btn-{i}" aria-expanded="false" aria-controls="skill-{i}">{skill["title"]}</button>
-          <div class="skill-panel" id="skill-{i}" role="region" aria-labelledby="skill-btn-{i}" hidden>
-            <p>{skill["copy"]}</p>
-            <p class="meta">{skill["tools"]}</p>
-          </div>
-        </div>""")
     education = "".join(f"<li><strong>{title}</strong> {detail}</li>" for title, detail in EDUCATION)
     achievements = "".join(f"<li><strong>{title}</strong> {detail}</li>" for title, detail in ACHIEVEMENTS)
     contacts = "".join(f'<p><a href="{link["href"]}">{link["text"]}</a></p>' for link in CONTACT_LINKS)
@@ -919,15 +912,56 @@ def index():
       }}
     }})();
     </script>""")
-    sheet("Skills", "skills", f"""
-    <div class="wrap">
-      <p class="kicker">SKILL SELECT</p>
-      <h1>Skills</h1>
-      <p class="section-intro zone-blurb">Choose a skill. Each one opens the tools and games already on this site.</p>
-      <div class="skill-list">
-        {"".join(skill_html)}
+    skills_page = header("Skill Galaxy", "skills") + """
+  <a class="about-street-exit" id="about-street-exit" href="/explore.html?door=skills" hidden aria-label="Back to the street">×</a>
+  <main id="content" class="galaxy-stage">
+    <div class="galaxy-bg" aria-hidden="true">
+      <canvas id="galaxy-stars"></canvas>
+      <div class="galaxy-bg__nebula"></div>
+      <div class="galaxy-bg__vignette"></div>
+    </div>
+    <div class="galaxy-rail">
+      <div>
+        <p class="galaxy-brand">TIYAH · SKILL GALAXY</p>
+        <nav class="galaxy-side-nav" aria-label="Galaxy destinations">
+          <a href="/">HOME</a>
+          <a href="/about.html">ABOUT</a>
+          <a href="/skills.html" aria-current="page">SKILL GALAXY</a>
+          <a href="/games.html">MY WORK</a>
+          <a href="/contact.html">CONTACT</a>
+        </nav>
       </div>
-    </div>""")
+      <div class="galaxy-tags" aria-hidden="true">
+        <span class="galaxy-tag">EXPLORE MY UNIVERSE</span>
+        <span class="galaxy-tag">DISCOVER MY SKILLS</span>
+        <span class="galaxy-tag">CREATIVE SYSTEMS ONLINE</span>
+        <span class="galaxy-tag">EST. IN MY OWN UNIVERSE</span>
+      </div>
+    </div>
+    <div class="galaxy-system-wrap">
+      <div id="galaxy-decor" aria-hidden="true"></div>
+      <div id="galaxy-system" aria-label="Interactive skill galaxy"></div>
+    </div>
+    <p class="galaxy-footer-note">CLICK A PLANET TO OPEN ITS ORBIT · TAP A SKILL NODE FOR DETAILS</p>
+    <div class="galaxy-backdrop" id="galaxy-backdrop" hidden></div>
+    <div class="galaxy-panel" id="galaxy-category-panel" role="dialog" aria-modal="true" hidden></div>
+    <div class="galaxy-panel" id="galaxy-skill-panel" role="dialog" aria-modal="true" hidden></div>
+  </main>
+  <script src="/js/skills/galaxy-data.js?v=1"></script>
+  <script src="/js/skills/galaxy.js?v=2"></script>
+  <script>
+  (function () {
+    var params = new URLSearchParams(location.search);
+    var fromExplore = params.get("from") === "explore" || document.referrer.indexOf("/explore.html") !== -1;
+    var exit = document.getElementById("about-street-exit");
+    if (exit && fromExplore) {
+      exit.hidden = false;
+      document.body.classList.add("from-explore");
+    }
+  })();
+  </script>
+""" + footer()
+    (ROOT / "skills.html").write_text(skills_page, encoding="utf-8")
     sheet("CV", "cv", f"""
     <div class="wrap">
       <p class="kicker">PLAYER RECORD</p>
@@ -986,7 +1020,7 @@ def index():
             <a href="/explore.html"><span>&#9654;</span> EXPLORE</a>
             <a href="/explore.html#explore/games">GAMES</a>
             <a href="/explore.html?door=about">ABOUT</a>
-            <a href="/explore.html#explore/skills">SKILLS</a>
+            <a href="/explore.html?door=skills">SKILLS</a>
             <a href="/explore.html#explore/cv">CV</a>
             <a href="/explore.html#explore/contact">CONTACT</a>
           </nav>
@@ -1015,7 +1049,7 @@ def index():
     }
   }
   </script>
-  <script type="module" src="/js/home/world-map.js?v=24"></script>
+  <script type="module" src="/js/home/world-map.js?v=25"></script>
   <script>
   if (location.hash === "#play" || location.hash.indexOf("#explore/") === 0) {
     location.replace("/explore.html" + location.hash);
@@ -1044,7 +1078,7 @@ def index():
     }
   }
   </script>
-  <script type="module" src="/js/explore/main.js?v=21"></script>
+  <script type="module" src="/js/explore/main.js?v=22"></script>
 """
     (ROOT / "index.html").write_text(home, encoding="utf-8")
     (ROOT / "explore.html").write_text(explore, encoding="utf-8")
