@@ -171,10 +171,11 @@ async function boot() {
 
   let dragging = false;
   let lastX = 0;
-  let yaw = 0.4;
-  let pitch = 0.52;
-  const target = new THREE.Vector3(0, -0.2, 0);
-  const radius = 42;
+  let yaw = 0.42;
+  let pitch = 0.5;
+  /* Bias look target right so the left islands sit clear of the panel edge */
+  const target = new THREE.Vector3(2.4, -0.2, 0.4);
+  const radius = 44;
 
   function applyOrbit() {
     camera.position.set(
