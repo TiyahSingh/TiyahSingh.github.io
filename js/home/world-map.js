@@ -87,7 +87,7 @@ async function boot() {
   magenta.position.set(6, 7, -5);
   scene.add(magenta);
 
-  const starLayers = addStarfield(scene);
+  const starLayers = addStarfield(scene) || [];
   addVoidGlow(scene);
 
   const city = new THREE.Group();
