@@ -543,14 +543,14 @@ def header(title="", nav=""):
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Spicy+Rice&display=swap" rel="stylesheet">
   <link rel="icon" href="/assets/brand/favicon.png" type="image/png">
-  <link rel="stylesheet" href="/css/site.css?v=28">
+  <link rel="stylesheet" href="/css/site.css?v=29">
 </head>
 <body{body}>
   <a class="skip" href="#content">Skip to content</a>
   <div class="scanlines" aria-hidden="true"></div>
   <header class="hud">
     <a class="logo" href="/" aria-label="Tiyah Singh home">
-      <img src="/assets/brand/main-logo.png" alt="Tiyah Singh" width="220" height="124">
+      <img src="/assets/brand/main-logo.png" alt="Tiyah Singh" width="280" height="166">
     </a>
     <nav class="nav" aria-label="Primary">
       {items}
