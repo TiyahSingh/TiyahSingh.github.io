@@ -7,16 +7,16 @@
   <meta name="description" content="Game developer portfolio of Tiyah Singh. Selected projects, roles, and playable links.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&family=Oxanium:wght@500;700;800&family=Sora:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Orbitron:wght@700;800&family=Oxanium:wght@700;800&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="icon" href="/assets/brand/favicon.png" type="image/png">
-  <link rel="stylesheet" href="/css/site.css?v=17">
+  <link rel="stylesheet" href="/css/site.css?v=19">
 </head>
 <body class="home">
   <a class="skip" href="#content">Skip to content</a>
   <div class="scanlines" aria-hidden="true"></div>
   <header class="hud">
     <a class="logo" href="/" aria-label="Tiyah Singh home">
-      <img src="/assets/brand/main-logo.png" alt="Tiyah Singh" width="88" height="88">
+      <img src="/assets/brand/main-logo.png" alt="Tiyah Singh" width="96" height="96">
     </a>
     <nav class="nav" aria-label="Primary">
       <a href="/" class="is-on" aria-current="page">Home</a>
@@ -29,6 +29,9 @@
     </nav>
     <button class="pixel-btn" id="sfx" type="button" aria-pressed="false">SFX OFF</button>
   </header>
+  <div class="brand-strip" aria-hidden="true">
+    <span class="brand-strip-mark">✦ Explore My World ✦</span>
+  </div>
   <div class="marquee" aria-hidden="true"><p>INSERT COIN  ·  BUSHVELD BROTHERS  ·  SELKIE SONG  ·  DON'T FORGET TO SAY GOODBYE  ·  CLINICAL TRIAL  ·  CHARMFIRE  ·  NO EXIT  ·  ECHO'S LAMENT  ·  HIVE MIND  ·  A CAT'S TALE  ·  AQUA ALCHEMY  ·  NOESIS  ·  DREAMY MOSAICS  ·  DRAGON SLAYERS  ·  INSERT COIN  ·  BUSHVELD BROTHERS  ·  SELKIE SONG  ·  DON'T FORGET TO SAY GOODBYE  ·  </p></div>
 
   <main id="content" class="world">
@@ -37,20 +40,29 @@
       <div id="world-map" class="world-canvas" role="img" aria-label="Floating neon city map. Drag to look around. Click a glowing marker to open that page."></div>
       <div class="world-veil" aria-hidden="true"></div>
       <div id="world-pins" class="world-pins"></div>
-      <div class="world-copy">
-        <p class="kicker">PLAYER 01</p>
-        <h1>Welcome to<br><span>Tiyah's world</span></h1>
-        <p class="world-tag">Game developer &amp; creative · explore my world</p>
-        <p class="world-blurb">Collect games. Explore my world. Get to know me. Click a glowing marker on the city, or press start to walk the neon street.</p>
-        <nav class="world-menu" aria-label="World destinations">
-          <a href="/explore.html"><span>&#9654;</span> Explore</a>
-          <a href="/explore.html#explore/games">Games</a>
-          <a href="/explore.html#explore/about">About</a>
-          <a href="/explore.html#explore/skills">Skills</a>
-          <a href="/explore.html#explore/cv">CV</a>
-          <a href="/explore.html#explore/contact">Contact</a>
-        </nav>
-        <a class="pixel-btn world-start" href="/explore.html">Press Start</a>
+      <div class="world-copy gba-shell">
+        <span class="gba-heart gba-heart-tl" aria-hidden="true">♥</span>
+        <span class="gba-heart gba-heart-tr" aria-hidden="true">♥</span>
+        <div class="gba-screen">
+          <p class="gba-kicker">PLAYER 01</p>
+          <h1>Welcome to<br><span>Tiyah's world</span></h1>
+          <p class="gba-role">GAME DESIGNER &amp; DEVELOPER</p>
+          <p class="gba-bio">Collect games. Explore my world. Get to know me. Click a glowing marker on the city, or press start to walk the neon street.</p>
+          <nav class="world-menu" aria-label="World destinations">
+            <a href="/explore.html"><span>&#9654;</span> Explore</a>
+            <a href="/explore.html#explore/games">Games</a>
+            <a href="/explore.html#explore/about">About</a>
+            <a href="/explore.html#explore/skills">Skills</a>
+            <a href="/explore.html#explore/cv">CV</a>
+            <a href="/explore.html#explore/contact">Contact</a>
+          </nav>
+          <a class="pixel-btn world-start" href="/explore.html">Press Start</a>
+        </div>
+        <div class="gba-controls" aria-hidden="true">
+          <span class="gba-dpad"></span>
+          <span class="gba-speaker"></span>
+          <span class="gba-buttons"><i></i><i></i><i></i><i></i></span>
+        </div>
       </div>
       <p class="world-hint">Drag to look · click a marker</p>
       <p class="world-hearts" aria-hidden="true">♥ ♥ ♥ · LVL 01</p>
