@@ -99,6 +99,14 @@ export function createLocations(options) {
       location.assign("/skills.html?from=explore");
       return;
     }
+    if (next === "cv") {
+      busy = true;
+      fade.textContent = "Digital CV";
+      fade.classList.add("is-on");
+      await wait(320);
+      location.assign("/cv.html?from=explore");
+      return;
+    }
     busy = true;
     fade.classList.add("is-on");
     await wait(420);

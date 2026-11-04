@@ -533,9 +533,15 @@ def header(title="", nav=""):
         body = ' class="about-page"'
     elif nav == "skills":
         body = ' class="skills-galaxy-page"'
+    elif nav == "cv":
+        body = ' class="cv-page"'
     else:
         body = ""
-    extra_css = '\n  <link rel="stylesheet" href="/css/galaxy.css?v=12">' if nav == "skills" else ""
+    extra_css = ""
+    if nav == "skills":
+        extra_css = '\n  <link rel="stylesheet" href="/css/galaxy.css?v=12">'
+    elif nav == "cv":
+        extra_css = '\n  <link rel="stylesheet" href="/css/cv.css?v=1">'
     heading = "Tiyah Singh — Game Developer" if not title else f"{title} — Tiyah Singh"
     return f"""<!DOCTYPE html>
 <html lang="en">
@@ -798,17 +804,67 @@ SKILLS = [
     {"label": "STORY", "title": "Storytelling", "copy": "Don't Forget to Say Goodbye, Selkie Song, Echo's Lament, and Hive Mind are built around a story the player acts out.", "tools": "Narrative games"},
     {"label": "TOOLS", "title": "Tools", "copy": "The quest pages also use Python, Git, and the engines listed above. This site is the public record of that work.", "tools": "Python · Git · Unity · Unreal"},
 ]
+CV_ABOUT = (
+    "A creative and analytical individual with a background in game and software development, "
+    "digital design and web development. Passionate about combining technology, creativity and "
+    "problem-solving to create engaging digital experiences."
+)
+CV_ROLES = ["Game Developer", "Game Designer", "Digital Creative"]
 EDUCATION = [
-    ("2024 · first year.", "Game Development, Game Design, Game Art, and Programming Logic and Design. Passed with distinction."),
-    ("2025 · second year.", "Game Development, Game Design, Game Art, Databases, and Narrative for Gaming."),
-    ("2026 · final year.", "The game pages collect the games, roles, and process work for the portfolio."),
+    ("BCIS in Game/Software Development and Design", "Vega School Bordeaux", "2024 – Present"),
+    ("BSc in Biomedicine (Year 1–2)", "Eduvos Midrand", "2022–2023"),
+    ("TU Delft Pre-University Mathematics and Physics", "TU Delft", "2023"),
+    ("Diploma in General Science", "Alison", "2023"),
+    ("Matric – Bachelor's Qualification", "St Martin's High School", "2018–2021"),
 ]
-ACHIEVEMENTS = [
-    ("Diploma in General Science.", "Alison. Completed 21 May 2023. Score 95. The course covered biology, physics, and chemistry."),
-    ("Distinction, Vega, 2024.", "Game Development 1A and 1B, Game Design 1A and 1B, Game Art 1A and 1B, and Programming Logic and Design."),
+CV_SKILL_GROUPS = [
+    ("Game Development", ["Unity", "Unreal Engine", "C#", "C++", "Twine"]),
+    ("3D Modelling & Design", ["3ds Max", "Adobe Photoshop", "Canva", "Digital Illustration", "Graphic Design", "Figma", "Blender"]),
+    ("Programming & Web Development", ["HTML", "Delphi", "Web Design", "Web Development"]),
+    ("Data & Software", ["SQL", "MongoDB", "Microsoft Excel", "Microsoft Office Suite", "Database Management"]),
 ]
-CV_INTRO = "Bachelor of Computer and Information Sciences in Game Design and Development at Vega, The Independent Institute of Education, in Johannesburg. The degree started in 2024 and this site is the final-year showcase."
-CV_FILE = "A downloadable CV file is not on the site yet. The record above is the public CV."
+CV_JOBS = [
+    {
+        "org": "Trident Fuels (Pty) Ltd",
+        "when": "2020–2023",
+        "role": "Web Designer & Digital Illustrator",
+        "bullets": [
+            "Designed and updated the company's official website.",
+            "Created digital advertisements, brochures, banners and social media posters.",
+            "Worked on digital marketing and visual communication.",
+        ],
+    },
+    {
+        "org": "MTN",
+        "when": "2023",
+        "role": "Presentations Designer & Spreadsheet Analyst",
+        "bullets": [
+            "Analysed spreadsheet data.",
+            "Transformed data into presentations for client meetings.",
+        ],
+    },
+]
+CV_EXTRA = {
+    "org": "SERI – Socio-Economic Rights Institute of South Africa",
+    "when": "2021",
+    "role": "Job Shadowing",
+    "bullets": [
+        "Analysed legal cases and case write-ups.",
+        "Attended and presented information during formal meetings.",
+        "Interviewed a human rights lawyer.",
+    ],
+}
+CV_LANGUAGES = [
+    ("English", 5),
+    ("Afrikaans", 5),
+    ("Arabic", 1),
+]
+CV_CERTS = [
+    ("TU Delft Pre-University Mathematics and Physics", "TU Delft · 2023"),
+    ("Diploma in General Science", "Alison · 2023"),
+]
+CV_INTRO = CV_ABOUT
+CV_FILE = "Open the digital CV page for the full player record."
 CONTACT_BLURB = "Johannesburg. Open to game development roles, jams, and studio collaborations."
 CONTACT_LINKS = [
     {"label": "EMAIL", "title": "Email", "text": "tiyah.singh0308@gmail.com", "href": "mailto:tiyah.singh0308@gmail.com"},
@@ -822,10 +878,18 @@ def index():
         "about": ABOUT,
         "skills": SKILLS,
         "cv": {
-            "intro": CV_INTRO,
-            "education": [f"{title} {detail}" for title, detail in EDUCATION],
-            "achievements": [f"{title} {detail}" for title, detail in ACHIEVEMENTS],
+            "intro": CV_ABOUT,
+            "roles": CV_ROLES,
+            "education": [f"{title} · {place} · {when}" for title, place, when in EDUCATION],
+            "skills": {label: tools for label, tools in CV_SKILL_GROUPS},
+            "jobs": [
+                f"{job['org']} · {job['when']} · {job['role']}" for job in CV_JOBS
+            ],
+            "extra": f"{CV_EXTRA['org']} · {CV_EXTRA['when']} · {CV_EXTRA['role']}",
+            "languages": [f"{name} · {level}/5" for name, level in CV_LANGUAGES],
+            "certs": [f"{title} · {meta}" for title, meta in CV_CERTS],
             "download": CV_FILE,
+            "achievements": [f"{title} {meta}" for title, meta in CV_CERTS],
         },
         "contact": {"blurb": CONTACT_BLURB, "links": CONTACT_LINKS},
     }
@@ -846,9 +910,53 @@ def index():
             <span class="play-tag">INSPECT GAME</span>
           </span>
         </a>""")
-    education = "".join(f"<li><strong>{title}</strong> {detail}</li>" for title, detail in EDUCATION)
-    achievements = "".join(f"<li><strong>{title}</strong> {detail}</li>" for title, detail in ACHIEVEMENTS)
     contacts = "".join(f'<p><a href="{link["href"]}">{link["text"]}</a></p>' for link in CONTACT_LINKS)
+
+    def win(area, title, body):
+        return f"""
+      <section class="cv-win cv-{area}">
+        <header class="cv-win__bar">
+          <span class="cv-win__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+          <h2 class="cv-win__title">{title}</h2>
+        </header>
+        <div class="cv-win__body">{body}</div>
+      </section>"""
+
+    edu_items = "".join(
+        f"<li><strong>{title}</strong><em>{place}</em><span>{when}</span></li>"
+        for title, place, when in EDUCATION
+    )
+    skill_blocks = "".join(
+        f'<div class="cv-skill-group"><h3>{label}</h3><div class="cv-chips">'
+        + "".join(f"<span>{tool}</span>" for tool in tools)
+        + "</div></div>"
+        for label, tools in CV_SKILL_GROUPS
+    )
+    job_blocks = "".join(
+        f"""
+        <article class="cv-job">
+          <div class="cv-job__head"><strong>{job["org"]}</strong><time>{job["when"]}</time></div>
+          <p class="cv-job__role">{job["role"]}</p>
+          <ul>{"".join(f"<li>{b}</li>" for b in job["bullets"])}</ul>
+        </article>"""
+        for job in CV_JOBS
+    )
+    extra_block = f"""
+        <article class="cv-job">
+          <div class="cv-job__head"><strong>{CV_EXTRA["org"]}</strong><time>{CV_EXTRA["when"]}</time></div>
+          <p class="cv-job__role">{CV_EXTRA["role"]}</p>
+          <ul>{"".join(f"<li>{b}</li>" for b in CV_EXTRA["bullets"])}</ul>
+        </article>"""
+    lang_rows = "".join(
+        f'<div class="cv-lang"><b>{name}</b><span class="cv-bars" aria-label="{level} of 5">'
+        + "".join(f'<i class="{"is-on" if i < level else ""}"></i>' for i in range(5))
+        + "</span></div>"
+        for name, level in CV_LANGUAGES
+    )
+    cert_items = "".join(
+        f"<li><strong>{title}</strong><span>{meta}</span></li>" for title, meta in CV_CERTS
+    )
+    role_pills = "".join(f"<span>{role}</span>" for role in CV_ROLES)
 
     def sheet(name, nav, body):
         html = header(name, nav) + f"""
@@ -954,20 +1062,58 @@ def index():
 """ + footer()
     (ROOT / "skills.html").write_text(skills_page, encoding="utf-8")
     sheet("CV", "cv", f"""
-    <div class="wrap">
-      <p class="kicker">PLAYER RECORD</p>
-      <h1>CV</h1>
-      <p class="section-intro zone-blurb">{CV_INTRO}</p>
-      <div id="education">
-        <h2>Education</h2>
-        <ol class="levels">{education}</ol>
+    <a class="about-street-exit" id="about-street-exit" href="/explore.html?door=cv" hidden aria-label="Back to the street">×</a>
+    <div class="cv-desktop">
+      <span class="cv-sparkle" aria-hidden="true"></span>
+      <span class="cv-sparkle" aria-hidden="true"></span>
+      <span class="cv-sparkle" aria-hidden="true"></span>
+      <span class="cv-sparkle" aria-hidden="true"></span>
+      <div class="cv-board">
+        <section class="cv-win cv-hero">
+          <header class="cv-win__bar">
+            <span class="cv-win__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+            <p class="cv-win__title">Player Record</p>
+          </header>
+          <div class="cv-win__body">
+            <div class="cv-hero__grid">
+              <figure class="cv-hero__photo">
+                <img src="/assets/about/portrait-look.jpg" alt="Portrait of Tiyah Singh." width="400" height="400">
+              </figure>
+              <div>
+                <p class="cv-kicker">About me</p>
+                <h1 class="cv-name">Tiyah Singh</h1>
+                <div class="cv-roles">{role_pills}</div>
+                <p class="cv-bio">{CV_ABOUT}</p>
+                <p class="cv-meta">
+                  <span>Johannesburg</span>
+                  <a href="mailto:tiyah.singh0308@gmail.com">Email</a>
+                  <a href="https://github.com/TiyahSingh" target="_blank" rel="noopener noreferrer">GitHub</a>
+                  <a href="https://www.linkedin.com/in/tiyah-singh-906352236/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                  <a href="https://tiyahsingh.itch.io/" target="_blank" rel="noopener noreferrer">itch.io</a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+        {win("edu", "Education", f'<ol class="cv-list" id="education">{edu_items}</ol>')}
+        {win("skills", "Technical Skills", f'<div class="cv-skill-groups">{skill_blocks}</div>')}
+        {win("work", "Work Experience", job_blocks)}
+        {win("extra", "Additional Experience", extra_block)}
+        {win("langs", "Languages", f'<div class="cv-lang-row">{lang_rows}</div>')}
+        {win("certs", "Certifications", f'<ul class="cv-list" id="awards">{cert_items}</ul>')}
       </div>
-      <div id="awards">
-        <h2>Achievements</h2>
-        <ul class="badges">{achievements}</ul>
-      </div>
-      <p class="note">{CV_FILE}</p>
-    </div>""")
+    </div>
+    <script>
+    (function () {{
+      var params = new URLSearchParams(location.search);
+      var fromExplore = params.get("from") === "explore" || document.referrer.indexOf("/explore.html") !== -1;
+      var exit = document.getElementById("about-street-exit");
+      if (exit && fromExplore) {{
+        exit.hidden = false;
+        document.body.classList.add("from-explore");
+      }}
+    }})();
+    </script>""")
     sheet("Games", "games", f"""
     <div class="wrap">
       <p class="kicker">GAMES ARCADE</p>
@@ -1069,7 +1215,7 @@ def index():
     }
   }
   </script>
-  <script type="module" src="/js/explore/main.js?v=22"></script>
+  <script type="module" src="/js/explore/main.js?v=23"></script>
 """
     (ROOT / "index.html").write_text(home, encoding="utf-8")
     (ROOT / "explore.html").write_text(explore, encoding="utf-8")

@@ -83,17 +83,69 @@
     }
   ],
   "cv": {
-    "intro": "Bachelor of Computer and Information Sciences in Game Design and Development at Vega, The Independent Institute of Education, in Johannesburg. The degree started in 2024 and this site is the final-year showcase.",
+    "intro": "A creative and analytical individual with a background in game and software development, digital design and web development. Passionate about combining technology, creativity and problem-solving to create engaging digital experiences.",
+    "roles": [
+      "Game Developer",
+      "Game Designer",
+      "Digital Creative"
+    ],
     "education": [
-      "2024 \u00b7 first year. Game Development, Game Design, Game Art, and Programming Logic and Design. Passed with distinction.",
-      "2025 \u00b7 second year. Game Development, Game Design, Game Art, Databases, and Narrative for Gaming.",
-      "2026 \u00b7 final year. The game pages collect the games, roles, and process work for the portfolio."
+      "BCIS in Game/Software Development and Design \u00b7 Vega School Bordeaux \u00b7 2024 \u2013 Present",
+      "BSc in Biomedicine (Year 1\u20132) \u00b7 Eduvos Midrand \u00b7 2022\u20132023",
+      "TU Delft Pre-University Mathematics and Physics \u00b7 TU Delft \u00b7 2023",
+      "Diploma in General Science \u00b7 Alison \u00b7 2023",
+      "Matric \u2013 Bachelor's Qualification \u00b7 St Martin's High School \u00b7 2018\u20132021"
     ],
+    "skills": {
+      "Game Development": [
+        "Unity",
+        "Unreal Engine",
+        "C#",
+        "C++",
+        "Twine"
+      ],
+      "3D Modelling & Design": [
+        "3ds Max",
+        "Adobe Photoshop",
+        "Canva",
+        "Digital Illustration",
+        "Graphic Design",
+        "Figma",
+        "Blender"
+      ],
+      "Programming & Web Development": [
+        "HTML",
+        "Delphi",
+        "Web Design",
+        "Web Development"
+      ],
+      "Data & Software": [
+        "SQL",
+        "MongoDB",
+        "Microsoft Excel",
+        "Microsoft Office Suite",
+        "Database Management"
+      ]
+    },
+    "jobs": [
+      "Trident Fuels (Pty) Ltd \u00b7 2020\u20132023 \u00b7 Web Designer & Digital Illustrator",
+      "MTN \u00b7 2023 \u00b7 Presentations Designer & Spreadsheet Analyst"
+    ],
+    "extra": "SERI \u2013 Socio-Economic Rights Institute of South Africa \u00b7 2021 \u00b7 Job Shadowing",
+    "languages": [
+      "English \u00b7 5/5",
+      "Afrikaans \u00b7 5/5",
+      "Arabic \u00b7 1/5"
+    ],
+    "certs": [
+      "TU Delft Pre-University Mathematics and Physics \u00b7 TU Delft \u00b7 2023",
+      "Diploma in General Science \u00b7 Alison \u00b7 2023"
+    ],
+    "download": "Open the digital CV page for the full player record.",
     "achievements": [
-      "Diploma in General Science. Alison. Completed 21 May 2023. Score 95. The course covered biology, physics, and chemistry.",
-      "Distinction, Vega, 2024. Game Development 1A and 1B, Game Design 1A and 1B, Game Art 1A and 1B, and Programming Logic and Design."
-    ],
-    "download": "A downloadable CV file is not on the site yet. The record above is the public CV."
+      "TU Delft Pre-University Mathematics and Physics TU Delft \u00b7 2023",
+      "Diploma in General Science Alison \u00b7 2023"
+    ]
   },
   "contact": {
     "blurb": "Johannesburg. Open to game development roles, jams, and studio collaborations.",

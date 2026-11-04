@@ -1,0 +1,478 @@
+/* =========================================================
+   Digital CV — Y2K OS desktop
+   ========================================================= */
+
+.cv-page {
+  --cv-fill: #ffe5f5;
+  --cv-fill-mid: #ffd2eb;
+  --cv-fill-deep: #ffc9e9;
+  --cv-edge: #ff4eb8;
+  --cv-ink: #5a1048;
+  --cv-muted: #8a3a6e;
+  --cv-white: #fff8fc;
+  --cv-dot-a: #ff4eb8;
+  --cv-dot-b: #5ec8ff;
+  --cv-dot-c: #ffd15c;
+  color-scheme: light;
+  background: #2a1048;
+  color: var(--cv-ink);
+}
+
+.cv-page .scanlines {
+  display: none !important;
+}
+
+.cv-page .sheet {
+  padding: 0;
+  overflow: hidden;
+}
+
+.cv-desktop {
+  position: relative;
+  isolation: isolate;
+  min-height: calc(100dvh - var(--hud-h) - env(safe-area-inset-top, 0px));
+  padding: clamp(1.1rem, 3vw, 2.4rem) clamp(0.9rem, 3vw, 2rem) 3.5rem;
+  background:
+    linear-gradient(rgba(255, 78, 184, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 78, 184, 0.07) 1px, transparent 1px),
+    radial-gradient(ellipse 80% 55% at 12% 8%, rgba(255, 255, 255, 0.55), transparent 55%),
+    radial-gradient(ellipse 70% 50% at 92% 18%, rgba(255, 150, 220, 0.35), transparent 50%),
+    linear-gradient(180deg, #ffe5f5 0%, #ffd2eb 48%, #ffc4e8 100%);
+  background-size: 28px 28px, 28px 28px, auto, auto, auto;
+}
+
+.cv-desktop::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(circle at 18% 72%, rgba(255, 78, 184, 0.12), transparent 22%),
+    radial-gradient(circle at 78% 80%, rgba(94, 200, 255, 0.12), transparent 20%);
+  animation: cv-glow 8s ease-in-out infinite alternate;
+}
+
+.cv-sparkle {
+  position: absolute;
+  width: 0.55rem;
+  height: 0.55rem;
+  background: #fff;
+  clip-path: polygon(50% 0%, 66% 34%, 100% 50%, 66% 66%, 50% 100%, 34% 66%, 0% 50%, 34% 34%);
+  opacity: 0.75;
+  z-index: 0;
+  pointer-events: none;
+  animation: cv-twinkle 2.8s ease-in-out infinite;
+}
+
+.cv-sparkle:nth-child(1) { top: 8%; left: 6%; animation-delay: 0s; }
+.cv-sparkle:nth-child(2) { top: 18%; right: 8%; width: 0.7rem; height: 0.7rem; animation-delay: 0.6s; }
+.cv-sparkle:nth-child(3) { bottom: 14%; left: 12%; animation-delay: 1.1s; }
+.cv-sparkle:nth-child(4) { bottom: 22%; right: 14%; width: 0.45rem; height: 0.45rem; animation-delay: 1.7s; }
+
+.cv-board {
+  position: relative;
+  z-index: 1;
+  width: min(1120px, 100%);
+  margin: 0 auto;
+  display: grid;
+  gap: 1.05rem;
+  grid-template-columns: 1.15fr 0.85fr;
+  grid-template-areas:
+    "hero hero"
+    "edu skills"
+    "work work"
+    "extra langs"
+    "certs certs";
+}
+
+.cv-win {
+  background: linear-gradient(180deg, var(--cv-white) 0%, var(--cv-fill) 100%);
+  border: 3px solid var(--cv-edge);
+  border-radius: 1.05rem;
+  box-shadow: 5px 6px 0 rgba(176, 16, 120, 0.18);
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(16px);
+  animation: cv-rise 0.7s ease forwards;
+}
+
+.cv-win:nth-child(5) { animation-delay: 0.05s; }
+.cv-win:nth-child(6) { animation-delay: 0.12s; }
+.cv-win:nth-child(7) { animation-delay: 0.18s; }
+.cv-win:nth-child(8) { animation-delay: 0.24s; }
+.cv-win:nth-child(9) { animation-delay: 0.3s; }
+.cv-win:nth-child(10) { animation-delay: 0.36s; }
+.cv-win:nth-child(11) { animation-delay: 0.42s; }
+
+.cv-win:hover {
+  transform: translateY(-2px);
+  box-shadow: 6px 9px 0 rgba(176, 16, 120, 0.2);
+}
+
+.cv-win__bar {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.45rem 0.75rem;
+  background: linear-gradient(180deg, #ffe5f5 0%, #ffd2eb 55%, #ffc9e9 100%);
+  border-bottom: 3px solid var(--cv-edge);
+}
+
+.cv-win__dots {
+  display: inline-flex;
+  gap: 0.35rem;
+  flex: 0 0 auto;
+}
+
+.cv-win__dots i {
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 50%;
+  border: 2px solid rgba(90, 16, 72, 0.2);
+  display: block;
+}
+
+.cv-win__dots i:nth-child(1) { background: var(--cv-dot-a); }
+.cv-win__dots i:nth-child(2) { background: var(--cv-dot-b); }
+.cv-win__dots i:nth-child(3) { background: var(--cv-dot-c); }
+
+.cv-win__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(0.95rem, 2.2vw, 1.15rem);
+  letter-spacing: 0.04em;
+  color: var(--cv-ink);
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.cv-win__body {
+  padding: clamp(0.9rem, 2vw, 1.25rem);
+}
+
+.cv-hero { grid-area: hero; }
+.cv-edu { grid-area: edu; }
+.cv-skills { grid-area: skills; }
+.cv-work { grid-area: work; }
+.cv-extra { grid-area: extra; }
+.cv-langs { grid-area: langs; }
+.cv-certs { grid-area: certs; }
+
+.cv-hero__grid {
+  display: grid;
+  grid-template-columns: minmax(140px, 200px) 1fr;
+  gap: clamp(0.9rem, 2.5vw, 1.5rem);
+  align-items: start;
+}
+
+.cv-hero__photo {
+  margin: 0;
+  border: 3px solid var(--cv-edge);
+  border-radius: 0.85rem;
+  overflow: hidden;
+  background: var(--cv-fill-mid);
+  aspect-ratio: 1;
+  box-shadow: 4px 4px 0 rgba(176, 16, 120, 0.15);
+}
+
+.cv-hero__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.cv-kicker {
+  margin: 0 0 0.35rem;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--cv-edge);
+}
+
+.cv-name {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(2.1rem, 6vw, 3.4rem);
+  line-height: 0.95;
+  color: var(--cv-edge);
+  text-shadow: 3px 3px 0 rgba(255, 255, 255, 0.85);
+  letter-spacing: 0.02em;
+}
+
+.cv-roles {
+  margin: 0.65rem 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.cv-roles span {
+  display: inline-block;
+  padding: 0.28rem 0.7rem;
+  border: 2px solid var(--cv-edge);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--cv-ink);
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.cv-bio {
+  margin: 0.9rem 0 0;
+  font-family: var(--font-body);
+  font-size: clamp(0.95rem, 1.6vw, 1.05rem);
+  line-height: 1.55;
+  color: var(--cv-muted);
+  max-width: 48ch;
+}
+
+.cv-meta {
+  margin: 0.85rem 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem 1rem;
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  color: var(--cv-ink);
+}
+
+.cv-meta a {
+  color: var(--cv-edge);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.cv-meta a:hover,
+.cv-page a:hover {
+  color: #c2187a;
+  text-decoration: underline;
+}
+
+.cv-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.cv-list li {
+  display: grid;
+  gap: 0.15rem;
+  padding-left: 0.85rem;
+  border-left: 3px solid var(--cv-edge);
+}
+
+.cv-list strong {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--cv-ink);
+}
+
+.cv-list em {
+  font-style: normal;
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  color: var(--cv-edge);
+  font-weight: 600;
+}
+
+.cv-list span {
+  font-family: var(--font-body);
+  font-size: 0.84rem;
+  color: var(--cv-muted);
+}
+
+.cv-skill-groups {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.cv-skill-group h3 {
+  margin: 0 0 0.4rem;
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  color: var(--cv-edge);
+  letter-spacing: 0.03em;
+}
+
+.cv-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.cv-chips span {
+  display: inline-block;
+  padding: 0.22rem 0.55rem;
+  border: 2px solid rgba(255, 78, 184, 0.45);
+  border-radius: 0.45rem;
+  background: #fff;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--cv-ink);
+}
+
+.cv-job {
+  display: grid;
+  gap: 0.35rem;
+  padding-bottom: 0.85rem;
+  margin-bottom: 0.85rem;
+  border-bottom: 2px dashed rgba(255, 78, 184, 0.35);
+}
+
+.cv-job:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.cv-job__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.35rem 1rem;
+}
+
+.cv-job__head strong {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--cv-edge);
+}
+
+.cv-job__head time {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  color: var(--cv-muted);
+  font-weight: 600;
+}
+
+.cv-job__role {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--cv-ink);
+}
+
+.cv-job ul {
+  margin: 0.25rem 0 0;
+  padding-left: 1.1rem;
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  line-height: 1.45;
+  color: var(--cv-muted);
+}
+
+.cv-job li + li {
+  margin-top: 0.2rem;
+}
+
+.cv-lang-row {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.cv-lang {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.5rem;
+  align-items: center;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--cv-ink);
+}
+
+.cv-lang b {
+  font-weight: 600;
+}
+
+.cv-bars {
+  display: inline-flex;
+  gap: 0.22rem;
+}
+
+.cv-bars i {
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 0.2rem;
+  border: 2px solid var(--cv-edge);
+  background: transparent;
+}
+
+.cv-bars i.is-on {
+  background: var(--cv-edge);
+}
+
+@media (max-width: 860px) {
+  .cv-board {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "hero"
+      "edu"
+      "skills"
+      "work"
+      "extra"
+      "langs"
+      "certs";
+  }
+
+  .cv-hero__grid {
+    grid-template-columns: 120px 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .cv-desktop {
+    padding: 0.9rem 0.7rem 2.5rem;
+  }
+
+  .cv-hero__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cv-hero__photo {
+    width: min(180px, 55vw);
+  }
+
+  .cv-name {
+    font-size: clamp(1.85rem, 11vw, 2.5rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cv-win,
+  .cv-sparkle,
+  .cv-desktop::before {
+    animation: none !important;
+  }
+
+  .cv-win {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes cv-rise {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes cv-twinkle {
+  0%, 100% { opacity: 0.35; transform: scale(0.85) rotate(0deg); }
+  50% { opacity: 0.95; transform: scale(1.15) rotate(12deg); }
+}
+
+@keyframes cv-glow {
+  from { opacity: 0.65; }
+  to { opacity: 1; }
+}

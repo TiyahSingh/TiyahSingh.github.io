@@ -10,8 +10,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Spicy+Rice&display=swap" rel="stylesheet">
   <link rel="icon" href="/assets/brand/favicon.png" type="image/png">
   <link rel="stylesheet" href="/css/site.css?v=63">
+  <link rel="stylesheet" href="/css/cv.css?v=1">
 </head>
-<body>
+<body class="cv-page">
   <a class="skip" href="#content">Skip to content</a>
   <div class="scanlines" aria-hidden="true"></div>
   <header class="hud">
@@ -31,20 +32,115 @@
 
   <main id="content" class="sheet">
     
-    <div class="wrap">
-      <p class="kicker">PLAYER RECORD</p>
-      <h1>CV</h1>
-      <p class="section-intro zone-blurb">Bachelor of Computer and Information Sciences in Game Design and Development at Vega, The Independent Institute of Education, in Johannesburg. The degree started in 2024 and this site is the final-year showcase.</p>
-      <div id="education">
-        <h2>Education</h2>
-        <ol class="levels"><li><strong>2024 · first year.</strong> Game Development, Game Design, Game Art, and Programming Logic and Design. Passed with distinction.</li><li><strong>2025 · second year.</strong> Game Development, Game Design, Game Art, Databases, and Narrative for Gaming.</li><li><strong>2026 · final year.</strong> The game pages collect the games, roles, and process work for the portfolio.</li></ol>
+    <a class="about-street-exit" id="about-street-exit" href="/explore.html?door=cv" hidden aria-label="Back to the street">×</a>
+    <div class="cv-desktop">
+      <span class="cv-sparkle" aria-hidden="true"></span>
+      <span class="cv-sparkle" aria-hidden="true"></span>
+      <span class="cv-sparkle" aria-hidden="true"></span>
+      <span class="cv-sparkle" aria-hidden="true"></span>
+      <div class="cv-board">
+        <section class="cv-win cv-hero">
+          <header class="cv-win__bar">
+            <span class="cv-win__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+            <p class="cv-win__title">Player Record</p>
+          </header>
+          <div class="cv-win__body">
+            <div class="cv-hero__grid">
+              <figure class="cv-hero__photo">
+                <img src="/assets/about/portrait-look.jpg" alt="Portrait of Tiyah Singh." width="400" height="400">
+              </figure>
+              <div>
+                <p class="cv-kicker">About me</p>
+                <h1 class="cv-name">Tiyah Singh</h1>
+                <div class="cv-roles"><span>Game Developer</span><span>Game Designer</span><span>Digital Creative</span></div>
+                <p class="cv-bio">A creative and analytical individual with a background in game and software development, digital design and web development. Passionate about combining technology, creativity and problem-solving to create engaging digital experiences.</p>
+                <p class="cv-meta">
+                  <span>Johannesburg</span>
+                  <a href="mailto:tiyah.singh0308@gmail.com">Email</a>
+                  <a href="https://github.com/TiyahSingh" target="_blank" rel="noopener noreferrer">GitHub</a>
+                  <a href="https://www.linkedin.com/in/tiyah-singh-906352236/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                  <a href="https://tiyahsingh.itch.io/" target="_blank" rel="noopener noreferrer">itch.io</a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+        
+      <section class="cv-win cv-edu">
+        <header class="cv-win__bar">
+          <span class="cv-win__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+          <h2 class="cv-win__title">Education</h2>
+        </header>
+        <div class="cv-win__body"><ol class="cv-list" id="education"><li><strong>BCIS in Game/Software Development and Design</strong><em>Vega School Bordeaux</em><span>2024 – Present</span></li><li><strong>BSc in Biomedicine (Year 1–2)</strong><em>Eduvos Midrand</em><span>2022–2023</span></li><li><strong>TU Delft Pre-University Mathematics and Physics</strong><em>TU Delft</em><span>2023</span></li><li><strong>Diploma in General Science</strong><em>Alison</em><span>2023</span></li><li><strong>Matric – Bachelor's Qualification</strong><em>St Martin's High School</em><span>2018–2021</span></li></ol></div>
+      </section>
+        
+      <section class="cv-win cv-skills">
+        <header class="cv-win__bar">
+          <span class="cv-win__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+          <h2 class="cv-win__title">Technical Skills</h2>
+        </header>
+        <div class="cv-win__body"><div class="cv-skill-groups"><div class="cv-skill-group"><h3>Game Development</h3><div class="cv-chips"><span>Unity</span><span>Unreal Engine</span><span>C#</span><span>C++</span><span>Twine</span></div></div><div class="cv-skill-group"><h3>3D Modelling & Design</h3><div class="cv-chips"><span>3ds Max</span><span>Adobe Photoshop</span><span>Canva</span><span>Digital Illustration</span><span>Graphic Design</span><span>Figma</span><span>Blender</span></div></div><div class="cv-skill-group"><h3>Programming & Web Development</h3><div class="cv-chips"><span>HTML</span><span>Delphi</span><span>Web Design</span><span>Web Development</span></div></div><div class="cv-skill-group"><h3>Data & Software</h3><div class="cv-chips"><span>SQL</span><span>MongoDB</span><span>Microsoft Excel</span><span>Microsoft Office Suite</span><span>Database Management</span></div></div></div></div>
+      </section>
+        
+      <section class="cv-win cv-work">
+        <header class="cv-win__bar">
+          <span class="cv-win__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+          <h2 class="cv-win__title">Work Experience</h2>
+        </header>
+        <div class="cv-win__body">
+        <article class="cv-job">
+          <div class="cv-job__head"><strong>Trident Fuels (Pty) Ltd</strong><time>2020–2023</time></div>
+          <p class="cv-job__role">Web Designer & Digital Illustrator</p>
+          <ul><li>Designed and updated the company's official website.</li><li>Created digital advertisements, brochures, banners and social media posters.</li><li>Worked on digital marketing and visual communication.</li></ul>
+        </article>
+        <article class="cv-job">
+          <div class="cv-job__head"><strong>MTN</strong><time>2023</time></div>
+          <p class="cv-job__role">Presentations Designer & Spreadsheet Analyst</p>
+          <ul><li>Analysed spreadsheet data.</li><li>Transformed data into presentations for client meetings.</li></ul>
+        </article></div>
+      </section>
+        
+      <section class="cv-win cv-extra">
+        <header class="cv-win__bar">
+          <span class="cv-win__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+          <h2 class="cv-win__title">Additional Experience</h2>
+        </header>
+        <div class="cv-win__body">
+        <article class="cv-job">
+          <div class="cv-job__head"><strong>SERI – Socio-Economic Rights Institute of South Africa</strong><time>2021</time></div>
+          <p class="cv-job__role">Job Shadowing</p>
+          <ul><li>Analysed legal cases and case write-ups.</li><li>Attended and presented information during formal meetings.</li><li>Interviewed a human rights lawyer.</li></ul>
+        </article></div>
+      </section>
+        
+      <section class="cv-win cv-langs">
+        <header class="cv-win__bar">
+          <span class="cv-win__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+          <h2 class="cv-win__title">Languages</h2>
+        </header>
+        <div class="cv-win__body"><div class="cv-lang-row"><div class="cv-lang"><b>English</b><span class="cv-bars" aria-label="5 of 5"><i class="is-on"></i><i class="is-on"></i><i class="is-on"></i><i class="is-on"></i><i class="is-on"></i></span></div><div class="cv-lang"><b>Afrikaans</b><span class="cv-bars" aria-label="5 of 5"><i class="is-on"></i><i class="is-on"></i><i class="is-on"></i><i class="is-on"></i><i class="is-on"></i></span></div><div class="cv-lang"><b>Arabic</b><span class="cv-bars" aria-label="1 of 5"><i class="is-on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span></div></div></div>
+      </section>
+        
+      <section class="cv-win cv-certs">
+        <header class="cv-win__bar">
+          <span class="cv-win__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+          <h2 class="cv-win__title">Certifications</h2>
+        </header>
+        <div class="cv-win__body"><ul class="cv-list" id="awards"><li><strong>TU Delft Pre-University Mathematics and Physics</strong><span>TU Delft · 2023</span></li><li><strong>Diploma in General Science</strong><span>Alison · 2023</span></li></ul></div>
+      </section>
       </div>
-      <div id="awards">
-        <h2>Achievements</h2>
-        <ul class="badges"><li><strong>Diploma in General Science.</strong> Alison. Completed 21 May 2023. Score 95. The course covered biology, physics, and chemistry.</li><li><strong>Distinction, Vega, 2024.</strong> Game Development 1A and 1B, Game Design 1A and 1B, Game Art 1A and 1B, and Programming Logic and Design.</li></ul>
-      </div>
-      <p class="note">A downloadable CV file is not on the site yet. The record above is the public CV.</p>
     </div>
+    <script>
+    (function () {
+      var params = new URLSearchParams(location.search);
+      var fromExplore = params.get("from") === "explore" || document.referrer.indexOf("/explore.html") !== -1;
+      var exit = document.getElementById("about-street-exit");
+      if (exit && fromExplore) {
+        exit.hidden = false;
+        document.body.classList.add("from-explore");
+      }
+    })();
+    </script>
   </main>
   <footer class="site-footer">
     <a class="footer-logo" href="/" aria-label="Tiyah Singh home">
