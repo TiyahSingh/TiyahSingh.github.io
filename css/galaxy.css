@@ -70,36 +70,31 @@
   z-index: 0;
   pointer-events: none;
   background:
-    linear-gradient(180deg, rgba(50, 18, 80, 0.35), rgba(70, 24, 100, 0.2) 45%, rgba(40, 12, 70, 0.45)),
-    url("/assets/galaxy/bg-y2k-a.png") center / cover no-repeat,
+    linear-gradient(180deg, rgba(40, 12, 70, 0.28), rgba(70, 30, 110, 0.12) 40%, rgba(30, 10, 55, 0.35)),
+    url("/assets/galaxy/bg-skills-space.jpg") center / cover no-repeat,
     #3a1860;
 }
 
 .galaxy-bg__photo {
-  position: absolute;
-  inset: 0;
-  background:
-    url("/assets/galaxy/bg-y2k-b.png") center / cover no-repeat;
-  opacity: 0.4;
-  /* no mix-blend — keeps bg clean and stops ghost panels */
+  display: none;
 }
 
 .galaxy-bg__nebula {
   position: absolute;
   inset: -6%;
   background:
-    radial-gradient(ellipse 50% 40% at 50% 40%, rgba(255, 120, 210, 0.2), transparent 60%),
-    radial-gradient(ellipse 40% 30% at 15% 75%, rgba(180, 100, 255, 0.14), transparent 50%);
+    radial-gradient(ellipse 50% 40% at 50% 42%, rgba(200, 160, 255, 0.12), transparent 60%),
+    radial-gradient(ellipse 40% 30% at 18% 78%, rgba(160, 120, 255, 0.1), transparent 50%);
   filter: blur(36px);
   animation: galaxy-nebula 40s ease-in-out infinite alternate;
-  opacity: 0.65;
+  opacity: 0.5;
 }
 
 .galaxy-bg__vignette {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse at center, transparent 40%, rgba(30, 8, 50, 0.45) 100%);
+    radial-gradient(ellipse at center, transparent 42%, rgba(24, 8, 48, 0.42) 100%);
 }
 
 #galaxy-stars {
@@ -629,59 +624,72 @@
   overflow: hidden;
   color: #fff5fb;
   background:
-    radial-gradient(circle at 28% 22%, rgba(255, 255, 255, 0.45) 0%, transparent 28%),
+    radial-gradient(circle at 28% 22%, rgba(255, 255, 255, 0.42) 0%, transparent 28%),
     repeating-linear-gradient(
       180deg,
-      #ffd0ef 0 12%,
-      #ff9ad8 12% 24%,
-      #ff70c8 24% 36%,
-      #e048b0 36% 48%,
-      #c03098 48% 60%,
-      #e868c0 60% 72%,
-      #ff98d8 72% 84%,
-      #ffc0e8 84% 100%
+      hsl(var(--hue, 300), 85%, 88%) 0 12%,
+      hsl(var(--hue, 300), 90%, 74%) 12% 24%,
+      hsl(var(--hue, 300), 92%, 64%) 24% 36%,
+      hsl(var(--hue, 300), 88%, 52%) 36% 48%,
+      hsl(var(--hue, 300), 82%, 42%) 48% 60%,
+      hsl(var(--hue, 300), 86%, 56%) 60% 72%,
+      hsl(var(--hue, 300), 90%, 70%) 72% 84%,
+      hsl(var(--hue, 300), 85%, 84%) 84% 100%
     );
   border: 4px solid #fff;
   box-shadow:
-    inset -16px -20px 40px rgba(100, 20, 80, 0.4),
-    inset 10px 12px 24px rgba(255, 255, 255, 0.3),
-    0 0 0 5px rgba(255, 100, 200, 0.45),
-    0 0 40px rgba(255, 80, 200, 0.55);
+    inset -16px -20px 40px hsla(var(--hue, 300), 60%, 20%, 0.4),
+    inset 10px 12px 24px rgba(255, 255, 255, 0.28),
+    0 0 0 5px hsla(var(--hue, 300), 100%, 65%, 0.42),
+    0 0 40px hsla(var(--hue, 300), 100%, 60%, 0.5);
 }
 
 .galaxy-planet-frame__scroll {
   height: 100%;
   overflow: auto;
-  padding: 18% 16% 20%;
+  overflow-x: hidden;
+  padding: 18% 22% 22% 20%;
   text-align: center;
   box-sizing: border-box;
+  scrollbar-gutter: stable;
   scrollbar-width: thin;
-  scrollbar-color: rgba(255, 200, 240, 0.55) transparent;
+  scrollbar-color: hsla(var(--hue, 300), 100%, 80%, 0.7) transparent;
 }
 
 .galaxy-planet-frame__scroll::-webkit-scrollbar {
-  width: 4px;
+  width: 6px;
+}
+
+.galaxy-planet-frame__scroll::-webkit-scrollbar-track {
+  margin: 22% 0;
+  background: transparent;
 }
 
 .galaxy-planet-frame__scroll::-webkit-scrollbar-thumb {
-  background: rgba(255, 200, 240, 0.5);
+  background: hsla(var(--hue, 300), 100%, 78%, 0.75);
   border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
 }
 
 .galaxy-panel__close {
   position: absolute;
   top: 10%;
-  right: 12%;
+  right: 14%;
   width: 2rem;
   height: 2rem;
   border: 0;
   border-radius: 50%;
-  background: linear-gradient(145deg, #ff9de8, #c060d0);
+  background: linear-gradient(
+    145deg,
+    hsl(var(--hue, 300), 90%, 78%),
+    hsl(var(--hue, 300), 80%, 48%)
+  );
   color: #fff;
   font-size: 1.25rem;
   line-height: 1;
   cursor: pointer;
-  box-shadow: 0 4px 14px rgba(200, 60, 160, 0.45);
+  box-shadow: 0 4px 14px hsla(var(--hue, 300), 80%, 40%, 0.45);
   z-index: 4;
 }
 
@@ -733,12 +741,16 @@
   margin: 0 0 0.65rem;
   padding: 0.3rem 0.7rem;
   border-radius: 999px;
-  background: linear-gradient(180deg, #ff8ad8, #e048b8);
+  background: linear-gradient(
+    180deg,
+    hsl(var(--hue, 300), 90%, 68%),
+    hsl(var(--hue, 300), 85%, 48%)
+  );
   border: 2px solid #fff;
   font-family: "Fredoka", system-ui, sans-serif;
   font-size: 0.75rem;
   color: #fff;
-  box-shadow: 0 0 14px rgba(255, 100, 200, 0.55);
+  box-shadow: 0 0 14px hsla(var(--hue, 300), 100%, 60%, 0.5);
 }
 
 .galaxy-legend {
@@ -785,12 +797,18 @@
   padding: 0.4rem 0.7rem 0.35rem;
   border-radius: 999px;
   border: 2px solid #fff;
-  background: linear-gradient(180deg, rgba(255, 140, 220, 0.55), rgba(200, 60, 160, 0.55));
+  background: linear-gradient(
+    180deg,
+    hsla(var(--hue, 300), 90%, 72%, 0.7),
+    hsla(var(--hue, 300), 85%, 48%, 0.75)
+  );
   color: #fff;
   cursor: pointer;
   text-align: center;
   transition: transform 0.2s, filter 0.2s;
-  box-shadow: 0 0 12px rgba(255, 100, 200, 0.4), 2px 3px 0 rgba(140, 30, 100, 0.3);
+  box-shadow:
+    0 0 12px hsla(var(--hue, 300), 100%, 60%, 0.4),
+    2px 3px 0 hsla(var(--hue, 300), 60%, 28%, 0.35);
 }
 
 .galaxy-skill-chip:hover,

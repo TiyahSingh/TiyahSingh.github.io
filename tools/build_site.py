@@ -541,7 +541,7 @@ def header(title="", nav=""):
         body = ""
     extra_css = ""
     if nav == "skills":
-        extra_css = '\n  <link rel="stylesheet" href="/css/galaxy.css?v=12">'
+        extra_css = '\n  <link rel="stylesheet" href="/css/galaxy.css?v=13">'
     elif nav == "cv":
         extra_css = '\n  <link rel="stylesheet" href="/css/cv.css?v=4">'
     elif nav == "contact":
@@ -1069,7 +1069,7 @@ def index():
     <div class="galaxy-panel" id="galaxy-skill-panel" role="dialog" aria-modal="true" hidden></div>
   </main>
   <script src="/js/skills/galaxy-data.js?v=7"></script>
-  <script src="/js/skills/galaxy.js?v=10"></script>
+  <script src="/js/skills/galaxy.js?v=11"></script>
   <script>
   (function () {
     var params = new URLSearchParams(location.search);

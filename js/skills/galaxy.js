@@ -159,8 +159,12 @@
 
   function openSkill(orbit, skill) {
     const meta = levelMeta(skill.level);
+    const hue =
+      (activePlanet && activePlanet.style.getPropertyValue("--hue")) ||
+      orbit.hue ||
+      300;
     skillPanel.innerHTML = `
-      <div class="galaxy-planet-frame galaxy-planet-frame--mini" style="--hue:${escapeHtml(String(orbit.hue))}">
+      <div class="galaxy-planet-frame galaxy-planet-frame--mini" style="--hue:${escapeHtml(String(hue))}">
         <span class="galaxy-planet-frame__ring" aria-hidden="true"></span>
         <span class="galaxy-planet-frame__glow" aria-hidden="true"></span>
         <div class="galaxy-planet-frame__surface">
