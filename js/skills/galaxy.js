@@ -28,38 +28,41 @@
       <span class="galaxy-core__glow"></span>
       <span class="galaxy-core__body"></span>
       <span class="galaxy-core__ring"></span>
-      <span class="galaxy-core__label">${escapeHtml(DATA.title)}</span>
     `;
     core.addEventListener("click", () => closeAll());
     system.appendChild(core);
 
+    const neonHues = [320, 280, 190, 145, 45, 0];
     DATA.orbits.forEach((orbit, index) => {
-      const size = 36 + index * 10.5;
+      /* spaced wide so rings read clearly */
+      const size = 44 + index * 14;
       const ring = document.createElement("div");
       ring.className = "galaxy-ring";
       ring.dataset.orbit = orbit.id;
       ring.style.setProperty("--i", String(index));
-      ring.style.setProperty("--hue", String(orbit.hue));
+      ring.style.setProperty("--hue", String(neonHues[index % neonHues.length]));
       ring.style.setProperty("--size", `${size}%`);
-      ring.style.setProperty("--spin", `${(60 + index * 18) * (index % 2 ? 1 : -1)}s`);
+      ring.style.setProperty("--spin", `${(70 + index * 22) * (index % 2 ? 1 : -1)}s`);
+      ring.style.setProperty("--tilt", `${index % 2 ? 0.86 : 0.92}`);
 
       const path = document.createElement("div");
       path.className = "galaxy-ring__path";
       ring.appendChild(path);
 
-      const angle = (index / DATA.orbits.length) * 360 + (index % 2 ? 32 : -22);
+      /* fan planets around so they don't cluster */
+      const angle = index * 57 + (index % 2 ? 18 : -10);
       const holder = document.createElement("div");
       holder.className = "galaxy-ring__holder";
       holder.style.setProperty("--angle", `${angle}deg`);
 
       const planet = document.createElement("button");
       planet.type = "button";
-      planet.className = `galaxy-planet galaxy-planet--${orbit.planet}`;
+      planet.className = `galaxy-planet galaxy-planet--${orbit.planet} galaxy-planet--neon`;
       planet.dataset.orbitId = orbit.id;
-      planet.style.setProperty("--hue", String(orbit.hue));
+      planet.style.setProperty("--hue", String(neonHues[index % neonHues.length]));
       planet.setAttribute("aria-expanded", "false");
       planet.setAttribute("aria-controls", "galaxy-category-panel");
-      if (orbit.planet === "ringed" || index === 4) planet.classList.add("has-rings");
+      if (orbit.planet === "ringed" || index === 1 || index === 4) planet.classList.add("has-rings");
       planet.innerHTML = `
         <span class="galaxy-planet__halo"></span>
         <span class="galaxy-planet__body"></span>

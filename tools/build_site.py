@@ -535,7 +535,7 @@ def header(title="", nav=""):
         body = ' class="skills-galaxy-page"'
     else:
         body = ""
-    extra_css = '\n  <link rel="stylesheet" href="/css/galaxy.css?v=5">' if nav == "skills" else ""
+    extra_css = '\n  <link rel="stylesheet" href="/css/galaxy.css?v=6">' if nav == "skills" else ""
     heading = "Tiyah Singh — Game Developer" if not title else f"{title} — Tiyah Singh"
     return f"""<!DOCTYPE html>
 <html lang="en">
@@ -921,28 +921,23 @@ def index():
       <div class="galaxy-bg__nebula"></div>
       <div class="galaxy-bg__vignette"></div>
     </div>
-    <div class="galaxy-rail">
-      <div>
-        <p class="galaxy-brand">skill galaxy</p>
-        <nav class="galaxy-side-nav" aria-label="Galaxy destinations">
-          <a href="/">home</a>
-          <a href="/about.html">about</a>
-          <a href="/skills.html" aria-current="page">skills</a>
-          <a href="/games.html">work</a>
-          <a href="/contact.html">contact</a>
-        </nav>
-      </div>
-    </div>
+    <header class="galaxy-hero-title">
+      <span class="galaxy-hero-frame" aria-hidden="true">
+        <i class="gf gf-tl"></i><i class="gf gf-tr"></i><i class="gf gf-bl"></i><i class="gf gf-br"></i>
+        <i class="gf gf-star gf-star-l"></i><i class="gf gf-star gf-star-r"></i>
+      </span>
+      <h1>explore my skills galaxy</h1>
+      <p>tap a planet to open it</p>
+    </header>
     <div class="galaxy-system-wrap">
       <div id="galaxy-system" aria-label="Interactive skill galaxy"></div>
     </div>
-    <p class="galaxy-footer-note">tap a planet to open it</p>
     <div class="galaxy-backdrop" id="galaxy-backdrop" hidden></div>
     <div class="galaxy-panel" id="galaxy-category-panel" role="dialog" aria-modal="true" hidden></div>
     <div class="galaxy-panel" id="galaxy-skill-panel" role="dialog" aria-modal="true" hidden></div>
   </main>
   <script src="/js/skills/galaxy-data.js?v=4"></script>
-  <script src="/js/skills/galaxy.js?v=5"></script>
+  <script src="/js/skills/galaxy.js?v=6"></script>
   <script>
   (function () {
     var params = new URLSearchParams(location.search);

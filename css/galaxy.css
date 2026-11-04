@@ -93,80 +93,95 @@
   to { transform: scale(1.08) translate(-2%, 1%); }
 }
 
-/* ---------- rail / labels ---------- */
-.galaxy-rail {
+/* ---------- hero title (Y2K frame) ---------- */
+.galaxy-hero-title {
   position: relative;
   z-index: 20;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 1rem;
-  max-width: 1200px;
-  margin: 0 auto 0.5rem;
-  pointer-events: none;
+  width: min(92vw, 720px);
+  margin: 0.75rem auto 0.25rem;
+  padding: 1.1rem 1.6rem 1rem;
+  text-align: center;
 }
 
-.galaxy-rail > * {
-  pointer-events: auto;
-}
-
-.galaxy-brand {
+.galaxy-hero-title h1 {
+  margin: 0;
   font-family: "Spicy Rice", cursive;
-  font-size: clamp(1.15rem, 2.6vw, 1.5rem);
+  font-size: clamp(1.85rem, 6.5vw, 3.35rem);
+  line-height: 1.05;
   letter-spacing: 0.02em;
-  text-transform: none;
   color: #fff;
-  text-shadow: 0 0 24px rgba(180, 100, 255, 0.55);
-  margin: 0 0 0.55rem;
+  text-shadow:
+    0 0 18px rgba(255, 120, 220, 0.85),
+    0 0 40px rgba(160, 80, 255, 0.55),
+    0 3px 0 rgba(120, 40, 160, 0.35);
 }
 
-.galaxy-side-nav {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-  padding: 0.75rem 0.9rem;
-  background: rgba(20, 8, 40, 0.45);
-  border: 1px solid rgba(200, 160, 255, 0.28);
-  border-radius: 14px;
-  backdrop-filter: blur(16px);
-  box-shadow: 0 12px 36px rgba(0, 0, 20, 0.35);
-  min-width: 8.5rem;
-}
-
-.galaxy-side-nav a {
+.galaxy-hero-title p {
+  margin: 0.55rem 0 0;
   font-family: "Fredoka", system-ui, sans-serif;
-  font-size: 0.74rem;
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  text-transform: none;
-  color: rgba(240, 230, 255, 0.85);
-  text-decoration: none;
-  padding: 0.12rem 0;
-  border-bottom: 1px solid rgba(180, 140, 255, 0.12);
-  transition: color 0.2s;
+  font-size: clamp(0.8rem, 2vw, 0.95rem);
+  color: rgba(240, 220, 255, 0.8);
 }
 
-.galaxy-side-nav a:hover,
-.galaxy-side-nav a:focus-visible,
-.galaxy-side-nav a[aria-current="page"] {
-  color: #fff;
-  text-shadow: 0 0 12px rgba(255, 140, 220, 0.9);
-  outline: none;
+.galaxy-hero-frame {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border: 2px solid rgba(255, 180, 240, 0.65);
+  border-radius: 18px;
+  box-shadow:
+    0 0 0 4px rgba(120, 40, 160, 0.25),
+    0 0 24px rgba(255, 100, 200, 0.35),
+    inset 0 0 20px rgba(180, 100, 255, 0.12);
+  background: linear-gradient(180deg, rgba(40, 12, 60, 0.28), rgba(20, 6, 40, 0.18));
+  backdrop-filter: blur(6px);
 }
 
-.galaxy-tags {
-  display: none;
+.galaxy-hero-frame::before {
+  content: "";
+  position: absolute;
+  inset: 6px;
+  border: 1px dashed rgba(255, 200, 245, 0.45);
+  border-radius: 12px;
 }
+
+.gf {
+  position: absolute;
+  display: block;
+}
+
+.gf-tl, .gf-tr, .gf-bl, .gf-br {
+  width: 18px;
+  height: 18px;
+  border: 3px solid #ff9adf;
+  box-shadow: 0 0 10px rgba(255, 120, 220, 0.8);
+}
+
+.gf-tl { top: -3px; left: -3px; border-right: 0; border-bottom: 0; border-radius: 6px 0 0 0; }
+.gf-tr { top: -3px; right: -3px; border-left: 0; border-bottom: 0; border-radius: 0 6px 0 0; }
+.gf-bl { bottom: -3px; left: -3px; border-right: 0; border-top: 0; border-radius: 0 0 0 6px; }
+.gf-br { bottom: -3px; right: -3px; border-left: 0; border-top: 0; border-radius: 0 0 6px 0; }
+
+.gf-star {
+  width: 14px;
+  height: 14px;
+  background: #fff;
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+  filter: drop-shadow(0 0 8px #ff7ad9);
+}
+
+.gf-star-l { left: -8px; top: 50%; transform: translateY(-50%); }
+.gf-star-r { right: -8px; top: 50%; transform: translateY(-50%); }
 
 /* ---------- system ---------- */
 .galaxy-system-wrap {
   position: relative;
   z-index: 10;
-  width: min(92vw, 900px);
+  width: min(96vw, 1100px);
   aspect-ratio: 1;
-  max-height: min(78vh, 900px);
-  margin: 0.5rem auto 2rem;
+  max-height: min(82vh, 1100px);
+  margin: 0.75rem auto 2.5rem;
+  overflow: visible;
 }
 
 #galaxy-system {
@@ -174,14 +189,15 @@
   inset: 0;
   transition: transform 0.6s ease-out;
   will-change: transform;
+  overflow: visible;
 }
 
 .galaxy-core {
   position: absolute;
   left: 50%;
   top: 50%;
-  width: clamp(7.5rem, 18vw, 11rem);
-  height: clamp(7.5rem, 18vw, 11rem);
+  width: clamp(5.5rem, 12vw, 8rem);
+  height: clamp(5.5rem, 12vw, 8rem);
   transform: translate(-50%, -50%);
   border: 0;
   background: transparent;
@@ -261,7 +277,7 @@
   left: 50%;
   top: 50%;
   width: var(--size);
-  height: var(--size);
+  height: calc(var(--size) * var(--tilt, 0.9));
   transform: translate(-50%, -50%);
   border-radius: 50%;
   pointer-events: none;
@@ -271,8 +287,10 @@
   position: absolute;
   inset: 0;
   border-radius: 50%;
-  border: 1px dotted rgba(210, 180, 255, 0.22);
-  box-shadow: none;
+  border: 2px dotted hsla(var(--hue), 100%, 75%, 0.55);
+  box-shadow:
+    0 0 12px hsla(var(--hue), 100%, 65%, 0.35),
+    inset 0 0 18px hsla(var(--hue), 100%, 70%, 0.08);
   animation: galaxy-spin var(--spin) linear infinite;
 }
 
@@ -325,8 +343,8 @@
 
 /* planets */
 .galaxy-planet {
-  width: clamp(3.4rem, 7.5vw, 4.8rem);
-  height: clamp(3.4rem, 7.5vw, 4.8rem);
+  width: clamp(3.8rem, 8vw, 5.4rem);
+  height: clamp(3.8rem, 8vw, 5.4rem);
   border: 0;
   background: transparent;
   cursor: pointer;
@@ -337,7 +355,7 @@
 
 .galaxy-planet:hover,
 .galaxy-planet:focus-visible {
-  filter: brightness(1.18) drop-shadow(0 0 12px hsla(var(--hue), 90%, 70%, 0.9));
+  filter: brightness(1.25) drop-shadow(0 0 18px hsla(var(--hue), 100%, 70%, 1));
   outline: none;
   z-index: 6;
 }
@@ -360,12 +378,13 @@
 
 .galaxy-planet__halo {
   position: absolute;
-  inset: -22%;
+  inset: -28%;
   border-radius: 50%;
-  background: radial-gradient(circle, hsla(var(--hue), 90%, 70%, 0.45), transparent 68%);
-  opacity: 0.7;
+  background: radial-gradient(circle, hsla(var(--hue), 100%, 65%, 0.7), transparent 68%);
+  opacity: 0.95;
   transition: opacity 0.3s;
   pointer-events: none;
+  filter: blur(1px);
 }
 
 .galaxy-planet.is-active .galaxy-planet__halo {
@@ -378,22 +397,28 @@
   inset: 12%;
   border-radius: 50%;
   background:
-    radial-gradient(circle at 28% 22%, rgba(255, 255, 255, 0.5) 0%, transparent 34%),
+    radial-gradient(circle at 28% 22%, rgba(255, 255, 255, 0.75) 0%, transparent 32%),
     repeating-linear-gradient(
       185deg,
-      hsl(var(--hue), 55%, 78%) 0 14%,
-      hsl(var(--hue), 50%, 62%) 14% 28%,
-      hsl(calc(var(--hue) + 18), 48%, 55%) 28% 42%,
-      hsl(var(--hue), 45%, 48%) 42% 56%,
-      hsl(calc(var(--hue) - 12), 50%, 58%) 56% 70%,
-      hsl(var(--hue), 55%, 70%) 70% 84%,
-      hsl(var(--hue), 60%, 80%) 84% 100%
+      hsl(var(--hue), 100%, 78%) 0 14%,
+      hsl(var(--hue), 95%, 62%) 14% 28%,
+      hsl(calc(var(--hue) + 18), 100%, 55%) 28% 42%,
+      hsl(var(--hue), 90%, 48%) 42% 56%,
+      hsl(calc(var(--hue) - 12), 95%, 58%) 56% 70%,
+      hsl(var(--hue), 100%, 68%) 70% 84%,
+      hsl(var(--hue), 100%, 80%) 84% 100%
     );
   box-shadow:
-    0 0 22px hsla(var(--hue), 70%, 60%, 0.4),
-    inset -8px -10px 16px rgba(40, 10, 60, 0.28),
-    inset 5px 6px 12px rgba(255, 255, 255, 0.3);
+    0 0 18px hsla(var(--hue), 100%, 60%, 0.95),
+    0 0 40px hsla(var(--hue), 100%, 55%, 0.55),
+    0 0 0 2px hsla(var(--hue), 100%, 80%, 0.45),
+    inset -8px -10px 16px rgba(20, 0, 40, 0.35),
+    inset 5px 6px 12px rgba(255, 255, 255, 0.4);
   transition: transform 0.35s ease;
+}
+
+.galaxy-planet--neon .galaxy-planet__body {
+  filter: saturate(1.35);
 }
 
 .galaxy-planet.has-rings .galaxy-planet__body::after,
@@ -440,17 +465,18 @@
 
 .galaxy-planet__title {
   font-family: "Fredoka", system-ui, sans-serif;
-  font-size: clamp(0.65rem, 1.35vw, 0.8rem);
+  font-size: clamp(0.7rem, 1.4vw, 0.88rem);
   font-weight: 600;
   letter-spacing: 0.02em;
   text-transform: none;
   color: #fff;
-  text-shadow: 0 1px 8px rgba(0, 0, 40, 0.8);
-  background: rgba(20, 8, 40, 0.55);
-  border: 1px solid rgba(220, 190, 255, 0.35);
+  text-shadow: 0 0 10px hsla(var(--hue), 100%, 60%, 0.9), 0 1px 6px rgba(0, 0, 40, 0.8);
+  background: rgba(12, 4, 28, 0.65);
+  border: 1px solid hsla(var(--hue), 100%, 75%, 0.55);
   border-radius: 999px;
-  padding: 0.18rem 0.6rem;
+  padding: 0.2rem 0.7rem;
   backdrop-filter: blur(8px);
+  box-shadow: 0 0 14px hsla(var(--hue), 100%, 55%, 0.35);
 }
 
 /* planet variants — soft illustrated look */
@@ -812,44 +838,16 @@
   z-index: 90;
 }
 
-.galaxy-footer-note {
-  position: relative;
-  z-index: 15;
-  text-align: center;
-  font-family: "Fredoka", system-ui, sans-serif;
-  font-size: 0.75rem;
-  letter-spacing: 0.03em;
-  text-transform: none;
-  color: rgba(220, 200, 255, 0.7);
-  margin: 0 auto 1rem;
-}
 
 /* ---------- responsive ---------- */
 @media (max-width: 900px) {
-  .galaxy-rail {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .galaxy-tags {
-    justify-content: flex-start;
-    max-width: none;
-  }
-
-  .galaxy-side-nav {
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 0.5rem 0.85rem;
-    min-width: 0;
-  }
-
-  .galaxy-side-nav a {
-    border-bottom: 0;
-  }
-
   .galaxy-system-wrap {
-    width: min(96vw, 640px);
-    max-height: min(70vh, 640px);
+    width: min(98vw, 720px);
+    max-height: min(68vh, 720px);
+  }
+
+  .galaxy-hero-title {
+    padding: 0.9rem 1.1rem 0.85rem;
   }
 
   .galaxy-planet__name {
