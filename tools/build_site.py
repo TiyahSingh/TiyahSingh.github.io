@@ -541,7 +541,7 @@ def header(title="", nav=""):
         body = ""
     extra_css = ""
     if nav == "skills":
-        extra_css = '\n  <link rel="stylesheet" href="/css/galaxy.css?v=14">'
+        extra_css = '\n  <link rel="stylesheet" href="/css/galaxy.css?v=15">'
     elif nav == "cv":
         extra_css = '\n  <link rel="stylesheet" href="/css/cv.css?v=4">'
     elif nav == "contact":
@@ -1274,7 +1274,7 @@ def index():
     }
   }
   </script>
-  <script type="module" src="/js/home/world-map.js?v=29"></script>
+  <script type="module" src="/js/home/world-map.js?v=30"></script>
   <script>
   if (location.hash === "#play" || location.hash.indexOf("#explore/") === 0) {
     location.replace("/explore.html" + location.hash);
@@ -1303,7 +1303,7 @@ def index():
     }
   }
   </script>
-  <script type="module" src="/js/explore/main.js?v=26"></script>
+  <script type="module" src="/js/explore/main.js?v=27"></script>
 """ + footer()
     (ROOT / "index.html").write_text(home, encoding="utf-8")
     (ROOT / "explore.html").write_text(explore, encoding="utf-8")

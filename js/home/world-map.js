@@ -1,7 +1,4 @@
 import * as THREE from "three";
-import { EffectComposer } from "three/addons/postprocessing/EffectComposer.js";
-import { RenderPass } from "three/addons/postprocessing/RenderPass.js";
-import { UnrealBloomPass } from "three/addons/postprocessing/UnrealBloomPass.js";
 import { loadModel, tuneCity, makeSign } from "../explore/load.js";
 
 const mount = document.getElementById("world-map");
@@ -53,38 +50,33 @@ async function boot() {
     return;
   }
 
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.4));
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.35));
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 1.05;
-  renderer.setClearColor(0x000000, 0);
+  renderer.toneMappingExposure = 1.0;
+  renderer.setClearColor(0x090614, 1);
   mount.appendChild(renderer.domElement);
   mount.classList.add("is-live");
 
   const scene = new THREE.Scene();
-  scene.fog = new THREE.FogExp2(0x090614, 0.02);
+  scene.background = new THREE.Color(0x090614);
+  scene.fog = new THREE.FogExp2(0x090614, 0.018);
 
   const camera = new THREE.PerspectiveCamera(40, 1, 0.1, 200);
   camera.position.set(22, 16, 24);
   camera.lookAt(0, 2.2, 0);
 
-  scene.add(new THREE.AmbientLight(0x9a70c4, 0.85));
-  const key = new THREE.DirectionalLight(0xffb0f0, 1.05);
+  scene.add(new THREE.AmbientLight(0x9a70c4, 0.75));
+  const key = new THREE.DirectionalLight(0xffd0f0, 0.95);
   key.position.set(8, 16, 6);
   scene.add(key);
-  const fill = new THREE.DirectionalLight(0x9af8ff, 0.55);
+  const fill = new THREE.DirectionalLight(0xb8f0ff, 0.4);
   fill.position.set(-10, 10, -4);
   scene.add(fill);
-  scene.add(new THREE.HemisphereLight(0xff8ae0, 0x241438, 0.55));
-  const rim = new THREE.PointLight(0xff3ec8, 18, 42, 2);
+  scene.add(new THREE.HemisphereLight(0xffb0e8, 0x241438, 0.45));
+  const rim = new THREE.PointLight(0xff3ec8, 10, 40, 2);
   rim.position.set(0, 8, 0);
   scene.add(rim);
-  const cyan = new THREE.PointLight(0x7af0ff, 12, 36, 2);
-  cyan.position.set(-4, 6, 6);
-  scene.add(cyan);
-  const magenta = new THREE.PointLight(0xb14bff, 10, 34, 2);
-  magenta.position.set(6, 7, -5);
-  scene.add(magenta);
 
   const starLayers = addStarfield(scene) || [];
   addVoidGlow(scene);
@@ -94,8 +86,7 @@ async function boot() {
 
   const templates = await Promise.all(BUILDINGS.map(function (url) {
     return loadModel(url).then(function (gltf) {
-      tuneCity(gltf.scene, false);
-      boostGlow(gltf.scene);
+      tuneCity(gltf.scene, false, true);
       return gltf.scene;
     });
   }));
@@ -106,8 +97,7 @@ async function boot() {
     loadModel("/assets/models/eh98/vending.glb"),
   ]).then(function (list) {
     return list.map(function (gltf) {
-      tuneCity(gltf.scene, false);
-      boostGlow(gltf.scene);
+      tuneCity(gltf.scene, false, true);
       return gltf.scene;
     });
   }).catch(function () { return []; });
@@ -160,11 +150,6 @@ async function boot() {
     return { marker: marker, pin: pin, beam: board };
   });
 
-  const composer = new EffectComposer(renderer);
-  composer.addPass(new RenderPass(scene, camera));
-  const bloom = new UnrealBloomPass(new THREE.Vector2(mount.clientWidth, mount.clientHeight), 0.22, 0.35, 0.72);
-  composer.addPass(bloom);
-
   let dragging = false;
   let lastX = 0;
   let yaw = 0.55;
@@ -210,8 +195,6 @@ async function boot() {
     camera.aspect = w / h;
     camera.updateProjectionMatrix();
     renderer.setSize(w, h, false);
-    composer.setSize(w, h);
-    bloom.setSize(w, h);
     return true;
   }
 
@@ -245,7 +228,7 @@ async function boot() {
     anchors.forEach(function (item, index) {
       if (item.beam && item.beam.userData && item.beam.userData.pulseMats) {
         item.beam.userData.pulseMats.forEach(function (mat) {
-          mat.emissiveIntensity = 0.55 + Math.sin(t * 1.6 + index) * 0.12;
+          mat.emissiveIntensity = 0.35 + Math.sin(t * 1.4 + index) * 0.08;
         });
       }
       const pos = item.marker.getWorldPosition(new THREE.Vector3());
@@ -258,7 +241,7 @@ async function boot() {
       item.pin.style.top = y + "px";
     });
     applyOrbit();
-    composer.render();
+    renderer.render(scene, camera);
     requestAnimationFrame(frame);
   }
   requestAnimationFrame(frame);

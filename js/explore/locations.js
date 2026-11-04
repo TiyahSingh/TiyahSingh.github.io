@@ -87,7 +87,7 @@ export function createLocations(options) {
       busy = true;
       fade.textContent = "About";
       fade.classList.add("is-on");
-      await wait(320);
+      await wait(120);
       location.assign("/about.html?from=explore");
       return;
     }
@@ -95,7 +95,7 @@ export function createLocations(options) {
       busy = true;
       fade.textContent = "Skill Galaxy";
       fade.classList.add("is-on");
-      await wait(320);
+      await wait(120);
       location.assign("/skills.html?from=explore");
       return;
     }
@@ -103,7 +103,7 @@ export function createLocations(options) {
       busy = true;
       fade.textContent = "Digital CV";
       fade.classList.add("is-on");
-      await wait(320);
+      await wait(120);
       location.assign("/cv.html?from=explore");
       return;
     }
@@ -111,13 +111,13 @@ export function createLocations(options) {
       busy = true;
       fade.textContent = "Contact";
       fade.classList.add("is-on");
-      await wait(320);
+      await wait(120);
       location.assign("/contact.html?from=explore");
       return;
     }
     busy = true;
     fade.classList.add("is-on");
-    await wait(420);
+    await wait(160);
     const leaving = place;
     if (next === "street") {
       const door = street.doors.find(function (item) { return item.id === leaving; });

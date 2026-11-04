@@ -2,7 +2,7 @@ import * as THREE from "three";
 import { createStreet } from "./environment.js?v=14";
 import { createPlayer } from "./player.js?v=6";
 import { createCamera } from "./camera.js?v=6";
-import { createLocations } from "./locations.js?v=18";
+import { createLocations } from "./locations.js?v=19";
 
 const WRITTEN = {
   "#about": "/about.html",

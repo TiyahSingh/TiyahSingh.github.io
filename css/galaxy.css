@@ -70,9 +70,12 @@
   z-index: 0;
   pointer-events: none;
   background:
-    linear-gradient(180deg, rgba(255, 180, 230, 0.12), rgba(200, 120, 220, 0.08) 45%, rgba(90, 30, 120, 0.22)),
-    url("/assets/galaxy/bg-skills-y2k.jpg") center / cover no-repeat,
-    #f0c8f0;
+    radial-gradient(circle at 18% 22%, rgba(255, 255, 255, 0.55) 0 1.5px, transparent 2.5px),
+    radial-gradient(circle at 72% 18%, rgba(255, 255, 255, 0.4) 0 1px, transparent 2px),
+    radial-gradient(circle at 40% 70%, rgba(255, 255, 255, 0.45) 0 1.2px, transparent 2.2px),
+    radial-gradient(circle at 88% 62%, rgba(255, 255, 255, 0.35) 0 1px, transparent 2px),
+    radial-gradient(ellipse 70% 55% at 50% 35%, #ffe0f4 0%, #ffb6e4 42%, #d98ad8 78%, #8a4aaa 100%);
+  background-color: #ffb6e4;
 }
 
 .galaxy-bg__photo {
@@ -80,21 +83,14 @@
 }
 
 .galaxy-bg__nebula {
-  position: absolute;
-  inset: -6%;
-  background:
-    radial-gradient(ellipse 55% 40% at 55% 40%, rgba(255, 140, 220, 0.16), transparent 62%),
-    radial-gradient(ellipse 40% 30% at 15% 75%, rgba(255, 180, 240, 0.12), transparent 55%);
-  filter: blur(36px);
-  animation: galaxy-nebula 40s ease-in-out infinite alternate;
-  opacity: 0.55;
+  display: none;
 }
 
 .galaxy-bg__vignette {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse at center, transparent 48%, rgba(120, 40, 140, 0.18) 100%);
+    radial-gradient(ellipse at center, transparent 55%, rgba(90, 30, 120, 0.16) 100%);
 }
 
 #galaxy-stars {
