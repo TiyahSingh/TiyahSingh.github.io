@@ -89,11 +89,14 @@ export async function createStreet(scene, options) {
   const leftWing = placeKenney(group, kenney["building-a"], -4.4, -16.2, 0);
   const rightWing = placeKenney(group, kenney["building-b"], 4.4, -16.2, 0);
   occluders.push(leftWing, rightWing);
-  placeKenney(group, kenney["detail-awning-wide"], -1.7, -13.6, 0, 3.1);
-  placeKenney(group, kenney["detail-awning-wide"], 1.7, -13.6, 0, 3.1);
+  /* Awnings sat over the GAMES sign — keep them high as a roof trim instead */
+  if (kenney["detail-awning-wide"]) {
+    placeKenney(group, kenney["detail-awning-wide"], -2.4, -15.2, 0, 5.6);
+    placeKenney(group, kenney["detail-awning-wide"], 2.4, -15.2, 0, 5.6);
+  }
 
   const marquee = makeSign("GAMES", "#ff3ec8", 6.4, 1.7, "TIYAH SINGH");
-  marquee.position.set(0, 6.4, -13.4);
+  marquee.position.set(0, 6.8, -13.4);
   group.add(marquee);
   if (!lite) {
     glow(scene, 0, 7.2, -12.2, 0xff3ec8, 4.5, 14);
@@ -120,12 +123,12 @@ export async function createStreet(scene, options) {
   doors.forEach(function (door) {
     markers.push(addPortal(group, door.x, door.z, door.yaw, door.label, door.color, door.id));
   });
-  const gamesSign = makeSign("GAMES", "#ff3ec8", 2.1, 0.85, "ARCADE");
+  const gamesSign = makeSign("GAMES", "#ff3ec8", 2.4, 0.9, "ARCADE");
   gamesSign.material.side = THREE.DoubleSide;
-  gamesSign.position.set(0, 3.5, -12.7);
+  gamesSign.position.set(0, 2.55, -12.5);
   gamesSign.userData.doorId = "games";
   group.add(gamesSign);
-  markers.push({ mesh: gamesSign, base: 3.5, phase: 0.4 });
+  markers.push({ mesh: gamesSign, base: 2.55, phase: 0.4 });
   doors.push({
     id: "games",
     x: 0,
