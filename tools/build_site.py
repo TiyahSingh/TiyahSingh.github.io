@@ -541,9 +541,9 @@ def header(title="", nav=""):
   <meta name="description" content="Game developer portfolio of Tiyah Singh. Selected projects, roles, and playable links.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Spicy+Rice&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Spicy+Rice&display=swap" rel="stylesheet">
   <link rel="icon" href="/assets/brand/favicon.png" type="image/png">
-  <link rel="stylesheet" href="/css/site.css?v=45">
+  <link rel="stylesheet" href="/css/site.css?v=46">
 </head>
 <body{body}>
   <a class="skip" href="#content">Skip to content</a>
@@ -945,7 +945,7 @@ def index():
   }
   </script>
   <script type="module" src="/js/explore/main.js?v=15"></script>
-""" + footer()
+"""
     (ROOT / "index.html").write_text(home, encoding="utf-8")
     (ROOT / "explore.html").write_text(explore, encoding="utf-8")
     (ROOT / "404.html").write_text(header("Signal lost") + """

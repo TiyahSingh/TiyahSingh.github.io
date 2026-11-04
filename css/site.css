@@ -13,7 +13,7 @@
   --shadow: 6px 6px 0 #4a1060;
   --font-display: "Spicy Rice", "Segoe UI", cursive;
   --font-ui: "Spicy Rice", "Segoe UI", cursive;
-  --font-body: "TT Lakes Neue", Barlow, "Segoe UI", sans-serif;
+  --font-body: Fredoka, "Segoe UI", sans-serif;
   /* Header + logo share one height so they stay locked together */
   --hud-h: 6.35rem;
   --logo-inset: 0.22rem;
@@ -80,6 +80,7 @@ body {
     auto, auto, auto, auto, auto, auto;
   color: var(--paper);
   font-family: var(--font-body);
+  font-weight: 500;
   font-size: clamp(0.95rem, 0.9rem + 0.35vw, 1.08rem);
   line-height: 1.6;
 }
@@ -456,6 +457,8 @@ h2 {
 
 .site-footer,
 footer.site-footer {
+  position: relative;
+  z-index: 12;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -470,6 +473,10 @@ footer.site-footer {
   box-shadow: none;
   color: #ff4eb8;
   text-align: center;
+}
+
+body.explore-page .site-footer {
+  display: none !important;
 }
 
 .footer-logo {
