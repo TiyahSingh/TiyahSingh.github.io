@@ -7,9 +7,9 @@
   <meta name="description" content="Game developer portfolio of Tiyah Singh. Selected projects, roles, and playable links.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&family=Oxanium:wght@500;700;800&family=Sora:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Orbitron:wght@500;700;800&family=Oxanium:wght@500;700;800&family=Sora:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="icon" href="/assets/brand/favicon.png" type="image/png">
-  <link rel="stylesheet" href="/css/site.css?v=17">
+  <link rel="stylesheet" href="/css/site.css?v=18">
 </head>
 <body>
   <a class="skip" href="#content">Skip to content</a>
@@ -49,34 +49,44 @@
       <button type="button" role="tab" id="tab-links" aria-selected="false" aria-controls="panel-links" data-tab="links">Links</button>
     </div>
     <div class="tab-panel" id="panel-overview" role="tabpanel" aria-labelledby="tab-overview" data-panel="overview">
-      <article class="panel block">
-        <h2>Project brief</h2>
-        <p>The jam brief was to turn the theme into the rule of the game, using the myth of Narcissus and Echo. Reflection is not decoration. Every input is two inputs, and some levels limit how many moves you have.</p>
+      <article class="panel block planet">
+        <div class="planet-glass">
+          <h2 class="cosmic-mark"><i data-lucide="sparkles"></i> Project brief</h2>
+          <p>The jam brief was to turn the theme into the rule of the game, using the myth of Narcissus and Echo. Reflection is not decoration. Every input is two inputs, and some levels limit how many moves you have.</p>
+        </div>
       </article>
     </div>
     <div class="tab-panel" id="panel-gameplay" role="tabpanel" aria-labelledby="tab-gameplay" data-panel="gameplay" hidden>
-      <article class="panel block">
-        <h2>Gameplay</h2>
-        <p>Echo's Lament is a short grid puzzle made for a jam on the theme Echo and Reflection. You steer Narcissus. Echo moves as his opposite: up becomes down, and left becomes right. Both of them must stand on their exits at the same time. A move that saves one can trap the other.</p>
+      <article class="panel block planet">
+        <div class="planet-glass">
+          <h2>Gameplay</h2>
+          <p>Echo's Lament is a short grid puzzle made for a jam on the theme Echo and Reflection. You steer Narcissus. Echo moves as his opposite: up becomes down, and left becomes right. Both of them must stand on their exits at the same time. A move that saves one can trap the other.</p>
+        </div>
       </article>
     </div>
     <div class="tab-panel" id="panel-dev" role="tabpanel" aria-labelledby="tab-dev" data-panel="dev" hidden>
-      <article class="panel block">
-        <h2>Technologies</h2>
-        <ul class="chips"><li>Unity</li><li>HTML5</li><li>Grid movement</li><li>itch.io</li></ul>
+      <article class="panel block planet">
+        <div class="planet-glass">
+          <h2>Technologies</h2>
+          <ul class="chips"><li>Unity</li><li>HTML5</li><li>Grid movement</li><li>itch.io</li></ul>
+        </div>
       </article>
-      <article class="panel block">
-        <h2>Process</h2>
-        <figure class="process">
-          <img src="/assets/process/echos-lament.jpg" alt="Process image for Echo's Lament.">
-        </figure>
+      <article class="panel block planet">
+        <div class="planet-glass">
+          <h2>Process</h2>
+          <figure class="process">
+            <img src="/assets/process/echos-lament.jpg" alt="Process image for Echo's Lament.">
+          </figure>
+        </div>
       </article>
     </div>
     <div class="tab-panel" id="panel-role" role="tabpanel" aria-labelledby="tab-role" data-panel="role" hidden>
-      <article class="panel block">
-        <h2>Role and contribution</h2>
-        <p>Tiyah worked on the jam game. The playable build is the public page.</p>
-        
+      <article class="panel block planet">
+        <div class="planet-glass">
+          <h2>Role and contribution</h2>
+          <p>Tiyah worked on the jam game. The playable build is the public page.</p>
+          
+        </div>
       </article>
     </div>
     <div class="tab-panel" id="panel-links" role="tabpanel" aria-labelledby="tab-links" data-panel="links" hidden>
@@ -104,8 +114,10 @@
       <img src="/assets/brand/tiny-logo.png" alt="" width="42" height="42">
       <span>TIYAH SINGH · GAME DEVELOPER</span>
     </span>
-    <span>tiyahsingh.co.za</span>
+    <span class="cosmic-mark"><i data-lucide="sparkles"></i> tiyahsingh.co.za</span>
   </footer>
+  <script src="https://unpkg.com/lucide@0.468.0"></script>
+  <script>if (window.lucide) lucide.createIcons();</script>
   <script src="/js/arcade.js"></script>
 </body>
 </html>

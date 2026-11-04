@@ -7,9 +7,9 @@
   <meta name="description" content="Game developer portfolio of Tiyah Singh. Selected projects, roles, and playable links.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&family=Oxanium:wght@500;700;800&family=Sora:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Orbitron:wght@500;700;800&family=Oxanium:wght@500;700;800&family=Sora:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="icon" href="/assets/brand/favicon.png" type="image/png">
-  <link rel="stylesheet" href="/css/site.css?v=17">
+  <link rel="stylesheet" href="/css/site.css?v=18">
 </head>
 <body>
   <a class="skip" href="#content">Skip to content</a>
@@ -49,34 +49,44 @@
       <button type="button" role="tab" id="tab-links" aria-selected="false" aria-controls="panel-links" data-tab="links">Links</button>
     </div>
     <div class="tab-panel" id="panel-overview" role="tabpanel" aria-labelledby="tab-overview" data-panel="overview">
-      <article class="panel block">
-        <h2>Project brief</h2>
-        <p>The GADE5121 brief was a C# Windows Forms game made in a pair, with a schedule, a reference list, a written game report, and a recorded presentation of the finished part.</p>
+      <article class="panel block planet">
+        <div class="planet-glass">
+          <h2 class="cosmic-mark"><i data-lucide="sparkles"></i> Project brief</h2>
+          <p>The GADE5121 brief was a C# Windows Forms game made in a pair, with a schedule, a reference list, a written game report, and a recorded presentation of the finished part.</p>
+        </div>
       </article>
     </div>
     <div class="tab-panel" id="panel-gameplay" role="tabpanel" aria-labelledby="tab-gameplay" data-panel="gameplay" hidden>
-      <article class="panel block">
-        <h2>Gameplay</h2>
-        <p>Dragon Slayers is a Windows Forms battle. The opening form starts the fight and hands the turn to the player. The GADE project grew across three parts, from the first forms to a finished battle build, a game report, and a presentation.</p>
+      <article class="panel block planet">
+        <div class="planet-glass">
+          <h2>Gameplay</h2>
+          <p>Dragon Slayers is a Windows Forms battle. The opening form starts the fight and hands the turn to the player. The GADE project grew across three parts, from the first forms to a finished battle build, a game report, and a presentation.</p>
+        </div>
       </article>
     </div>
     <div class="tab-panel" id="panel-dev" role="tabpanel" aria-labelledby="tab-dev" data-panel="dev" hidden>
-      <article class="panel block">
-        <h2>Technologies</h2>
-        <ul class="chips"><li>C#</li><li>Windows Forms</li><li>.NET</li><li>GitHub</li></ul>
+      <article class="panel block planet">
+        <div class="planet-glass">
+          <h2>Technologies</h2>
+          <ul class="chips"><li>C#</li><li>Windows Forms</li><li>.NET</li><li>GitHub</li></ul>
+        </div>
       </article>
-      <article class="panel block">
-        <h2>Process</h2>
-        <figure class="process">
-          <img src="/assets/process/dragon-slayers.jpg" alt="Process image for Dragon Slayers.">
-        </figure>
+      <article class="panel block planet">
+        <div class="planet-glass">
+          <h2>Process</h2>
+          <figure class="process">
+            <img src="/assets/process/dragon-slayers.jpg" alt="Process image for Dragon Slayers.">
+          </figure>
+        </div>
       </article>
     </div>
     <div class="tab-panel" id="panel-role" role="tabpanel" aria-labelledby="tab-role" data-panel="role" hidden>
-      <article class="panel block">
-        <h2>Role and contribution</h2>
-        <p>Tiyah built the Windows Forms battle, from the opening form through the player turn, with a game report and a presentation.</p>
-        
+      <article class="panel block planet">
+        <div class="planet-glass">
+          <h2>Role and contribution</h2>
+          <p>Tiyah built the Windows Forms battle, from the opening form through the player turn, with a game report and a presentation.</p>
+          
+        </div>
       </article>
     </div>
     <div class="tab-panel" id="panel-links" role="tabpanel" aria-labelledby="tab-links" data-panel="links" hidden>
@@ -104,8 +114,10 @@
       <img src="/assets/brand/tiny-logo.png" alt="" width="42" height="42">
       <span>TIYAH SINGH · GAME DEVELOPER</span>
     </span>
-    <span>tiyahsingh.co.za</span>
+    <span class="cosmic-mark"><i data-lucide="sparkles"></i> tiyahsingh.co.za</span>
   </footer>
+  <script src="https://unpkg.com/lucide@0.468.0"></script>
+  <script>if (window.lucide) lucide.createIcons();</script>
   <script src="/js/arcade.js"></script>
 </body>
 </html>
