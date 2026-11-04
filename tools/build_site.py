@@ -543,7 +543,7 @@ def header(title="", nav=""):
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Spicy+Rice&display=swap" rel="stylesheet">
   <link rel="icon" href="/assets/brand/favicon.png" type="image/png">
-  <link rel="stylesheet" href="/css/site.css?v=51">
+  <link rel="stylesheet" href="/css/site.css?v=52">
 </head>
 <body{body}>
   <a class="skip" href="#content">Skip to content</a>
@@ -915,7 +915,7 @@ def index():
     }
   }
   </script>
-  <script type="module" src="/js/home/world-map.js?v=20"></script>
+  <script type="module" src="/js/home/world-map.js?v=21"></script>
   <script>
   if (location.hash === "#play" || location.hash.indexOf("#explore/") === 0) {
     location.replace("/explore.html" + location.hash);

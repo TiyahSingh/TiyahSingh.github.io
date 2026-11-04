@@ -64,8 +64,8 @@ async function boot() {
   const scene = new THREE.Scene();
   scene.fog = new THREE.FogExp2(0x090614, 0.018);
 
-  const camera = new THREE.PerspectiveCamera(36, 1, 0.1, 200);
-  camera.position.set(14, 11, 16);
+  const camera = new THREE.PerspectiveCamera(40, 1, 0.1, 200);
+  camera.position.set(22, 16, 24);
   camera.lookAt(0, 2.2, 0);
 
   scene.add(new THREE.AmbientLight(0x9a70c4, 2.1));
@@ -141,13 +141,13 @@ async function boot() {
   const anchors = DESTINATIONS.map(function (dest, index) {
     const board = makeBuildingBillboard(dest.label, dest.color);
     /* Mount on the building face like a fixed neon billboard */
-    board.position.set(dest.x, Math.max(2.4, dest.y * 0.62), dest.z);
+    board.position.set(dest.x, Math.max(2.2, dest.y * 0.55), dest.z);
     board.rotation.y = Math.atan2(dest.x, dest.z) + Math.PI;
     board.rotation.y += (index % 2 === 0 ? -0.18 : 0.22);
     city.add(board);
 
     const marker = new THREE.Object3D();
-    marker.position.set(dest.x, board.position.y + 0.55, dest.z);
+    marker.position.set(dest.x, dest.y, dest.z);
     city.add(marker);
 
     const pin = document.createElement("a");
@@ -155,7 +155,7 @@ async function boot() {
     pin.href = dest.href;
     pin.style.setProperty("--pin", dest.color);
     pin.setAttribute("aria-label", dest.label);
-    pin.innerHTML = "<span class='map-pin-label'>" + dest.label + "</span>";
+    pin.innerHTML = "<span class='map-pin-dot'></span><span class='map-pin-label'>" + dest.label + "</span>";
     pinsHost.appendChild(pin);
     return { marker: marker, pin: pin, beam: board };
   });
@@ -169,9 +169,9 @@ async function boot() {
   let lastX = 0;
   let yaw = 0.55;
   let pitch = 0.34;
-  /* Closer fill so the island reads large after refresh / layout settle */
-  const target = new THREE.Vector3(0.35, 2.1, 0.15);
-  const radius = 22;
+  /* Far enough out to read the whole floating city */
+  const target = new THREE.Vector3(0.2, 2.2, 0);
+  const radius = 32;
 
   function applyOrbit() {
     camera.position.set(
@@ -253,7 +253,7 @@ async function boot() {
       const x = (pos.x * 0.5 + 0.5) * lastW;
       const y = (-pos.y * 0.5 + 0.5) * lastH;
       const visible = pos.z < 1 && x > -40 && y > -40 && x < lastW + 40 && y < lastH + 40;
-      item.pin.style.display = visible ? "block" : "none";
+      item.pin.style.display = visible ? "grid" : "none";
       item.pin.style.left = x + "px";
       item.pin.style.top = y + "px";
     });
@@ -551,7 +551,7 @@ function placeCssPins() {
     pin.style.left = (58 + dest.x * 3.2) + "%";
     pin.style.top = (42 + dest.z * 3.1) + "%";
     pin.setAttribute("aria-label", dest.label);
-    pin.innerHTML = "<span class='map-pin-label'>" + dest.label + "</span>";
+    pin.innerHTML = "<span class='map-pin-dot'></span><span class='map-pin-label'>" + dest.label + "</span>";
     pinsHost.appendChild(pin);
   });
 }
