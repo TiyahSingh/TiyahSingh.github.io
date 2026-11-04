@@ -542,13 +542,16 @@ def header(title="", nav=""):
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@360;500;650&family=Press+Start+2P&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/css/site.css?v=15">
+  <link rel="icon" href="/assets/brand/favicon.png" type="image/png">
+  <link rel="stylesheet" href="/css/site.css?v=16">
 </head>
 <body{body}>
   <a class="skip" href="#content">Skip to content</a>
   <div class="scanlines" aria-hidden="true"></div>
   <header class="hud">
-    <a class="logo" href="/">TIYAH<span>SINGH</span></a>
+    <a class="logo" href="/" aria-label="Tiyah Singh home">
+      <img src="/assets/brand/main-logo.png" alt="Tiyah Singh" width="104" height="104">
+    </a>
     <nav class="nav" aria-label="Primary">
       {items}
     </nav>
@@ -560,7 +563,10 @@ def header(title="", nav=""):
 
 def footer():
     return """  <footer>
-    <span>TIYAH SINGH · GAME DEVELOPER</span>
+    <span class="footer-brand">
+      <img src="/assets/brand/tiny-logo.png" alt="" width="42" height="42">
+      <span>TIYAH SINGH · GAME DEVELOPER</span>
+    </span>
     <span>tiyahsingh.co.za</span>
   </footer>
   <script src="/js/arcade.js"></script>
@@ -857,9 +863,10 @@ def index():
       <div class="world-veil" aria-hidden="true"></div>
       <div id="world-pins" class="world-pins"></div>
       <div class="world-copy">
+        <img class="brand-mark" src="/assets/brand/main-logo.png" alt="Tiyah Singh" width="220" height="220">
         <p class="kicker">PLAYER 01</p>
         <h1>Welcome to<br><span>Tiyah's world</span></h1>
-        <p class="world-tag">Game developer &amp; creative</p>
+        <p class="world-tag">Game developer &amp; creative · explore my world</p>
         <p class="world-blurb">Collect games. Explore my world. Get to know me. Click a glowing marker on the city, or press start to walk the neon street.</p>
         <nav class="world-menu" aria-label="World destinations">
           <a href="/explore.html"><span>&#9654;</span> Explore</a>
@@ -883,7 +890,7 @@ def index():
     }
   }
   </script>
-  <script type="module" src="/js/home/world-map.js?v=6"></script>
+  <script type="module" src="/js/home/world-map.js?v=7"></script>
   <script>
   if (location.hash === "#play" || location.hash.indexOf("#explore/") === 0) {
     location.replace("/explore.html" + location.hash);
