@@ -6,7 +6,8 @@ import { UnrealBloomPass } from "three/addons/postprocessing/UnrealBloomPass.js"
 import { createStreet } from "./environment.js?v=13";
 import { createPlayer } from "./player.js?v=5";
 import { createCamera } from "./camera.js?v=6";
-import { createLocations } from "./locations.js?v=10";
+import { createLocations } from "./locations.js?v=11";
+import { createAboutOverlay } from "./about-overlay.js?v=1";
 
 const WRITTEN = {
   "#about": "/about.html",
@@ -96,7 +97,11 @@ async function boot(mount) {
   const bloom = new UnrealBloomPass(new THREE.Vector2(mount.clientWidth, mount.clientHeight), 0.14, 0.12, 0.9);
   composer.addPass(bloom);
 
-  const places = createLocations({
+  let places;
+  const aboutPage = createAboutOverlay(profile.about, function () {
+    if (places) places.go("street");
+  });
+  places = createLocations({
     scene: scene,
     street: street,
     player: player,
@@ -104,6 +109,7 @@ async function boot(mount) {
     fade: fade,
     projects: projects,
     profile: profile,
+    aboutPage: aboutPage,
     onPlace: function (place) {
       const names = { about: "About", skills: "Skills", games: "Games arcade", cv: "CV", contact: "Contact" };
       fade.textContent = names[place] || "Back on the street";
@@ -125,7 +131,10 @@ async function boot(mount) {
     else if (key === "a" || key === "arrowleft") input.left = down;
     else if (key === "d" || key === "arrowright") input.right = down;
     else if (down && (key === "e" || key === "enter")) openMachine();
-    else if (down && key === "escape") panel.hidden = true;
+    else if (down && key === "escape") {
+      if (aboutPage.isOpen()) places.go("street");
+      else panel.hidden = true;
+    }
     else return;
     event.preventDefault();
   }
@@ -179,7 +188,9 @@ async function boot(mount) {
     const dt = Math.min(0.05, (now - last) / 1000 || 0);
     last = now;
     const world = places.active();
-    player.update(dt, input, rig.camera, world.colliders, world.bounds);
+    if (places.place() !== "about") {
+      player.update(dt, input, rig.camera, world.colliders, world.bounds);
+    }
     places.update();
     if (hud) hud.textContent = places.prompt();
     if (act) {

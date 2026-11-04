@@ -17,6 +17,7 @@ export function createLocations(options) {
   const fade = options.fade;
   const projects = options.projects;
   const profile = options.profile;
+  const aboutPage = options.aboutPage;
   const onPlace = options.onPlace || function () {};
   const interiors = {};
   let place = "street";
@@ -27,7 +28,8 @@ export function createLocations(options) {
   let exitArmed = false;
 
   function current() {
-    return place === "street" ? street : interiors[place];
+    if (place === "street" || place === "about") return street;
+    return interiors[place];
   }
 
   function active() {
@@ -53,6 +55,7 @@ export function createLocations(options) {
     fade.classList.add("is-on");
     await wait(420);
     const leaving = place;
+    if (aboutPage) aboutPage.close();
     if (next === "street") {
       const door = street.doors.find(function (item) { return item.id === leaving; });
       Object.keys(interiors).forEach(function (id) { interiors[id].group.visible = false; });
@@ -68,6 +71,22 @@ export function createLocations(options) {
       if (location.hash.indexOf("#explore/") === 0) {
         history.pushState({ place: "street" }, "", "#play");
       }
+    } else if (next === "about" && aboutPage) {
+      Object.keys(interiors).forEach(function (id) { interiors[id].group.visible = false; });
+      street.group.visible = true;
+      const door = street.doors.find(function (item) { return item.id === "about"; });
+      if (door && leaving === "street") {
+        player.group.position.copy(door.exitAt);
+        player.group.rotation.y = door.yawOut;
+        armed[door.id] = false;
+      }
+      camera.setMode("street");
+      camera.setOccluders(street.occluders);
+      aboutPage.open();
+      place = "about";
+      nearest = null;
+      const hash = "#explore/about";
+      if (location.hash !== hash) history.pushState({ place: "about" }, "", hash);
     } else {
       const interior = ensure(next);
       street.group.visible = false;
@@ -104,6 +123,10 @@ export function createLocations(options) {
     });
     if (busy) return;
     const point = player.group.position;
+    if (place === "about") {
+      nearest = null;
+      return;
+    }
     if (place === "street") {
       let entered = null;
       street.doors.forEach(function (door) {
@@ -162,6 +185,7 @@ export function createLocations(options) {
   }
 
   function prompt() {
+    if (place === "about") return "Tap the pink × to return to the street.";
     const next = action();
     if (next) return next.detail;
     if (place !== "street") return "Walk to a glowing sign, then tap Read. Walk out the door to return.";
