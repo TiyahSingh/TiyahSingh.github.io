@@ -9,23 +9,31 @@ const pinsHost = document.getElementById("world-pins");
 if (!mount || !pinsHost) throw new Error("Missing home map mount");
 
 const DESTINATIONS = [
-  { id: "explore", label: "Explore", href: "/explore.html", color: "#ff4ae8", x: 0.6, z: 1.2, y: 4.8 },
-  { id: "about", label: "About Me", href: "/explore.html#explore/about", color: "#e0b0ff", x: -7.2, z: -1.4, y: 4.2 },
-  { id: "skills", label: "Skills", href: "/explore.html#explore/skills", color: "#c45cff", x: 7.4, z: -0.6, y: 4.4 },
-  { id: "games", label: "Games", href: "/explore.html#explore/games", color: "#ff4ae8", x: -1.8, z: -5.6, y: 5.4 },
+  { id: "explore", label: "EXPLORE", href: "/explore.html", color: "#ff4ae8", x: 0.6, z: 1.2, y: 4.8 },
+  { id: "about", label: "ABOUT", href: "/explore.html#explore/about", color: "#e0b0ff", x: -7.2, z: -1.4, y: 4.2 },
+  { id: "skills", label: "SKILLS", href: "/explore.html#explore/skills", color: "#c45cff", x: 7.4, z: -0.6, y: 4.4 },
+  { id: "games", label: "GAMES", href: "/explore.html#explore/games", color: "#ff4ae8", x: -1.8, z: -5.6, y: 5.4 },
   { id: "cv", label: "CV", href: "/explore.html#explore/cv", color: "#e0b0ff", x: 5.2, z: -5.8, y: 4.6 },
-  { id: "contact", label: "Contact", href: "/explore.html#explore/contact", color: "#ff9cf0", x: -6.4, z: 4.6, y: 3.8 },
+  { id: "contact", label: "CONTACT", href: "/explore.html#explore/contact", color: "#ff9cf0", x: -6.4, z: 4.6, y: 3.8 },
 ];
 
 const BUILDINGS = [
   "/assets/models/kenney/commercial/building-skyscraper-a.glb",
   "/assets/models/kenney/commercial/building-skyscraper-e.glb",
   "/assets/models/kenney/commercial/building-a.glb",
+  "/assets/models/kenney/commercial/building-b.glb",
+  "/assets/models/kenney/commercial/building-c.glb",
   "/assets/models/kenney/commercial/building-d.glb",
+  "/assets/models/kenney/commercial/building-e.glb",
   "/assets/models/kenney/commercial/building-f.glb",
+  "/assets/models/kenney/commercial/building-g.glb",
   "/assets/models/kenney/commercial/building-h.glb",
   "/assets/models/kenney/commercial/building-i.glb",
+  "/assets/models/kenney/commercial/building-j.glb",
   "/assets/models/kenney/commercial/low-detail-building-wide-a.glb",
+  "/assets/models/kenney/commercial/low-detail-building-wide-b.glb",
+  "/assets/models/kenney/commercial/low-detail-building-a.glb",
+  "/assets/models/kenney/commercial/low-detail-building-b.glb",
   "/assets/models/kenney/commercial/low-detail-building-c.glb",
 ];
 
@@ -106,12 +114,14 @@ async function boot() {
   }).catch(function () { return []; });
 
   const islands = [
-    { x: 0, z: 0, w: 9.5, d: 8.2, h: 0.55, hue: 0xff3ec8 },
-    { x: -8.2, z: -2.2, w: 5.6, d: 5.2, h: 0.7, hue: 0x7af0ff },
-    { x: 8.4, z: -1.4, w: 5.8, d: 5.4, h: 0.65, hue: 0xb14bff },
-    { x: -2.2, z: -7.2, w: 6.4, d: 5.0, h: 0.8, hue: 0xff3ec8 },
-    { x: 5.8, z: -7.0, w: 5.2, d: 4.6, h: 0.7, hue: 0x7af0ff },
-    { x: -7.2, z: 4.8, w: 5.0, d: 4.4, h: 0.6, hue: 0xff7ad9 },
+    { x: 0, z: 0, w: 11.2, d: 9.6, h: 0.55, hue: 0xff3ec8 },
+    { x: -8.6, z: -2.4, w: 6.8, d: 6.2, h: 0.7, hue: 0x7af0ff },
+    { x: 8.8, z: -1.6, w: 7.0, d: 6.4, h: 0.65, hue: 0xb14bff },
+    { x: -2.4, z: -7.8, w: 7.4, d: 5.8, h: 0.8, hue: 0xff3ec8 },
+    { x: 6.2, z: -7.4, w: 6.2, d: 5.4, h: 0.7, hue: 0x7af0ff },
+    { x: -7.6, z: 5.2, w: 6.0, d: 5.2, h: 0.6, hue: 0xff7ad9 },
+    { x: 3.4, z: 6.4, w: 5.4, d: 4.8, h: 0.58, hue: 0xb14bff },
+    { x: 9.6, z: 4.2, w: 4.8, d: 4.4, h: 0.62, hue: 0xff3ec8 },
   ];
 
   islands.forEach(function (spec, index) {
@@ -124,6 +134,10 @@ async function boot() {
   addBridge(city, islands[0], islands[3]);
   addBridge(city, islands[3], islands[4]);
   addBridge(city, islands[0], islands[5]);
+  addBridge(city, islands[0], islands[6]);
+  addBridge(city, islands[2], islands[7]);
+  addBridge(city, islands[6], islands[7]);
+  addBridge(city, islands[5], islands[6]);
 
   const anchors = DESTINATIONS.map(function (dest) {
     const marker = new THREE.Object3D();
@@ -304,41 +318,69 @@ function makeIsland(spec) {
 
 function scatterBuildings(city, templates, props, island, seed) {
   const slots = [
-    [island.x - island.w * 0.28, island.z - island.d * 0.22],
-    [island.x + island.w * 0.24, island.z - island.d * 0.18],
-    [island.x - island.w * 0.05, island.z + island.d * 0.2],
-    [island.x + island.w * 0.3, island.z + island.d * 0.12],
-    [island.x - island.w * 0.18, island.z + island.d * 0.02],
-    [island.x + island.w * 0.08, island.z - island.d * 0.02],
+    [island.x - island.w * 0.34, island.z - island.d * 0.28],
+    [island.x - island.w * 0.08, island.z - island.d * 0.3],
+    [island.x + island.w * 0.18, island.z - island.d * 0.26],
+    [island.x + island.w * 0.34, island.z - island.d * 0.1],
+    [island.x - island.w * 0.32, island.z - island.d * 0.02],
+    [island.x - island.w * 0.06, island.z + island.d * 0.02],
+    [island.x + island.w * 0.14, island.z + island.d * 0.04],
+    [island.x + island.w * 0.32, island.z + island.d * 0.16],
+    [island.x - island.w * 0.2, island.z + island.d * 0.26],
+    [island.x + island.w * 0.04, island.z + island.d * 0.28],
+    [island.x + island.w * 0.24, island.z + island.d * 0.3],
+    [island.x - island.w * 0.16, island.z - island.d * 0.14],
   ];
   slots.forEach(function (slot, index) {
-    const template = templates[(seed * 3 + index) % templates.length];
+    const template = templates[(seed * 5 + index * 2) % templates.length];
     const building = template.clone(true);
-    const tall = index < 3;
-    const scale = tall ? 1.45 + (seed % 3) * 0.14 : 0.9 + (index % 2) * 0.18;
+    const tall = index % 4 === 0 || index % 5 === 1;
+    const mid = index % 3 === 0;
+    const scale = tall
+      ? 1.55 + (seed % 3) * 0.16
+      : mid
+        ? 1.15 + (index % 2) * 0.12
+        : 0.78 + (index % 3) * 0.1;
     building.scale.setScalar(scale);
     building.position.set(slot[0], island.h * 0.5, slot[1]);
-    building.rotation.y = ((seed + index) % 4) * Math.PI * 0.5;
+    building.rotation.y = ((seed + index) % 8) * Math.PI * 0.25;
     city.add(building);
 
     if (index === 0 && DESTINATIONS[seed]) {
-      const sign = makeSign(DESTINATIONS[seed].label.toUpperCase(), DESTINATIONS[seed].color, 2.6, 0.75);
+      const sign = makeSign(DESTINATIONS[seed].label, DESTINATIONS[seed].color, 2.6, 0.75);
       sign.position.set(slot[0], island.h * 0.5 + scale * 2.35, slot[1] + 1.15);
       city.add(sign);
     }
   });
 
   if (props[0]) {
-    const lamp = props[0].clone(true);
-    lamp.scale.setScalar(1.4);
-    lamp.position.set(island.x + island.w * 0.32, island.h * 0.5, island.z + island.d * 0.28);
-    city.add(lamp);
+    [[0.36, 0.3], [-0.34, 0.28], [0.3, -0.3], [-0.28, -0.26]].forEach(function (offset, i) {
+      if ((seed + i) % 2 !== 0 && i > 1) return;
+      const lamp = props[0].clone(true);
+      lamp.scale.setScalar(1.25 + (i % 2) * 0.2);
+      lamp.position.set(island.x + island.w * offset[0], island.h * 0.5, island.z + island.d * offset[1]);
+      city.add(lamp);
+    });
   }
-  if (props[2] && seed % 2 === 0) {
+  if (props[1] && seed % 3 !== 2) {
+    const board = props[1].clone(true);
+    board.scale.setScalar(1.15);
+    board.position.set(island.x + island.w * 0.12, island.h * 0.5, island.z - island.d * 0.34);
+    board.rotation.y = (seed % 4) * Math.PI * 0.5;
+    city.add(board);
+  }
+  if (props[2]) {
     const cab = props[2].clone(true);
-    cab.scale.setScalar(1.2);
-    cab.position.set(island.x - island.w * 0.3, island.h * 0.5, island.z + island.d * 0.22);
+    cab.scale.setScalar(1.15);
+    cab.position.set(island.x - island.w * 0.28, island.h * 0.5, island.z + island.d * 0.2);
     city.add(cab);
+    if (seed % 2 === 0) {
+      const cab2 = props[2].clone(true);
+      cab2.scale.setScalar(1.05);
+      cab2.position.set(island.x + island.w * 0.26, island.h * 0.5, island.z - island.d * 0.18);
+      cab2.rotation.y = Math.PI * 0.5;
+      city.add(cab2);
+    }
   }
 }
 

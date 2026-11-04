@@ -885,7 +885,7 @@ def index():
           <span class="gba-buttons"><i></i><i></i><i></i><i></i></span>
         </div>
       </div>
-      <p class="world-hint">Drag to look · click a marker</p>
+      <p class="world-hint">DRAG TO LOOK · CLICK A MARKER</p>
       <p class="world-hearts" aria-hidden="true">♥ ♥ ♥ · LVL 01</p>
     </section>
   </main>
@@ -897,7 +897,7 @@ def index():
     }
   }
   </script>
-  <script type="module" src="/js/home/world-map.js?v=8"></script>
+  <script type="module" src="/js/home/world-map.js?v=9"></script>
   <script>
   if (location.hash === "#play" || location.hash.indexOf("#explore/") === 0) {
     location.replace("/explore.html" + location.hash);
