@@ -545,7 +545,7 @@ def header(title="", nav=""):
     elif nav == "cv":
         extra_css = '\n  <link rel="stylesheet" href="/css/cv.css?v=4">'
     elif nav == "contact":
-        extra_css = '\n  <link rel="stylesheet" href="/css/contact.css?v=1">'
+        extra_css = '\n  <link rel="stylesheet" href="/css/contact.css?v=2">'
     heading = "Tiyah Singh — Game Developer" if not title else f"{title} — Tiyah Singh"
     return f"""<!DOCTYPE html>
 <html lang="en">
@@ -1146,62 +1146,68 @@ def index():
     sheet("Contact", "contact", f"""
     <a class="about-street-exit" id="about-street-exit" href="/explore.html?door=contact" hidden aria-label="Back to the street">×</a>
     <div class="contact-stage">
-      <span class="contact-spark" aria-hidden="true"></span>
-      <span class="contact-spark" aria-hidden="true"></span>
-      <span class="contact-spark" aria-hidden="true"></span>
       <div class="contact-layout">
-        <section class="contact-win contact-win--signal">
-          <div class="contact-win__bar">
-            <span class="contact-win__dots" aria-hidden="true"><i></i><i></i><i></i></span>
-            <p class="contact-win__title">Signal Booth</p>
+        <article class="pad pad--signal">
+          <div class="pad__shoulders" aria-hidden="true"><span class="pad__shoulder"></span><span class="pad__shoulder"></span></div>
+          <div class="pad__shell">
+            <span class="pad__grip pad__grip--l" aria-hidden="true"></span>
+            <span class="pad__grip pad__grip--r" aria-hidden="true"></span>
+            <div class="pad__dpad" aria-hidden="true"><span></span></div>
+            <div class="pad__screen">
+              <div class="pad__led" aria-hidden="true"><b></b><span>Online</span></div>
+              <p class="contact-kicker">Player 01</p>
+              <h1 class="contact-heading">Get in touch</h1>
+              <p class="contact-blurb">{CONTACT_BLURB}</p>
+              <a class="contact-mail" href="mailto:{CONTACT_EMAIL}">{CONTACT_EMAIL}</a>
+              <nav class="contact-socials" aria-label="Social links">
+                {contact_socials}
+              </nav>
+            </div>
+            <div class="pad__btns" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
           </div>
-          <div class="contact-win__body">
-            <p class="contact-kicker">Player 01</p>
-            <h1 class="contact-heading">Get in touch</h1>
-            <p class="contact-blurb">{CONTACT_BLURB}</p>
-            <a class="contact-mail" href="mailto:{CONTACT_EMAIL}">{CONTACT_EMAIL}</a>
-            <nav class="contact-socials" aria-label="Social links">
-              {contact_socials}
-            </nav>
+        </article>
+        <article class="pad pad--form">
+          <div class="pad__shoulders" aria-hidden="true"><span class="pad__shoulder"></span><span class="pad__shoulder"></span></div>
+          <div class="pad__shell">
+            <span class="pad__grip pad__grip--l" aria-hidden="true"></span>
+            <span class="pad__grip pad__grip--r" aria-hidden="true"></span>
+            <div class="pad__dpad" aria-hidden="true"><span></span></div>
+            <div class="pad__screen">
+              <div class="pad__led" aria-hidden="true"><b></b><span>Input ready</span></div>
+              <h2 class="contact-form-title">Send a message</h2>
+              <form class="contact-form" id="contact-form" data-email="{CONTACT_EMAIL}" novalidate>
+                <div class="contact-form__row">
+                  <div class="contact-field">
+                    <label for="first_name">First name <span>*</span></label>
+                    <input id="first_name" name="first_name" type="text" autocomplete="given-name" required placeholder="First name">
+                  </div>
+                  <div class="contact-field">
+                    <label for="last_name">Last name</label>
+                    <input id="last_name" name="last_name" type="text" autocomplete="family-name" placeholder="Last name">
+                  </div>
+                </div>
+                <div class="contact-form__row">
+                  <div class="contact-field">
+                    <label for="email">Email <span>*</span></label>
+                    <input id="email" name="email" type="email" autocomplete="email" required placeholder="you@email.com">
+                  </div>
+                  <div class="contact-field">
+                    <label for="phone">Phone</label>
+                    <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="Optional">
+                  </div>
+                </div>
+                <div class="contact-field contact-field--full">
+                  <label for="message">Write a message</label>
+                  <textarea id="message" name="message" rows="6" placeholder="Say hi, ask about a game, or pitch a collab…"></textarea>
+                </div>
+                <div class="pad__startrow" aria-hidden="true"><span class="pad__pill"></span><span class="pad__pill"></span></div>
+                <button class="contact-submit" type="submit">Press Start</button>
+                <p class="contact-note" id="contact-note" hidden></p>
+              </form>
+            </div>
+            <div class="pad__btns" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
           </div>
-        </section>
-        <section class="contact-win contact-win--form">
-          <div class="contact-win__bar">
-            <span class="contact-win__dots" aria-hidden="true"><i></i><i></i><i></i></span>
-            <p class="contact-win__title">Message Terminal</p>
-          </div>
-          <div class="contact-win__body">
-            <h2 class="contact-form-title">Send a message</h2>
-            <form class="contact-form" id="contact-form" data-email="{CONTACT_EMAIL}" novalidate>
-              <div class="contact-form__row">
-                <div class="contact-field">
-                  <label for="first_name">First name <span>*</span></label>
-                  <input id="first_name" name="first_name" type="text" autocomplete="given-name" required placeholder="First name">
-                </div>
-                <div class="contact-field">
-                  <label for="last_name">Last name</label>
-                  <input id="last_name" name="last_name" type="text" autocomplete="family-name" placeholder="Last name">
-                </div>
-              </div>
-              <div class="contact-form__row">
-                <div class="contact-field">
-                  <label for="email">Email <span>*</span></label>
-                  <input id="email" name="email" type="email" autocomplete="email" required placeholder="you@email.com">
-                </div>
-                <div class="contact-field">
-                  <label for="phone">Phone</label>
-                  <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="Optional">
-                </div>
-              </div>
-              <div class="contact-field contact-field--full">
-                <label for="message">Write a message</label>
-                <textarea id="message" name="message" rows="6" placeholder="Say hi, ask about a game, or pitch a collab…"></textarea>
-              </div>
-              <button class="contact-submit" type="submit">Submit</button>
-              <p class="contact-note" id="contact-note" hidden></p>
-            </form>
-          </div>
-        </section>
+        </article>
       </div>
     </div>
     <script src="/js/contact.js?v=1"></script>
