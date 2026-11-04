@@ -6,7 +6,7 @@ import { UnrealBloomPass } from "three/addons/postprocessing/UnrealBloomPass.js"
 import { createStreet } from "./environment.js?v=13";
 import { createPlayer } from "./player.js?v=5";
 import { createCamera } from "./camera.js?v=6";
-import { createLocations } from "./locations.js?v=16";
+import { createLocations } from "./locations.js?v=17";
 
 const WRITTEN = {
   "#about": "/about.html",

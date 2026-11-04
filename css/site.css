@@ -224,10 +224,11 @@ button {
   padding: 0.15rem 0;
 }
 
+.hud .nav a,
 .nav a,
 .pixel-btn,
 button.pixel-btn {
-  font-family: var(--font-ui);
+  font-family: "Spicy Rice", var(--font-ui), cursive;
   font-size: clamp(0.72rem, 1.2vw, 0.9rem);
   font-weight: 400;
   letter-spacing: 0.02em;

@@ -541,7 +541,7 @@ def header(title="", nav=""):
     if nav == "skills":
         extra_css = '\n  <link rel="stylesheet" href="/css/galaxy.css?v=12">'
     elif nav == "cv":
-        extra_css = '\n  <link rel="stylesheet" href="/css/cv.css?v=3">'
+        extra_css = '\n  <link rel="stylesheet" href="/css/cv.css?v=4">'
     heading = "Tiyah Singh — Game Developer" if not title else f"{title} — Tiyah Singh"
     return f"""<!DOCTYPE html>
 <html lang="en">
@@ -554,7 +554,7 @@ def header(title="", nav=""):
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Spicy+Rice&display=swap" rel="stylesheet">
   <link rel="icon" href="/assets/brand/favicon.png" type="image/png">
-  <link rel="stylesheet" href="/css/site.css?v=63">{extra_css}
+  <link rel="stylesheet" href="/css/site.css?v=64">{extra_css}
 </head>
 <body{body}>
   <a class="skip" href="#content">Skip to content</a>
@@ -1161,7 +1161,7 @@ def index():
             <a href="/explore.html#explore/games">GAMES</a>
             <a href="/explore.html?door=about">ABOUT</a>
             <a href="/explore.html?door=skills">SKILLS</a>
-            <a href="/explore.html#explore/cv">CV</a>
+            <a href="/explore.html?door=cv">CV</a>
             <a href="/explore.html#explore/contact">CONTACT</a>
           </nav>
         </div>
@@ -1189,7 +1189,7 @@ def index():
     }
   }
   </script>
-  <script type="module" src="/js/home/world-map.js?v=25"></script>
+  <script type="module" src="/js/home/world-map.js?v=26"></script>
   <script>
   if (location.hash === "#play" || location.hash.indexOf("#explore/") === 0) {
     location.replace("/explore.html" + location.hash);
@@ -1218,7 +1218,7 @@ def index():
     }
   }
   </script>
-  <script type="module" src="/js/explore/main.js?v=23"></script>
+  <script type="module" src="/js/explore/main.js?v=24"></script>
 """
     (ROOT / "index.html").write_text(home, encoding="utf-8")
     (ROOT / "explore.html").write_text(explore, encoding="utf-8")

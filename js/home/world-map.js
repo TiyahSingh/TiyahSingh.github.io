@@ -13,7 +13,7 @@ const DESTINATIONS = [
   { id: "about", label: "ABOUT", href: "/explore.html?door=about", color: "#e0b0ff", x: -7.2, z: -1.4, y: 4.2 },
   { id: "skills", label: "SKILLS", href: "/explore.html?door=skills", color: "#c45cff", x: 7.4, z: -0.6, y: 4.4 },
   { id: "games", label: "GAMES", href: "/explore.html#explore/games", color: "#ff4ae8", x: -1.8, z: -5.6, y: 5.4 },
-  { id: "cv", label: "CV", href: "/explore.html#explore/cv", color: "#e0b0ff", x: 5.2, z: -5.8, y: 4.6 },
+  { id: "cv", label: "CV", href: "/explore.html?door=cv", color: "#e0b0ff", x: 5.2, z: -5.8, y: 4.6 },
   { id: "contact", label: "CONTACT", href: "/explore.html#explore/contact", color: "#ff9cf0", x: -6.4, z: 4.6, y: 3.8 },
 ];
 
