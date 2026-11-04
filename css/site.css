@@ -1450,7 +1450,8 @@ body.explore-page .explore { min-height: 0; }
   }
   .world { min-height: 360px; }
   .explore { min-height: 360px; }
-  .world-start { width: 100%; text-align: center; }
+  .gba-title-row { flex-wrap: wrap; }
+  .world-start { width: auto; text-align: center; }
 }
 
 .explore {
