@@ -541,7 +541,7 @@ def header(title="", nav=""):
         body = ""
     extra_css = ""
     if nav == "skills":
-        extra_css = '\n  <link rel="stylesheet" href="/css/galaxy.css?v=13">'
+        extra_css = '\n  <link rel="stylesheet" href="/css/galaxy.css?v=14">'
     elif nav == "cv":
         extra_css = '\n  <link rel="stylesheet" href="/css/cv.css?v=4">'
     elif nav == "contact":
