@@ -87,7 +87,7 @@ async function boot() {
   magenta.position.set(6, 7, -5);
   scene.add(magenta);
 
-  addStarfield(scene);
+  const starLayers = addStarfield(scene);
   addVoidGlow(scene);
 
   const city = new THREE.Group();
@@ -171,10 +171,10 @@ async function boot() {
 
   let dragging = false;
   let lastX = 0;
-  let yaw = 0.42;
+  let yaw = 0.4;
   let pitch = 0.5;
-  /* Bias look target right so the left islands sit clear of the panel edge */
-  const target = new THREE.Vector3(2.4, -0.2, 0.4);
+  /* Bias look a bit right so the city reads behind/beside the panel */
+  const target = new THREE.Vector3(3.2, -0.15, 0.2);
   const radius = 44;
 
   function applyOrbit() {
@@ -216,6 +216,9 @@ async function boot() {
     const t = clock.getElapsedTime();
     if (!dragging) yaw += 0.00055;
     city.position.y = Math.sin(t * 0.55) * 0.12;
+    if (starLayers[0]) starLayers[0].rotation.y = t * 0.012;
+    if (starLayers[1]) starLayers[1].rotation.y = -t * 0.018;
+    if (starLayers[0]) starLayers[0].rotation.x = Math.sin(t * 0.08) * 0.04;
     anchors.forEach(function (item, index) {
       item.beam.material.opacity = 0.18 + Math.sin(t * 2.2 + index) * 0.08;
       const pos = item.marker.getWorldPosition(new THREE.Vector3());
