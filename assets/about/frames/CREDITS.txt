@@ -1,0 +1,3 @@
+textbox-*.png — reference UI frames supplied for this site.
+polaroid-frame.png / polaroids-ref.png — polaroid frame reference assets.
+kenney-*.png — Kenney.nl UI Pack (CC0): https://kenney.nl/assets/ui-pack

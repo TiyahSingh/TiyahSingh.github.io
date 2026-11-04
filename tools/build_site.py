@@ -545,7 +545,7 @@ def header(title="", nav=""):
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Spicy+Rice&display=swap" rel="stylesheet">
   <link rel="icon" href="/assets/brand/favicon.png" type="image/png">
-  <link rel="stylesheet" href="/css/site.css?v=55">
+  <link rel="stylesheet" href="/css/site.css?v=56">
 </head>
 <body{body}>
   <a class="skip" href="#content">Skip to content</a>
@@ -751,27 +751,27 @@ ABOUT = {
         {
             "title": "A little detour...",
             "copy": "My journey into game development wasn't exactly a straight line. I initially pursued a BSc in Biomedicine, spending two years exploring a completely different field before realising I wanted something that allowed me to exercise my creativity alongside my technical interests. I wanted to design, experiment, build and bring ideas to life, which eventually led me to take a leap in a completely different direction.",
-            "shell": "gba",
+            "frame": "target",
         },
         {
             "title": "Finding my world at Vega",
             "copy": "My journey as a game developer began at Vega School, where I discovered just how much could be achieved through the combination of programming, art and design. Each year introduced me to new ways of creating interactive experiences, from developing gameplay mechanics and programming systems to crafting visual identities, immersive environments and meaningful narratives. It was where I began to understand that game development was the perfect intersection of my technical and creative interests.",
-            "shell": "pad",
+            "frame": "switch",
         },
         {
             "title": "More than just a game",
             "copy": "One of the biggest things I've learnt is that games have the potential to be so much more than entertainment. They can teach, challenge perspectives, spark conversations and create emotional connections. I'm particularly drawn to the idea of creating experiences that leave players with something to think about long after they've put down the controller. Whether through storytelling, gameplay or visual communication, I believe every element of a game has the potential to say something.",
-            "shell": "arcade",
+            "frame": "folder",
         },
         {
             "title": "The best of both worlds",
             "copy": "I aspire to grow as a well-rounded game developer, with a particular interest in gameplay programming and C# development alongside UI/UX design and visual development. I'm equally fascinated by the logic behind how a game functions and the creative decisions that shape how it looks, feels and is experienced. I'm drawn to the challenge of taking an idea from its initial concept and visual direction all the way through to a fully functioning, interactive experience. Why choose between the art and the code when I can bring both together?",
-            "shell": "handheld",
+            "frame": "window",
         },
         {
             "title": "Beyond the screen",
             "copy": "When I'm not working on a project, I'm usually finding inspiration in other games, exploring different visual styles, experimenting with creative ideas or getting carried away with a new project. I'm naturally drawn to the little details that give things personality, whether it's an interesting colour palette, a beautifully designed interface or an entire fictional world. I believe inspiration can come from just about anywhere, and I'm always collecting ideas for what I could create next.",
-            "shell": "cart",
+            "frame": "target",
         },
     ],
 }
@@ -855,37 +855,25 @@ def index():
 
     about_blocks = []
     for i, section in enumerate(ABOUT["sections"]):
+        frame = section["frame"]
         about_blocks.append(f"""
-      <article class="toy-shell toy-{section["shell"]}">
-        <div class="toy-bezel" aria-hidden="true">
-          <span class="toy-led"></span>
-          <span class="toy-led"></span>
-        </div>
-        <div class="toy-screen">
-          <p class="toy-kicker">SLOT {i + 1:02d}</p>
+      <article class="pix-box pix-{frame}">
+        <div class="pix-screen">
+          <p class="pix-kicker">SLOT {i + 1:02d}</p>
           <h2>{section["title"]}</h2>
           <p>{section["copy"]}</p>
-        </div>
-        <div class="toy-controls" aria-hidden="true">
-          <span class="toy-dpad"></span>
-          <span class="toy-btns"><i></i><i></i></span>
         </div>
       </article>""")
     sheet("About", "about", f"""
     <div class="wrap about-arcade">
       <header class="about-hero">
-        <figure class="about-hero-pic">
-          <img src="/assets/about/hero.jpg" alt="Portrait of Tiyah Singh.">
+        <figure class="about-polaroid">
+          <img src="/assets/about/portrait-polaroid.png" alt="Portrait of Tiyah Singh in a polaroid frame.">
         </figure>
         <div class="about-hero-copy">
           <p class="kicker">ABOUT ME</p>
           <h1>{ABOUT["headline"]}</h1>
           <p class="about-hero-tag">TIYAH SINGH · GAME DESIGNER &amp; DEVELOPER</p>
-          <div class="about-hero-snaps" aria-hidden="true">
-            <img src="/assets/about/snap-1.jpg" alt="">
-            <img src="/assets/about/snap-3.jpg" alt="">
-            <img src="/assets/about/snap-5.jpg" alt="">
-          </div>
         </div>
       </header>
       <div class="about-consoles">
