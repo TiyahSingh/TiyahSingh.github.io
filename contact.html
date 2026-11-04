@@ -10,8 +10,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Spicy+Rice&display=swap" rel="stylesheet">
   <link rel="icon" href="/assets/brand/favicon.png" type="image/png">
   <link rel="stylesheet" href="/css/site.css?v=64">
+  <link rel="stylesheet" href="/css/contact.css?v=1">
 </head>
-<body>
+<body class="contact-page">
   <a class="skip" href="#content">Skip to content</a>
   <div class="scanlines" aria-hidden="true"></div>
   <header class="hud">
@@ -31,18 +32,78 @@
 
   <main id="content" class="sheet">
     
-    <div class="wrap contact-grid">
-      <article class="panel booth">
-        <p class="kicker">SIGNAL</p>
-        <h1>Contact</h1>
-        <p class="zone-blurb">Johannesburg. Open to game development roles, jams, and studio collaborations.</p>
-        <p><a href="mailto:tiyah.singh0308@gmail.com">tiyah.singh0308@gmail.com</a></p><p><a href="https://github.com/TiyahSingh">github.com/TiyahSingh</a></p><p><a href="https://www.linkedin.com/in/tiyah-singh-906352236">LinkedIn</a></p>
-      </article>
-      <article class="panel">
-        <h2>Two ways in</h2>
-        <p>The menu opens this page. On Home, the Contact marker opens this page. In Explore, walk through the glowing Contact doorway.</p>
-      </article>
+    <a class="about-street-exit" id="about-street-exit" href="/explore.html?door=contact" hidden aria-label="Back to the street">×</a>
+    <div class="contact-stage">
+      <span class="contact-spark" aria-hidden="true"></span>
+      <span class="contact-spark" aria-hidden="true"></span>
+      <span class="contact-spark" aria-hidden="true"></span>
+      <div class="contact-layout">
+        <section class="contact-win contact-win--signal">
+          <div class="contact-win__bar">
+            <span class="contact-win__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+            <p class="contact-win__title">Signal Booth</p>
+          </div>
+          <div class="contact-win__body">
+            <p class="contact-kicker">Player 01</p>
+            <h1 class="contact-heading">Get in touch</h1>
+            <p class="contact-blurb">Johannesburg. Open to game development roles, jams, and studio collaborations.</p>
+            <a class="contact-mail" href="mailto:tiyah.singh0308@gmail.com">tiyah.singh0308@gmail.com</a>
+            <nav class="contact-socials" aria-label="Social links">
+              <a class="contact-social" href="https://www.linkedin.com/in/tiyah-singh-906352236/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><img src="/assets/brand/social/linkedin.png?v=2" alt="" width="28" height="28"><span>LinkedIn</span></a><a class="contact-social" href="https://tiyahsingh.itch.io/" target="_blank" rel="noopener noreferrer" aria-label="itch.io"><img src="/assets/brand/social/itch.png?v=2" alt="" width="28" height="28"><span>itch.io</span></a><a class="contact-social" href="https://github.com/TiyahSingh" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><img src="/assets/brand/social/github.png?v=2" alt="" width="28" height="28"><span>GitHub</span></a><a class="contact-social" href="mailto:tiyah.singh0308@gmail.com" aria-label="Email"><img src="/assets/brand/social/gmail.png?v=2" alt="" width="28" height="28"><span>Email</span></a>
+            </nav>
+          </div>
+        </section>
+        <section class="contact-win contact-win--form">
+          <div class="contact-win__bar">
+            <span class="contact-win__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+            <p class="contact-win__title">Message Terminal</p>
+          </div>
+          <div class="contact-win__body">
+            <h2 class="contact-form-title">Send a message</h2>
+            <form class="contact-form" id="contact-form" data-email="tiyah.singh0308@gmail.com" novalidate>
+              <div class="contact-form__row">
+                <div class="contact-field">
+                  <label for="first_name">First name <span>*</span></label>
+                  <input id="first_name" name="first_name" type="text" autocomplete="given-name" required placeholder="First name">
+                </div>
+                <div class="contact-field">
+                  <label for="last_name">Last name</label>
+                  <input id="last_name" name="last_name" type="text" autocomplete="family-name" placeholder="Last name">
+                </div>
+              </div>
+              <div class="contact-form__row">
+                <div class="contact-field">
+                  <label for="email">Email <span>*</span></label>
+                  <input id="email" name="email" type="email" autocomplete="email" required placeholder="you@email.com">
+                </div>
+                <div class="contact-field">
+                  <label for="phone">Phone</label>
+                  <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="Optional">
+                </div>
+              </div>
+              <div class="contact-field contact-field--full">
+                <label for="message">Write a message</label>
+                <textarea id="message" name="message" rows="6" placeholder="Say hi, ask about a game, or pitch a collab…"></textarea>
+              </div>
+              <button class="contact-submit" type="submit">Submit</button>
+              <p class="contact-note" id="contact-note" hidden></p>
+            </form>
+          </div>
+        </section>
+      </div>
     </div>
+    <script src="/js/contact.js?v=1"></script>
+    <script>
+    (function () {
+      var params = new URLSearchParams(location.search);
+      var fromExplore = params.get("from") === "explore" || document.referrer.indexOf("/explore.html") !== -1;
+      var exit = document.getElementById("about-street-exit");
+      if (exit && fromExplore) {
+        exit.hidden = false;
+        document.body.classList.add("from-explore");
+      }
+    })();
+    </script>
   </main>
   <footer class="site-footer">
     <a class="footer-logo" href="/" aria-label="Tiyah Singh home">

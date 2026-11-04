@@ -535,6 +535,8 @@ def header(title="", nav=""):
         body = ' class="skills-galaxy-page"'
     elif nav == "cv":
         body = ' class="cv-page"'
+    elif nav == "contact":
+        body = ' class="contact-page"'
     else:
         body = ""
     extra_css = ""
@@ -542,6 +544,8 @@ def header(title="", nav=""):
         extra_css = '\n  <link rel="stylesheet" href="/css/galaxy.css?v=12">'
     elif nav == "cv":
         extra_css = '\n  <link rel="stylesheet" href="/css/cv.css?v=4">'
+    elif nav == "contact":
+        extra_css = '\n  <link rel="stylesheet" href="/css/contact.css?v=1">'
     heading = "Tiyah Singh — Game Developer" if not title else f"{title} — Tiyah Singh"
     return f"""<!DOCTYPE html>
 <html lang="en">
@@ -866,10 +870,17 @@ CV_CERTS = [
 CV_INTRO = CV_ABOUT
 CV_FILE = "Open the digital CV page for the full player record."
 CONTACT_BLURB = "Johannesburg. Open to game development roles, jams, and studio collaborations."
+CONTACT_EMAIL = "tiyah.singh0308@gmail.com"
 CONTACT_LINKS = [
-    {"label": "EMAIL", "title": "Email", "text": "tiyah.singh0308@gmail.com", "href": "mailto:tiyah.singh0308@gmail.com"},
+    {"label": "EMAIL", "title": "Email", "text": CONTACT_EMAIL, "href": f"mailto:{CONTACT_EMAIL}"},
     {"label": "GITHUB", "title": "GitHub", "text": "github.com/TiyahSingh", "href": "https://github.com/TiyahSingh"},
-    {"label": "LINKEDIN", "title": "LinkedIn", "text": "LinkedIn", "href": "https://www.linkedin.com/in/tiyah-singh-906352236"},
+    {"label": "LINKEDIN", "title": "LinkedIn", "text": "LinkedIn", "href": "https://www.linkedin.com/in/tiyah-singh-906352236/"},
+]
+CONTACT_SOCIALS = [
+    {"label": "LinkedIn", "href": "https://www.linkedin.com/in/tiyah-singh-906352236/", "icon": "/assets/brand/social/linkedin.png?v=2"},
+    {"label": "itch.io", "href": "https://tiyahsingh.itch.io/", "icon": "/assets/brand/social/itch.png?v=2"},
+    {"label": "GitHub", "href": "https://github.com/TiyahSingh", "icon": "/assets/brand/social/github.png?v=2"},
+    {"label": "Email", "href": f"mailto:{CONTACT_EMAIL}", "icon": "/assets/brand/social/gmail.png?v=2"},
 ]
 
 
@@ -910,7 +921,13 @@ def index():
             <span class="play-tag">INSPECT GAME</span>
           </span>
         </a>""")
-    contacts = "".join(f'<p><a href="{link["href"]}">{link["text"]}</a></p>' for link in CONTACT_LINKS)
+    contact_socials = "".join(
+        f'<a class="contact-social" href="{item["href"]}"'
+        + (' target="_blank" rel="noopener noreferrer"' if item["href"].startswith("http") else "")
+        + f' aria-label="{item["label"]}">'
+        + f'<img src="{item["icon"]}" alt="" width="28" height="28"><span>{item["label"]}</span></a>'
+        for item in CONTACT_SOCIALS
+    )
 
     def win(area, title, body):
         return f"""
@@ -1127,18 +1144,78 @@ def index():
       </div>
     </div>""")
     sheet("Contact", "contact", f"""
-    <div class="wrap contact-grid">
-      <article class="panel booth">
-        <p class="kicker">SIGNAL</p>
-        <h1>Contact</h1>
-        <p class="zone-blurb">{CONTACT_BLURB}</p>
-        {contacts}
-      </article>
-      <article class="panel">
-        <h2>Two ways in</h2>
-        <p>The menu opens this page. On Home, the Contact marker opens this page. In Explore, walk through the glowing Contact doorway.</p>
-      </article>
-    </div>""")
+    <a class="about-street-exit" id="about-street-exit" href="/explore.html?door=contact" hidden aria-label="Back to the street">×</a>
+    <div class="contact-stage">
+      <span class="contact-spark" aria-hidden="true"></span>
+      <span class="contact-spark" aria-hidden="true"></span>
+      <span class="contact-spark" aria-hidden="true"></span>
+      <div class="contact-layout">
+        <section class="contact-win contact-win--signal">
+          <div class="contact-win__bar">
+            <span class="contact-win__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+            <p class="contact-win__title">Signal Booth</p>
+          </div>
+          <div class="contact-win__body">
+            <p class="contact-kicker">Player 01</p>
+            <h1 class="contact-heading">Get in touch</h1>
+            <p class="contact-blurb">{CONTACT_BLURB}</p>
+            <a class="contact-mail" href="mailto:{CONTACT_EMAIL}">{CONTACT_EMAIL}</a>
+            <nav class="contact-socials" aria-label="Social links">
+              {contact_socials}
+            </nav>
+          </div>
+        </section>
+        <section class="contact-win contact-win--form">
+          <div class="contact-win__bar">
+            <span class="contact-win__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+            <p class="contact-win__title">Message Terminal</p>
+          </div>
+          <div class="contact-win__body">
+            <h2 class="contact-form-title">Send a message</h2>
+            <form class="contact-form" id="contact-form" data-email="{CONTACT_EMAIL}" novalidate>
+              <div class="contact-form__row">
+                <div class="contact-field">
+                  <label for="first_name">First name <span>*</span></label>
+                  <input id="first_name" name="first_name" type="text" autocomplete="given-name" required placeholder="First name">
+                </div>
+                <div class="contact-field">
+                  <label for="last_name">Last name</label>
+                  <input id="last_name" name="last_name" type="text" autocomplete="family-name" placeholder="Last name">
+                </div>
+              </div>
+              <div class="contact-form__row">
+                <div class="contact-field">
+                  <label for="email">Email <span>*</span></label>
+                  <input id="email" name="email" type="email" autocomplete="email" required placeholder="you@email.com">
+                </div>
+                <div class="contact-field">
+                  <label for="phone">Phone</label>
+                  <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="Optional">
+                </div>
+              </div>
+              <div class="contact-field contact-field--full">
+                <label for="message">Write a message</label>
+                <textarea id="message" name="message" rows="6" placeholder="Say hi, ask about a game, or pitch a collab…"></textarea>
+              </div>
+              <button class="contact-submit" type="submit">Submit</button>
+              <p class="contact-note" id="contact-note" hidden></p>
+            </form>
+          </div>
+        </section>
+      </div>
+    </div>
+    <script src="/js/contact.js?v=1"></script>
+    <script>
+    (function () {{
+      var params = new URLSearchParams(location.search);
+      var fromExplore = params.get("from") === "explore" || document.referrer.indexOf("/explore.html") !== -1;
+      var exit = document.getElementById("about-street-exit");
+      if (exit && fromExplore) {{
+        exit.hidden = false;
+        document.body.classList.add("from-explore");
+      }}
+    }})();
+    </script>""")
 
     home = header("", "home") + """
   <main id="content" class="world">
@@ -1162,7 +1239,7 @@ def index():
             <a href="/explore.html?door=about">ABOUT</a>
             <a href="/explore.html?door=skills">SKILLS</a>
             <a href="/explore.html?door=cv">CV</a>
-            <a href="/explore.html#explore/contact">CONTACT</a>
+            <a href="/explore.html?door=contact">CONTACT</a>
           </nav>
         </div>
         <div class="gba-controls" aria-hidden="true">
@@ -1189,7 +1266,7 @@ def index():
     }
   }
   </script>
-  <script type="module" src="/js/home/world-map.js?v=26"></script>
+  <script type="module" src="/js/home/world-map.js?v=27"></script>
   <script>
   if (location.hash === "#play" || location.hash.indexOf("#explore/") === 0) {
     location.replace("/explore.html" + location.hash);
@@ -1218,7 +1295,7 @@ def index():
     }
   }
   </script>
-  <script type="module" src="/js/explore/main.js?v=24"></script>
+  <script type="module" src="/js/explore/main.js?v=25"></script>
 """
     (ROOT / "index.html").write_text(home, encoding="utf-8")
     (ROOT / "explore.html").write_text(explore, encoding="utf-8")

@@ -1,0 +1,407 @@
+/* =========================================================
+   Contact — Y2K neon pink signal booth
+   ========================================================= */
+
+.contact-page {
+  --c-fill: #ffe5f5;
+  --c-mid: #ffd2eb;
+  --c-deep: #ffc9e9;
+  --c-edge: #ff4eb8;
+  --c-ink: #5a1048;
+  --c-muted: #8a3a6e;
+  --c-white: #fff8fc;
+  --c-glow: rgba(255, 78, 184, 0.45);
+  color-scheme: light;
+  background: #2a1048;
+  color: var(--c-ink);
+}
+
+body.contact-page .hud .nav a,
+body.contact-page .hud .nav a.is-on,
+body.contact-page .hud .nav a:hover {
+  font-family: "Spicy Rice", cursive !important;
+  text-transform: uppercase;
+}
+
+.contact-page .scanlines {
+  display: none !important;
+}
+
+.contact-page .sheet {
+  padding: 0;
+  overflow: hidden;
+}
+
+.contact-stage {
+  position: relative;
+  isolation: isolate;
+  min-height: calc(100dvh - var(--hud-h) - env(safe-area-inset-top, 0px));
+  padding: clamp(1.1rem, 3vw, 2.4rem) clamp(0.9rem, 3vw, 2rem) 3.2rem;
+  font-family: Fredoka, var(--font-body), sans-serif;
+  background:
+    linear-gradient(rgba(255, 78, 184, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 78, 184, 0.08) 1px, transparent 1px),
+    radial-gradient(ellipse 70% 50% at 10% 0%, rgba(255, 255, 255, 0.55), transparent 55%),
+    radial-gradient(ellipse 60% 45% at 95% 20%, rgba(255, 120, 210, 0.35), transparent 50%),
+    linear-gradient(180deg, #ffe5f5 0%, #ffd2eb 48%, #ffc4e8 100%);
+  background-size: 28px 28px, 28px 28px, auto, auto, auto;
+}
+
+.contact-stage::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(circle at 20% 78%, rgba(255, 78, 184, 0.16), transparent 24%),
+    radial-gradient(circle at 82% 70%, rgba(94, 200, 255, 0.14), transparent 22%);
+  animation: contact-glow 8s ease-in-out infinite alternate;
+}
+
+.contact-spark {
+  position: absolute;
+  width: 0.55rem;
+  height: 0.55rem;
+  background: #fff;
+  clip-path: polygon(50% 0%, 66% 34%, 100% 50%, 66% 66%, 50% 100%, 34% 66%, 0% 50%, 34% 34%);
+  opacity: 0.8;
+  z-index: 0;
+  pointer-events: none;
+  animation: contact-twinkle 2.8s ease-in-out infinite;
+}
+
+.contact-spark:nth-child(1) { top: 9%; left: 7%; }
+.contact-spark:nth-child(2) { top: 16%; right: 10%; width: 0.7rem; height: 0.7rem; animation-delay: 0.7s; }
+.contact-spark:nth-child(3) { bottom: 18%; left: 14%; animation-delay: 1.2s; }
+
+.contact-layout {
+  position: relative;
+  z-index: 1;
+  width: min(980px, 100%);
+  margin: 0 auto;
+  display: grid;
+  gap: 1.1rem;
+  grid-template-columns: 0.95fr 1.15fr;
+  align-items: start;
+}
+
+.contact-win {
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(180deg, var(--c-white) 0%, var(--c-fill) 100%);
+  border: 3px solid var(--c-edge);
+  border-radius: 1.05rem;
+  box-shadow: 5px 6px 0 rgba(176, 16, 120, 0.18), 0 0 24px var(--c-glow);
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(18px);
+  animation: contact-rise 0.7s ease forwards;
+}
+
+.contact-win--signal {
+  animation-delay: 0.05s;
+}
+
+.contact-win--form {
+  animation-delay: 0.16s;
+}
+
+.contact-win__bar {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  flex: 0 0 auto;
+  margin: 0;
+  padding: 0.45rem 0.75rem;
+  background: linear-gradient(180deg, #ffe5f5 0%, #ffd2eb 55%, #ffc9e9 100%);
+  border-bottom: 3px solid var(--c-edge);
+}
+
+.contact-win__dots {
+  display: inline-flex;
+  gap: 0.35rem;
+}
+
+.contact-win__dots i {
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 50%;
+  border: 2px solid rgba(90, 16, 72, 0.2);
+  display: block;
+}
+
+.contact-win__dots i:nth-child(1) { background: #ff4eb8; }
+.contact-win__dots i:nth-child(2) { background: #5ec8ff; }
+.contact-win__dots i:nth-child(3) { background: #ffd15c; }
+
+.contact-win__title {
+  margin: 0;
+  font-family: "Spicy Rice", var(--font-display), cursive;
+  font-size: clamp(0.95rem, 2.2vw, 1.15rem);
+  letter-spacing: 0.04em;
+  color: var(--c-ink);
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.contact-win__body {
+  padding: clamp(1rem, 2.4vw, 1.45rem);
+}
+
+.contact-kicker {
+  margin: 0 0 0.35rem;
+  font-family: Fredoka, var(--font-body), sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--c-edge);
+}
+
+.contact-heading {
+  margin: 0;
+  font-family: "Spicy Rice", var(--font-display), cursive;
+  font-size: clamp(2rem, 5vw, 3rem);
+  line-height: 0.95;
+  color: var(--c-edge);
+  text-shadow: 3px 3px 0 rgba(255, 255, 255, 0.85);
+  text-transform: uppercase;
+}
+
+.contact-blurb {
+  margin: 0.85rem 0 0;
+  font-family: Fredoka, var(--font-body), sans-serif;
+  font-size: 1rem;
+  line-height: 1.55;
+  color: var(--c-muted);
+}
+
+.contact-mail {
+  display: inline-block;
+  margin-top: 0.85rem;
+  font-family: Fredoka, var(--font-body), sans-serif;
+  font-weight: 600;
+  color: var(--c-edge);
+  text-decoration: none;
+}
+
+.contact-mail:hover {
+  color: #c2187a;
+  text-decoration: underline;
+}
+
+.contact-socials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-top: 1.2rem;
+}
+
+.contact-social {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.45rem 0.75rem 0.45rem 0.45rem;
+  border: 2.5px solid var(--c-edge);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--c-ink);
+  text-decoration: none;
+  font-family: "Spicy Rice", var(--font-display), cursive;
+  font-size: 0.78rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  box-shadow: 3px 3px 0 rgba(176, 16, 120, 0.14);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+.contact-social img {
+  width: 1.7rem;
+  height: 1.7rem;
+  display: block;
+  border-radius: 50%;
+}
+
+.contact-social:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(180deg, #ffe5f5 0%, #ffd2eb 100%);
+  box-shadow: 4px 5px 0 rgba(176, 16, 120, 0.18), 0 0 16px var(--c-glow);
+  color: var(--c-ink);
+  text-decoration: none;
+}
+
+.contact-form-title {
+  margin: 0 0 1rem;
+  font-family: "Spicy Rice", var(--font-display), cursive;
+  font-size: clamp(1.55rem, 3.5vw, 2.1rem);
+  color: var(--c-ink);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.contact-form {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.contact-form__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.contact-field {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.contact-field--full {
+  grid-column: 1 / -1;
+}
+
+.contact-field label {
+  font-family: Fredoka, var(--font-body), sans-serif;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--c-ink);
+}
+
+.contact-field label span {
+  color: var(--c-edge);
+}
+
+.contact-field input,
+.contact-field textarea {
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0.72rem 0.85rem;
+  border: 2.5px solid rgba(255, 78, 184, 0.45);
+  border-radius: 0.85rem;
+  background: rgba(255, 255, 255, 0.88);
+  color: var(--c-ink);
+  font-family: Fredoka, var(--font-body), sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.35;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+.contact-field textarea {
+  min-height: 8.5rem;
+  resize: vertical;
+}
+
+.contact-field input:focus,
+.contact-field textarea:focus {
+  border-color: var(--c-edge);
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(255, 78, 184, 0.18), 0 0 18px var(--c-glow);
+}
+
+.contact-field input::placeholder,
+.contact-field textarea::placeholder {
+  color: rgba(138, 58, 110, 0.55);
+}
+
+.contact-submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 0.25rem;
+  padding: 0.8rem 1.2rem;
+  border: 3px solid var(--c-edge);
+  border-radius: 999px;
+  background: linear-gradient(180deg, #ff79d6 0%, #ff4eb8 55%, #e0189a 100%);
+  color: #fff;
+  font-family: "Spicy Rice", var(--font-display), cursive;
+  font-size: 1.15rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 4px 5px 0 rgba(176, 16, 120, 0.22), 0 0 18px var(--c-glow);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+}
+
+.contact-submit:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.05);
+  box-shadow: 5px 7px 0 rgba(176, 16, 120, 0.24), 0 0 24px var(--c-glow);
+}
+
+.contact-submit:active {
+  transform: translateY(1px);
+}
+
+.contact-note {
+  margin: 0.55rem 0 0;
+  font-family: Fredoka, var(--font-body), sans-serif;
+  font-size: 0.82rem;
+  color: var(--c-muted);
+  text-align: center;
+}
+
+.contact-note[hidden] {
+  display: none !important;
+}
+
+.contact-note.is-ok {
+  color: #0f7a4a;
+}
+
+.contact-note.is-err {
+  color: #b01050;
+}
+
+@media (max-width: 860px) {
+  .contact-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .contact-form__row {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-stage {
+    padding: 0.9rem 0.7rem 2.4rem;
+  }
+
+  .contact-social {
+    width: 100%;
+    justify-content: flex-start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-win,
+  .contact-spark,
+  .contact-stage::before {
+    animation: none !important;
+  }
+
+  .contact-win {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes contact-rise {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes contact-twinkle {
+  0%, 100% { opacity: 0.35; transform: scale(0.85) rotate(0deg); }
+  50% { opacity: 0.95; transform: scale(1.15) rotate(12deg); }
+}
+
+@keyframes contact-glow {
+  from { opacity: 0.65; }
+  to { opacity: 1; }
+}

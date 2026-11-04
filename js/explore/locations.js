@@ -107,6 +107,14 @@ export function createLocations(options) {
       location.assign("/cv.html?from=explore");
       return;
     }
+    if (next === "contact") {
+      busy = true;
+      fade.textContent = "Contact";
+      fade.classList.add("is-on");
+      await wait(320);
+      location.assign("/contact.html?from=explore");
+      return;
+    }
     busy = true;
     fade.classList.add("is-on");
     await wait(420);
