@@ -65,9 +65,9 @@ async function boot() {
   const scene = new THREE.Scene();
   scene.fog = new THREE.FogExp2(0x090614, 0.018);
 
-  const camera = new THREE.PerspectiveCamera(34, mount.clientWidth / Math.max(mount.clientHeight, 1), 0.1, 200);
-  camera.position.set(26, 24, 28);
-  camera.lookAt(0, 0.2, 0);
+  const camera = new THREE.PerspectiveCamera(40, mount.clientWidth / Math.max(mount.clientHeight, 1), 0.1, 200);
+  camera.position.set(18, 14, 20);
+  camera.lookAt(0, 2.2, 0);
 
   scene.add(new THREE.AmbientLight(0x9a70c4, 2.1));
   const key = new THREE.DirectionalLight(0xffb0f0, 2.4);
@@ -171,11 +171,11 @@ async function boot() {
 
   let dragging = false;
   let lastX = 0;
-  let yaw = 0.4;
-  let pitch = 0.5;
-  /* Bias look a bit right so the city reads behind/beside the panel */
-  const target = new THREE.Vector3(0.6, -0.15, 0.2);
-  const radius = 42;
+  let yaw = 0.55;
+  let pitch = 0.36;
+  /* Aim at mid-city height so tops and bases both fit; closer fill */
+  const target = new THREE.Vector3(0.4, 2.4, 0);
+  const radius = 30;
 
   function applyOrbit() {
     camera.position.set(
