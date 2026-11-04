@@ -543,7 +543,7 @@ def header(title="", nav=""):
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Spicy+Rice&display=swap" rel="stylesheet">
   <link rel="icon" href="/assets/brand/favicon.png" type="image/png">
-  <link rel="stylesheet" href="/css/site.css?v=33">
+  <link rel="stylesheet" href="/css/site.css?v=34">
 </head>
 <body{body}>
   <a class="skip" href="#content">Skip to content</a>
@@ -870,14 +870,14 @@ def index():
           <p class="gba-bio">Hi, I’m Tiyah, a game designer and developer who decided one creative outlet was not enough. My game world blends gameplay programming, systems design, UI/UX digital art and storytelling, allowing me to see an idea beyond what it could look like and understand how to make it work. I exist in a space between programmer and artist, using code to give my ideas structure and creativity to give them a soul. Games let me turn the art existing in my head into worlds others can inhabit and experience mentally, emotionally, psychologically and intellectually.</p>
           <p class="gba-bio gba-cta">Step into my world and explore what I create.</p>
           <nav class="world-menu" aria-label="World destinations">
-            <a href="/explore.html"><span>&#9654;</span> Explore</a>
-            <a href="/explore.html#explore/games">Games</a>
-            <a href="/explore.html#explore/about">About</a>
-            <a href="/explore.html#explore/skills">Skills</a>
+            <a href="/explore.html"><span>&#9654;</span> EXPLORE</a>
+            <a href="/explore.html#explore/games">GAMES</a>
+            <a href="/explore.html#explore/about">ABOUT</a>
+            <a href="/explore.html#explore/skills">SKILLS</a>
             <a href="/explore.html#explore/cv">CV</a>
-            <a href="/explore.html#explore/contact">Contact</a>
+            <a href="/explore.html#explore/contact">CONTACT</a>
           </nav>
-          <a class="pixel-btn world-start" href="/explore.html">Press Start</a>
+          <a class="pixel-btn world-start" href="/explore.html">PRESS START</a>
         </div>
         <div class="gba-controls" aria-hidden="true">
           <span class="gba-dpad"></span>

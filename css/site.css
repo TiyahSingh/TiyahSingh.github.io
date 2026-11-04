@@ -646,22 +646,37 @@ footer {
 }
 
 .world-copy .world-menu a {
-  font-family: var(--font-ui);
-  font-size: 0.72rem;
+  font-family: var(--font-body);
+  font-size: clamp(0.82rem, 1.5vw, 0.95rem);
   font-weight: 700;
-  color: var(--paper);
-  border-left-color: transparent;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #fff;
+  border-left: 3px solid rgba(255, 78, 184, 0.45);
+  padding: 0.38rem 0.55rem;
+  text-shadow: 0 0 10px rgba(255, 78, 184, 0.35);
 }
 
 .world-copy .world-menu a:hover,
 .world-copy .world-menu a:focus-visible {
+  color: #fff;
+  background: rgba(255, 78, 184, 0.22);
+  border-left-color: var(--pink-2);
+  text-shadow: 0 0 14px rgba(255, 156, 240, 0.75);
+}
+
+.world-copy .world-menu a span {
   color: var(--pink-2);
-  border-left-color: var(--pink);
-  text-shadow: none;
+  margin-right: 0.45rem;
 }
 
 .world-copy .world-start {
-  margin-top: 0.4rem;
+  margin-top: 0.55rem;
+  font-family: var(--font-body);
+  font-size: clamp(0.78rem, 1.4vw, 0.88rem);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
 
 .cabinet {
@@ -952,7 +967,7 @@ footer {
     top: calc(var(--hud-h) + 0.45rem);
   }
   .gba-screen h1 { font-size: clamp(1.2rem, 6vw, 1.7rem); -webkit-text-stroke-width: 2px; }
-  .world-menu a { font-size: 0.78rem; }
+  .world-copy .world-menu a { font-size: 0.9rem; }
   .map-pin-label { font-size: 0.55rem; }
   .explore-hud { bottom: calc(5.6rem + env(safe-area-inset-bottom, 0px)); }
   .explore-act { bottom: calc(1.1rem + env(safe-area-inset-bottom, 0px)); }
