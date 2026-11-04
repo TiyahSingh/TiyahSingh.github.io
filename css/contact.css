@@ -187,26 +187,27 @@ body.contact-page .hud .nav a:hover {
 }
 
 .pad__btns {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.35rem;
-  width: 3.1rem;
+  position: relative;
+  width: 3.4rem;
+  height: 3.4rem;
   justify-self: center;
-  transform: rotate(-12deg);
+  margin-right: 0.35rem;
 }
 
 .pad__btns i {
-  width: 1.25rem;
-  height: 1.25rem;
+  position: absolute;
+  width: 1.15rem;
+  height: 1.15rem;
   border-radius: 50%;
-  border: 2px solid rgba(255, 255, 255, 0.55);
-  box-shadow: 0 2px 0 #8a1868, inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  background: #ffd2eb;
+  border: 2px solid #fff;
+  box-shadow: 0 2px 0 #9a1868, inset 0 -2px 0 rgba(176, 16, 120, 0.18);
 }
 
-.pad__btns i:nth-child(1) { background: radial-gradient(circle at 35% 30%, #fff8, #5ec8ff 42%, #2a88c8); }
-.pad__btns i:nth-child(2) { background: radial-gradient(circle at 35% 30%, #fff8, #ffd15c 42%, #d0a020); }
-.pad__btns i:nth-child(3) { background: radial-gradient(circle at 35% 30%, #fff8, #7dffb0 42%, #28a868); }
-.pad__btns i:nth-child(4) { background: radial-gradient(circle at 35% 30%, #fff8, #ff4fb8 42%, #c01888); }
+.pad__btns i:nth-child(1) { top: 0; left: 50%; transform: translateX(-50%); }
+.pad__btns i:nth-child(2) { left: 0; top: 50%; transform: translateY(-50%); }
+.pad__btns i:nth-child(3) { right: 0; top: 50%; transform: translateY(-50%); }
+.pad__btns i:nth-child(4) { bottom: 0; left: 50%; transform: translateX(-50%); }
 
 .pad__screen {
   min-width: 0;
