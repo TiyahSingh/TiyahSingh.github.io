@@ -500,8 +500,8 @@ footer.site-footer {
 }
 
 .footer-social {
-  width: 2.1rem;
-  height: 2.1rem;
+  width: 2.35rem;
+  height: 2.35rem;
   display: inline-grid;
   place-items: center;
   border: 0;
@@ -509,28 +509,20 @@ footer.site-footer {
   background: transparent;
   box-shadow: none;
   text-decoration: none;
-  color: #ff2eb6;
-  transition: transform 0.18s ease, color 0.18s ease, filter 0.18s ease;
+  transition: transform 0.18s ease, filter 0.18s ease;
 }
 
-.footer-social svg {
-  width: 1.55rem;
-  height: 1.55rem;
+.footer-social img {
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: contain;
   display: block;
 }
 
 .footer-social:hover {
   transform: translateY(-2px) scale(1.08);
-  color: #b01078;
-  filter: drop-shadow(0 0 8px rgba(255, 78, 184, 0.45));
-}
-
-.footer-social-linkedin,
-.footer-social-itch,
-.footer-social-mail,
-.footer-social-github {
-  background: transparent;
-  border-color: transparent;
+  filter: drop-shadow(0 0 10px rgba(255, 78, 184, 0.45));
 }
 
 .footer-copy {
