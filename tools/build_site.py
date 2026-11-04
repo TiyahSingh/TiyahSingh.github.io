@@ -543,7 +543,7 @@ def header(title="", nav=""):
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Spicy+Rice&display=swap" rel="stylesheet">
   <link rel="icon" href="/assets/brand/favicon.png" type="image/png">
-  <link rel="stylesheet" href="/css/site.css?v=31">
+  <link rel="stylesheet" href="/css/site.css?v=32">
 </head>
 <body{body}>
   <a class="skip" href="#content">Skip to content</a>
@@ -555,12 +555,7 @@ def header(title="", nav=""):
     <nav class="nav" aria-label="Primary">
       {items}
     </nav>
-    <button class="pixel-btn" id="sfx" type="button" aria-pressed="false">SFX OFF</button>
   </header>
-  <div class="brand-strip" aria-hidden="true">
-    <span class="brand-strip-mark">✦ Explore My World ✦</span>
-  </div>
-  <div class="marquee" aria-hidden="true"><p>INSERT COIN  ·  BUSHVELD BROTHERS  ·  SELKIE SONG  ·  DON'T FORGET TO SAY GOODBYE  ·  CLINICAL TRIAL  ·  CHARMFIRE  ·  NO EXIT  ·  ECHO'S LAMENT  ·  HIVE MIND  ·  A CAT'S TALE  ·  AQUA ALCHEMY  ·  NOESIS  ·  DREAMY MOSAICS  ·  DRAGON SLAYERS  ·  INSERT COIN  ·  BUSHVELD BROTHERS  ·  SELKIE SONG  ·  DON'T FORGET TO SAY GOODBYE  ·  </p></div>
 """
 
 

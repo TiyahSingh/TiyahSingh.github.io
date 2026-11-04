@@ -225,38 +225,6 @@ button.pixel-btn:hover {
   box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.55), 0 0 18px rgba(255, 78, 184, 0.65);
 }
 
-#sfx {
-  grid-column: 2;
-  justify-self: end;
-  background: rgba(196, 140, 230, 0.72);
-  color: #5b1a7a;
-  border-color: #8b3dff;
-}
-
-body.home #sfx,
-body.explore-page #sfx {
-  display: none;
-}
-
-.brand-strip {
-  display: flex;
-  justify-content: flex-start;
-  padding: 0.25rem 4vw 0.4rem;
-  background: transparent;
-}
-
-.brand-strip-mark {
-  font-family: var(--font-ui);
-  font-size: clamp(0.72rem, 1.6vw, 0.88rem);
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--pink-2);
-  text-shadow: 0 0 12px rgba(255, 46, 182, 0.45);
-}
-
-body.home .brand-strip,
-body.explore-page .brand-strip { display: none; }
 
 .wrap { width: min(1120px, calc(100% - 8vw)); margin: 0 auto; }
 
@@ -962,7 +930,6 @@ footer {
     grid-template-columns: auto 1fr;
   }
   .nav a, .pixel-btn, button.pixel-btn { padding: 0.22rem 0.55rem 0.3rem; font-size: 0.68rem; }
-  #sfx { display: none; }
   .lcd { grid-template-columns: 1fr; }
   .deck { align-items: flex-end; }
   .hint { display: none; }
@@ -980,15 +947,12 @@ footer {
   }
   .gba-screen h1 { font-size: clamp(1.2rem, 6vw, 1.7rem); -webkit-text-stroke-width: 2px; }
   .world-menu a { font-size: 0.78rem; }
-  .brand-strip-mark { font-size: 0.95rem; }
   .map-pin-label { font-size: 0.55rem; }
   .explore-hud { bottom: calc(5.6rem + env(safe-area-inset-bottom, 0px)); }
   .explore-act { bottom: calc(1.1rem + env(safe-area-inset-bottom, 0px)); }
 }
 
-body:has(.explore) .marquee,
-body.home .marquee,
-body.explore-page .marquee { display: none; }
+.marquee { display: none; }
 
 body.home {
   overflow-x: hidden;
