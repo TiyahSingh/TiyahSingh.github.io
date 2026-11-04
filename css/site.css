@@ -15,7 +15,8 @@
   --font-ui: Oxanium, Orbitron, sans-serif;
   --font-body: Sora, "Segoe UI", sans-serif;
   --hud-h: 6.5rem;
-  --logo-size: clamp(175px, 20vw, 230px);
+  --logo-size: clamp(190px, 22vw, 255px);
+  --panel-gap: 0.85rem;
   --gba: #ff2eb6;
   --gba-deep: #e0189a;
   --header-pink: #ffd0ea;
@@ -508,6 +509,21 @@ footer {
   color: var(--paper);
 }
 
+.gba-screen::-webkit-scrollbar {
+  width: 8px;
+}
+
+.gba-screen::-webkit-scrollbar-track {
+  background: rgba(10, 4, 18, 0.55);
+  border-radius: 999px;
+}
+
+.gba-screen::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #ff9cf0, #ff2eb6);
+  border-radius: 999px;
+  border: 2px solid rgba(42, 16, 56, 0.9);
+}
+
 .gba-kicker {
   margin: 0 0 0.35rem;
   font-family: var(--font-ui);
@@ -568,6 +584,7 @@ footer {
   gap: 0.6rem;
   margin-top: 0.45rem;
   padding: 0 0.25rem 0.05rem;
+  flex: 0 0 auto;
 }
 
 .gba-dpad {
@@ -604,14 +621,27 @@ footer {
 }
 
 .world-copy.gba-shell {
+  display: flex;
+  flex-direction: column;
   width: min(340px, calc(100% - 1.5rem));
   max-width: 340px;
   margin: 0;
   padding: 0.65rem 0.65rem 0.5rem;
-  pointer-events: none;
+  pointer-events: auto;
+  overflow: hidden;
 }
 
-.world-copy.gba-shell .gba-screen { pointer-events: auto; }
+.world-copy.gba-shell .gba-screen {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: #ff79d6 #2a1038;
+  pointer-events: auto;
+}
 
 .world-copy .world-menu a {
   font-family: var(--font-ui);
@@ -892,7 +922,7 @@ footer {
 @media (max-width: 860px) {
   :root {
     --hud-h: 4.2rem;
-    --logo-size: clamp(130px, 30vw, 170px);
+    --logo-size: clamp(150px, 32vw, 190px);
   }
   .hero, .about-grid, .contact-grid, .split, .qr-grid, .shelf { grid-template-columns: 1fr; }
   .crt img { height: 220px; }
@@ -1017,10 +1047,12 @@ body.explore-page .explore { min-height: 0; }
   pointer-events: none;
 }
 
-/* Keep the GBA panel clear of the oversized logo that hangs out of the header */
+/* Side player panel: clear the hanging logo, fit the stage, scroll inside */
 body.home .world-copy {
-  left: max(1rem, calc(var(--logo-size) * 0.72 + 1.1rem));
-  top: 0.85rem;
+  --logo-hang: max(0px, calc((var(--logo-size) - var(--hud-h)) / 2));
+  left: max(0.75rem, 2vw);
+  top: calc(var(--logo-hang) + var(--panel-gap));
+  max-height: calc(100% - var(--logo-hang) - var(--panel-gap) - 2.6rem);
 }
 
 .world-copy a,
@@ -1167,13 +1199,12 @@ body.home .world-copy {
   body.home .world-copy {
     left: 0.5rem;
     right: 0.5rem;
-    /* Sit below the hanging logo instead of under it */
-    top: calc(var(--logo-size) * 0.42);
+    top: calc(var(--logo-hang) + 0.55rem);
+    max-height: calc(100% - var(--logo-hang) - 0.55rem - 1.4rem);
   }
   .world-copy.gba-shell {
     width: min(100%, calc(100% - 1rem));
-    max-height: none;
-    overflow: visible;
+    max-width: none;
   }
   .gba-screen { padding: 0.85rem; }
   .gba-controls { display: none; }
@@ -1186,11 +1217,15 @@ body.home .world-copy {
 @media (max-width: 520px) {
   :root {
     --hud-h: 3.85rem;
-    --logo-size: clamp(120px, 34vw, 160px);
+    --logo-size: clamp(135px, 36vw, 175px);
   }
   .world { min-height: 360px; }
   .explore { min-height: 360px; }
   .world-start { width: 100%; text-align: center; }
+  body.home .world-copy {
+    top: calc(var(--logo-hang) + 0.4rem);
+    max-height: calc(100% - var(--logo-hang) - 0.4rem - 1rem);
+  }
 }
 
 .explore {
