@@ -11,11 +11,11 @@
   --line: #fc54d8;
   --card: #160820;
   --shadow: 6px 6px 0 #4a1060;
-  --font-display: Shrikhand, "Segoe UI", cursive;
-  --font-ui: Shrikhand, "Segoe UI", cursive;
+  --font-display: "Spicy Rice", "Segoe UI", cursive;
+  --font-ui: "Spicy Rice", "Segoe UI", cursive;
   --font-body: "TT Lakes Neue", Barlow, "Segoe UI", sans-serif;
   --hud-h: 5.4rem;
-  --logo-inset: 0.4rem;
+  --logo-inset: 0.22rem;
   --panel-gap: 0.85rem;
   --gba: #ff2eb6;
   --gba-deep: #e0189a;
@@ -150,17 +150,19 @@ a:hover { color: white; }
 }
 
 .logo:hover {
-  transform: scale(1.03) rotate(-1deg);
+  transform: scale(1.02) rotate(-0.8deg);
   filter: drop-shadow(0 0 18px rgba(255, 78, 184, 0.85));
 }
 
 .logo img {
   position: static;
+  /* Fill the header content box; tiny inset comes from .hud padding */
   height: 100%;
   width: auto;
   max-width: none;
   max-height: 100%;
   object-fit: contain;
+  object-position: left center;
   display: block;
 }
 
@@ -947,7 +949,7 @@ footer {
 @media (max-width: 860px) {
   :root {
     --hud-h: 4.6rem;
-    --logo-inset: 0.32rem;
+    --logo-inset: 0.18rem;
   }
   .hero, .about-grid, .contact-grid, .split, .qr-grid, .shelf { grid-template-columns: 1fr; }
   .crt img { height: 220px; }
@@ -1246,7 +1248,7 @@ body.explore-page .explore { min-height: 0; }
 @media (max-width: 520px) {
   :root {
     --hud-h: 4.1rem;
-    --logo-inset: 0.28rem;
+    --logo-inset: 0.16rem;
   }
   .world { min-height: 360px; }
   .explore { min-height: 360px; }
