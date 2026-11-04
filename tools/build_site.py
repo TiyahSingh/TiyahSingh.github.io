@@ -545,7 +545,7 @@ def header(title="", nav=""):
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Spicy+Rice&display=swap" rel="stylesheet">
   <link rel="icon" href="/assets/brand/favicon.png" type="image/png">
-  <link rel="stylesheet" href="/css/site.css?v=57">
+  <link rel="stylesheet" href="/css/site.css?v=58">
 </head>
 <body{body}>
   <a class="skip" href="#content">Skip to content</a>
@@ -746,32 +746,44 @@ ABOUT = {
     "intro": "Game developer and designer in Johannesburg. Tiyah studies at Vega, produces and designs, and programs. On Bushveld Brothers she runs Starr Studios' schedule and interface work.",
     "portfolio": "The game pages are the final-year portfolio: what the game is, what the brief asked for, what Tiyah did, which tools were used, a process image, and a link plus QR code for the demo and the download.",
     "file": "The work sits across code, design, interface, and the story a player walks through. The skills terminal and the CV record list the study and the tools behind the thirteen games.",
+    "who": "Who is Tiyah?",
     "headline": "The person behind the pixels",
+    "role": "Game designer & developer",
     "sections": [
         {
             "title": "A little detour...",
             "copy": "My journey into game development wasn't exactly a straight line. I initially pursued a BSc in Biomedicine, spending two years exploring a completely different field before realising I wanted something that allowed me to exercise my creativity alongside my technical interests. I wanted to design, experiment, build and bring ideas to life, which eventually led me to take a leap in a completely different direction.",
-            "frame": "target",
+            "photo": "portrait-profile.jpg",
+            "caption": "Player 01",
+            "layout": "photo-left",
         },
         {
             "title": "Finding my world at Vega",
             "copy": "My journey as a game developer began at Vega School, where I discovered just how much could be achieved through the combination of programming, art and design. Each year introduced me to new ways of creating interactive experiences, from developing gameplay mechanics and programming systems to crafting visual identities, immersive environments and meaningful narratives. It was where I began to understand that game development was the perfect intersection of my technical and creative interests.",
-            "frame": "window",
+            "photo": "portrait-cafe.jpg",
+            "caption": "Vega chapter",
+            "layout": "photo-right",
         },
         {
             "title": "More than just a game",
             "copy": "One of the biggest things I've learnt is that games have the potential to be so much more than entertainment. They can teach, challenge perspectives, spark conversations and create emotional connections. I'm particularly drawn to the idea of creating experiences that leave players with something to think about long after they've put down the controller. Whether through storytelling, gameplay or visual communication, I believe every element of a game has the potential to say something.",
-            "frame": "folder",
+            "photo": "",
+            "caption": "",
+            "layout": "text-only",
         },
         {
             "title": "The best of both worlds",
             "copy": "I aspire to grow as a well-rounded game developer, with a particular interest in gameplay programming and C# development alongside UI/UX design and visual development. I'm equally fascinated by the logic behind how a game functions and the creative decisions that shape how it looks, feels and is experienced. I'm drawn to the challenge of taking an idea from its initial concept and visual direction all the way through to a fully functioning, interactive experience. Why choose between the art and the code when I can bring both together?",
-            "frame": "target",
+            "photo": "",
+            "caption": "",
+            "layout": "text-only",
         },
         {
             "title": "Beyond the screen",
             "copy": "When I'm not working on a project, I'm usually finding inspiration in other games, exploring different visual styles, experimenting with creative ideas or getting carried away with a new project. I'm naturally drawn to the little details that give things personality, whether it's an interesting colour palette, a beautifully designed interface or an entire fictional world. I believe inspiration can come from just about anywhere, and I'm always collecting ideas for what I could create next.",
-            "frame": "switch",
+            "photo": "",
+            "caption": "",
+            "layout": "text-only",
         },
     ],
 }
@@ -853,53 +865,44 @@ def index():
 """ + footer()
         (ROOT / f"{nav}.html").write_text(html, encoding="utf-8")
 
-    frame_src = {
-        "target": "/assets/about/frames/textbox-target.png",
-        "switch": "/assets/about/frames/textbox-switch.png",
-        "folder": "/assets/about/frames/textbox-folder.png",
-        "window": "/assets/about/frames/textbox-window.png",
-    }
     about_blocks = []
     for i, section in enumerate(ABOUT["sections"]):
-        frame = section["frame"]
-        tilt = ["tilt-a", "tilt-b", "tilt-c", "tilt-d", "tilt-a"][i]
+        layout = section.get("layout", "text-only")
+        photo = section.get("photo") or ""
+        caption = section.get("caption") or ""
+        media = ""
+        if photo:
+            media = f"""
+          <figure class="about-polaroid about-polaroid-{'b' if i % 2 else 'a'}">
+            <img src="/assets/about/{photo}" alt="Portrait of Tiyah Singh.">
+            <figcaption>{caption}</figcaption>
+          </figure>"""
         about_blocks.append(f"""
-        <article class="frame-card frame-{frame} {tilt}">
-          <img class="frame-art" src="{frame_src[frame]}" alt="" draggable="false">
-          <div class="frame-text">
-            <p class="frame-kicker">SLOT {i + 1:02d}</p>
-            <h2>{section["title"]}</h2>
-            <p>{section["copy"]}</p>
-          </div>
-        </article>""")
-    snap_tilts = ["tilt-a", "tilt-b", "tilt-c", "tilt-d", "tilt-a", "tilt-b"]
-    snap_strip = "".join(
-        f'<figure class="scrap-polaroid {snap_tilts[i]}"><img src="/assets/about/snap-{i + 1}.jpg" alt="Tiyah Singh"></figure>'
-        for i in range(6)
-    )
+      <article class="about-chapter about-{layout}">
+        {media}
+        <div class="about-copy">
+          <p class="about-chapter-label">Chapter {i + 1:02d}</p>
+          <h2>{section["title"]}</h2>
+          <p>{section["copy"]}</p>
+        </div>
+      </article>""")
     sheet("About", "about", f"""
-    <div class="wrap about-scrap">
-      <aside class="scrap-friends" aria-label="Photo strip">
-        <p class="scrap-friends-title">MY SNAPS</p>
-        <div class="scrap-friends-rail">
-          {snap_strip}
+    <div class="wrap about-editorial">
+      <header class="about-lead">
+        <div class="about-lead-copy">
+          <p class="kicker">ABOUT ME</p>
+          <h1>{ABOUT["who"]}</h1>
+          <p class="about-lead-role">{ABOUT["role"]}</p>
+          <p class="about-lead-tagline">{ABOUT["headline"]}</p>
+          <p class="about-lead-intro">{ABOUT["intro"]}</p>
         </div>
-      </aside>
-      <div class="scrap-stage">
-        <header class="scrap-hero">
-          <figure class="scrap-hero-polaroid">
-            <img src="/assets/about/portrait-polaroid.png" alt="Portrait of Tiyah Singh in polaroid frames.">
-          </figure>
-          <div class="scrap-hero-note">
-            <p class="kicker">ALL ABOUT ME</p>
-            <h1>{ABOUT["headline"]}</h1>
-            <p class="about-hero-tag">TIYAH SINGH · GAME DESIGNER &amp; DEVELOPER</p>
-            <p class="scrap-hero-blurb">{ABOUT["intro"]}</p>
-          </div>
-        </header>
-        <div class="scrap-story">
-          {"".join(about_blocks)}
-        </div>
+        <figure class="about-polaroid about-polaroid-hero">
+          <img src="/assets/about/portrait-look.jpg" alt="Portrait of Tiyah Singh.">
+          <figcaption>Tiyah Singh</figcaption>
+        </figure>
+      </header>
+      <div class="about-chapters">
+        {"".join(about_blocks)}
       </div>
     </div>""")
     sheet("Skills", "skills", f"""
