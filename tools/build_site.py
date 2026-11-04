@@ -897,7 +897,7 @@ def index():
     }
   }
   </script>
-  <script type="module" src="/js/home/world-map.js?v=10"></script>
+  <script type="module" src="/js/home/world-map.js?v=11"></script>
   <script>
   if (location.hash === "#play" || location.hash.indexOf("#explore/") === 0) {
     location.replace("/explore.html" + location.hash);
