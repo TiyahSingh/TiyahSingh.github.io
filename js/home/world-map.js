@@ -2,7 +2,7 @@ import * as THREE from "three";
 import { EffectComposer } from "three/addons/postprocessing/EffectComposer.js";
 import { RenderPass } from "three/addons/postprocessing/RenderPass.js";
 import { UnrealBloomPass } from "three/addons/postprocessing/UnrealBloomPass.js";
-import { loadModel, tuneCity, makeSign } from "../explore/load.js";
+import { loadModel, tuneCity } from "../explore/load.js";
 
 const mount = document.getElementById("world-map");
 const pinsHost = document.getElementById("world-pins");
@@ -150,14 +150,16 @@ async function boot() {
 
   const anchors = DESTINATIONS.map(function (dest, index) {
     const board = makeBuildingBillboard(dest.label, dest.color);
-    /* Mount on the building face like a fixed neon billboard */
-    board.position.set(dest.x, Math.max(2.2, dest.y * 0.55), dest.z);
+    /* Rooftop neon billboards — readable from orbit distance */
+    const boardY = Math.max(3.4, dest.y * 0.72);
+    board.position.set(dest.x, boardY, dest.z);
     board.rotation.y = Math.atan2(dest.x, dest.z) + Math.PI;
-    board.rotation.y += (index % 2 === 0 ? -0.18 : 0.22);
+    board.rotation.y += (index % 2 === 0 ? -0.14 : 0.16);
+    board.scale.setScalar(1.15 + (index % 3) * 0.06);
     city.add(board);
 
     const marker = new THREE.Object3D();
-    marker.position.set(dest.x, dest.y, dest.z);
+    marker.position.set(dest.x, boardY + 1.55, dest.z);
     city.add(marker);
 
     const pin = document.createElement("a");
@@ -165,7 +167,11 @@ async function boot() {
     pin.href = dest.href;
     pin.style.setProperty("--pin", dest.color);
     pin.setAttribute("aria-label", dest.label);
-    pin.innerHTML = "<span class='map-pin-dot'></span><span class='map-pin-label'>" + dest.label + "</span>";
+    pin.innerHTML =
+      "<span class='map-pin-label'>" +
+      "<span class='map-pin-tag'>ZONE</span>" +
+      "<span class='map-pin-title'>" + dest.label + "</span>" +
+      "</span>";
     pinsHost.appendChild(pin);
     return { marker: marker, pin: pin, beam: board };
   });
@@ -500,72 +506,173 @@ function addVoidGlow(scene) {
   scene.add(halo);
 }
 
+function neonBillboardTexture(label, colorHex) {
+  const canvas = document.createElement("canvas");
+  canvas.width = 768;
+  canvas.height = 384;
+  const ctx = canvas.getContext("2d");
+  const w = canvas.width;
+  const h = canvas.height;
+
+  ctx.fillStyle = "#0a0612";
+  ctx.fillRect(0, 0, w, h);
+
+  const glow = ctx.createRadialGradient(w * 0.5, h * 0.55, 20, w * 0.5, h * 0.5, w * 0.55);
+  glow.addColorStop(0, colorHex + "55");
+  glow.addColorStop(1, "#00000000");
+  ctx.fillStyle = glow;
+  ctx.fillRect(0, 0, w, h);
+
+  ctx.strokeStyle = colorHex;
+  ctx.lineWidth = 10;
+  ctx.strokeRect(18, 18, w - 36, h - 36);
+  ctx.lineWidth = 3;
+  ctx.globalAlpha = 0.55;
+  ctx.strokeRect(34, 34, w - 68, h - 68);
+  ctx.globalAlpha = 1;
+
+  const corner = 48;
+  ctx.lineWidth = 8;
+  ctx.lineCap = "square";
+  [[18, 18, 1, 1], [w - 18, 18, -1, 1], [18, h - 18, 1, -1], [w - 18, h - 18, -1, -1]].forEach(function (c) {
+    ctx.beginPath();
+    ctx.moveTo(c[0], c[1] + corner * c[3]);
+    ctx.lineTo(c[0], c[1]);
+    ctx.lineTo(c[0] + corner * c[2], c[1]);
+    ctx.stroke();
+  });
+
+  for (let y = 48; y < h - 48; y += 6) {
+    ctx.fillStyle = "rgba(255,255,255,0.035)";
+    ctx.fillRect(42, y, w - 84, 2);
+  }
+
+  ctx.shadowColor = colorHex;
+  ctx.shadowBlur = 28;
+  ctx.fillStyle = "#ffe8fb";
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+  ctx.font = '700 92px "Spicy Rice", "Fredoka", Arial, sans-serif';
+  ctx.fillText(label, w * 0.5, h * 0.46);
+  ctx.shadowBlur = 0;
+  ctx.fillStyle = colorHex;
+  ctx.globalAlpha = 0.9;
+  ctx.fillText(label, w * 0.5, h * 0.46);
+  ctx.globalAlpha = 1;
+
+  ctx.font = '700 28px "Fredoka", Arial, sans-serif';
+  ctx.fillStyle = "#7af0ff";
+  ctx.shadowColor = "#7af0ff";
+  ctx.shadowBlur = 12;
+  ctx.fillText("◆ ENTER ◆", w * 0.5, h * 0.78);
+  ctx.shadowBlur = 0;
+
+  const texture = new THREE.CanvasTexture(canvas);
+  texture.colorSpace = THREE.SRGBColorSpace;
+  texture.anisotropy = 4;
+  return texture;
+}
+
 function makeBuildingBillboard(label, colorHex) {
   const group = new THREE.Group();
   const color = new THREE.Color(colorHex);
+  const faceW = 3.6;
+  const faceH = 1.55;
 
-  const pole = new THREE.Mesh(
-    new THREE.CylinderGeometry(0.07, 0.09, 2.4, 8),
-    new THREE.MeshStandardMaterial({
-      color: 0x1a0b22,
-      metalness: 0.55,
-      roughness: 0.35,
-      emissive: color,
-      emissiveIntensity: 0.25,
-    })
-  );
-  pole.position.set(0, 0.05, -0.55);
+  const poleMat = new THREE.MeshStandardMaterial({
+    color: 0x140818,
+    metalness: 0.65,
+    roughness: 0.3,
+    emissive: color,
+    emissiveIntensity: 0.35,
+  });
+  const pole = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.11, 2.8, 8), poleMat);
+  pole.position.set(0, 0.2, -0.35);
   group.add(pole);
 
   const arm = new THREE.Mesh(
-    new THREE.BoxGeometry(0.12, 0.12, 0.7),
+    new THREE.BoxGeometry(0.14, 0.14, 0.85),
     new THREE.MeshStandardMaterial({
       color: 0x120818,
-      metalness: 0.4,
-      roughness: 0.4,
+      metalness: 0.5,
+      roughness: 0.35,
       emissive: color,
-      emissiveIntensity: 0.35,
+      emissiveIntensity: 0.5,
     })
   );
-  arm.position.set(0, 1.15, -0.2);
+  arm.position.set(0, 1.45, -0.05);
   group.add(arm);
 
   const back = new THREE.Mesh(
-    new THREE.BoxGeometry(2.85, 1.05, 0.16),
+    new THREE.BoxGeometry(faceW + 0.2, faceH + 0.2, 0.18),
     new THREE.MeshStandardMaterial({
-      color: 0x09040f,
-      metalness: 0.2,
-      roughness: 0.55,
+      color: 0x08040f,
+      metalness: 0.25,
+      roughness: 0.5,
       emissive: color,
-      emissiveIntensity: 0.45,
+      emissiveIntensity: 0.55,
     })
   );
-  back.position.set(0, 1.15, 0.12);
+  back.position.set(0, 1.45, 0.18);
   group.add(back);
 
   const frame = new THREE.Mesh(
-    new THREE.BoxGeometry(3.05, 1.22, 0.08),
+    new THREE.BoxGeometry(faceW + 0.38, faceH + 0.38, 0.08),
     new THREE.MeshStandardMaterial({
       color: 0x1a0b22,
       emissive: color,
-      emissiveIntensity: 0.55,
-      metalness: 0.35,
-      roughness: 0.3,
+      emissiveIntensity: 0.85,
+      metalness: 0.4,
+      roughness: 0.25,
     })
   );
-  frame.position.set(0, 1.15, 0.02);
+  frame.position.set(0, 1.45, 0.08);
   group.add(frame);
 
-  const face = makeSign(label, colorHex, 2.7, 0.9);
-  face.position.set(0, 1.15, 0.22);
+  const texture = neonBillboardTexture(label, colorHex);
+  const face = new THREE.Mesh(
+    new THREE.PlaneGeometry(faceW, faceH),
+    new THREE.MeshStandardMaterial({
+      map: texture,
+      emissiveMap: texture,
+      emissive: color,
+      emissiveIntensity: 1.15,
+      roughness: 0.28,
+      metalness: 0.1,
+    })
+  );
+  face.position.set(0, 1.45, 0.3);
   group.add(face);
+
+  /* Soft neon wash under the board — cheap additive plane */
+  const wash = new THREE.Mesh(
+    new THREE.PlaneGeometry(faceW * 0.95, 0.55),
+    new THREE.MeshBasicMaterial({
+      color: color,
+      transparent: true,
+      opacity: 0.28,
+      depthWrite: false,
+      blending: THREE.AdditiveBlending,
+      side: THREE.DoubleSide,
+    })
+  );
+  wash.rotation.x = -Math.PI * 0.5;
+  wash.position.set(0, 0.55, 0.15);
+  group.add(wash);
+
+  const bulb = new THREE.Mesh(
+    new THREE.SphereGeometry(0.14, 10, 10),
+    new THREE.MeshBasicMaterial({ color: color })
+  );
+  bulb.position.set(0, 2.45, 0.05);
+  group.add(bulb);
 
   group.userData.pulseMats = [frame.material, back.material, face.material];
   return group;
 }
 
 function placeCssPins() {
-  DESTINATIONS.forEach(function (dest, index) {
+  DESTINATIONS.forEach(function (dest) {
     const pin = document.createElement("a");
     pin.className = "map-pin";
     pin.href = dest.href;
@@ -573,7 +680,11 @@ function placeCssPins() {
     pin.style.left = (58 + dest.x * 3.2) + "%";
     pin.style.top = (42 + dest.z * 3.1) + "%";
     pin.setAttribute("aria-label", dest.label);
-    pin.innerHTML = "<span class='map-pin-dot'></span><span class='map-pin-label'>" + dest.label + "</span>";
+    pin.innerHTML =
+      "<span class='map-pin-label'>" +
+      "<span class='map-pin-tag'>ZONE</span>" +
+      "<span class='map-pin-title'>" + dest.label + "</span>" +
+      "</span>";
     pinsHost.appendChild(pin);
   });
 }
