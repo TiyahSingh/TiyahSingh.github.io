@@ -541,16 +541,16 @@ def header(title="", nav=""):
   <meta name="description" content="Game developer portfolio of Tiyah Singh. Selected projects, roles, and playable links.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Orbitron:wght@700;800&family=Oxanium:wght@700;800&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@600;700;800&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="icon" href="/assets/brand/favicon.png" type="image/png">
-  <link rel="stylesheet" href="/css/site.css?v=19">
+  <link rel="stylesheet" href="/css/site.css?v=23">
 </head>
 <body{body}>
   <a class="skip" href="#content">Skip to content</a>
   <div class="scanlines" aria-hidden="true"></div>
   <header class="hud">
     <a class="logo" href="/" aria-label="Tiyah Singh home">
-      <img src="/assets/brand/main-logo.png" alt="Tiyah Singh" width="96" height="96">
+      <img src="/assets/brand/main-logo.png" alt="Tiyah Singh" width="180" height="180">
     </a>
     <nav class="nav" aria-label="Primary">
       {items}
@@ -793,28 +793,18 @@ def index():
 
     sheet("About", "about", f"""
     <div class="wrap about-grid">
-      <article class="gba-shell player-card">
-        <span class="gba-heart gba-heart-tl" aria-hidden="true">♥</span>
-        <span class="gba-heart gba-heart-tr" aria-hidden="true">♥</span>
-        <div class="gba-screen">
-          <p class="gba-kicker">PLAYER 01</p>
-          <h1>Tiyah Singh</h1>
-          <p class="gba-role">GAME DESIGNER &amp; DEVELOPER</p>
-          <p class="gba-bio">{ABOUT["intro"]}</p>
-          <p class="gba-bio">{ABOUT["portfolio"]}</p>
-        </div>
-        <div class="gba-controls" aria-hidden="true">
-          <span class="gba-dpad"></span>
-          <span class="gba-speaker"></span>
-          <span class="gba-buttons"><i></i><i></i><i></i><i></i></span>
-        </div>
-      </article>
-      <article class="panel">
-        <h2>Player file</h2>
+      <article class="panel player-card">
+        <p class="kicker">PLAYER 01</p>
+        <h1>Tiyah Singh</h1>
+        <p class="zone-blurb">{ABOUT["intro"]}</p>
+        <p>{ABOUT["portfolio"]}</p>
         <figure class="crt">
           <img src="/assets/portrait.jpg" alt="Portrait of Tiyah Singh.">
           <figcaption>STATUS <span class="blink">♥</span> PORTFOLIO ONLINE</figcaption>
         </figure>
+      </article>
+      <article class="panel">
+        <h2>Player file</h2>
         <ul class="chips">
           <li>Programming</li><li>Game design</li><li>UI and UX</li><li>Story</li>
         </ul>
@@ -911,7 +901,7 @@ def index():
     }
   }
   </script>
-  <script type="module" src="/js/home/world-map.js?v=7"></script>
+  <script type="module" src="/js/home/world-map.js?v=8"></script>
   <script>
   if (location.hash === "#play" || location.hash.indexOf("#explore/") === 0) {
     location.replace("/explore.html" + location.hash);
