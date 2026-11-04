@@ -541,9 +541,9 @@ def header(title="", nav=""):
   <meta name="description" content="Game developer portfolio of Tiyah Singh. Selected projects, roles, and playable links.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Orbitron:wght@500;700;800&family=Oxanium:wght@500;700;800&family=Sora:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&family=Oxanium:wght@500;700;800&family=Sora:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="icon" href="/assets/brand/favicon.png" type="image/png">
-  <link rel="stylesheet" href="/css/site.css?v=18">
+  <link rel="stylesheet" href="/css/site.css?v=17">
 </head>
 <body{body}>
   <a class="skip" href="#content">Skip to content</a>
@@ -567,10 +567,8 @@ def footer():
       <img src="/assets/brand/tiny-logo.png" alt="" width="42" height="42">
       <span>TIYAH SINGH · GAME DEVELOPER</span>
     </span>
-    <span class="cosmic-mark"><i data-lucide="sparkles"></i> tiyahsingh.co.za</span>
+    <span>tiyahsingh.co.za</span>
   </footer>
-  <script src="https://unpkg.com/lucide@0.468.0"></script>
-  <script>if (window.lucide) lucide.createIcons();</script>
   <script src="/js/arcade.js"></script>
 </body>
 </html>
@@ -653,44 +651,34 @@ def page(game, index, total):
       <button type="button" role="tab" id="tab-links" aria-selected="false" aria-controls="panel-links" data-tab="links">Links</button>
     </div>
     <div class="tab-panel" id="panel-overview" role="tabpanel" aria-labelledby="tab-overview" data-panel="overview">
-      <article class="panel block planet">
-        <div class="planet-glass">
-          <h2 class="cosmic-mark"><i data-lucide="sparkles"></i> Project brief</h2>
-          <p>{game["brief"]}</p>
-        </div>
+      <article class="panel block">
+        <h2>Project brief</h2>
+        <p>{game["brief"]}</p>
       </article>
     </div>
     <div class="tab-panel" id="panel-gameplay" role="tabpanel" aria-labelledby="tab-gameplay" data-panel="gameplay" hidden>
-      <article class="panel block planet">
-        <div class="planet-glass">
-          <h2>Gameplay</h2>
-          <p>{game["synopsis"]}</p>
-        </div>
+      <article class="panel block">
+        <h2>Gameplay</h2>
+        <p>{game["synopsis"]}</p>
       </article>
     </div>
     <div class="tab-panel" id="panel-dev" role="tabpanel" aria-labelledby="tab-dev" data-panel="dev" hidden>
-      <article class="panel block planet">
-        <div class="planet-glass">
-          <h2>Technologies</h2>
-          <ul class="chips">{chips}</ul>
-        </div>
+      <article class="panel block">
+        <h2>Technologies</h2>
+        <ul class="chips">{chips}</ul>
       </article>
-      <article class="panel block planet">
-        <div class="planet-glass">
-          <h2>Process</h2>
-          <figure class="process">
-            <img src="/assets/process/{game["slug"]}.jpg" alt="Process image for {game["title"]}.">
-          </figure>
-        </div>
+      <article class="panel block">
+        <h2>Process</h2>
+        <figure class="process">
+          <img src="/assets/process/{game["slug"]}.jpg" alt="Process image for {game["title"]}.">
+        </figure>
       </article>
     </div>
     <div class="tab-panel" id="panel-role" role="tabpanel" aria-labelledby="tab-role" data-panel="role" hidden>
-      <article class="panel block planet">
-        <div class="planet-glass">
-          <h2>Role and contribution</h2>
-          <p>{game["role"]}</p>
-          {f'<p class="note">{game["team"]}</p>' if game["team"] else ""}
-        </div>
+      <article class="panel block">
+        <h2>Role and contribution</h2>
+        <p>{game["role"]}</p>
+        {f'<p class="note">{game["team"]}</p>' if game["team"] else ""}
       </article>
     </div>
     <div class="tab-panel" id="panel-links" role="tabpanel" aria-labelledby="tab-links" data-panel="links" hidden>
@@ -802,32 +790,27 @@ def index():
 
     sheet("About", "about", f"""
     <div class="wrap about-grid">
-      <article class="panel player-card planet">
-        <img class="orbit-deco" src="/assets/brand/cosmic/orbit-ring.svg" alt="" aria-hidden="true">
-        <div class="planet-glass">
-          <p class="kicker cosmic-mark"><i data-lucide="orbit"></i> PLAYER 01</p>
-          <h1>Tiyah Singh</h1>
-          <p class="zone-blurb">{ABOUT["intro"]}</p>
-          <p>{ABOUT["portfolio"]}</p>
-          <figure class="crt">
-            <img src="/assets/portrait.jpg" alt="Portrait of Tiyah Singh.">
-            <figcaption>STATUS <span class="blink">♥</span> PORTFOLIO ONLINE</figcaption>
-          </figure>
-        </div>
+      <article class="panel player-card">
+        <p class="kicker">PLAYER 01</p>
+        <h1>Tiyah Singh</h1>
+        <p class="zone-blurb">{ABOUT["intro"]}</p>
+        <p>{ABOUT["portfolio"]}</p>
+        <figure class="crt">
+          <img src="/assets/portrait.jpg" alt="Portrait of Tiyah Singh.">
+          <figcaption>STATUS <span class="blink">♥</span> PORTFOLIO ONLINE</figcaption>
+        </figure>
       </article>
-      <article class="panel planet">
-        <div class="planet-glass">
-          <h2 class="cosmic-mark"><i data-lucide="sparkles"></i> Player file</h2>
-          <ul class="chips">
-            <li>Programming</li><li>Game design</li><li>UI and UX</li><li>Story</li>
-          </ul>
-          <p>{ABOUT["file"]}</p>
-        </div>
+      <article class="panel">
+        <h2>Player file</h2>
+        <ul class="chips">
+          <li>Programming</li><li>Game design</li><li>UI and UX</li><li>Story</li>
+        </ul>
+        <p>{ABOUT["file"]}</p>
       </article>
     </div>""")
     sheet("Skills", "skills", f"""
     <div class="wrap">
-      <p class="kicker cosmic-mark"><i data-lucide="star"></i> SKILL SELECT</p>
+      <p class="kicker">SKILL SELECT</p>
       <h1>Skills</h1>
       <p class="section-intro zone-blurb">Choose a skill. Each one opens the tools and games already on this site.</p>
       <div class="skill-list">
@@ -836,26 +819,22 @@ def index():
     </div>""")
     sheet("CV", "cv", f"""
     <div class="wrap">
-      <p class="kicker cosmic-mark"><i data-lucide="globe"></i> PLAYER RECORD</p>
+      <p class="kicker">PLAYER RECORD</p>
       <h1>CV</h1>
       <p class="section-intro zone-blurb">{CV_INTRO}</p>
-      <article class="panel planet">
-        <div class="planet-glass" id="education">
-          <h2>Education</h2>
-          <ol class="levels">{education}</ol>
-        </div>
-      </article>
-      <article class="panel planet" style="margin-top:1rem">
-        <div class="planet-glass" id="awards">
-          <h2>Achievements</h2>
-          <ul class="badges">{achievements}</ul>
-        </div>
-      </article>
+      <div id="education">
+        <h2>Education</h2>
+        <ol class="levels">{education}</ol>
+      </div>
+      <div id="awards">
+        <h2>Achievements</h2>
+        <ul class="badges">{achievements}</ul>
+      </div>
       <p class="note">{CV_FILE}</p>
     </div>""")
     sheet("Games", "games", f"""
     <div class="wrap">
-      <p class="kicker cosmic-mark"><i data-lucide="rocket"></i> GAMES ARCADE</p>
+      <p class="kicker">GAMES ARCADE</p>
       <h1>Games</h1>
       <p class="section-intro zone-blurb">Thirteen games. Open a cabinet for the poster, brief, role, tools, process, demo, and download.</p>
       <div class="arcade-floor">
@@ -864,20 +843,15 @@ def index():
     </div>""")
     sheet("Contact", "contact", f"""
     <div class="wrap contact-grid">
-      <article class="panel booth planet">
-        <img class="orbit-deco" src="/assets/brand/cosmic/orbit-ring.svg" alt="" aria-hidden="true">
-        <div class="planet-glass">
-          <p class="kicker cosmic-mark"><i data-lucide="radio"></i> SIGNAL</p>
-          <h1>Contact</h1>
-          <p class="zone-blurb">{CONTACT_BLURB}</p>
-          {contacts}
-        </div>
+      <article class="panel booth">
+        <p class="kicker">SIGNAL</p>
+        <h1>Contact</h1>
+        <p class="zone-blurb">{CONTACT_BLURB}</p>
+        {contacts}
       </article>
-      <article class="panel planet">
-        <div class="planet-glass">
-          <h2 class="cosmic-mark"><i data-lucide="map-pin"></i> Two ways in</h2>
-          <p>The menu opens this page. On Home, the Contact marker opens this page. In Explore, walk through the glowing Contact doorway.</p>
-        </div>
+      <article class="panel">
+        <h2>Two ways in</h2>
+        <p>The menu opens this page. On Home, the Contact marker opens this page. In Explore, walk through the glowing Contact doorway.</p>
       </article>
     </div>""")
 
@@ -888,8 +862,8 @@ def index():
       <div id="world-map" class="world-canvas" role="img" aria-label="Floating neon city map. Drag to look around. Click a glowing marker to open that page."></div>
       <div class="world-veil" aria-hidden="true"></div>
       <div id="world-pins" class="world-pins"></div>
-      <div class="world-copy planet-glass">
-        <p class="kicker cosmic-mark"><i data-lucide="orbit"></i> PLAYER 01</p>
+      <div class="world-copy">
+        <p class="kicker">PLAYER 01</p>
         <h1>Welcome to<br><span>Tiyah's world</span></h1>
         <p class="world-tag">Game developer &amp; creative · explore my world</p>
         <p class="world-blurb">Collect games. Explore my world. Get to know me. Click a glowing marker on the city, or press start to walk the neon street.</p>
@@ -944,7 +918,7 @@ def index():
     }
   }
   </script>
-  <script type="module" src="/js/explore/main.js?v=16"></script>
+  <script type="module" src="/js/explore/main.js?v=15"></script>
 """ + footer()
     (ROOT / "index.html").write_text(home, encoding="utf-8")
     (ROOT / "explore.html").write_text(explore, encoding="utf-8")

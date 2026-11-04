@@ -201,9 +201,9 @@ async function boot(mount) {
 
 function createPanel() {
   const panel = document.createElement("aside");
-  panel.className = "project-screen planet-modal";
+  panel.className = "project-screen";
   panel.hidden = true;
-  panel.innerHTML = "<button type='button' class='pixel-btn project-close'>Close</button><img alt=''><h2></h2><p class='meta'></p><div class='planet-glass'><p class='project-copy'></p><p class='project-role'></p><p class='project-tech'></p><p class='project-links'></p></div>";
+  panel.innerHTML = "<button type='button' class='pixel-btn project-close'>Close</button><img alt=''><h2></h2><p class='meta'></p><p class='project-copy'></p><p class='project-role'></p><p class='project-tech'></p><p class='project-links'></p>";
   panel.querySelector(".project-close").addEventListener("click", function () { panel.hidden = true; });
   document.body.appendChild(panel);
   return panel;
