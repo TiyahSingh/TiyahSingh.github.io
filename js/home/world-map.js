@@ -417,29 +417,29 @@ function addBridge(city, a, b) {
 }
 
 function addStarfield(scene) {
-  const count = 900;
+  const count = 1200;
   const positions = new Float32Array(count * 3);
   for (let i = 0; i < count; i += 1) {
-    positions[i * 3] = (Math.random() - 0.5) * 90;
-    positions[i * 3 + 1] = Math.random() * 40 - 8;
-    positions[i * 3 + 2] = (Math.random() - 0.5) * 90;
+    positions[i * 3] = (Math.random() - 0.5) * 110;
+    positions[i * 3 + 1] = Math.random() * 48 - 10;
+    positions[i * 3 + 2] = (Math.random() - 0.5) * 110;
   }
   const geo = new THREE.BufferGeometry();
   geo.setAttribute("position", new THREE.BufferAttribute(positions, 3));
   const stars = new THREE.Points(
     geo,
-    new THREE.PointsMaterial({ color: 0xffb6f0, size: 0.08, transparent: true, opacity: 0.85, depthAttenuation: true })
+    new THREE.PointsMaterial({ color: 0xffb6f0, size: 0.09, transparent: true, opacity: 0.9, sizeAttenuation: true })
   );
   scene.add(stars);
 
-  const pink = new THREE.Points(
+  const cyan = new THREE.Points(
     geo.clone(),
-    new THREE.PointsMaterial({ color: 0x7af0ff, size: 0.05, transparent: true, opacity: 0.55, sizeAttenuation: true })
+    new THREE.PointsMaterial({ color: 0x7af0ff, size: 0.055, transparent: true, opacity: 0.6, sizeAttenuation: true })
   );
-  pink.rotation.y = 0.4;
-  scene.add(pink);
+  cyan.rotation.y = 0.4;
+  scene.add(cyan);
+  return [stars, cyan];
 }
-
 function addVoidGlow(scene) {
   const disc = new THREE.Mesh(
     new THREE.CircleGeometry(18, 48),
