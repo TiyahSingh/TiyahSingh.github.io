@@ -558,7 +558,7 @@ def header(title="", nav=""):
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Spicy+Rice&display=swap" rel="stylesheet">
   <link rel="icon" href="/assets/brand/favicon.png" type="image/png">
-  <link rel="stylesheet" href="/css/site.css?v=64">{extra_css}
+  <link rel="stylesheet" href="/css/site.css?v=65">{extra_css}
 </head>
 <body{body}>
   <a class="skip" href="#content">Skip to content</a>
@@ -1269,12 +1269,12 @@ def index():
   <script type="importmap">
   {
     "imports": {
-      "three": "https://unpkg.com/three@0.170.0/build/three.module.js",
-      "three/addons/": "https://unpkg.com/three@0.170.0/examples/jsm/"
+      "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
     }
   }
   </script>
-  <script type="module" src="/js/home/world-map.js?v=27"></script>
+  <script type="module" src="/js/home/world-map.js?v=28"></script>
   <script>
   if (location.hash === "#play" || location.hash.indexOf("#explore/") === 0) {
     location.replace("/explore.html" + location.hash);
@@ -1284,7 +1284,7 @@ def index():
     explore = header("Explore", "play") + """
   <main id="content">
     <section class="explore" id="play">
-      <div id="explore-root" role="img" aria-label="A neon arcade street. Tap the road to walk, or use WASD on a keyboard."></div>
+      <div id="explore-root" aria-label="A neon arcade street. Tap the road to walk, or use WASD on a keyboard."></div>
       <p class="explore-hud">Walk through a glowing doorway.</p>
       <button type="button" class="explore-act" id="explore-act" hidden>Read</button>
     </section>
@@ -1298,13 +1298,13 @@ def index():
   <script type="importmap">
   {
     "imports": {
-      "three": "https://unpkg.com/three@0.170.0/build/three.module.js",
-      "three/addons/": "https://unpkg.com/three@0.170.0/examples/jsm/"
+      "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
     }
   }
   </script>
-  <script type="module" src="/js/explore/main.js?v=25"></script>
-"""
+  <script type="module" src="/js/explore/main.js?v=26"></script>
+""" + footer()
     (ROOT / "index.html").write_text(home, encoding="utf-8")
     (ROOT / "explore.html").write_text(explore, encoding="utf-8")
     (ROOT / "404.html").write_text(header("Signal lost") + """

@@ -63,37 +63,50 @@ export function tuneFlat(root) {
   });
 }
 
-export function tuneCity(root, road) {
+export function tuneCity(root, road, lite) {
   root.traverse(function (child) {
     if (!child.isMesh) return;
-    child.castShadow = true;
-    child.receiveShadow = true;
+    child.castShadow = !lite;
+    child.receiveShadow = !lite;
     const list = Array.isArray(child.material) ? child.material : [child.material];
     list.forEach(function (material) {
-      if (!material || !material.map || material.userData.tuned) return;
-      const maps = neonize(material.map);
-      material.map = maps.color;
-      material.emissiveMap = maps.glow;
-      material.emissive = new THREE.Color(0xffffff);
-      material.emissiveIntensity = road ? 0.4 : 1.05;
-      material.color = new THREE.Color(0xffffff);
-      material.roughness = road ? 0.22 : 0.55;
-      material.metalness = road ? 0.7 : 0.16;
+      if (!material || material.userData.tuned) return;
+      if (lite || !material.map) {
+        material.color = new THREE.Color(road ? 0x2a1838 : 0x4a2868);
+        material.emissive = new THREE.Color(road ? 0x180818 : 0xff3ec8);
+        material.emissiveIntensity = road ? 0.15 : 0.35;
+        material.roughness = road ? 0.35 : 0.62;
+        material.metalness = road ? 0.45 : 0.12;
+        if (material.map) material.map = null;
+        material.emissiveMap = null;
+      } else {
+        const maps = neonize(material.map, 512);
+        material.map = maps.color;
+        material.emissiveMap = maps.glow;
+        material.emissive = new THREE.Color(0xffffff);
+        material.emissiveIntensity = road ? 0.4 : 0.9;
+        material.color = new THREE.Color(0xffffff);
+        material.roughness = road ? 0.22 : 0.55;
+        material.metalness = road ? 0.7 : 0.16;
+      }
       material.userData.tuned = true;
       material.needsUpdate = true;
     });
   });
 }
 
-function neonize(texture) {
-  const key = (texture.image && texture.image.src) || texture.uuid;
+function neonize(texture, maxSize) {
+  const key = ((texture.image && texture.image.src) || texture.uuid) + ":" + (maxSize || "full");
   if (baked.has(key)) return baked.get(key);
   const image = texture.image;
   const canvas = document.createElement("canvas");
-  canvas.width = image.width;
-  canvas.height = image.height;
+  const sourceW = image.width || 256;
+  const sourceH = image.height || 256;
+  const scale = maxSize ? Math.min(1, maxSize / Math.max(sourceW, sourceH)) : 1;
+  canvas.width = Math.max(1, Math.round(sourceW * scale));
+  canvas.height = Math.max(1, Math.round(sourceH * scale));
   const context = canvas.getContext("2d", { willReadFrequently: true });
-  context.drawImage(image, 0, 0);
+  context.drawImage(image, 0, 0, canvas.width, canvas.height);
   const pixels = context.getImageData(0, 0, canvas.width, canvas.height);
   const data = pixels.data;
   const glowCanvas = document.createElement("canvas");

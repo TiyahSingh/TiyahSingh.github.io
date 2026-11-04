@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Spicy+Rice&display=swap" rel="stylesheet">
   <link rel="icon" href="/assets/brand/favicon.png" type="image/png">
-  <link rel="stylesheet" href="/css/site.css?v=64">
+  <link rel="stylesheet" href="/css/site.css?v=65">
 </head>
 <body class="explore-page">
   <a class="skip" href="#content">Skip to content</a>
@@ -31,7 +31,7 @@
 
   <main id="content">
     <section class="explore" id="play">
-      <div id="explore-root" role="img" aria-label="A neon arcade street. Tap the road to walk, or use WASD on a keyboard."></div>
+      <div id="explore-root" aria-label="A neon arcade street. Tap the road to walk, or use WASD on a keyboard."></div>
       <p class="explore-hud">Walk through a glowing doorway.</p>
       <button type="button" class="explore-act" id="explore-act" hidden>Read</button>
     </section>
@@ -45,9 +45,32 @@
   <script type="importmap">
   {
     "imports": {
-      "three": "https://unpkg.com/three@0.170.0/build/three.module.js",
-      "three/addons/": "https://unpkg.com/three@0.170.0/examples/jsm/"
+      "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
     }
   }
   </script>
-  <script type="module" src="/js/explore/main.js?v=25"></script>
+  <script type="module" src="/js/explore/main.js?v=26"></script>
+  <footer class="site-footer">
+    <a class="footer-logo" href="/" aria-label="Tiyah Singh home">
+      <img src="/assets/brand/main-logo.png" alt="Tiyah Singh" width="220" height="131">
+    </a>
+    <nav class="footer-socials" aria-label="Social links">
+      <a class="footer-social" href="https://www.linkedin.com/in/tiyah-singh-906352236/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+        <img src="/assets/brand/social/linkedin.png?v=2" alt="" width="40" height="40">
+      </a>
+      <a class="footer-social" href="https://tiyahsingh.itch.io/" target="_blank" rel="noopener noreferrer" aria-label="itch.io">
+        <img src="/assets/brand/social/itch.png?v=2" alt="" width="40" height="40">
+      </a>
+      <a class="footer-social" href="mailto:singhtiyah@gmail.com" aria-label="Email">
+        <img src="/assets/brand/social/gmail.png?v=2" alt="" width="40" height="40">
+      </a>
+      <a class="footer-social" href="https://github.com/TiyahSingh" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+        <img src="/assets/brand/social/github.png?v=2" alt="" width="40" height="40">
+      </a>
+    </nav>
+    <p class="footer-copy">2026 by Tiyah Singh</p>
+  </footer>
+  <script src="/js/arcade.js"></script>
+</body>
+</html>

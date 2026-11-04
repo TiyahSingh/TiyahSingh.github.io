@@ -1,35 +1,44 @@
 import * as THREE from "three";
-import { loadModel, tuneFlat, tuneCity, makeSign } from "./load.js?v=6";
+import { loadModel, tuneFlat, tuneCity, makeSign } from "./load.js?v=7";
 
 const EH = "/assets/models/eh98/";
 const KENNEY = "/assets/models/kenney/commercial/";
 const BUILDING = 5.5;
 
-export async function createStreet(scene) {
+export async function createStreet(scene, options) {
+  const lite = !!(options && options.lite);
   const ehNames = ["road", "lamp", "sign", "vending", "noodle"];
-  const kenneyNames = [
-    "building-a", "building-b", "building-c", "building-d", "building-e",
-    "building-f", "building-g", "building-h", "building-j", "building-skyscraper-e",
-    "low-detail-building-a", "low-detail-building-wide-a", "detail-awning-wide",
-  ];
+  const kenneyNames = lite
+    ? [
+      "building-a", "building-b", "building-c", "building-d", "building-e",
+      "building-f", "building-j", "building-skyscraper-e",
+      "low-detail-building-a", "low-detail-building-wide-a", "detail-awning-wide",
+    ]
+    : [
+      "building-a", "building-b", "building-c", "building-d", "building-e",
+      "building-f", "building-g", "building-h", "building-j", "building-skyscraper-e",
+      "low-detail-building-a", "low-detail-building-wide-a", "detail-awning-wide",
+    ];
   const [eh, kenney] = await Promise.all([
     loadSet(ehNames.map(function (name) { return EH + name + ".glb"; }), ehNames, tuneFlat),
-    loadSet(kenneyNames.map(function (name) { return KENNEY + name + ".glb"; }), kenneyNames, function (root) { tuneCity(root, false); }),
+    loadSet(kenneyNames.map(function (name) { return KENNEY + name + ".glb"; }), kenneyNames, function (root) { tuneCity(root, false, lite); }),
   ]);
 
   scene.background = new THREE.Color(0x100814);
-  scene.fog = new THREE.FogExp2(0x140818, 0.016);
-  scene.add(new THREE.HemisphereLight(0x6a3d98, 0x100814, 0.55));
-  const moon = new THREE.DirectionalLight(0xb9a4d8, 0.38);
+  scene.fog = new THREE.FogExp2(0x140818, lite ? 0.02 : 0.016);
+  scene.add(new THREE.HemisphereLight(0x6a3d98, 0x100814, lite ? 0.7 : 0.55));
+  const moon = new THREE.DirectionalLight(0xb9a4d8, lite ? 0.5 : 0.38);
   moon.position.set(18, 28, 12);
-  moon.castShadow = true;
-  moon.shadow.mapSize.set(2048, 2048);
-  moon.shadow.camera.near = 1;
-  moon.shadow.camera.far = 90;
-  moon.shadow.camera.left = -40;
-  moon.shadow.camera.right = 40;
-  moon.shadow.camera.top = 40;
-  moon.shadow.camera.bottom = -40;
+  moon.castShadow = !lite;
+  if (!lite) {
+    moon.shadow.mapSize.set(1024, 1024);
+    moon.shadow.camera.near = 1;
+    moon.shadow.camera.far = 90;
+    moon.shadow.camera.left = -40;
+    moon.shadow.camera.right = 40;
+    moon.shadow.camera.top = 40;
+    moon.shadow.camera.bottom = -40;
+  }
   scene.add(moon);
 
   const group = new THREE.Group();
@@ -59,6 +68,7 @@ export async function createStreet(scene) {
     ["building-h", -11.6, 14, Math.PI / 2],
   ];
   shops.forEach(function (shop) {
+    if (!kenney[shop[0]]) return;
     const building = placeKenney(group, kenney[shop[0]], shop[1], shop[2], shop[3]);
     occluders.push(building);
     if (shop[4]) {
@@ -67,7 +77,7 @@ export async function createStreet(scene) {
       sign.position.set(shop[1] + side * 2.7, 3.3, shop[2]);
       sign.rotation.y = shop[1] > 0 ? -Math.PI / 2 : Math.PI / 2;
       group.add(sign);
-      glow(scene, sign.position.x, 4.2, sign.position.z, shop[5], 3, 9);
+      if (!lite) glow(scene, sign.position.x, 4.2, sign.position.z, shop[5], 2.2, 8);
     }
   });
 
@@ -85,13 +95,15 @@ export async function createStreet(scene) {
   const marquee = makeSign("GAMES", "#ff3ec8", 6.4, 1.7, "TIYAH SINGH");
   marquee.position.set(0, 6.4, -13.4);
   group.add(marquee);
-  glow(scene, 0, 7.2, -12.2, 0xff3ec8, 6, 16);
-  glow(scene, -3.2, 4, -14, 0xb14bff, 2.4, 8);
-  glow(scene, 3.2, 4, -14, 0x7af0ff, 2.4, 8);
+  if (!lite) {
+    glow(scene, 0, 7.2, -12.2, 0xff3ec8, 4.5, 14);
+    glow(scene, -3.2, 4, -14, 0xb14bff, 1.8, 7);
+    glow(scene, 3.2, 4, -14, 0x7af0ff, 1.8, 7);
+  }
 
   [[7.4, 10], [-7.4, 4], [7.4, -2], [-7.4, -8]].forEach(function (spot, index) {
     place(group, eh.lamp, spot[0], spot[1], spot[0] > 0 ? 0 : Math.PI);
-    glow(scene, spot[0], 4.2, spot[1], index % 2 ? 0x7af0ff : 0xff3ec8, 1.8, 8);
+    if (!lite) glow(scene, spot[0], 4.2, spot[1], index % 2 ? 0x7af0ff : 0xff3ec8, 1.4, 7);
   });
   place(group, eh.noodle, 7.6, 6.2, -Math.PI / 2);
   place(group, eh.vending, -7.5, -1.2, Math.PI / 2);

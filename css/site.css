@@ -1333,7 +1333,28 @@ body.explore-page {
   overflow-x: hidden;
   overflow-y: visible;
 }
-body.explore-page .explore { min-height: 0; }
+body.explore-page .explore { min-height: 420px; }
+
+.explore-loading {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  margin: 0;
+  padding: 1.5rem;
+  color: #ffb8e8;
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 3vw, 1.35rem);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  background: #100814;
+  text-align: center;
+}
+
+.project-screen[hidden] {
+  display: none !important;
+}
 
 .sheet { padding: 1.2rem 0 3rem; }
 .sheet h1 {

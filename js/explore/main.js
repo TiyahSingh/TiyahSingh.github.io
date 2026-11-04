@@ -1,10 +1,6 @@
 import * as THREE from "three";
-import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
-import { EffectComposer } from "three/addons/postprocessing/EffectComposer.js";
-import { RenderPass } from "three/addons/postprocessing/RenderPass.js";
-import { UnrealBloomPass } from "three/addons/postprocessing/UnrealBloomPass.js";
-import { createStreet } from "./environment.js?v=13";
-import { createPlayer } from "./player.js?v=5";
+import { createStreet } from "./environment.js?v=14";
+import { createPlayer } from "./player.js?v=6";
 import { createCamera } from "./camera.js?v=6";
 import { createLocations } from "./locations.js?v=18";
 
@@ -37,27 +33,54 @@ if (WRITTEN[location.hash]) location.replace(WRITTEN[location.hash]);
 else if (root) boot(root);
 
 async function boot(mount) {
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const mobile = window.matchMedia("(max-width: 820px), (pointer: coarse)").matches;
+  const lite = reduced || mobile || (navigator.hardwareConcurrency || 8) <= 4;
+
+  const loading = document.createElement("p");
+  loading.className = "explore-loading";
+  loading.textContent = "Loading the street…";
+  mount.appendChild(loading);
+
   let renderer;
   try {
-    renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
+    renderer = new THREE.WebGLRenderer({
+      antialias: !lite,
+      alpha: false,
+      powerPreference: lite ? "low-power" : "high-performance",
+    });
   } catch (error) {
+    loading.remove();
     showFallback(mount);
     return;
   }
 
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.75));
-  renderer.setSize(mount.clientWidth, mount.clientHeight);
+  renderer.setClearColor(0x100814, 1);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, lite ? 1.1 : 1.35));
+  renderer.setSize(Math.max(mount.clientWidth, 1), Math.max(mount.clientHeight, 1));
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 1.02;
-  renderer.shadowMap.enabled = true;
+  renderer.shadowMap.enabled = !lite;
+  if (renderer.shadowMap.enabled) renderer.shadowMap.type = THREE.BasicShadowMap;
   mount.appendChild(renderer.domElement);
 
   const scene = new THREE.Scene();
-  const pmrem = new THREE.PMREMGenerator(renderer);
-  scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
-  scene.environmentIntensity = 0.28;
-  pmrem.dispose();
+  scene.background = new THREE.Color(0x100814);
+
+  if (!lite) {
+    try {
+      const { RoomEnvironment } = await import("three/addons/environments/RoomEnvironment.js");
+      const pmrem = new THREE.PMREMGenerator(renderer);
+      scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
+      scene.environmentIntensity = 0.28;
+      pmrem.dispose();
+    } catch (error) {
+      scene.add(new THREE.AmbientLight(0xffb0e8, 0.35));
+    }
+  } else {
+    scene.add(new THREE.AmbientLight(0xffb0e8, 0.42));
+  }
 
   const fade = document.createElement("div");
   fade.className = "location-fade";
@@ -80,8 +103,8 @@ async function boot(mount) {
   let profile;
   try {
     const loaded = await Promise.all([
-      createStreet(scene),
-      createPlayer(),
+      createStreet(scene, { lite: lite }),
+      createPlayer({ lite: lite }),
       fetch("/js/explore/projects.json").then(function (response) { return response.json(); }),
       fetch("/js/explore/profile.json").then(function (response) { return response.json(); }),
     ]);
@@ -90,17 +113,29 @@ async function boot(mount) {
     projects = loaded[2];
     profile = loaded[3];
   } catch (error) {
+    loading.remove();
     showFallback(mount, "The street models could not be loaded. " + (error && error.message ? error.message : ""));
     return;
   }
 
+  loading.remove();
   scene.add(player.group);
   const rig = createCamera(mount.clientWidth / Math.max(mount.clientHeight, 1));
   rig.setOccluders(street.occluders);
-  const composer = new EffectComposer(renderer);
-  composer.addPass(new RenderPass(scene, rig.camera));
-  const bloom = new UnrealBloomPass(new THREE.Vector2(mount.clientWidth, mount.clientHeight), 0.14, 0.12, 0.9);
-  composer.addPass(bloom);
+
+  let composer = null;
+  if (!lite) {
+    try {
+      const { EffectComposer } = await import("three/addons/postprocessing/EffectComposer.js");
+      const { RenderPass } = await import("three/addons/postprocessing/RenderPass.js");
+      const { UnrealBloomPass } = await import("three/addons/postprocessing/UnrealBloomPass.js");
+      composer = new EffectComposer(renderer);
+      composer.addPass(new RenderPass(scene, rig.camera));
+      composer.addPass(new UnrealBloomPass(new THREE.Vector2(mount.clientWidth, mount.clientHeight), 0.12, 0.1, 0.92));
+    } catch (error) {
+      composer = null;
+    }
+  }
 
   const places = createLocations({
     scene: scene,
@@ -118,7 +153,6 @@ async function boot(mount) {
   });
 
   const input = { forward: false, back: false, left: false, right: false };
-  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const raycaster = new THREE.Raycaster();
   const pointer = new THREE.Vector2();
 
@@ -175,10 +209,10 @@ async function boot(mount) {
   });
 
   function resize() {
-    const width = mount.clientWidth;
+    const width = Math.max(mount.clientWidth, 1);
     const height = Math.max(mount.clientHeight, 1);
     renderer.setSize(width, height);
-    composer.setSize(width, height);
+    if (composer) composer.setSize(width, height);
     rig.resize(width / height);
   }
   window.addEventListener("resize", resize);
@@ -203,7 +237,8 @@ async function boot(mount) {
       }
     }
     rig.update(dt, player.group, reduced);
-    composer.render();
+    if (composer) composer.render();
+    else renderer.render(scene, rig.camera);
     requestAnimationFrame(frame);
   }
   requestAnimationFrame(frame);
@@ -224,21 +259,20 @@ function createPanel() {
   const panel = document.createElement("aside");
   panel.className = "project-screen";
   panel.hidden = true;
-  panel.innerHTML = "<button type='button' class='pixel-btn project-close'>Close</button><img alt=''><h2></h2><p class='meta'></p><p class='project-copy'></p><p class='project-role'></p><p class='project-tech'></p><p class='project-links'></p>";
+  panel.innerHTML = "<button type='button' class='pixel-btn project-close'>Close</button><div class='project-media'></div><h2></h2><p class='meta'></p><p class='project-copy'></p><p class='project-role'></p><p class='project-tech'></p><p class='project-links'></p>";
   panel.querySelector(".project-close").addEventListener("click", function () { panel.hidden = true; });
   document.body.appendChild(panel);
   return panel;
 }
 
 function fillPanel(panel, project) {
-  const image = panel.querySelector("img");
+  const media = panel.querySelector(".project-media");
+  media.replaceChildren();
   if (project.poster) {
-    image.hidden = false;
+    const image = document.createElement("img");
     image.src = project.poster;
     image.alt = "Poster for " + project.title;
-  } else {
-    image.hidden = true;
-    image.removeAttribute("src");
+    media.appendChild(image);
   }
   panel.querySelector("h2").textContent = project.title;
   panel.querySelector(".meta").textContent = project.genre || project.meta || "";

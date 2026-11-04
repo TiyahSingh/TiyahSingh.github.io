@@ -3,13 +3,14 @@ import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 
 const MODEL = "/assets/models/character/animated-woman.glb";
 
-export async function createPlayer() {
+export async function createPlayer(options) {
+  const lite = !!(options && options.lite);
   const gltf = await new GLTFLoader().loadAsync(MODEL);
   const model = gltf.scene;
   model.traverse(function (child) {
     if (!child.isMesh) return;
-    child.castShadow = true;
-    child.receiveShadow = true;
+    child.castShadow = !lite;
+    child.receiveShadow = !lite;
     const materials = Array.isArray(child.material) ? child.material : [child.material];
     materials.forEach(paintOutfit);
   });
