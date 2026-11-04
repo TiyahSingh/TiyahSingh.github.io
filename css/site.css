@@ -11,11 +11,11 @@
   --line: #fc54d8;
   --card: #160820;
   --shadow: 6px 6px 0 #4a1060;
-  --font-display: Oxanium, Orbitron, sans-serif;
-  --font-ui: Oxanium, Orbitron, sans-serif;
-  --font-body: Sora, "Segoe UI", sans-serif;
-  --hud-h: 3.75rem;
-  --logo-size: clamp(150px, 17vw, 210px);
+  --font-display: Shrikhand, "Segoe UI", cursive;
+  --font-ui: Shrikhand, "Segoe UI", cursive;
+  --font-body: "TT Lakes Neue", Barlow, "Segoe UI", sans-serif;
+  --hud-h: 5.4rem;
+  --logo-inset: 0.4rem;
   --panel-gap: 0.85rem;
   --gba: #ff2eb6;
   --gba-deep: #e0189a;
@@ -26,7 +26,33 @@
 
 * { box-sizing: border-box; }
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: #ff4eb8 #220818;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  width: 12px;
+}
+
+html::-webkit-scrollbar-track,
+body::-webkit-scrollbar-track {
+  background: #220818;
+}
+
+html::-webkit-scrollbar-thumb,
+body::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #ff9cf0 0%, #ff2eb6 55%, #c45cff 100%);
+  border-radius: 999px;
+  border: 2px solid #220818;
+}
+
+html::-webkit-scrollbar-thumb:hover,
+body::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #ffb6f5 0%, #ff4eb8 100%);
+}
 
 body {
   margin: 0;
@@ -98,9 +124,9 @@ a:hover { color: white; }
   height: calc(var(--hud-h) + env(safe-area-inset-top, 0px));
   min-height: calc(var(--hud-h) + env(safe-area-inset-top, 0px));
   max-height: calc(var(--hud-h) + env(safe-area-inset-top, 0px));
-  padding: 0 max(1rem, 2.5vw);
-  padding-top: env(safe-area-inset-top, 0px);
-  overflow: visible;
+  padding: var(--logo-inset) max(1rem, 2.5vw);
+  padding-top: calc(var(--logo-inset) + env(safe-area-inset-top, 0px));
+  overflow: hidden;
   background:
     radial-gradient(circle at 12% 40%, rgba(255, 255, 255, 0.4) 0 1px, transparent 2px),
     linear-gradient(180deg, #ffe6f5 0%, var(--header-pink) 55%, #ffc8e9 100%);
@@ -110,36 +136,32 @@ a:hover { color: white; }
 }
 
 .logo {
-  position: relative;
-  display: block;
+  display: flex;
+  align-items: center;
+  align-self: stretch;
   flex: 0 0 auto;
-  /* Tiny layout footprint so the pink bar stays short; image paints larger */
-  width: 3.4rem;
   height: 100%;
+  min-height: 0;
+  width: auto;
   text-decoration: none;
   filter: drop-shadow(0 0 12px rgba(255, 46, 182, 0.5));
-  transition: filter 0.2s ease;
+  transition: filter 0.2s ease, transform 0.2s ease;
   z-index: 2;
 }
 
 .logo:hover {
+  transform: scale(1.03) rotate(-1deg);
   filter: drop-shadow(0 0 18px rgba(255, 78, 184, 0.85));
 }
 
-.logo:hover img {
-  transform: translateY(-50%) scale(1.04) rotate(-1deg);
-}
-
 .logo img {
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  width: var(--logo-size);
+  position: static;
+  height: 100%;
+  width: auto;
   max-width: none;
-  height: auto;
+  max-height: 100%;
+  object-fit: contain;
   display: block;
-  transition: transform 0.2s ease;
 }
 
 .nav {
@@ -157,9 +179,9 @@ a:hover { color: white; }
 .pixel-btn,
 button.pixel-btn {
   font-family: var(--font-ui);
-  font-size: clamp(0.62rem, 1.15vw, 0.74rem);
-  font-weight: 700;
-  letter-spacing: 0.05em;
+  font-size: clamp(0.72rem, 1.2vw, 0.9rem);
+  font-weight: 400;
+  letter-spacing: 0.02em;
   text-transform: uppercase;
   text-decoration: none;
   color: #5b1a7a;
@@ -167,11 +189,11 @@ button.pixel-btn {
   background: rgba(196, 140, 230, 0.72);
   border: 2.5px solid #8b3dff;
   border-radius: 999px;
-  padding: 0.42rem 0.78rem;
+  padding: 0.28rem 0.85rem 0.38rem;
   box-shadow: none;
   white-space: nowrap;
   flex: 0 0 auto;
-  line-height: 1.1;
+  line-height: 1.15;
   position: relative;
   z-index: 1;
 }
@@ -924,20 +946,19 @@ footer {
 
 @media (max-width: 860px) {
   :root {
-    --hud-h: 3.4rem;
-    --logo-size: clamp(120px, 28vw, 160px);
+    --hud-h: 4.6rem;
+    --logo-inset: 0.32rem;
   }
   .hero, .about-grid, .contact-grid, .split, .qr-grid, .shelf { grid-template-columns: 1fr; }
   .crt img { height: 220px; }
   .hud {
     flex-wrap: nowrap;
     gap: 0.45rem;
-    padding: 0 0.7rem;
-    padding-top: env(safe-area-inset-top, 0px);
+    padding: var(--logo-inset) 0.7rem;
+    padding-top: calc(var(--logo-inset) + env(safe-area-inset-top, 0px));
     grid-template-columns: auto 1fr;
   }
-  .logo { width: 2.8rem; }
-  .nav a, .pixel-btn, button.pixel-btn { padding: 0.48rem 0.65rem; font-size: 0.6rem; }
+  .nav a, .pixel-btn, button.pixel-btn { padding: 0.22rem 0.55rem 0.3rem; font-size: 0.68rem; }
   #sfx { display: none; }
   .lcd { grid-template-columns: 1fr; }
   .deck { align-items: flex-end; }
@@ -1058,9 +1079,7 @@ body.explore-page .explore { min-height: 0; }
   justify-self: start;
   width: 100%;
   max-width: 340px;
-  margin: 0;
-  /* Clear the logo that hangs below the short header */
-  margin-top: max(0.35rem, calc((var(--logo-size) - var(--hud-h)) * 0.42));
+  margin: 0.35rem 0 0;
   pointer-events: auto;
 }
 
@@ -1211,7 +1230,7 @@ body.explore-page .explore { min-height: 0; }
   }
   .world-copy {
     max-width: none;
-    margin-top: max(0.25rem, calc((var(--logo-size) - var(--hud-h)) * 0.4));
+    margin-top: 0.25rem;
   }
   .world-copy.gba-shell {
     max-width: none;
@@ -1226,10 +1245,9 @@ body.explore-page .explore { min-height: 0; }
 
 @media (max-width: 520px) {
   :root {
-    --hud-h: 3.25rem;
-    --logo-size: clamp(110px, 32vw, 150px);
+    --hud-h: 4.1rem;
+    --logo-inset: 0.28rem;
   }
-  .logo { width: 2.5rem; }
   .world { min-height: 360px; }
   .explore { min-height: 360px; }
   .world-start { width: 100%; text-align: center; }
