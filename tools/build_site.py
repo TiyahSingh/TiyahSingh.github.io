@@ -938,7 +938,7 @@ def index():
     <div class="galaxy-panel" id="galaxy-category-panel" role="dialog" aria-modal="true" hidden></div>
     <div class="galaxy-panel" id="galaxy-skill-panel" role="dialog" aria-modal="true" hidden></div>
   </main>
-  <script src="/js/skills/galaxy-data.js?v=6"></script>
+  <script src="/js/skills/galaxy-data.js?v=7"></script>
   <script src="/js/skills/galaxy.js?v=10"></script>
   <script>
   (function () {
