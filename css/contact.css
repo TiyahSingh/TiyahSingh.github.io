@@ -234,6 +234,14 @@ body.contact-page .hud .nav a:hover {
   -webkit-font-smoothing: antialiased;
 }
 
+.contact-logo {
+  display: block;
+  width: min(220px, 70%);
+  height: auto;
+  margin: 0.85rem 0 0.15rem;
+  filter: drop-shadow(0 0 12px rgba(255, 78, 184, 0.35));
+}
+
 .contact-blurb {
   margin: 0.8rem 0 0;
   font-family: Fredoka, var(--font-body), sans-serif;
@@ -241,21 +249,6 @@ body.contact-page .hud .nav a:hover {
   font-weight: 500;
   line-height: 1.55;
   color: #ffe6f5;
-}
-
-.contact-mail {
-  display: inline-block;
-  margin-top: 0.8rem;
-  font-family: Fredoka, var(--font-body), sans-serif;
-  font-size: 1rem;
-  font-weight: 700;
-  color: #fff;
-  text-decoration: none;
-}
-
-.contact-mail:hover {
-  color: #fff;
-  text-decoration: underline;
 }
 
 .contact-socials {

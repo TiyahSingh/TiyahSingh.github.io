@@ -545,7 +545,7 @@ def header(title="", nav=""):
     elif nav == "cv":
         extra_css = '\n  <link rel="stylesheet" href="/css/cv.css?v=4">'
     elif nav == "contact":
-        extra_css = '\n  <link rel="stylesheet" href="/css/contact.css?v=6">'
+        extra_css = '\n  <link rel="stylesheet" href="/css/contact.css?v=7">'
     heading = "Tiyah Singh — Game Developer" if not title else f"{title} — Tiyah Singh"
     return f"""<!DOCTYPE html>
 <html lang="en">
@@ -869,7 +869,12 @@ CV_CERTS = [
 ]
 CV_INTRO = CV_ABOUT
 CV_FILE = "Open the digital CV page for the full player record."
-CONTACT_BLURB = "Johannesburg. Open to game development roles, jams, and studio collaborations."
+CONTACT_BLURB = (
+    "Have a project in mind, an interesting idea, or just want to chat about all things "
+    "games and creativity? I'd love to hear from you! Whether it's a collaboration, an "
+    "opportunity or simply a hello, my inbox is always open. Let's connect, exchange ideas "
+    "and see what we can create together!"
+)
 CONTACT_EMAIL = "tiyah.singh0308@gmail.com"
 CONTACT_LINKS = [
     {"label": "EMAIL", "title": "Email", "text": CONTACT_EMAIL, "href": f"mailto:{CONTACT_EMAIL}"},
@@ -1155,8 +1160,8 @@ def index():
             <div class="pad__dpad" aria-hidden="true"><span></span></div>
             <div class="pad__screen">
               <h1 class="contact-heading">Get in touch</h1>
+              <img class="contact-logo" src="/assets/brand/main-logo.png" alt="Tiyah Singh" width="220" height="131">
               <p class="contact-blurb">{CONTACT_BLURB}</p>
-              <a class="contact-mail" href="mailto:{CONTACT_EMAIL}">{CONTACT_EMAIL}</a>
               <nav class="contact-socials" aria-label="Social links">
                 {contact_socials}
               </nav>
