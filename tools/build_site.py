@@ -887,7 +887,7 @@ def index():
         </div>
       </article>""")
     sheet("About", "about", f"""
-    <a class="about-street-exit" id="about-street-exit" href="/explore.html#play" hidden aria-label="Back to the street">×</a>
+    <a class="about-street-exit" id="about-street-exit" href="/explore.html#explore/at/about" hidden aria-label="Back to the street">×</a>
     <div class="wrap about-editorial">
       <header class="about-lead">
         <div class="about-lead-copy">
@@ -1044,7 +1044,7 @@ def index():
     }
   }
   </script>
-  <script type="module" src="/js/explore/main.js?v=19"></script>
+  <script type="module" src="/js/explore/main.js?v=20"></script>
 """
     (ROOT / "index.html").write_text(home, encoding="utf-8")
     (ROOT / "explore.html").write_text(explore, encoding="utf-8")
