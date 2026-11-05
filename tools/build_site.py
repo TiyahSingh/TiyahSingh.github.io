@@ -1464,7 +1464,6 @@ def index():
         <div id="world-map" class="world-canvas" role="img" aria-label="Floating neon city map. Drag to look around. Click a glowing marker to open that page."></div>
         <div class="world-veil" aria-hidden="true"></div>
         <div id="world-pins" class="world-pins"></div>
-        <p class="world-hint">DRAG TO LOOK · CLICK A MARKER</p>
         <p class="world-hearts" aria-hidden="true">♥ ♥ ♥ · LVL 01</p>
       </div>
     </section>
