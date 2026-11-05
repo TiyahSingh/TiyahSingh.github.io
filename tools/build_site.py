@@ -675,7 +675,7 @@ def header(title="", nav=""):
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Spicy+Rice&display=swap" rel="stylesheet">
   <link rel="icon" href="/assets/brand/favicon.png" type="image/png">
-  <link rel="stylesheet" href="/css/site.css?v=78">{extra_css}
+  <link rel="stylesheet" href="/css/site.css?v=79">{extra_css}
 </head>
 <body{body}>
   <a class="skip" href="#content">Skip to content</a>
@@ -684,9 +684,12 @@ def header(title="", nav=""):
     <a class="logo" href="/" aria-label="Tiyah Singh home">
       <img src="/assets/brand/main-logo.png" alt="Tiyah Singh" width="240" height="143">
     </a>
-    <nav class="nav" aria-label="Primary">
+    <div class="nav-shell">
+      <button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="primary-nav">Menu</button>
+      <nav class="nav" id="primary-nav" aria-label="Primary">
       {items}
-    </nav>
+      </nav>
+    </div>
   </header>
 """
 
@@ -712,7 +715,7 @@ def footer():
     </nav>
     <p class="footer-copy">2026 by Tiyah Singh</p>
   </footer>
-  <script src="/js/arcade.js"></script>
+  <script src="/js/arcade.js?v=2"></script>
 </body>
 </html>
 """
@@ -1488,11 +1491,11 @@ def index():
       <p class="explore-hud is-intro">WASD / ARROWS MOVE · TAP THE ROAD · HOVER A DOORWAY FOR ENTER</p>
       <button type="button" class="explore-act" id="explore-act" hidden>Enter</button>
       <div class="explore-pad" id="explore-pad" aria-label="Movement pad">
-        <button type="button" class="explore-pad__btn explore-pad__up" data-dir="forward" aria-label="Move forward">▲</button>
-        <button type="button" class="explore-pad__btn explore-pad__left" data-dir="left" aria-label="Move left">◀</button>
+        <button type="button" class="explore-pad__btn explore-pad__up" data-dir="forward" aria-label="Move forward"></button>
+        <button type="button" class="explore-pad__btn explore-pad__left" data-dir="left" aria-label="Move left"></button>
         <button type="button" class="explore-pad__btn explore-pad__core" tabindex="-1" aria-hidden="true"></button>
-        <button type="button" class="explore-pad__btn explore-pad__right" data-dir="right" aria-label="Move right">▶</button>
-        <button type="button" class="explore-pad__btn explore-pad__down" data-dir="back" aria-label="Move back">▼</button>
+        <button type="button" class="explore-pad__btn explore-pad__right" data-dir="right" aria-label="Move right"></button>
+        <button type="button" class="explore-pad__btn explore-pad__down" data-dir="back" aria-label="Move back"></button>
       </div>
     </section>
   </main>

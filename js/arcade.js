@@ -73,4 +73,28 @@
   if (help && helpOpen && help.showModal) {
     helpOpen.addEventListener("click", function () { help.showModal(); });
   }
+
+  var navToggle = document.getElementById("nav-toggle");
+  var navShell = document.querySelector(".nav-shell");
+  var primaryNav = document.getElementById("primary-nav");
+  if (navToggle && navShell && primaryNav) {
+    function setNavOpen(open) {
+      navShell.classList.toggle("is-open", open);
+      navToggle.setAttribute("aria-expanded", open ? "true" : "false");
+      navToggle.textContent = open ? "Close" : "Menu";
+    }
+    navToggle.addEventListener("click", function (event) {
+      event.stopPropagation();
+      setNavOpen(!navShell.classList.contains("is-open"));
+    });
+    primaryNav.querySelectorAll("a").forEach(function (link) {
+      link.addEventListener("click", function () { setNavOpen(false); });
+    });
+    document.addEventListener("click", function (event) {
+      if (!navShell.contains(event.target)) setNavOpen(false);
+    });
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape") setNavOpen(false);
+    });
+  }
 })();

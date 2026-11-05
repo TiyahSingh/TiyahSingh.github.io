@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Spicy+Rice&display=swap" rel="stylesheet">
   <link rel="icon" href="/assets/brand/favicon.png" type="image/png">
-  <link rel="stylesheet" href="/css/site.css?v=76">
+  <link rel="stylesheet" href="/css/site.css?v=79">
 </head>
 <body>
   <a class="skip" href="#content">Skip to content</a>
@@ -18,7 +18,9 @@
     <a class="logo" href="/" aria-label="Tiyah Singh home">
       <img src="/assets/brand/main-logo.png" alt="Tiyah Singh" width="240" height="143">
     </a>
-    <nav class="nav" aria-label="Primary">
+    <div class="nav-shell">
+      <button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="primary-nav">Menu</button>
+      <nav class="nav" id="primary-nav" aria-label="Primary">
       <a href="/">Home</a>
       <a href="/explore.html">Explore</a>
       <a href="/about.html">About</a>
@@ -26,7 +28,8 @@
       <a href="/games.html" class="is-on" aria-current="page">Games</a>
       <a href="/cv.html">CV</a>
       <a href="/contact.html">Contact</a>
-    </nav>
+      </nav>
+    </div>
   </header>
 
   <main id="content" class="wrap game-page is-showcase">
@@ -141,6 +144,6 @@
     </nav>
     <p class="footer-copy">2026 by Tiyah Singh</p>
   </footer>
-  <script src="/js/arcade.js"></script>
+  <script src="/js/arcade.js?v=2"></script>
 </body>
 </html>
