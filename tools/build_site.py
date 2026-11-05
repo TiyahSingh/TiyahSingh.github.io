@@ -237,20 +237,27 @@ GAMES = [
         "slug": "bushveld-brothers",
         "title": "Bushveld Brothers",
         "genre": "Ranger adventure",
-        "engine": "Unity · C#",
+        "engine": "Unity",
+        "languages": ["C#"],
+        "showcase": True,
         "card": "A short 3D patrol where you read spoor, rescue wildlife, and detain poachers.",
-        "credits": "Tiyah Singh",
-        "team": "",
-        "synopsis": "Bushveld Brothers is a short 3D ranger game set in the South African bushveld. You patrol, follow tracks, rescue wildlife, and stop poachers before the clock runs out. The ending is an arrest, not a kill.",
-        "brief": "The project began as a YellowDot game-jam prototype and was then developed as a Starr Studios commercial concept: a premium, short Steam adventure about hunting the hunters. The brief asked for a readable patrol loop, a South African setting, and a product that could be pitched with a game design document, interface system, and store artwork.",
-        "role": "Tiyah Singh produced the project and led the interface work. On the studio roster she is project manager, lead UI/UX designer, gameplay programmer, and documentation lead. She kept the schedule, designed menus and HUD flow, implemented gameplay in C#, and wrote the production records.",
-        "tech": ["Unity", "C#", "3D level art", "UI style guide", "GitHub"],
-        "demo": "https://www.canva.com/design/DAGwcwvyT20/CFXTwt7RG_zKjoMCMYbHSQ/edit",
-        "demo_label": "Pitch presentation",
-        "download": "https://github.com/DavidBarker05/Games-For-Africa",
-        "download_label": "Unity project on GitHub",
-        "photo": r"C:\Users\User\Desktop\GADS\GADS_Project\Part2\assets\key_art_wide.png",
+        "credits": "Tiyah Singh, David Barker, Barrie-George Davies, Jamie-Lee Davies",
+        "team": "Starr Studios / Games for Africa jam team — Tiyah Singh, David Barker (Omega0), Barrie-George Davies (TheBgster), Jamie-Lee Davies.",
+        "synopsis": "Bushveld Brothers is a short 3D ranger adventure set in the South African bushveld. You play Barries on a timed patrol: read spoor, free snared animals, and detain poachers before sunset. The fantasy inverts hunting games — animals are wards, poachers are the quarry, and the ending is an arrest, not a kill.",
+        "brief": "Made in three days for a YellowDot Africa campus jam on the theme Games for Africa: Stories, Cultures and Connections, with a mobile-first requirement. The jam prototype was later treated as a Starr Studios commercial concept for a premium short Steam adventure: a readable patrol loop, South African bushveld identity, Ubuntu-centred non-lethal conflict, and store-ready pitch / UI / documentation artefacts.",
+        "role": "Project manager, lead UI/UX designer, gameplay programmer, and documentation lead on the Starr Studios roster.",
+        "contributions": "Kept the production schedule and documentation; designed menus, HUD, win/lose and settings flow; implemented gameplay systems in C#; wrote production records and portfolio packaging for the jam build and the later commercialisation POE (studio identity, roadmap, Steam assets, and UI style work).",
+        "tech": ["Unity", "C#", "3ds Max", "GitHub", "itch.io", "Canva", "Steam store art"],
+        "demo": "https://omega0.itch.io/bushveld-brothers",
+        "demo_label": "Playable itch.io page",
+        "download": "https://omega0.itch.io/bushveld-brothers",
+        "download_label": "Windows & Android builds",
+        "photo": r"C:\Users\User\Desktop\website\game stuff\bushveld brothers poster.png",
         "process_photo": r"C:\Users\User\Desktop\GADS\GADS_Project\Part2\pdf_images\storyboard_contact_sheet.jpg",
+        "screenshots": [
+            r"C:\Users\User\Desktop\GADS\Part2\Bushveld_Brothers_Steam_Main_Capsule_1232x706.png",
+            r"C:\Users\User\Desktop\GADS\GADS_Project\Part2\assets\key_art_wide.png",
+        ],
         "motif": "sea",
         "note": "",
     },
@@ -258,34 +265,74 @@ GAMES = [
         "slug": "dont-forget-to-say-goodbye",
         "title": "Don't Forget to Say Goodbye",
         "genre": "Narrative horror",
-        "engine": "Unity 6 · C#",
+        "engine": "Unity 6",
+        "languages": ["C#"],
+        "showcase": True,
         "card": "A haunted manor, ritual puzzles, and a Ouija board answered by a local language model.",
-        "credits": "Tiyah Singh",
-        "team": "",
-        "synopsis": "You explore a haunted house, solve ritual puzzles, and speak to a spirit through a Ouija board. A local Llama 3.2 model writes the opening story and very short board replies. Scripted gates keep the important answers stable. Saying GOODBYE closes the session.",
-        "brief": "The GADS brief was a haunted-house game with a local language model inside the play experience. The board had to stay safe and consistent, so free replies are short, critical plot answers are authored in advance, and the model never calls a cloud API.",
-        "role": "Tiyah led design and art. She shaped the occult interface, the ritual props, and the visual language of the manor.",
-        "tech": ["Unity 6 (6000.4.1f1)", "C#", "Ollama", "Llama 3.2", "Whisper.unity", "TextMesh Pro"],
+        "credits": "Tiyah Singh, David Barker",
+        "team": "Tiyah Singh and David Barker — Unity project hosted as Ouija-Game.",
+        "synopsis": "You explore a haunted manor, solve ritual puzzles, and speak to a spirit through a Ouija board. A local Llama 3.2 model (via Ollama) writes the opening story and very short board replies. Scripted gates keep critical plot answers stable. Saying GOODBYE closes the session. The experience stays fully local — no cloud API.",
+        "brief": "GADS Game Design POE: build a haunted-house prototype with functional local LLM integration using Ollama. The board had to stay safe and consistent, so free replies are short, critical answers are authored in advance, setup is reproducible, and the work includes technical + showcase videos plus prompt / integration documentation.",
+        "role": "Lead design and art direction — occult interface, ritual props, manor visual language, and player-facing board UX.",
+        "contributions": "Shaped the occult UI and ritual prop language; art-directed the manor look; designed how the Ouija board presents AI replies so the system feels diegetic; supported the LLM-in-the-loop play fantasy while keeping authored plot gates intact.",
+        "tech": ["Unity 6 (6000.4.1f1)", "C#", "Ollama", "Llama 3.2", "Whisper.unity", "TextMesh Pro", "GitHub"],
         "demo": "https://canva.link/gj0ke405qwcgs47",
         "demo_label": "Showcase video",
         "download": "https://github.com/DavidBarker05/Ouija-Game",
         "download_label": "Unity project on GitHub",
-        "photo": r"C:\Users\User\Desktop\GADS\DFTSGgif.gif",
+        "photo": r"C:\Users\User\Desktop\website\game stuff\dftsg poster.png",
         "process_photo": r"C:\Users\User\Downloads\DFTSG UI Elements\BloodRune1Image.png",
+        "screenshots": [
+            r"C:\Users\User\Desktop\GADS\DFTSGgif.gif",
+            r"C:\Users\User\Downloads\DFTSG UI Elements\BloodRune1Image.png",
+        ],
         "motif": "fire",
-        "note": "This game is fiction about grief, death, and the occult. It is aimed at players 16 and older.",
+        "note": "Fiction about grief, death, and the occult. Aimed at players 16 and older.",
+    },
+    {
+        "slug": "clinical-trial",
+        "title": "Clinical Trial",
+        "genre": "Hospital simulation",
+        "engine": "Unity",
+        "languages": ["C#"],
+        "showcase": True,
+        "card": "Run an under-resourced public clinic by switching between four hospital jobs.",
+        "credits": "Tiyah Singh, L.A. van der Zee, Jamie-Lee Davies, Jacques Willemse",
+        "team": "Clinical Trial Devs — Tiyah Singh, L.A. van der Zee (LazjessicahvdZ), Jamie-Lee Davies, Jacques Willemse (FeelGoodBinJuice).",
+        "synopsis": "Clinical Trial is a 3D multi-role hospital management simulation about South African public healthcare under pressure. You switch between Manager, Doctor, Nurse, and Janitor to treat patients, scrub filth, balance the budget, and survive stolen medicine, power outages, and patient influxes while keeping sanitation, comfort, morale, and related clinic stats alive. One bad shift and the clinic shuts down.",
+        "brief": "WIL / XBCGD7311–7312 serious-game brief: design and ship a 3D hospital simulation that raises awareness of systemic public-healthcare challenges (HAIs, overcrowding, staff shortages, corruption, outages, resource scarcity). Players must feel scarcity, switch roles, and keep the clinic running through planned work and sudden emergencies, with research-backed documentation and public itch.io / GitHub delivery.",
+        "role": "Programming, UI/UX design, technical documentation, and visual presentations (slides and gameplay videos).",
+        "contributions": "Debugged and refined interconnected Unity/C# clinic systems (nurse medication sorting, patient treatment, doctor referrals, infection identification); designed and implemented the in-game staff manual and role dictionary after playtest feedback; improved nurse interfaces and hospital waypoint / directional UI; produced pitch presentations and gameplay demonstration videos; built a QR feedback path for presentations; contributed related pharmacy simulation work (Pharmacist Mini Game).",
+        "tech": ["Unity", "C#", "3D clinic scenes", "UI/UX", "GitHub", "itch.io", "Canva"],
+        "demo": "https://feelgoodbinjuice.itch.io/clinical-trial",
+        "demo_label": "Playable itch.io build",
+        "download": "https://feelgoodbinjuice.itch.io/clinical-trial",
+        "download_label": "Windows download",
+        "photo": r"C:\Users\User\Desktop\website\game stuff\clinical trial poster.png",
+        "process_photo": r"C:\Users\User\Desktop\WIL\S1\images\medicalscreenpanel1.png",
+        "screenshots": [
+            r"C:\Users\User\Desktop\GADS\ClinicalTrialGIF.gif",
+            r"C:\Users\User\Desktop\WIL\S1\images\medicalscreenpanel1.png",
+            r"C:\Users\User\Desktop\WIL\S1\images\medicalscreenpanel2.png",
+            r"C:\Users\User\Desktop\WIL\S1\images\startscreenbackround.png",
+        ],
+        "motif": "hospital",
+        "note": "Rated 4.6/5 on itch.io from community playtests. GitHub: LJ-vdZ/XBCGD7312_Clinical-Trial.",
     },
     {
         "slug": "selkie-song",
         "title": "Selkie Song",
         "genre": "Folklore platformer",
         "engine": "Unity 6 · C#",
+        "languages": ["C#"],
+        "showcase": False,
         "card": "A selkie crosses broken docks, collecting the pieces of her stolen skin.",
         "credits": "Tiyah Singh",
         "team": "",
         "synopsis": "A sailor stole a selkie's skin, trapping her in human form. Fragments of that skin are scattered across broken docks above the ocean. You jump from platform to platform, collect the fragments, and use checkpoints. Falling into the water costs a life. When the skin is whole again, she can return to the sea.",
         "brief": "Selkie Song is the GADE7321 group project. The brief was a playable narrative platformer with dialogue, collectibles, checkpoints, and enemy patterns, documented with schedules, code references, and individual presentations.",
         "role": "Tiyah developed the Unity project. The build includes a player state machine, dialogue, checkpoints, collectibles, moving platforms, and patrolling enemies. Her reports and presentations are linked from the repository.",
+        "contributions": "Player state machine, dialogue, checkpoints, collectibles, moving platforms, and patrolling enemies in the Unity build.",
         "tech": ["Unity 6 (6000.0.38f1)", "C#", "State machine", "Dialogue data", "NavMesh enemies"],
         "demo": "https://canva.link/55m6gytbp41gzc6",
         "demo_label": "Video presentation",
@@ -293,29 +340,9 @@ GAMES = [
         "download_label": "Project repository",
         "photo": "",
         "process_photo": r"C:\Users\User\Downloads\Selkie Song UI Assets (1)\playbutton.png",
+        "screenshots": [],
         "motif": "sea",
         "note": "",
-    },
-    {
-        "slug": "clinical-trial",
-        "title": "Clinical Trial",
-        "genre": "Hospital simulation",
-        "engine": "Unity",
-        "card": "Run an under-resourced public clinic by switching between four hospital jobs.",
-        "credits": "Tiyah Singh",
-        "team": "",
-        "synopsis": "Clinical Trial puts you inside a crowded South African public clinic. You switch between manager, doctor, nurse, and janitor. Each role has its own jobs, from patient care and emergencies to cleaning and equipment, and every task spends time on the hospital clock.",
-        "brief": "The WIL brief was a 3D hospital simulation about under-resourced public healthcare. Players had to feel the pressure of shortages, switch roles, and keep the clinic running through planned work and sudden emergencies.",
-        "role": "Tiyah worked on the clinic simulation. She also published Pharmacist Mini Game, a Unity pharmacy simulation of imprint checks, pill sorting, dispensing, and labelling, as related clinical gameplay.",
-        "tech": ["Unity", "C#", "3D clinic scenes", "Role-based mini-games", "GitHub"],
-        "demo": "https://github.com/LJ-vdZ/XBCGD7312_Clinical-Trial",
-        "demo_label": "Group prototype",
-        "download": "https://github.com/TiyahSingh/PharmacistMiniGame",
-        "download_label": "Pharmacy mini-game",
-        "photo": r"C:\Users\User\Desktop\GADS\ClinicalTrialGIF.gif",
-        "process_photo": "",
-        "motif": "hospital",
-        "note": "The group prototype is the demo link. The pharmacy mini-game is Tiyah's public playable build from the same clinical work.",
     },
     {
         "slug": "charmfire",
@@ -510,6 +537,17 @@ GAMES = [
     },
 ]
 
+SHOWCASE_ORDER = ["clinical-trial", "dont-forget-to-say-goodbye", "bushveld-brothers"]
+for game in GAMES:
+    game.setdefault("showcase", False)
+    game.setdefault("languages", ["C#"] if "C#" in " ".join(game.get("tech", [])) else [])
+    game.setdefault("contributions", game.get("role", ""))
+    game.setdefault("screenshots", [])
+_by_slug = {game["slug"]: game for game in GAMES}
+GAMES = [_by_slug[slug] for slug in SHOWCASE_ORDER if slug in _by_slug] + [
+    game for game in GAMES if game["slug"] not in SHOWCASE_ORDER
+]
+
 
 def header(title="", nav=""):
     links = [
@@ -558,7 +596,7 @@ def header(title="", nav=""):
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Spicy+Rice&display=swap" rel="stylesheet">
   <link rel="icon" href="/assets/brand/favicon.png" type="image/png">
-  <link rel="stylesheet" href="/css/site.css?v=68">{extra_css}
+  <link rel="stylesheet" href="/css/site.css?v=69">{extra_css}
 </head>
 <body{body}>
   <a class="skip" href="#content">Skip to content</a>
@@ -634,6 +672,8 @@ def build_images():
         about_dir / "hero.jpg", "JPEG", quality=88, optimize=True
     )
 
+    shots_root = ROOT / "assets" / "screenshots"
+    shots_root.mkdir(parents=True, exist_ok=True)
     for game in GAMES:
         poster_path = POSTERS / f"{game['slug']}.jpg"
         process_path = PROCESS / f"{game['slug']}.jpg"
@@ -647,7 +687,9 @@ def build_images():
             except Exception as error:
                 print("cover failed", game["slug"], error)
         if photo and Path(photo).exists():
-            image = stamp(fit(photo), game["title"], game["credits"])
+            fitted = fit(photo)
+            # Showcase posters are already finished cover art — keep them clean
+            image = fitted if game.get("showcase") else stamp(fitted, game["title"], game["credits"])
         else:
             palettes = {
                 "sea": [(8, 16, 48), (18, 40, 90), (20, 90, 140), (40, 180, 190), (255, 62, 200)],
@@ -672,6 +714,15 @@ def build_images():
         else:
             lines = PROCESS_LINES[game["slug"]]
             save_jpg(process_card(lines, PINK), process_path)
+        shot_dir = shots_root / game["slug"]
+        shot_dir.mkdir(parents=True, exist_ok=True)
+        for index, shot_path in enumerate(game.get("screenshots") or [], start=1):
+            if not Path(shot_path).exists():
+                continue
+            try:
+                save_jpg(fit(shot_path), shot_dir / f"{index:02d}.jpg")
+            except Exception as error:
+                print("screenshot failed", game["slug"], shot_path, error)
         make_qr(game["demo"], QR / f"{game['slug']}-demo.png")
         make_qr(game["download"], QR / f"{game['slug']}-download.png")
         print("built", game["slug"])
@@ -679,15 +730,28 @@ def build_images():
 
 def page(game, index, total):
     chips = "".join(f"<li>{item}</li>" for item in game["tech"])
+    lang_chips = "".join(f"<li>{item}</li>" for item in (game.get("languages") or []))
     warning = f'<p class="warn">{game["note"]}</p>' if game["note"] else ""
     prev_game = GAMES[(index - 1) % total]
     next_game = GAMES[(index + 1) % total]
+    showcase = bool(game.get("showcase"))
+    kicker = "Showcase work" if showcase else "Additional work"
+    shot_dir = ROOT / "assets" / "screenshots" / game["slug"]
+    shot_files = sorted(shot_dir.glob("*.jpg")) if shot_dir.exists() else []
+    shots_html = "".join(
+        f'<figure class="shot"><img src="/assets/screenshots/{game["slug"]}/{path.name}" alt="Screenshot from {game["title"]}."></figure>'
+        for path in shot_files
+    )
+    if not shots_html:
+        shots_html = f'<figure class="shot"><img src="/assets/process/{game["slug"]}.jpg" alt="Process / screenshot for {game["title"]}."></figure>'
+    team_block = f'<p class="note"><strong>Team:</strong> {game["team"]}</p>' if game.get("team") else ""
     html = header(game["title"], "games") + f"""
-  <main id="content" class="wrap">
-    <p class="kicker"><a href="/games.html">Game {index + 1:02d} / {total:02d}</a></p>
+  <main id="content" class="wrap game-page{" is-showcase" if showcase else " is-extra"}">
+    <p class="kicker"><a href="/games.html#{("showcase" if showcase else "additional")}">{kicker}</a> · Game {index + 1:02d} / {total:02d}</p>
     <div class="page-hero">
       <h1>{game["title"]}</h1>
       <p class="meta">{game["genre"]}  ·  {game["engine"]}</p>
+      <p class="credits-line">Credits: {game["credits"]}</p>
     </div>
     <figure class="poster">
       <img src="/assets/posters/{game["slug"]}.jpg" alt="Poster for {game["title"]}. Credits: {game["credits"]}.">
@@ -695,30 +759,44 @@ def page(game, index, total):
     {warning}
     <div class="tabs" role="tablist" aria-label="Project details">
       <button type="button" role="tab" id="tab-overview" aria-selected="true" aria-controls="panel-overview" data-tab="overview">Overview</button>
-      <button type="button" role="tab" id="tab-gameplay" aria-selected="false" aria-controls="panel-gameplay" data-tab="gameplay">Gameplay</button>
+      <button type="button" role="tab" id="tab-gameplay" aria-selected="false" aria-controls="panel-gameplay" data-tab="gameplay">Synopsis</button>
       <button type="button" role="tab" id="tab-dev" aria-selected="false" aria-controls="panel-dev" data-tab="dev">Development</button>
-      <button type="button" role="tab" id="tab-role" aria-selected="false" aria-controls="panel-role" data-tab="role">My contributions</button>
-      <button type="button" role="tab" id="tab-links" aria-selected="false" aria-controls="panel-links" data-tab="links">Links</button>
+      <button type="button" role="tab" id="tab-role" aria-selected="false" aria-controls="panel-role" data-tab="role">My role</button>
+      <button type="button" role="tab" id="tab-media" aria-selected="false" aria-controls="panel-media" data-tab="media">Media</button>
+      <button type="button" role="tab" id="tab-links" aria-selected="false" aria-controls="panel-links" data-tab="links">Demo &amp; download</button>
     </div>
     <div class="tab-panel" id="panel-overview" role="tabpanel" aria-labelledby="tab-overview" data-panel="overview">
       <article class="panel block">
         <h2>Project brief</h2>
         <p>{game["brief"]}</p>
       </article>
+      <article class="panel block">
+        <h2>Team credits</h2>
+        <p>{game["credits"]}</p>
+        {team_block}
+      </article>
     </div>
     <div class="tab-panel" id="panel-gameplay" role="tabpanel" aria-labelledby="tab-gameplay" data-panel="gameplay" hidden>
       <article class="panel block">
-        <h2>Gameplay</h2>
+        <h2>Game synopsis</h2>
         <p>{game["synopsis"]}</p>
       </article>
     </div>
     <div class="tab-panel" id="panel-dev" role="tabpanel" aria-labelledby="tab-dev" data-panel="dev" hidden>
       <article class="panel block">
-        <h2>Technologies</h2>
+        <h2>Game engine</h2>
+        <p>{game["engine"]}</p>
+      </article>
+      <article class="panel block">
+        <h2>Programming languages</h2>
+        <ul class="chips">{lang_chips or "<li>N/A</li>"}</ul>
+      </article>
+      <article class="panel block">
+        <h2>Technologies and software</h2>
         <ul class="chips">{chips}</ul>
       </article>
       <article class="panel block">
-        <h2>Process</h2>
+        <h2>Process work</h2>
         <figure class="process">
           <img src="/assets/process/{game["slug"]}.jpg" alt="Process image for {game["title"]}.">
         </figure>
@@ -726,27 +804,36 @@ def page(game, index, total):
     </div>
     <div class="tab-panel" id="panel-role" role="tabpanel" aria-labelledby="tab-role" data-panel="role" hidden>
       <article class="panel block">
-        <h2>Role and contribution</h2>
+        <h2>Personal role</h2>
         <p>{game["role"]}</p>
-        {f'<p class="note">{game["team"]}</p>' if game["team"] else ""}
+      </article>
+      <article class="panel block">
+        <h2>Individual contributions</h2>
+        <p>{game.get("contributions") or game["role"]}</p>
+      </article>
+    </div>
+    <div class="tab-panel" id="panel-media" role="tabpanel" aria-labelledby="tab-media" data-panel="media" hidden>
+      <article class="panel block">
+        <h2>Screenshots</h2>
+        <div class="shot-grid">{shots_html}</div>
       </article>
     </div>
     <div class="tab-panel" id="panel-links" role="tabpanel" aria-labelledby="tab-links" data-panel="links" hidden>
       <div class="qr-grid">
         <article class="qr-card">
-          <h2>Demo</h2>
-          <p><a href="{game["demo"]}">{game["demo_label"]}</a></p>
+          <h2>Demo video / page</h2>
+          <p><a href="{game["demo"]}" target="_blank" rel="noopener noreferrer">{game["demo_label"]}</a></p>
           <img src="/assets/qr/{game["slug"]}-demo.png" alt="QR code for the {game["title"]} demo.">
         </article>
         <article class="qr-card">
-          <h2>Download</h2>
-          <p><a href="{game["download"]}">{game["download_label"]}</a></p>
+          <h2>Game download</h2>
+          <p><a href="{game["download"]}" target="_blank" rel="noopener noreferrer">{game["download_label"]}</a></p>
           <img src="/assets/qr/{game["slug"]}-download.png" alt="QR code for the {game["title"]} download.">
         </article>
       </div>
     </div>
     <p class="hero-actions">
-      <a class="pixel-btn" href="/games.html">Back to the arcade</a>
+      <a class="pixel-btn" href="/games.html">Back to games</a>
       <a class="pixel-btn" href="/games/{prev_game["slug"]}.html">Prev</a>
       <a class="pixel-btn" href="/games/{next_game["slug"]}.html">Next</a>
     </p>
@@ -757,8 +844,8 @@ def page(game, index, total):
 
 ABOUT = {
     "intro": "I'm Tiyah, a 23-year-old creative with a passion for art, design and making things that didn't exist before. I've always been someone who loves creating, experimenting with ideas and finding ways to bring the things in my head into the real world. But what I find even more exciting is that my work doesn't have to stop with me. I get to put something I've imagined out into the world for someone else to experience, interact with and hopefully connect with. Whether it's making someone feel something, see things from a different perspective, spark their curiosity or learn something new, I want what I create to leave a little something behind. There's something pretty amazing about knowing that something you made could mean something to someone else.",
-    "portfolio": "The game pages are the final-year portfolio: what the game is, what the brief asked for, what Tiyah did, which tools were used, a process image, and a link plus QR code for the demo and the download.",
-    "file": "The work sits across code, design, interface, and the story a player walks through. The skills terminal and the CV record list the study and the tools behind the thirteen games.",
+    "portfolio": "Showcase work leads with Clinical Trial, Don't Forget to Say Goodbye, and Bushveld Brothers — each with poster, team credits, brief, synopsis, role, contributions, engine, languages, tech, process, screenshots, demo, and download. Additional games sit in a separate section.",
+    "file": "The work sits across code, design, interface, and the story a player walks through. The skills terminal and the CV record list the study and the tools behind the showcase and additional games.",
     "who": "Who is Tiyah?",
     "headline": "The person behind the pixels",
     "role": "Game designer & developer",
@@ -911,21 +998,29 @@ def index():
     }
     (ROOT / "js" / "explore" / "profile.json").write_text(json.dumps(profile, indent=2), encoding="utf-8")
 
-    cards = []
-    for i, game in enumerate(GAMES, start=1):
-        cards.append(f"""
-        <a class="cab cart" href="/games/{game["slug"]}.html">
+    def game_card(game, index, tag):
+        return f"""
+        <a class="cab cart{" cab--showcase" if game.get("showcase") else " cab--extra"}" href="/games/{game["slug"]}.html">
           <span class="cab-machine">
             <span class="cab-marquee"><h3>{game["title"]}</h3></span>
             <span class="cab-screen"><img src="/assets/posters/{game["slug"]}.jpg" alt=""></span>
             <span class="cab-controls" aria-hidden="true"><span class="stick"></span><span class="coin-btn"></span><span class="coin-btn alt"></span></span>
           </span>
           <span class="cab-body">
-            <p class="meta">{i:02d}  ·  {game["genre"]}</p>
+            <p class="meta">{tag}  ·  {game["genre"]}</p>
             <p class="cab-copy">{game["card"]}</p>
-            <span class="play-tag">INSPECT GAME</span>
+            <span class="play-tag">{"SHOWCASE" if game.get("showcase") else "ADDITIONAL"}</span>
           </span>
-        </a>""")
+        </a>"""
+
+    showcase_cards = [
+        game_card(game, i, f"{i:02d}")
+        for i, game in enumerate([g for g in GAMES if g.get("showcase")], start=1)
+    ]
+    extra_cards = [
+        game_card(game, i, f"{i:02d}")
+        for i, game in enumerate([g for g in GAMES if not g.get("showcase")], start=1)
+    ]
     contact_socials = "".join(
         f'<a class="contact-social" href="{item["href"]}"'
         + (' target="_blank" rel="noopener noreferrer"' if item["href"].startswith("http") else "")
@@ -1141,12 +1236,23 @@ def index():
     </script>""")
     sheet("Games", "games", f"""
     <div class="wrap">
-      <p class="kicker">GAMES ARCADE</p>
+      <p class="kicker">PORTFOLIO GAMES</p>
       <h1>Games</h1>
-      <p class="section-intro zone-blurb">Thirteen games. Open a cabinet for the poster, brief, role, tools, process, demo, and download.</p>
-      <div class="arcade-floor">
-        {"".join(cards)}
-      </div>
+      <p class="section-intro zone-blurb">Three showcase projects for the roles I want, plus additional work with posters for context.</p>
+      <section id="showcase" class="games-section">
+        <h2 class="games-section__title">Showcase work</h2>
+        <p class="games-section__blurb">Clinical Trial, Don't Forget to Say Goodbye, and Bushveld Brothers — full poster, team credits, brief, role, contributions, tech, process, screenshots, demo and download.</p>
+        <div class="arcade-floor arcade-floor--showcase">
+          {"".join(showcase_cards)}
+        </div>
+      </section>
+      <section id="additional" class="games-section games-section--extra">
+        <h2 class="games-section__title">Additional work</h2>
+        <p class="games-section__blurb">Extra projects with posters — supporting builds, jams, and prototypes outside the main three.</p>
+        <div class="arcade-floor arcade-floor--extra">
+          {"".join(extra_cards)}
+        </div>
+      </section>
     </div>""")
     sheet("Contact", "contact", f"""
     <a class="about-street-exit" id="about-street-exit" href="/explore.html?door=contact" hidden aria-label="Back to the street">×</a>
@@ -1317,9 +1423,33 @@ def index():
 """ + footer(), encoding="utf-8")
 
 
+def write_projects_json():
+    payload = []
+    for game in GAMES:
+        payload.append({
+            "slug": game["slug"],
+            "title": game["title"],
+            "genre": game["genre"],
+            "card": game["card"],
+            "role": game["role"],
+            "tech": game["tech"],
+            "demo": game["demo"],
+            "demoLabel": game["demo_label"],
+            "download": game["download"],
+            "downloadLabel": game["download_label"],
+            "poster": f"/assets/posters/{game['slug']}.jpg",
+            "showcase": bool(game.get("showcase")),
+            "credits": game.get("credits", ""),
+        })
+    (ROOT / "js" / "explore" / "projects.json").write_text(
+        json.dumps(payload, indent=2), encoding="utf-8"
+    )
+
+
 if __name__ == "__main__":
     build_images()
     for i, game in enumerate(GAMES):
         page(game, i, len(GAMES))
     index()
+    write_projects_json()
     print("site written")

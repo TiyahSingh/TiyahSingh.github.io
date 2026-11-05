@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Spicy+Rice&display=swap" rel="stylesheet">
   <link rel="icon" href="/assets/brand/favicon.png" type="image/png">
-  <link rel="stylesheet" href="/css/site.css?v=68">
+  <link rel="stylesheet" href="/css/site.css?v=69">
 </head>
 <body>
   <a class="skip" href="#content">Skip to content</a>
@@ -29,42 +29,57 @@
     </nav>
   </header>
 
-  <main id="content" class="wrap">
-    <p class="kicker"><a href="/games.html">Game 02 / 13</a></p>
+  <main id="content" class="wrap game-page is-showcase">
+    <p class="kicker"><a href="/games.html#showcase">Showcase work</a> · Game 02 / 13</p>
     <div class="page-hero">
       <h1>Don't Forget to Say Goodbye</h1>
-      <p class="meta">Narrative horror  ·  Unity 6 · C#</p>
+      <p class="meta">Narrative horror  ·  Unity 6</p>
+      <p class="credits-line">Credits: Tiyah Singh, David Barker</p>
     </div>
     <figure class="poster">
-      <img src="/assets/posters/dont-forget-to-say-goodbye.jpg" alt="Poster for Don't Forget to Say Goodbye. Credits: Tiyah Singh.">
+      <img src="/assets/posters/dont-forget-to-say-goodbye.jpg" alt="Poster for Don't Forget to Say Goodbye. Credits: Tiyah Singh, David Barker.">
     </figure>
-    <p class="warn">This game is fiction about grief, death, and the occult. It is aimed at players 16 and older.</p>
+    <p class="warn">Fiction about grief, death, and the occult. Aimed at players 16 and older.</p>
     <div class="tabs" role="tablist" aria-label="Project details">
       <button type="button" role="tab" id="tab-overview" aria-selected="true" aria-controls="panel-overview" data-tab="overview">Overview</button>
-      <button type="button" role="tab" id="tab-gameplay" aria-selected="false" aria-controls="panel-gameplay" data-tab="gameplay">Gameplay</button>
+      <button type="button" role="tab" id="tab-gameplay" aria-selected="false" aria-controls="panel-gameplay" data-tab="gameplay">Synopsis</button>
       <button type="button" role="tab" id="tab-dev" aria-selected="false" aria-controls="panel-dev" data-tab="dev">Development</button>
-      <button type="button" role="tab" id="tab-role" aria-selected="false" aria-controls="panel-role" data-tab="role">My contributions</button>
-      <button type="button" role="tab" id="tab-links" aria-selected="false" aria-controls="panel-links" data-tab="links">Links</button>
+      <button type="button" role="tab" id="tab-role" aria-selected="false" aria-controls="panel-role" data-tab="role">My role</button>
+      <button type="button" role="tab" id="tab-media" aria-selected="false" aria-controls="panel-media" data-tab="media">Media</button>
+      <button type="button" role="tab" id="tab-links" aria-selected="false" aria-controls="panel-links" data-tab="links">Demo &amp; download</button>
     </div>
     <div class="tab-panel" id="panel-overview" role="tabpanel" aria-labelledby="tab-overview" data-panel="overview">
       <article class="panel block">
         <h2>Project brief</h2>
-        <p>The GADS brief was a haunted-house game with a local language model inside the play experience. The board had to stay safe and consistent, so free replies are short, critical plot answers are authored in advance, and the model never calls a cloud API.</p>
+        <p>GADS Game Design POE: build a haunted-house prototype with functional local LLM integration using Ollama. The board had to stay safe and consistent, so free replies are short, critical answers are authored in advance, setup is reproducible, and the work includes technical + showcase videos plus prompt / integration documentation.</p>
+      </article>
+      <article class="panel block">
+        <h2>Team credits</h2>
+        <p>Tiyah Singh, David Barker</p>
+        <p class="note"><strong>Team:</strong> Tiyah Singh and David Barker — Unity project hosted as Ouija-Game.</p>
       </article>
     </div>
     <div class="tab-panel" id="panel-gameplay" role="tabpanel" aria-labelledby="tab-gameplay" data-panel="gameplay" hidden>
       <article class="panel block">
-        <h2>Gameplay</h2>
-        <p>You explore a haunted house, solve ritual puzzles, and speak to a spirit through a Ouija board. A local Llama 3.2 model writes the opening story and very short board replies. Scripted gates keep the important answers stable. Saying GOODBYE closes the session.</p>
+        <h2>Game synopsis</h2>
+        <p>You explore a haunted manor, solve ritual puzzles, and speak to a spirit through a Ouija board. A local Llama 3.2 model (via Ollama) writes the opening story and very short board replies. Scripted gates keep critical plot answers stable. Saying GOODBYE closes the session. The experience stays fully local — no cloud API.</p>
       </article>
     </div>
     <div class="tab-panel" id="panel-dev" role="tabpanel" aria-labelledby="tab-dev" data-panel="dev" hidden>
       <article class="panel block">
-        <h2>Technologies</h2>
-        <ul class="chips"><li>Unity 6 (6000.4.1f1)</li><li>C#</li><li>Ollama</li><li>Llama 3.2</li><li>Whisper.unity</li><li>TextMesh Pro</li></ul>
+        <h2>Game engine</h2>
+        <p>Unity 6</p>
       </article>
       <article class="panel block">
-        <h2>Process</h2>
+        <h2>Programming languages</h2>
+        <ul class="chips"><li>C#</li></ul>
+      </article>
+      <article class="panel block">
+        <h2>Technologies and software</h2>
+        <ul class="chips"><li>Unity 6 (6000.4.1f1)</li><li>C#</li><li>Ollama</li><li>Llama 3.2</li><li>Whisper.unity</li><li>TextMesh Pro</li><li>GitHub</li></ul>
+      </article>
+      <article class="panel block">
+        <h2>Process work</h2>
         <figure class="process">
           <img src="/assets/process/dont-forget-to-say-goodbye.jpg" alt="Process image for Don't Forget to Say Goodbye.">
         </figure>
@@ -72,29 +87,38 @@
     </div>
     <div class="tab-panel" id="panel-role" role="tabpanel" aria-labelledby="tab-role" data-panel="role" hidden>
       <article class="panel block">
-        <h2>Role and contribution</h2>
-        <p>Tiyah led design and art. She shaped the occult interface, the ritual props, and the visual language of the manor.</p>
-        
+        <h2>Personal role</h2>
+        <p>Lead design and art direction — occult interface, ritual props, manor visual language, and player-facing board UX.</p>
+      </article>
+      <article class="panel block">
+        <h2>Individual contributions</h2>
+        <p>Shaped the occult UI and ritual prop language; art-directed the manor look; designed how the Ouija board presents AI replies so the system feels diegetic; supported the LLM-in-the-loop play fantasy while keeping authored plot gates intact.</p>
+      </article>
+    </div>
+    <div class="tab-panel" id="panel-media" role="tabpanel" aria-labelledby="tab-media" data-panel="media" hidden>
+      <article class="panel block">
+        <h2>Screenshots</h2>
+        <div class="shot-grid"><figure class="shot"><img src="/assets/screenshots/dont-forget-to-say-goodbye/01.jpg" alt="Screenshot from Don't Forget to Say Goodbye."></figure><figure class="shot"><img src="/assets/screenshots/dont-forget-to-say-goodbye/02.jpg" alt="Screenshot from Don't Forget to Say Goodbye."></figure></div>
       </article>
     </div>
     <div class="tab-panel" id="panel-links" role="tabpanel" aria-labelledby="tab-links" data-panel="links" hidden>
       <div class="qr-grid">
         <article class="qr-card">
-          <h2>Demo</h2>
-          <p><a href="https://canva.link/gj0ke405qwcgs47">Showcase video</a></p>
+          <h2>Demo video / page</h2>
+          <p><a href="https://canva.link/gj0ke405qwcgs47" target="_blank" rel="noopener noreferrer">Showcase video</a></p>
           <img src="/assets/qr/dont-forget-to-say-goodbye-demo.png" alt="QR code for the Don't Forget to Say Goodbye demo.">
         </article>
         <article class="qr-card">
-          <h2>Download</h2>
-          <p><a href="https://github.com/DavidBarker05/Ouija-Game">Unity project on GitHub</a></p>
+          <h2>Game download</h2>
+          <p><a href="https://github.com/DavidBarker05/Ouija-Game" target="_blank" rel="noopener noreferrer">Unity project on GitHub</a></p>
           <img src="/assets/qr/dont-forget-to-say-goodbye-download.png" alt="QR code for the Don't Forget to Say Goodbye download.">
         </article>
       </div>
     </div>
     <p class="hero-actions">
-      <a class="pixel-btn" href="/games.html">Back to the arcade</a>
-      <a class="pixel-btn" href="/games/bushveld-brothers.html">Prev</a>
-      <a class="pixel-btn" href="/games/selkie-song.html">Next</a>
+      <a class="pixel-btn" href="/games.html">Back to games</a>
+      <a class="pixel-btn" href="/games/clinical-trial.html">Prev</a>
+      <a class="pixel-btn" href="/games/bushveld-brothers.html">Next</a>
     </p>
   </main>
   <footer class="site-footer">

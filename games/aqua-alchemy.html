@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Spicy+Rice&display=swap" rel="stylesheet">
   <link rel="icon" href="/assets/brand/favicon.png" type="image/png">
-  <link rel="stylesheet" href="/css/site.css?v=68">
+  <link rel="stylesheet" href="/css/site.css?v=69">
 </head>
 <body>
   <a class="skip" href="#content">Skip to content</a>
@@ -29,11 +29,12 @@
     </nav>
   </header>
 
-  <main id="content" class="wrap">
-    <p class="kicker"><a href="/games.html">Game 10 / 13</a></p>
+  <main id="content" class="wrap game-page is-extra">
+    <p class="kicker"><a href="/games.html#additional">Additional work</a> · Game 10 / 13</p>
     <div class="page-hero">
       <h1>Aqua Alchemy</h1>
       <p class="meta">Client prototype  ·  Unity</p>
+      <p class="credits-line">Credits: Tiyah Singh</p>
     </div>
     <figure class="poster">
       <img src="/assets/posters/aqua-alchemy.jpg" alt="Poster for Aqua Alchemy. Credits: Tiyah Singh.">
@@ -41,30 +42,44 @@
     
     <div class="tabs" role="tablist" aria-label="Project details">
       <button type="button" role="tab" id="tab-overview" aria-selected="true" aria-controls="panel-overview" data-tab="overview">Overview</button>
-      <button type="button" role="tab" id="tab-gameplay" aria-selected="false" aria-controls="panel-gameplay" data-tab="gameplay">Gameplay</button>
+      <button type="button" role="tab" id="tab-gameplay" aria-selected="false" aria-controls="panel-gameplay" data-tab="gameplay">Synopsis</button>
       <button type="button" role="tab" id="tab-dev" aria-selected="false" aria-controls="panel-dev" data-tab="dev">Development</button>
-      <button type="button" role="tab" id="tab-role" aria-selected="false" aria-controls="panel-role" data-tab="role">My contributions</button>
-      <button type="button" role="tab" id="tab-links" aria-selected="false" aria-controls="panel-links" data-tab="links">Links</button>
+      <button type="button" role="tab" id="tab-role" aria-selected="false" aria-controls="panel-role" data-tab="role">My role</button>
+      <button type="button" role="tab" id="tab-media" aria-selected="false" aria-controls="panel-media" data-tab="media">Media</button>
+      <button type="button" role="tab" id="tab-links" aria-selected="false" aria-controls="panel-links" data-tab="links">Demo &amp; download</button>
     </div>
     <div class="tab-panel" id="panel-overview" role="tabpanel" aria-labelledby="tab-overview" data-panel="overview">
       <article class="panel block">
         <h2>Project brief</h2>
         <p>The brief was a client-facing prototype: a pitch that explains the game, plus a Unity build, a project schedule, and a reference list that shows where the work came from.</p>
       </article>
+      <article class="panel block">
+        <h2>Team credits</h2>
+        <p>Tiyah Singh</p>
+        
+      </article>
     </div>
     <div class="tab-panel" id="panel-gameplay" role="tabpanel" aria-labelledby="tab-gameplay" data-panel="gameplay" hidden>
       <article class="panel block">
-        <h2>Gameplay</h2>
+        <h2>Game synopsis</h2>
         <p>Aqua Alchemy is a GADS prototype about alchemy and water, presented to a client and built in Unity. The public record of the idea is the pitch presentation. The playable project, schedule, and reference list live in the repository.</p>
       </article>
     </div>
     <div class="tab-panel" id="panel-dev" role="tabpanel" aria-labelledby="tab-dev" data-panel="dev" hidden>
       <article class="panel block">
-        <h2>Technologies</h2>
+        <h2>Game engine</h2>
+        <p>Unity</p>
+      </article>
+      <article class="panel block">
+        <h2>Programming languages</h2>
+        <ul class="chips"><li>C#</li></ul>
+      </article>
+      <article class="panel block">
+        <h2>Technologies and software</h2>
         <ul class="chips"><li>Unity</li><li>C#</li><li>Canva pitch</li><li>Project schedule</li><li>GitHub</li></ul>
       </article>
       <article class="panel block">
-        <h2>Process</h2>
+        <h2>Process work</h2>
         <figure class="process">
           <img src="/assets/process/aqua-alchemy.jpg" alt="Process image for Aqua Alchemy.">
         </figure>
@@ -72,27 +87,36 @@
     </div>
     <div class="tab-panel" id="panel-role" role="tabpanel" aria-labelledby="tab-role" data-panel="role" hidden>
       <article class="panel block">
-        <h2>Role and contribution</h2>
+        <h2>Personal role</h2>
         <p>Tiyah contributed the prototype, the pitch, and the production documents published with the project.</p>
-        
+      </article>
+      <article class="panel block">
+        <h2>Individual contributions</h2>
+        <p>Tiyah contributed the prototype, the pitch, and the production documents published with the project.</p>
+      </article>
+    </div>
+    <div class="tab-panel" id="panel-media" role="tabpanel" aria-labelledby="tab-media" data-panel="media" hidden>
+      <article class="panel block">
+        <h2>Screenshots</h2>
+        <div class="shot-grid"><figure class="shot"><img src="/assets/process/aqua-alchemy.jpg" alt="Process / screenshot for Aqua Alchemy."></figure></div>
       </article>
     </div>
     <div class="tab-panel" id="panel-links" role="tabpanel" aria-labelledby="tab-links" data-panel="links" hidden>
       <div class="qr-grid">
         <article class="qr-card">
-          <h2>Demo</h2>
-          <p><a href="https://www.canva.com/design/DAG27j2PPAA/j7RCqfqVMnJL_GDgLp8u8Q/edit">Client pitch</a></p>
+          <h2>Demo video / page</h2>
+          <p><a href="https://www.canva.com/design/DAG27j2PPAA/j7RCqfqVMnJL_GDgLp8u8Q/edit" target="_blank" rel="noopener noreferrer">Client pitch</a></p>
           <img src="/assets/qr/aqua-alchemy-demo.png" alt="QR code for the Aqua Alchemy demo.">
         </article>
         <article class="qr-card">
-          <h2>Download</h2>
-          <p><a href="https://github.com/Jamie-LeeD/Aqua_Alchemy">Unity project</a></p>
+          <h2>Game download</h2>
+          <p><a href="https://github.com/Jamie-LeeD/Aqua_Alchemy" target="_blank" rel="noopener noreferrer">Unity project</a></p>
           <img src="/assets/qr/aqua-alchemy-download.png" alt="QR code for the Aqua Alchemy download.">
         </article>
       </div>
     </div>
     <p class="hero-actions">
-      <a class="pixel-btn" href="/games.html">Back to the arcade</a>
+      <a class="pixel-btn" href="/games.html">Back to games</a>
       <a class="pixel-btn" href="/games/a-cats-tale.html">Prev</a>
       <a class="pixel-btn" href="/games/noesis.html">Next</a>
     </p>

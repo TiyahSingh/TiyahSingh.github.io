@@ -1,42 +1,72 @@
 [
   {
-    "slug": "bushveld-brothers",
-    "title": "Bushveld Brothers",
-    "genre": "Ranger adventure",
-    "card": "A short 3D patrol where you read spoor, rescue wildlife, and detain poachers.",
-    "role": "Tiyah Singh produced the project and led the interface work. On the studio roster she is project manager, lead UI/UX designer, gameplay programmer, and documentation lead. She kept the schedule, designed menus and HUD flow, implemented gameplay in C#, and wrote the production records.",
+    "slug": "clinical-trial",
+    "title": "Clinical Trial",
+    "genre": "Hospital simulation",
+    "card": "Run an under-resourced public clinic by switching between four hospital jobs.",
+    "role": "Programming, UI/UX design, technical documentation, and visual presentations (slides and gameplay videos).",
     "tech": [
       "Unity",
       "C#",
-      "3D level art",
-      "UI style guide",
-      "GitHub"
+      "3D clinic scenes",
+      "UI/UX",
+      "GitHub",
+      "itch.io",
+      "Canva"
     ],
-    "demo": "https://www.canva.com/design/DAGwcwvyT20/CFXTwt7RG_zKjoMCMYbHSQ/edit",
-    "demoLabel": "Pitch presentation",
-    "download": "https://github.com/DavidBarker05/Games-For-Africa",
-    "downloadLabel": "Unity project on GitHub",
-    "poster": "/assets/posters/bushveld-brothers.jpg"
+    "demo": "https://feelgoodbinjuice.itch.io/clinical-trial",
+    "demoLabel": "Playable itch.io build",
+    "download": "https://feelgoodbinjuice.itch.io/clinical-trial",
+    "downloadLabel": "Windows download",
+    "poster": "/assets/posters/clinical-trial.jpg",
+    "showcase": true,
+    "credits": "Tiyah Singh, L.A. van der Zee, Jamie-Lee Davies, Jacques Willemse"
   },
   {
     "slug": "dont-forget-to-say-goodbye",
     "title": "Don't Forget to Say Goodbye",
     "genre": "Narrative horror",
     "card": "A haunted manor, ritual puzzles, and a Ouija board answered by a local language model.",
-    "role": "Tiyah led design and art. She shaped the occult interface, the ritual props, and the visual language of the manor.",
+    "role": "Lead design and art direction \u2014 occult interface, ritual props, manor visual language, and player-facing board UX.",
     "tech": [
       "Unity 6 (6000.4.1f1)",
       "C#",
       "Ollama",
       "Llama 3.2",
       "Whisper.unity",
-      "TextMesh Pro"
+      "TextMesh Pro",
+      "GitHub"
     ],
     "demo": "https://canva.link/gj0ke405qwcgs47",
     "demoLabel": "Showcase video",
     "download": "https://github.com/DavidBarker05/Ouija-Game",
     "downloadLabel": "Unity project on GitHub",
-    "poster": "/assets/posters/dont-forget-to-say-goodbye.jpg"
+    "poster": "/assets/posters/dont-forget-to-say-goodbye.jpg",
+    "showcase": true,
+    "credits": "Tiyah Singh, David Barker"
+  },
+  {
+    "slug": "bushveld-brothers",
+    "title": "Bushveld Brothers",
+    "genre": "Ranger adventure",
+    "card": "A short 3D patrol where you read spoor, rescue wildlife, and detain poachers.",
+    "role": "Project manager, lead UI/UX designer, gameplay programmer, and documentation lead on the Starr Studios roster.",
+    "tech": [
+      "Unity",
+      "C#",
+      "3ds Max",
+      "GitHub",
+      "itch.io",
+      "Canva",
+      "Steam store art"
+    ],
+    "demo": "https://omega0.itch.io/bushveld-brothers",
+    "demoLabel": "Playable itch.io page",
+    "download": "https://omega0.itch.io/bushveld-brothers",
+    "downloadLabel": "Windows & Android builds",
+    "poster": "/assets/posters/bushveld-brothers.jpg",
+    "showcase": true,
+    "credits": "Tiyah Singh, David Barker, Barrie-George Davies, Jamie-Lee Davies"
   },
   {
     "slug": "selkie-song",
@@ -55,26 +85,9 @@
     "demoLabel": "Video presentation",
     "download": "https://github.com/TiyahSingh/GADE7321POE",
     "downloadLabel": "Project repository",
-    "poster": "/assets/posters/selkie-song.jpg"
-  },
-  {
-    "slug": "clinical-trial",
-    "title": "Clinical Trial",
-    "genre": "Hospital simulation",
-    "card": "Run an under-resourced public clinic by switching between four hospital jobs.",
-    "role": "Tiyah worked on the clinic simulation. She also published Pharmacist Mini Game, a Unity pharmacy simulation of imprint checks, pill sorting, dispensing, and labelling, as related clinical gameplay.",
-    "tech": [
-      "Unity",
-      "C#",
-      "3D clinic scenes",
-      "Role-based mini-games",
-      "GitHub"
-    ],
-    "demo": "https://github.com/LJ-vdZ/XBCGD7312_Clinical-Trial",
-    "demoLabel": "Group prototype",
-    "download": "https://github.com/TiyahSingh/PharmacistMiniGame",
-    "downloadLabel": "Pharmacy mini-game",
-    "poster": "/assets/posters/clinical-trial.jpg"
+    "poster": "/assets/posters/selkie-song.jpg",
+    "showcase": false,
+    "credits": "Tiyah Singh"
   },
   {
     "slug": "charmfire",
@@ -93,7 +106,9 @@
     "demoLabel": "Project repository",
     "download": "https://github.com/Jamie-LeeD/GADE_POE",
     "downloadLabel": "Unreal project",
-    "poster": "/assets/posters/charmfire.jpg"
+    "poster": "/assets/posters/charmfire.jpg",
+    "showcase": false,
+    "credits": "Tiyah Singh"
   },
   {
     "slug": "no-exit",
@@ -113,7 +128,9 @@
     "demoLabel": "Process presentation",
     "download": "https://github.com/Jamie-LeeD/EndlessRunnerPOE",
     "downloadLabel": "EndlessRunnerPOE repository",
-    "poster": "/assets/posters/no-exit.jpg"
+    "poster": "/assets/posters/no-exit.jpg",
+    "showcase": false,
+    "credits": "Tiyah Singh"
   },
   {
     "slug": "echos-lament",
@@ -131,7 +148,9 @@
     "demoLabel": "Play in the browser",
     "download": "https://jamesleed.itch.io/echos-lament",
     "downloadLabel": "Playable itch.io build",
-    "poster": "/assets/posters/echos-lament.jpg"
+    "poster": "/assets/posters/echos-lament.jpg",
+    "showcase": false,
+    "credits": "Tiyah Singh"
   },
   {
     "slug": "hive-mind",
@@ -150,7 +169,9 @@
     "demoLabel": "Play Hex Mind",
     "download": "https://github.com/Jamie-LeeD/HiveMind",
     "downloadLabel": "HiveMind repository",
-    "poster": "/assets/posters/hive-mind.jpg"
+    "poster": "/assets/posters/hive-mind.jpg",
+    "showcase": false,
+    "credits": "Tiyah Singh"
   },
   {
     "slug": "a-cats-tale",
@@ -169,7 +190,9 @@
     "demoLabel": "Demonstration video",
     "download": "https://github.com/Jamie-LeeD/ACatsTalePOE_Copy",
     "downloadLabel": "Public project copy",
-    "poster": "/assets/posters/a-cats-tale.jpg"
+    "poster": "/assets/posters/a-cats-tale.jpg",
+    "showcase": false,
+    "credits": "Tiyah Singh"
   },
   {
     "slug": "aqua-alchemy",
@@ -188,7 +211,9 @@
     "demoLabel": "Client pitch",
     "download": "https://github.com/Jamie-LeeD/Aqua_Alchemy",
     "downloadLabel": "Unity project",
-    "poster": "/assets/posters/aqua-alchemy.jpg"
+    "poster": "/assets/posters/aqua-alchemy.jpg",
+    "showcase": false,
+    "credits": "Tiyah Singh"
   },
   {
     "slug": "noesis",
@@ -207,7 +232,9 @@
     "demoLabel": "Depth repository",
     "download": "https://github.com/Jamie-LeeD/Depth",
     "downloadLabel": "Unity project",
-    "poster": "/assets/posters/noesis.jpg"
+    "poster": "/assets/posters/noesis.jpg",
+    "showcase": false,
+    "credits": "Tiyah Singh"
   },
   {
     "slug": "dreamy-mosaics",
@@ -226,7 +253,9 @@
     "demoLabel": "Prototype repository",
     "download": "https://github.com/Jamie-LeeD/Dreamy-Mosaics-Prototype",
     "downloadLabel": "Unity project",
-    "poster": "/assets/posters/dreamy-mosaics.jpg"
+    "poster": "/assets/posters/dreamy-mosaics.jpg",
+    "showcase": false,
+    "credits": "Tiyah Singh"
   },
   {
     "slug": "dragon-slayers",
@@ -244,6 +273,8 @@
     "demoLabel": "Presentation video",
     "download": "https://github.com/TiyahSingh/POEDragonSlayers",
     "downloadLabel": "Private repository",
-    "poster": "/assets/posters/dragon-slayers.jpg"
+    "poster": "/assets/posters/dragon-slayers.jpg",
+    "showcase": false,
+    "credits": "Tiyah Singh"
   }
 ]

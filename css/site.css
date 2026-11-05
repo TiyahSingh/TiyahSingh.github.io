@@ -2093,6 +2093,70 @@ body.title-on .title-screen {
 
 .tiny { font-size: 0.42rem; padding: 0.4rem 0.45rem; }
 
+.credits-line {
+  margin: 0.35rem 0 0;
+  font-family: var(--font-ui);
+  font-size: clamp(0.78rem, 1.6vw, 0.95rem);
+  color: var(--pink-2);
+}
+
+.games-section {
+  margin: 2.2rem 0 3rem;
+}
+
+.games-section__title {
+  margin: 0 0 0.4rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 3.5vw, 2rem);
+  color: #fff;
+}
+
+.games-section__blurb {
+  margin: 0 0 1.2rem;
+  max-width: 42rem;
+  color: var(--pink-2);
+  font-family: var(--font-ui);
+  line-height: 1.5;
+}
+
+.games-section--extra {
+  padding-top: 1.4rem;
+  border-top: 2px dashed color-mix(in srgb, var(--pink) 35%, transparent);
+}
+
+.shot-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.85rem;
+}
+
+.shot {
+  margin: 0;
+  border: 3px solid color-mix(in srgb, var(--pink) 55%, #2a0838);
+  background: #120818;
+}
+
+.shot img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.cab--showcase .play-tag {
+  background: linear-gradient(180deg, #ffe0f6, #ff4eb8);
+  color: #1a0614;
+}
+
+.cab--extra .play-tag {
+  background: rgba(12, 6, 22, 0.92);
+  color: var(--pink-2);
+  border: 1px solid color-mix(in srgb, var(--pink) 45%, transparent);
+}
+
+.game-page.is-showcase .poster {
+  box-shadow: 0 0 28px color-mix(in srgb, var(--pink) 35%, transparent);
+}
+
 .arcade-floor {
   display: flex;
   flex-wrap: wrap;
