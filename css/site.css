@@ -2229,14 +2229,14 @@ body.title-on .title-screen {
 }
 
 .game-cab__machine {
-  width: min(100%, 280px);
+  width: min(100%, 260px);
   margin: 0.2rem 0 0.35rem;
   filter: drop-shadow(0 14px 18px rgba(20, 4, 36, 0.45));
   transition: transform 0.2s ease;
 }
 
 .game-cab--showcase .game-cab__machine {
-  width: min(100%, 320px);
+  width: min(100%, 300px);
 }
 
 .game-cab:hover .game-cab__machine,

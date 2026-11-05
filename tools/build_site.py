@@ -10,9 +10,9 @@ POSTERS = ROOT / "assets" / "posters"
 PROCESS = ROOT / "assets" / "process"
 QR = ROOT / "assets" / "qr"
 CABINETS = ROOT / "assets" / "cabinets"
-CABINET_SRC = Path(r"C:\Users\User\.cursor\projects\c-Users-User-Desktop-website\assets\image-02e0436a-8cfe-4a86-acb2-ac50cef0138b.png")
-CABINET_CROP = (55, 48, 520, 948)
-CABINET_SCREEN = (60, 258, 405, 454)  # relative to cropped cabinet
+# Simple cabinet canvas + portrait screen (posters are portrait)
+CABINET_SIZE = (420, 560)
+CABINET_SCREEN = (58, 48, 362, 390)  # left, top, right, bottom
 for folder in (POSTERS, PROCESS, QR, CABINETS, ROOT / "games"):
     folder.mkdir(parents=True, exist_ok=True)
 
@@ -34,11 +34,11 @@ def cover(url, dest):
 
 
 def cover_fit(image, size):
-    """Scale + center-crop so the poster fills the landscape cabinet screen."""
+    """Scale + center-crop so the poster fills the cabinet screen."""
     tw, th = size
     src = image.convert("RGBA")
     sw, sh = src.size
-    scale = max(tw / sw, th / sh)
+    scale = max(tw / max(sw, 1), th / max(sh, 1))
     nw, nh = max(1, int(sw * scale)), max(1, int(sh * scale))
     resized = src.resize((nw, nh), Image.Resampling.LANCZOS)
     left = max(0, (nw - tw) // 2)
@@ -46,14 +46,50 @@ def cover_fit(image, size):
     return resized.crop((left, top, left + tw, top + th))
 
 
+def draw_simple_cabinet():
+    """Clean pink arcade shell with a tall portrait screen for posters."""
+    w, h = CABINET_SIZE
+    img = Image.new("RGBA", (w, h), (0, 0, 0, 0))
+    draw = ImageDraw.Draw(img)
+    body = (236, 72, 168, 255)
+    body_dark = (168, 36, 120, 255)
+    bezel = (40, 16, 48, 255)
+    panel = (255, 196, 230, 255)
+    accent = (122, 240, 255, 255)
+    # outer body
+    draw.rounded_rectangle((18, 12, w - 18, h - 10), radius=28, fill=body_dark)
+    draw.rounded_rectangle((28, 22, w - 28, h - 22), radius=22, fill=body)
+    # screen bezel
+    sx0, sy0, sx1, sy1 = CABINET_SCREEN
+    draw.rounded_rectangle((sx0 - 14, sy0 - 14, sx1 + 14, sy1 + 14), radius=16, fill=bezel)
+    draw.rounded_rectangle((sx0 - 6, sy0 - 6, sx1 + 6, sy1 + 6), radius=10, fill=(12, 6, 18, 255))
+    # control deck
+    deck_top = sy1 + 28
+    draw.rounded_rectangle((46, deck_top, w - 46, h - 48), radius=14, fill=panel)
+    draw.rounded_rectangle((46, deck_top, w - 46, deck_top + 10), radius=4, fill=accent)
+    # stick + buttons
+    stick_x, stick_y = 110, deck_top + 52
+    draw.ellipse((stick_x - 18, stick_y - 18, stick_x + 18, stick_y + 18), fill=(255, 70, 120, 255))
+    draw.rectangle((stick_x - 5, stick_y - 40, stick_x + 5, stick_y), fill=(250, 240, 255, 255))
+    for i, color in enumerate([(80, 160, 255, 255), (255, 80, 120, 255), (255, 210, 70, 255)]):
+        bx = 250 + i * 42
+        by = stick_y
+        draw.ellipse((bx - 14, by - 14, bx + 14, by + 14), fill=color)
+        draw.ellipse((bx - 14, by - 14, bx + 14, by + 14), outline=(255, 255, 255, 220), width=2)
+    # coin ledge
+    draw.rounded_rectangle((w // 2 - 36, h - 42, w // 2 + 36, h - 28), radius=6, fill=bezel)
+    return img
+
+
 def make_cabinet(poster_path, dest):
-    if not CABINET_SRC.exists():
-        return False
-    frame = Image.open(CABINET_SRC).convert("RGBA").crop(CABINET_CROP)
+    frame = draw_simple_cabinet()
     sx0, sy0, sx1, sy1 = CABINET_SCREEN
     screen = cover_fit(Image.open(poster_path), (sx1 - sx0, sy1 - sy0))
     out = frame.copy()
     out.paste(screen, (sx0, sy0))
+    # thin neon rim over the poster edge
+    rim = ImageDraw.Draw(out)
+    rim.rounded_rectangle((sx0 - 2, sy0 - 2, sx1 + 1, sy1 + 1), radius=6, outline=(255, 180, 230, 230), width=3)
     dest.parent.mkdir(parents=True, exist_ok=True)
     out.save(dest, "PNG", optimize=True)
     return True
@@ -368,7 +404,7 @@ GAMES = [
         "demo_label": "Video presentation",
         "download": "https://github.com/TiyahSingh/GADE7321POE",
         "download_label": "Project repository",
-        "photo": "",
+        "photo": r"C:\Users\User\Desktop\website\selkie song poster.png",
         "process_photo": r"C:\Users\User\Downloads\Selkie Song UI Assets (1)\playbutton.png",
         "screenshots": [],
         "motif": "sea",
@@ -390,7 +426,7 @@ GAMES = [
         "demo_label": "Project repository",
         "download": "https://github.com/Jamie-LeeD/GADE_POE",
         "download_label": "Unreal project",
-        "photo": "",
+        "photo": r"C:\Users\User\Desktop\website\charmfire poster.png",
         "process_photo": "",
         "motif": "fire",
         "note": "A separate gameplay video is not published. The repository is both the demo record and the download.",
@@ -518,7 +554,7 @@ GAMES = [
         "demo_label": "Depth repository",
         "download": "https://github.com/Jamie-LeeD/Depth",
         "download_label": "Unity project",
-        "photo": "",
+        "photo": r"C:\Users\User\Desktop\website\noesis poster.png",
         "process_photo": "",
         "motif": "mind",
         "note": "A standalone trailer is not published. The repository is the public build.",
@@ -568,15 +604,21 @@ GAMES = [
 ]
 
 SHOWCASE_ORDER = ["clinical-trial", "dont-forget-to-say-goodbye", "bushveld-brothers"]
+ADDITIONAL_ORDER = ["selkie-song", "charmfire", "noesis"]
+LISTED_ORDER = SHOWCASE_ORDER + ADDITIONAL_ORDER
 for game in GAMES:
-    game.setdefault("showcase", False)
+    game["showcase"] = game["slug"] in SHOWCASE_ORDER
+    game["additional"] = game["slug"] in ADDITIONAL_ORDER
+    game["listed"] = game["slug"] in LISTED_ORDER
     game.setdefault("languages", ["C#"] if "C#" in " ".join(game.get("tech", [])) else [])
     game.setdefault("contributions", game.get("role", ""))
     game.setdefault("screenshots", [])
 _by_slug = {game["slug"]: game for game in GAMES}
-GAMES = [_by_slug[slug] for slug in SHOWCASE_ORDER if slug in _by_slug] + [
-    game for game in GAMES if game["slug"] not in SHOWCASE_ORDER
+# Portfolio list order: showcase trio, then only the three additional poster games
+GAMES = [_by_slug[slug] for slug in LISTED_ORDER if slug in _by_slug] + [
+    game for game in GAMES if game["slug"] not in LISTED_ORDER
 ]
+LISTED_GAMES = [game for game in GAMES if game.get("listed")]
 
 
 def header(title="", nav=""):
@@ -626,7 +668,7 @@ def header(title="", nav=""):
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Spicy+Rice&display=swap" rel="stylesheet">
   <link rel="icon" href="/assets/brand/favicon.png" type="image/png">
-  <link rel="stylesheet" href="/css/site.css?v=71">{extra_css}
+  <link rel="stylesheet" href="/css/site.css?v=72">{extra_css}
 </head>
 <body{body}>
   <a class="skip" href="#content">Skip to content</a>
@@ -755,7 +797,8 @@ def build_images():
                 print("screenshot failed", game["slug"], shot_path, error)
         make_qr(game["demo"], QR / f"{game['slug']}-demo.png")
         make_qr(game["download"], QR / f"{game['slug']}-download.png")
-        make_cabinet(poster_path, CABINETS / f"{game['slug']}.png")
+        if game.get("listed"):
+            make_cabinet(poster_path, CABINETS / f"{game['slug']}.png")
         print("built", game["slug"])
 
 
@@ -763,10 +806,12 @@ def page(game, index, total):
     chips = "".join(f"<li>{item}</li>" for item in game["tech"])
     lang_chips = "".join(f"<li>{item}</li>" for item in (game.get("languages") or []))
     warning = f'<p class="warn">{game["note"]}</p>' if game["note"] else ""
-    prev_game = GAMES[(index - 1) % total]
-    next_game = GAMES[(index + 1) % total]
+    nav_pool = LISTED_GAMES if game.get("listed") else GAMES
+    nav_index = next((i for i, item in enumerate(nav_pool) if item["slug"] == game["slug"]), 0)
+    prev_game = nav_pool[(nav_index - 1) % len(nav_pool)]
+    next_game = nav_pool[(nav_index + 1) % len(nav_pool)]
     showcase = bool(game.get("showcase"))
-    kicker = "Showcase work" if showcase else "Additional work"
+    kicker = "Showcase work" if showcase else ("Additional work" if game.get("additional") else "Games")
     shot_dir = ROOT / "assets" / "screenshots" / game["slug"]
     shot_files = sorted(shot_dir.glob("*.jpg")) if shot_dir.exists() else []
     shots_html = "".join(
@@ -1043,8 +1088,8 @@ def index():
           <a class="game-cab__btn" href="/games/{game["slug"]}.html">Learn about game</a>
         </article>"""
 
-    showcase_cards = [game_card(game) for game in GAMES if game.get("showcase")]
-    extra_cards = [game_card(game) for game in GAMES if not game.get("showcase")]
+    showcase_cards = [game_card(game) for game in LISTED_GAMES if game.get("showcase")]
+    extra_cards = [game_card(game) for game in LISTED_GAMES if game.get("additional")]
     contact_socials = "".join(
         f'<a class="contact-social" href="{item["href"]}"'
         + (' target="_blank" rel="noopener noreferrer"' if item["href"].startswith("http") else "")
@@ -1272,7 +1317,7 @@ def index():
       </section>
       <section id="additional" class="games-section games-section--extra">
         <h2 class="games-section__title">Additional work</h2>
-        <p class="games-section__blurb">Extra projects with posters — jams, prototypes, and supporting builds.</p>
+        <p class="games-section__blurb">Selkie Song, Charmfire, and Noesis.</p>
         <div class="arcade-floor arcade-floor--extra">
           {"".join(extra_cards)}
         </div>
