@@ -681,7 +681,13 @@ body.about-page .scanlines {
 
 .page-hero { padding: 2.2rem 0 0.4rem; }
 
-.page-hero h1 { font-size: clamp(1.2rem, 3vw, 2rem); }
+.page-hero h1 { font-size: clamp(1.85rem, 5vw, 2.8rem); line-height: 1.1; }
+.game-page .meta { font-size: clamp(1rem, 2.2vw, 1.2rem); }
+.game-page .panel h2 { font-size: clamp(1.25rem, 3vw, 1.6rem); }
+.game-page .panel p,
+.game-page .note { font-size: clamp(1rem, 2.2vw, 1.15rem); line-height: 1.55; }
+.game-page .tabs button { font-size: clamp(0.9rem, 2vw, 1.05rem); padding: 0.65rem 0.9rem; }
+.game-page .chips li { font-size: 0.95rem; }
 
 .poster {
   margin: 1.2rem 0;
@@ -1309,7 +1315,7 @@ body.explore-page .site-footer {
   .gems { transform: translateX(-42px) scale(0.55); transform-origin: bottom right; }
   section, .play { scroll-margin-top: 6rem; }
   .meters li { grid-template-columns: 1fr; gap: 0.25rem; }
-  .cab { width: min(100%, 220px); }
+  .game-cab__machine { width: min(100%, 300px); }
   .title-screen h1 { font-size: 1.4rem; }
   .project-screen {
     left: 0.6rem;
