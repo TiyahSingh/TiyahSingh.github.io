@@ -56,39 +56,41 @@ async function boot() {
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.35));
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 1.08;
-  renderer.setClearColor(0x090614, 1);
+  renderer.toneMappingExposure = 1.02;
+  renderer.setClearColor(0x070510, 1);
   mount.appendChild(renderer.domElement);
   mount.classList.add("is-live");
 
   const scene = new THREE.Scene();
-  scene.background = new THREE.Color(0x090614);
-  scene.fog = new THREE.FogExp2(0x090614, 0.016);
+  /* Slightly cooler fog so dark building edges stay readable against space */
+  scene.background = new THREE.Color(0x070510);
+  scene.fog = new THREE.FogExp2(0x0c0820, 0.011);
 
   const camera = new THREE.PerspectiveCamera(40, 1, 0.1, 200);
   camera.position.set(22, 16, 24);
   camera.lookAt(0, 2.2, 0);
 
-  scene.add(new THREE.AmbientLight(0x8a60b8, 0.55));
-  const key = new THREE.DirectionalLight(0xffd0f0, 0.7);
+  scene.add(new THREE.AmbientLight(0x7a6aa0, 0.7));
+  const key = new THREE.DirectionalLight(0xe8d8ff, 0.85);
   key.position.set(8, 16, 6);
   scene.add(key);
-  const fill = new THREE.DirectionalLight(0xb8f0ff, 0.35);
+  const fill = new THREE.DirectionalLight(0x9ad8ff, 0.55);
   fill.position.set(-10, 10, -4);
   scene.add(fill);
-  scene.add(new THREE.HemisphereLight(0xffb0e8, 0x180820, 0.4));
-  const rim = new THREE.PointLight(0xff3ec8, 16, 42, 2);
+  /* Back rim so far buildings separate from the void */
+  const backRim = new THREE.DirectionalLight(0xb8f0ff, 0.65);
+  backRim.position.set(0, 8, -18);
+  scene.add(backRim);
+  scene.add(new THREE.HemisphereLight(0xc8b0e8, 0x140818, 0.5));
+  const rim = new THREE.PointLight(0xff3ec8, 6, 36, 2);
   rim.position.set(0, 8, 0);
   scene.add(rim);
-  const cyan = new THREE.PointLight(0x7af0ff, 11, 36, 2);
+  const cyan = new THREE.PointLight(0x7af0ff, 7, 32, 2);
   cyan.position.set(-5, 6, 5);
   scene.add(cyan);
-  const magenta = new THREE.PointLight(0xb14bff, 10, 34, 2);
+  const magenta = new THREE.PointLight(0xb14bff, 5, 30, 2);
   magenta.position.set(6, 7, -5);
   scene.add(magenta);
-  const warm = new THREE.PointLight(0xff7ad9, 7, 28, 2);
-  warm.position.set(-2, 5, -7);
-  scene.add(warm);
 
   const starLayers = addStarfield(scene) || [];
   addVoidGlow(scene);
@@ -109,9 +111,21 @@ async function boot() {
     loadModel("/assets/models/eh98/sign.glb"),
     loadModel("/assets/models/eh98/vending.glb"),
   ]).then(function (list) {
-    return list.map(function (gltf) {
+    return list.map(function (gltf, propIndex) {
       tuneCity(gltf.scene, false, false);
       boostGlow(gltf.scene);
+      /* Dim streetlamp neon so poles don't bleach the skyline */
+      if (propIndex === 0) {
+        gltf.scene.traverse(function (child) {
+          if (!child.isMesh) return;
+          const listMats = Array.isArray(child.material) ? child.material : [child.material];
+          listMats.forEach(function (material) {
+            if (!material || material.emissiveIntensity == null) return;
+            material.emissiveIntensity = Math.min(material.emissiveIntensity * 0.4, 0.5);
+            material.needsUpdate = true;
+          });
+        });
+      }
       return gltf.scene;
     });
   }).catch(function () { return []; });
@@ -142,10 +156,10 @@ async function boot() {
   addBridge(city, islands[6], islands[7]);
   addBridge(city, islands[5], islands[6]);
 
-  /* Tight bloom: high threshold so only neon windows/signs glow, not the whole city */
+  /* Soft bloom — only bright windows, not pink lamp wash */
   const composer = new EffectComposer(renderer);
   composer.addPass(new RenderPass(scene, camera));
-  const bloom = new UnrealBloomPass(new THREE.Vector2(1, 1), 0.28, 0.22, 0.82);
+  const bloom = new UnrealBloomPass(new THREE.Vector2(1, 1), 0.16, 0.18, 0.88);
   composer.addPass(bloom);
 
   const anchors = DESTINATIONS.map(function (dest, index) {
@@ -173,10 +187,10 @@ async function boot() {
   let dragging = false;
   let lastX = 0;
   let yaw = 0.55;
-  let pitch = 0.34;
-  /* Far enough out to read the whole floating city */
-  const target = new THREE.Vector3(0.2, 2.2, 0);
-  const radius = 32;
+  /* Slightly lower pitch keeps black sky clear for the controller title */
+  let pitch = 0.3;
+  const target = new THREE.Vector3(0.2, 1.6, 0);
+  const radius = 34;
 
   function applyOrbit() {
     camera.position.set(
@@ -247,9 +261,9 @@ async function boot() {
     if (starLayers[0]) starLayers[0].rotation.y = t * 0.012;
     if (starLayers[1]) starLayers[1].rotation.y = -t * 0.018;
     if (starLayers[0]) starLayers[0].rotation.x = Math.sin(t * 0.08) * 0.04;
-    rim.intensity = 14 + Math.sin(t * 0.9) * 2;
-    cyan.intensity = 10 + Math.sin(t * 1.1 + 1) * 1.5;
-    magenta.intensity = 9 + Math.sin(t * 0.85 + 2) * 1.4;
+    rim.intensity = 5.5 + Math.sin(t * 0.9) * 0.8;
+    cyan.intensity = 6.5 + Math.sin(t * 1.1 + 1) * 0.9;
+    magenta.intensity = 4.5 + Math.sin(t * 0.85 + 2) * 0.7;
     anchors.forEach(function (item, index) {
       if (item.beam && item.beam.userData && item.beam.userData.pulseMats) {
         item.beam.userData.pulseMats.forEach(function (mat) {
@@ -277,10 +291,15 @@ function boostGlow(root) {
     if (!child.isMesh) return;
     const list = Array.isArray(child.material) ? child.material : [child.material];
     list.forEach(function (material) {
-      if (!material || material.emissiveIntensity == null) return;
-      material.emissiveIntensity = Math.min(Math.max(material.emissiveIntensity * 1.35, 0.55), 1.45);
+      if (!material) return;
+      /* Lift building body so silhouettes read against space */
+      if (material.color) {
+        material.color.offsetHSL(0, 0.04, material.map ? 0.1 : 0.14);
+      }
+      if (material.emissiveIntensity == null) return;
+      material.emissiveIntensity = Math.min(Math.max(material.emissiveIntensity * 1.05, 0.35), 1.05);
       if (material.emissiveMap) {
-        material.emissiveIntensity = Math.min(material.emissiveIntensity, 1.35);
+        material.emissiveIntensity = Math.min(material.emissiveIntensity, 0.95);
       }
       material.needsUpdate = true;
     });
@@ -296,7 +315,7 @@ function makeIsland(spec) {
     new THREE.MeshStandardMaterial({
       color: 0x1a1228,
       emissive: spec.hue,
-      emissiveIntensity: 0.95,
+      emissiveIntensity: 0.42,
       metalness: 0.45,
       roughness: 0.35,
     })
@@ -387,14 +406,12 @@ function scatterBuildings(city, templates, props, island, seed) {
 
   });
 
-  if (props[0]) {
-    [[0.36, 0.3], [-0.34, 0.28], [0.3, -0.3], [-0.28, -0.26]].forEach(function (offset, i) {
-      if ((seed + i) % 2 !== 0 && i > 1) return;
-      const lamp = props[0].clone(true);
-      lamp.scale.setScalar(1.25 + (i % 2) * 0.2);
-      lamp.position.set(island.x + island.w * offset[0], island.h * 0.5, island.z + island.d * offset[1]);
-      city.add(lamp);
-    });
+  /* One lamp every other island — cut the pink wash so buildings stay readable */
+  if (props[0] && seed % 2 === 0) {
+    const lamp = props[0].clone(true);
+    lamp.scale.setScalar(1.0);
+    lamp.position.set(island.x + island.w * 0.32, island.h * 0.5, island.z + island.d * 0.28);
+    city.add(lamp);
   }
   if (props[1] && seed % 3 !== 2) {
     const board = props[1].clone(true);

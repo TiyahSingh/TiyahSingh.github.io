@@ -14,6 +14,28 @@
   --font-display: "Spicy Rice", "Segoe UI", cursive;
   --font-ui: "Spicy Rice", "Segoe UI", cursive;
   --font-body: Fredoka, "Segoe UI", sans-serif;
+
+  /* —— Type scale (use these site-wide) —— */
+  --text-2xs: clamp(0.48rem, 0.45rem + 0.12vw, 0.56rem); /* chrome, hearts, tiny labels */
+  --text-xs: clamp(0.58rem, 0.54rem + 0.18vw, 0.7rem);   /* kickers, captions, meta */
+  --text-sm: clamp(0.72rem, 0.68rem + 0.22vw, 0.86rem);  /* nav, chips, small UI */
+  --text-md: clamp(0.9rem, 0.85rem + 0.28vw, 1.02rem);   /* secondary labels */
+  --text-base: clamp(0.95rem, 0.9rem + 0.32vw, 1.08rem); /* body */
+  --text-lg: clamp(1.05rem, 0.98rem + 0.38vw, 1.2rem);   /* lede / large body */
+  --text-xl: clamp(1.15rem, 1.05rem + 0.55vw, 1.45rem);  /* h3 / card titles */
+  --text-2xl: clamp(1.3rem, 1.12rem + 0.85vw, 1.75rem);  /* h2 section */
+  --text-3xl: clamp(1.65rem, 1.35rem + 1.35vw, 2.45rem); /* page h1 */
+  --text-4xl: clamp(2rem, 1.55rem + 1.9vw, 3.05rem);     /* hero display */
+
+  --lh-display: 1.12;
+  --lh-heading: 1.25;
+  --lh-ui: 1.35;
+  --lh-body: 1.6;
+
+  --track-kicker: 0.1em;
+  --track-display: 0.02em;
+  --track-ui: 0.04em;
+
   --world-pane-h: calc(100dvh - var(--hud-h) - env(safe-area-inset-top, 0px) - 2.1rem);
   /* Header + logo share one height so they stay locked together */
   --hud-h: 6.35rem;
@@ -82,8 +104,8 @@ body {
   color: var(--paper);
   font-family: var(--font-body);
   font-weight: 500;
-  font-size: clamp(0.95rem, 0.9rem + 0.35vw, 1.08rem);
-  line-height: 1.6;
+  font-size: var(--text-base);
+  line-height: var(--lh-body);
 }
 
 img { max-width: 100%; display: block; }
@@ -228,10 +250,10 @@ button {
 .nav a,
 .pixel-btn,
 button.pixel-btn {
-  font-family: "Spicy Rice", var(--font-ui), cursive;
-  font-size: clamp(0.72rem, 1.2vw, 0.9rem);
+  font-family: var(--font-ui);
+  font-size: var(--text-sm);
   font-weight: 400;
-  letter-spacing: 0.02em;
+  letter-spacing: var(--track-display);
   text-transform: uppercase;
   text-decoration: none;
   color: #5b1a7a;
@@ -243,7 +265,7 @@ button.pixel-btn {
   box-shadow: none;
   white-space: nowrap;
   flex: 0 0 auto;
-  line-height: 1.15;
+  line-height: var(--lh-ui);
   position: relative;
   z-index: 1;
 }
@@ -287,21 +309,58 @@ button.pixel-btn:hover {
   margin: 0 0 1rem;
   color: var(--pink);
   font-family: var(--font-display);
-  font-size: 0.68rem;
-  letter-spacing: 0.08em;
+  font-size: var(--text-xs);
+  letter-spacing: var(--track-kicker);
+  line-height: var(--lh-ui);
 }
 
 h1 {
   margin: 0;
   font-family: var(--font-display);
-  font-size: clamp(1.7rem, 4vw, 3rem);
-  line-height: 1.35;
-  font-weight: 800;
-  letter-spacing: 0.02em;
+  font-size: var(--text-3xl);
+  line-height: var(--lh-display);
+  font-weight: 400;
+  letter-spacing: var(--track-display);
   text-shadow: 4px 4px 0 #5a1578, 0 0 18px rgba(252, 84, 216, 0.45);
 }
 
-.lede { color: var(--muted); font-size: 1.15rem; max-width: 40rem; }
+h2 {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  line-height: var(--lh-heading);
+  font-weight: 400;
+  letter-spacing: var(--track-display);
+  margin: 0 0 0.6rem;
+}
+
+h3 {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  line-height: var(--lh-heading);
+  font-weight: 400;
+  letter-spacing: var(--track-display);
+  margin: 0 0 0.45rem;
+}
+
+.lede {
+  color: var(--muted);
+  font-size: var(--text-lg);
+  line-height: var(--lh-body);
+  max-width: 40rem;
+}
+
+.section-intro {
+  color: var(--muted);
+  font-size: var(--text-lg);
+  line-height: var(--lh-body);
+  max-width: 42rem;
+}
+
+.note {
+  color: var(--muted);
+  font-size: var(--text-base);
+  line-height: var(--lh-body);
+}
 
 .hero-actions { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 1.4rem; }
 
@@ -316,7 +375,7 @@ h1 {
 
 .crt figcaption {
   font-family: var(--font-display);
-  font-size: 0.58rem;
+  font-size: var(--text-xs);
   color: var(--pink-2);
   padding: 0.7rem 0.2rem 0.3rem;
 }
@@ -338,7 +397,7 @@ h1 {
   padding: 0.7rem 0;
   white-space: nowrap;
   font-family: var(--font-display);
-  font-size: 0.62rem;
+  font-size: var(--text-xs);
   color: var(--pink-2);
   animation: tick 28s linear infinite;
 }
@@ -349,15 +408,6 @@ h1 {
 }
 
 section { padding: 3.5rem 0; scroll-margin-top: 6.5rem; }
-
-h2 {
-  font-family: var(--font-display);
-  font-size: clamp(1rem, 2vw, 1.35rem);
-  line-height: 1.5;
-  margin: 0 0 0.6rem;
-}
-
-.section-intro { color: var(--muted); max-width: 42rem; }
 
 .shelf {
   display: grid;
@@ -397,8 +447,8 @@ h2 {
 .cart h3 {
   margin: 0;
   font-family: var(--font-display);
-  font-size: 0.72rem;
-  line-height: 1.45;
+  font-size: var(--text-xl);
+  line-height: var(--lh-heading);
   color: white;
 }
 
@@ -406,17 +456,18 @@ h2 {
   margin: 0;
   color: var(--pink-2);
   font-family: var(--font-display);
-  font-size: 0.52rem;
-  letter-spacing: 0.04em;
+  font-size: var(--text-xs);
+  letter-spacing: var(--track-kicker);
+  line-height: var(--lh-ui);
 }
 
-.cart p { margin: 0.2rem 0 0; color: var(--muted); font-size: 0.95rem; }
+.cart p { margin: 0.2rem 0 0; color: var(--muted); font-size: var(--text-base); line-height: var(--lh-body); }
 
 .play-tag {
   margin-top: auto;
   padding-top: 0.7rem;
   font-family: var(--font-display);
-  font-size: 0.52rem;
+  font-size: var(--text-xs);
   color: var(--purple);
 }
 
@@ -473,13 +524,13 @@ body.about-page .scanlines {
 .about-lead-copy .kicker {
   color: #c01890;
   margin: 0 0 0.45rem;
-  font-size: 0.58rem;
+  font-size: var(--text-xs);
 }
 
 .about-lead-copy h1 {
   margin: 0 0 0.4rem;
   color: #7a0a52;
-  font-size: clamp(1.55rem, 4vw, 2.35rem);
+  font-size: var(--text-3xl);
   line-height: 1.12;
   text-shadow: 2px 2px 0 #ffe0f5;
 }
@@ -487,7 +538,7 @@ body.about-page .scanlines {
 .about-lead-role {
   margin: 0 0 0.55rem;
   font-family: var(--font-display);
-  font-size: clamp(0.62rem, 1.4vw, 0.78rem);
+  font-size: var(--text-xs);
   letter-spacing: 0.06em;
   color: #9a1880;
   text-transform: uppercase;
@@ -497,7 +548,7 @@ body.about-page .scanlines {
   margin: 0;
   font-family: var(--font-body);
   font-weight: 600;
-  font-size: clamp(1rem, 2vw, 1.15rem);
+  font-size: var(--text-lg);
   line-height: 1.35;
   color: #b01078;
 }
@@ -513,7 +564,7 @@ body.about-page .scanlines {
 .about-intro-card p {
   margin: 0;
   font-family: var(--font-body);
-  font-size: clamp(0.95rem, 1.6vw, 1.05rem);
+  font-size: var(--text-base);
   line-height: 1.65;
   color: #5b1a7a;
 }
@@ -539,7 +590,7 @@ body.about-page .scanlines {
 .about-polaroid figcaption {
   margin: 0.55rem 0 0;
   font-family: var(--font-display);
-  font-size: 0.55rem;
+  font-size: var(--text-xs);
   letter-spacing: 0.05em;
   text-align: center;
   color: #9a1880;
@@ -603,7 +654,7 @@ body.about-page .scanlines {
 .about-chapter-label {
   margin: 0 0 0.35rem;
   font-family: var(--font-display);
-  font-size: 0.48rem;
+  font-size: var(--text-2xs);
   letter-spacing: 0.08em;
   color: #c01890;
   text-transform: uppercase;
@@ -612,8 +663,8 @@ body.about-page .scanlines {
 .about-copy h2 {
   margin: 0 0 0.65rem;
   font-family: var(--font-display);
-  font-size: clamp(0.95rem, 2.2vw, 1.25rem);
-  line-height: 1.25;
+  font-size: var(--text-2xl);
+  line-height: var(--lh-heading);
   color: #7a0a52;
   text-transform: uppercase;
 }
@@ -621,8 +672,8 @@ body.about-page .scanlines {
 .about-copy > p:not(.about-chapter-label) {
   margin: 0;
   font-family: var(--font-body);
-  font-size: clamp(0.92rem, 1.5vw, 1.02rem);
-  line-height: 1.62;
+  font-size: var(--text-base);
+  line-height: var(--lh-body);
   color: #5b1a7a;
 }
 
@@ -672,7 +723,7 @@ body.about-page .scanlines {
 
 .chips li {
   font-family: var(--font-display);
-  font-size: 0.52rem;
+  font-size: var(--text-xs);
   line-height: 1.4;
   padding: 0.45rem 0.5rem;
   border: 3px solid var(--purple);
@@ -681,13 +732,13 @@ body.about-page .scanlines {
 
 .page-hero { padding: 2.2rem 0 0.4rem; }
 
-.page-hero h1 { font-size: clamp(1.85rem, 5vw, 2.8rem); line-height: 1.1; }
-.game-page .meta { font-size: clamp(1rem, 2.2vw, 1.2rem); }
-.game-page .panel h2 { font-size: clamp(1.25rem, 3vw, 1.6rem); }
+.page-hero h1 { font-size: var(--text-3xl); line-height: var(--lh-display); }
+.game-page .meta { font-size: var(--text-sm); letter-spacing: var(--track-kicker); }
+.game-page .panel h2 { font-size: var(--text-2xl); line-height: var(--lh-heading); }
 .game-page .panel p,
-.game-page .note { font-size: clamp(1rem, 2.2vw, 1.15rem); line-height: 1.55; }
-.game-page .tabs button { font-size: clamp(0.9rem, 2vw, 1.05rem); padding: 0.65rem 0.9rem; }
-.game-page .chips li { font-size: 0.95rem; }
+.game-page .note { font-size: var(--text-base); line-height: var(--lh-body); }
+.game-page .tabs button { font-size: var(--text-sm); padding: 0.65rem 0.9rem; }
+.game-page .chips li { font-size: var(--text-sm); }
 
 .poster {
   margin: 1.2rem 0;
@@ -698,7 +749,7 @@ body.about-page .scanlines {
 
 .poster img { width: 100%; height: auto; }
 
-.block h2 { font-size: 0.95rem; margin-top: 0; }
+.block h2 { font-size: var(--text-xl); margin-top: 0; line-height: var(--lh-heading); }
 
 .block + .block { margin-top: 1rem; }
 
@@ -723,8 +774,6 @@ body.about-page .scanlines {
   padding: 8px;
   image-rendering: pixelated;
 }
-
-.note { color: var(--muted); font-size: 0.95rem; }
 
 .warn {
   border-left: 4px solid var(--pink);
@@ -813,9 +862,10 @@ body.explore-page .site-footer {
 .footer-copy {
   margin: 0.2rem 0 0;
   font-family: var(--font-body);
-  font-size: clamp(0.82rem, 1.5vw, 0.98rem);
+  font-size: var(--text-sm);
   font-weight: 600;
   letter-spacing: 0.01em;
+  line-height: var(--lh-ui);
   color: #c2187a;
 }
 
@@ -837,7 +887,7 @@ body.explore-page .site-footer {
 .gba-heart {
   position: absolute;
   color: #ffb6e8;
-  font-size: 0.95rem;
+  font-size: var(--text-md);
   text-shadow: 0 1px 0 #b01078;
   z-index: 2;
   pointer-events: none;
@@ -876,7 +926,7 @@ body.explore-page .site-footer {
 .gba-kicker {
   margin: 0 0 0.35rem;
   font-family: var(--font-ui);
-  font-size: 0.62rem;
+  font-size: var(--text-xs);
   font-weight: 700;
   letter-spacing: 0.08em;
   color: var(--pink-2);
@@ -895,7 +945,7 @@ body.explore-page .site-footer {
   margin: 0;
   flex: 0 0 auto;
   padding: 0.48rem 0.95rem 0.52rem;
-  font-size: clamp(0.72rem, 1.35vw, 0.9rem);
+  font-size: var(--text-sm);
   letter-spacing: 0.04em;
   line-height: 1.1;
   white-space: nowrap;
@@ -906,10 +956,10 @@ body.explore-page .site-footer {
   flex: 1 1 auto;
   min-width: 0;
   font-family: var(--font-display);
-  font-size: clamp(1rem, 2.2vw, 1.4rem);
-  font-weight: 800;
-  line-height: 1.2;
-  letter-spacing: 0.02em;
+  font-size: var(--text-xl);
+  font-weight: 400;
+  line-height: var(--lh-display);
+  letter-spacing: var(--track-display);
   color: transparent;
   background: linear-gradient(180deg, #ffffff 0%, #ff7bee 100%);
   -webkit-background-clip: text;
@@ -931,7 +981,7 @@ body.explore-page .site-footer {
 .gba-role {
   margin: 0 0 0.55rem;
   font-family: var(--font-ui);
-  font-size: clamp(0.62rem, 1.4vw, 0.72rem);
+  font-size: var(--text-xs);
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -941,7 +991,7 @@ body.explore-page .site-footer {
 .gba-bio {
   margin: 0 0 0.7rem;
   font-family: var(--font-body);
-  font-size: clamp(0.78rem, 1.4vw, 0.88rem);
+  font-size: var(--text-sm);
   font-weight: 500;
   line-height: 1.55;
   color: var(--muted);
@@ -1020,12 +1070,13 @@ body.explore-page .site-footer {
 
 .world-copy .world-menu a {
   font-family: var(--font-ui);
-  font-size: clamp(1.05rem, 2.1vw, 1.35rem);
+  font-size: var(--text-lg);
   font-weight: 400;
-  letter-spacing: 0.05em;
+  letter-spacing: var(--track-ui);
   text-transform: uppercase;
   color: var(--paper);
   border-left-color: transparent;
+  line-height: var(--lh-ui);
 }
 
 .world-copy .world-menu a:hover,
@@ -1058,7 +1109,7 @@ body.explore-page .site-footer {
   padding: 0.15rem 0.35rem 0.65rem;
   color: var(--orbit);
   font-family: var(--font-display);
-  font-size: 0.52rem;
+  font-size: var(--text-xs);
   letter-spacing: 0.04em;
 }
 
@@ -1121,13 +1172,13 @@ body.explore-page .site-footer {
 }
 
 .lcd h1 {
-  font-size: clamp(0.95rem, 2vw, 1.25rem);
+  font-size: var(--text-xl);
   text-shadow: 3px 3px 0 #5a1578, 0 0 12px rgba(255, 62, 200, 0.55);
 }
 
-.lcd h2 { font-size: 0.72rem; color: white; }
+.lcd h2 { font-size: var(--text-sm); color: white; }
 
-.lcd .lede { font-size: 0.98rem; margin: 0.35rem 0 0; }
+.lcd .lede { font-size: var(--text-md); margin: 0.35rem 0 0; }
 
 .lcd .hero-actions { margin: 0; }
 
@@ -1157,7 +1208,7 @@ body.explore-page .site-footer {
   border: 2px solid var(--pink);
   padding: 0.4rem 0.55rem;
   font-family: var(--font-display);
-  font-size: 0.46rem;
+  font-size: var(--text-2xs);
   line-height: 1.6;
   pointer-events: none;
 }
@@ -1170,7 +1221,7 @@ body.explore-page .site-footer {
   margin: 0 0.1rem;
   border-radius: 50%;
   color: white;
-  font-size: 0.85rem;
+  font-size: var(--text-sm);
   line-height: 1;
   vertical-align: -0.15rem;
 }
@@ -1205,7 +1256,7 @@ body.explore-page .site-footer {
   background: #1a0b22;
   border: 3px solid var(--purple);
   box-shadow: 0 4px 0 #4a1468;
-  font-size: 0.95rem;
+  font-size: var(--text-md);
   cursor: pointer;
 }
 
@@ -1228,7 +1279,7 @@ body.explore-page .site-footer {
   border: 3px solid white;
   color: white;
   font-family: var(--font-body);
-  font-size: 1.35rem;
+  font-size: var(--text-xl);
   font-weight: 650;
   line-height: 1;
   cursor: pointer;
@@ -1254,7 +1305,7 @@ body.explore-page .site-footer {
 
 .meters span, .meters em {
   font-family: var(--font-display);
-  font-size: 0.48rem;
+  font-size: var(--text-2xs);
   font-style: normal;
   line-height: 1.45;
 }
@@ -1307,7 +1358,7 @@ body.explore-page .site-footer {
     padding-top: calc(var(--logo-inset) + env(safe-area-inset-top, 0px));
     grid-template-columns: auto 1fr;
   }
-  .nav a, .pixel-btn, button.pixel-btn { padding: 0.22rem 0.55rem 0.3rem; font-size: 0.68rem; }
+  .nav a, .pixel-btn, button.pixel-btn { padding: 0.22rem 0.55rem 0.3rem; font-size: var(--text-sm); }
   .lcd { grid-template-columns: 1fr; }
   .deck { align-items: flex-end; }
   .hint { display: none; }
@@ -1316,16 +1367,16 @@ body.explore-page .site-footer {
   section, .play { scroll-margin-top: 6rem; }
   .meters li { grid-template-columns: 1fr; gap: 0.25rem; }
   .game-cab__machine { width: min(100%, 300px); }
-  .title-screen h1 { font-size: 1.4rem; }
+  .title-screen h1 { font-size: var(--text-xl); }
   .project-screen {
     left: 0.6rem;
     right: 0.6rem;
     width: auto;
     top: calc(var(--hud-h) + 0.45rem);
   }
-  .gba-screen h1 { font-size: clamp(1.2rem, 6vw, 1.7rem); -webkit-text-stroke-width: 2px; }
-  .world-menu a { font-size: 1.12rem; }
-  .map-pin-label { font-size: 0.78rem; }
+  .gba-screen h1 { font-size: var(--text-xl); }
+  .world-menu a { font-size: var(--text-md); }
+  .map-pin-label { font-size: var(--text-sm); }
   .explore-hud { bottom: calc(5.6rem + env(safe-area-inset-bottom, 0px)); }
   .explore-act { bottom: calc(1.1rem + env(safe-area-inset-bottom, 0px)); }
 }
@@ -1351,7 +1402,7 @@ body.explore-page .explore { min-height: 420px; }
   padding: 1.5rem;
   color: #ffb8e8;
   font-family: var(--font-display);
-  font-size: clamp(1rem, 3vw, 1.35rem);
+  font-size: var(--text-xl);
   letter-spacing: 0.04em;
   text-transform: uppercase;
   background: #100814;
@@ -1365,7 +1416,7 @@ body.explore-page .explore { min-height: 420px; }
 .sheet { padding: 1.2rem 0 3rem; }
 .sheet h1 {
   font-family: var(--font-display);
-  font-size: clamp(1rem, 2.2vw, 1.5rem);
+  font-size: var(--text-xl);
   line-height: 1.5;
   margin: 0 0 0.85rem;
 }
@@ -1413,6 +1464,125 @@ body.explore-page .explore { min-height: 420px; }
   overflow: hidden;
   background: transparent;
   box-shadow: none;
+}
+
+/* DualSense-ish title bar — only on the home map, not the GBA bio panel */
+.map-controller {
+  position: absolute;
+  top: clamp(0.55rem, 1.6vh, 1.1rem);
+  left: 50%;
+  z-index: 5;
+  display: flex;
+  align-items: stretch;
+  width: min(92%, 420px);
+  transform: translateX(-50%);
+  pointer-events: none;
+  filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.55));
+  animation: map-controller-in 0.7s ease-out both;
+}
+
+@keyframes map-controller-in {
+  from { opacity: 0; transform: translateX(-50%) translateY(-10px); }
+  to { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+.map-controller-grip {
+  width: clamp(28px, 5vw, 40px);
+  flex-shrink: 0;
+  background:
+    linear-gradient(180deg, #2a2438 0%, #15101f 55%, #0c0a14 100%);
+  border: 2px solid #5a4a78;
+  box-shadow: inset 0 0 0 1px rgba(122, 240, 255, 0.18);
+}
+
+.map-controller-grip-l {
+  border-radius: 22px 6px 18px 28px;
+  border-right: 0;
+}
+
+.map-controller-grip-r {
+  border-radius: 6px 22px 28px 18px;
+  border-left: 0;
+}
+
+.map-controller-face {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  padding: 0.55rem 0.85rem 0.6rem;
+  text-align: center;
+  background:
+    linear-gradient(180deg, #1c1628 0%, #100c18 100%);
+  border: 2px solid #5a4a78;
+  border-left-color: #7af0ff;
+  border-right-color: #ff3ec8;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.06),
+    inset 0 -10px 24px rgba(255, 62, 200, 0.08);
+}
+
+.map-controller-led {
+  position: absolute;
+  top: 0.35rem;
+  left: 50%;
+  width: 28px;
+  height: 4px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #7af0ff, #ff3ec8);
+  transform: translateX(-50%);
+  box-shadow: 0 0 10px rgba(122, 240, 255, 0.7);
+}
+
+.map-controller-kicker {
+  margin: 0.35rem 0 0.15rem;
+  font-family: var(--font-ui);
+  font-size: var(--text-xs);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #9ad8ff;
+}
+
+.map-controller-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  font-weight: 400;
+  letter-spacing: var(--track-display);
+  line-height: var(--lh-display);
+  text-transform: uppercase;
+  color: #fff5fb;
+  text-shadow: 0 0 12px rgba(255, 62, 200, 0.35);
+}
+
+.map-controller-sub {
+  margin: 0.28rem 0 0;
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  letter-spacing: var(--track-kicker);
+  text-transform: uppercase;
+  color: rgba(255, 200, 235, 0.72);
+  line-height: var(--lh-ui);
+}
+
+.map-controller-btns {
+  position: absolute;
+  right: 0.55rem;
+  bottom: 0.4rem;
+  display: flex;
+  gap: 0.28rem;
+}
+
+.map-controller-btns i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ff3ec8;
+  box-shadow: 0 0 6px rgba(255, 62, 200, 0.7);
+}
+
+.map-controller-btns i:last-child {
+  background: #7af0ff;
+  box-shadow: 0 0 6px rgba(122, 240, 255, 0.7);
 }
 
 .world-stars {
@@ -1510,7 +1680,7 @@ body.explore-page .explore { min-height: 420px; }
 .world-tag {
   margin: 0 0 0.85rem;
   font-family: var(--font-display);
-  font-size: 0.52rem;
+  font-size: var(--text-xs);
   letter-spacing: 0.06em;
   color: var(--orbit);
   text-transform: uppercase;
@@ -1531,14 +1701,14 @@ body.explore-page .explore { min-height: 420px; }
 .world-menu a {
   width: fit-content;
   font-family: var(--font-ui);
-  font-size: clamp(1.05rem, 2.1vw, 1.35rem);
-  letter-spacing: 0.05em;
+  font-size: var(--text-lg);
+  letter-spacing: var(--track-ui);
   text-transform: uppercase;
   text-decoration: none;
   color: var(--paper);
   padding: 0.35rem 0.2rem;
   border-left: 3px solid transparent;
-  line-height: 1.2;
+  line-height: var(--lh-ui);
 }
 
 .world-menu a span { color: var(--pink); margin-right: 0.4rem; }
@@ -1592,7 +1762,7 @@ body.explore-page .explore { min-height: 420px; }
 
 .map-pin-label {
   font-family: var(--font-display);
-  font-size: clamp(0.72rem, 1.3vw, 0.88rem);
+  font-size: var(--text-sm);
   font-weight: 400;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -1632,7 +1802,7 @@ body.explore-page .explore { min-height: 420px; }
   z-index: 4;
   margin: 0;
   font-family: var(--font-ui);
-  font-size: clamp(0.7rem, 1.4vw, 0.85rem);
+  font-size: var(--text-sm);
   letter-spacing: 0.06em;
   line-height: 1.4;
   color: var(--pink-2);
@@ -1647,7 +1817,7 @@ body.explore-page .explore { min-height: 420px; }
   z-index: 4;
   margin: 0;
   font-family: var(--font-display);
-  font-size: 0.48rem;
+  font-size: var(--text-2xs);
   color: var(--pink);
   pointer-events: none;
 }
@@ -1705,9 +1875,13 @@ body.explore-page .explore { min-height: 420px; }
   .gba-controls { display: none; }
   .gba-title-row { gap: 0.5rem; }
   .world-art { background-position: 55% center; }
-  .world-hint { max-width: 80vw; font-size: 0.55rem; }
+  .world-hint { max-width: 80vw; font-size: var(--text-xs); }
   .world-hearts { display: none; }
-  .map-pin-label { font-size: 0.72rem; padding: 0.4rem 0.7rem; }
+  .map-pin-label { font-size: var(--text-sm); padding: 0.4rem 0.7rem; }
+  .map-controller { width: min(94%, 340px); top: 0.45rem; }
+  .map-controller-face { padding: 0.45rem 0.65rem 0.5rem; }
+  .map-controller-title { font-size: var(--text-xs); }
+  .map-controller-btns { display: none; }
 }
 
 @media (max-width: 520px) {
@@ -1752,7 +1926,7 @@ body.explore-page .explore { min-height: 420px; }
   border: 2px solid rgba(252, 84, 216, 0.85);
   border-radius: 999px;
   font-family: var(--font-ui);
-  font-size: clamp(0.72rem, 2.4vw, 0.92rem);
+  font-size: var(--text-sm);
   font-weight: 600;
   text-align: center;
   pointer-events: none;
@@ -1768,7 +1942,7 @@ body.explore-page .explore { min-height: 420px; }
   min-width: min(88vw, 280px);
   padding: 0.9rem 1.2rem;
   font-family: var(--font-ui);
-  font-size: clamp(0.85rem, 3.2vw, 1.05rem);
+  font-size: var(--text-md);
   font-weight: 800;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -1830,7 +2004,7 @@ body.explore-page .explore { min-height: 420px; }
   background: #07060c;
   color: #ff7ad9;
   font-family: var(--font-display);
-  font-size: 0.7rem;
+  font-size: var(--text-sm);
   letter-spacing: 0.08em;
   opacity: 0;
   pointer-events: none;
@@ -1852,7 +2026,7 @@ body.explore-page .explore { min-height: 420px; }
   border-radius: 999px;
   background: linear-gradient(160deg, #ff79d6 0%, #ff2eb6 55%, #d0189a 100%);
   color: #fff;
-  font-size: 1.55rem;
+  font-size: var(--text-2xl);
   line-height: 1;
   font-family: var(--font-display);
   text-decoration: none;
@@ -1886,7 +2060,7 @@ body.explore-page .explore { min-height: 420px; }
 }
 
 .project-screen img { width: 100%; height: auto; margin: 0.75rem 0; border: 2px solid #b14bff; }
-.project-screen h2 { margin: 0.2rem 0; font-size: 1.4rem; }
+.project-screen h2 { margin: 0.2rem 0; font-size: var(--text-xl); }
 .project-screen .project-links { display: flex; flex-wrap: wrap; gap: 0.8rem; }
 .project-close { margin-bottom: 0.4rem; }
 
@@ -1950,7 +2124,7 @@ body.title-on .title-screen {
   padding: 2.2rem 0.35rem 0.45rem;
   text-align: center;
   font-family: var(--font-display);
-  font-size: 0.48rem;
+  font-size: var(--text-2xs);
   letter-spacing: 0.04em;
   color: #ff3ec8;
   background: linear-gradient(#1a0b28, #07060c);
@@ -2022,7 +2196,7 @@ body.title-on .title-screen {
   color: white;
   text-decoration: none;
   font-family: var(--font-display);
-  font-size: 0.48rem;
+  font-size: var(--text-2xs);
 }
 
 .title-menu a:hover { color: var(--pink); }
@@ -2030,7 +2204,7 @@ body.title-on .title-screen {
 .press-start {
   padding: 0.75rem 0.9rem;
   font-family: var(--font-display);
-  font-size: 0.62rem;
+  font-size: var(--text-xs);
   color: #1a0614;
   background: var(--pink);
   border: 3px solid white;
@@ -2040,9 +2214,9 @@ body.title-on .title-screen {
 
 .press-start:hover { background: white; }
 
-.title-screen h1 { font-size: clamp(1.15rem, 2vw, 1.7rem); margin-bottom: 0.35rem; }
+.title-screen h1 { font-size: var(--text-2xl); margin-bottom: 0.35rem; }
 
-.title-screen .lede { margin: 0; color: white; font-size: 0.95rem; }
+.title-screen .lede { margin: 0; color: white; font-size: var(--text-md); }
 
 .map-panel { padding: 1rem 1rem 0.8rem; display: flex; flex-direction: column; }
 
@@ -2065,7 +2239,7 @@ body.title-on .title-screen {
   color: white;
   text-decoration: none;
   font-family: var(--font-display);
-  font-size: 0.48rem;
+  font-size: var(--text-2xs);
   background: linear-gradient(#3a1468, #120818);
   border: 2px solid #ff3ec8;
   transform: skewX(-18deg);
@@ -2097,27 +2271,28 @@ body.title-on .title-screen {
 
 .pins i.is-on { background: #ff3ec8; box-shadow: 0 0 8px #ff3ec8; }
 
-.tiny { font-size: 0.42rem; padding: 0.4rem 0.45rem; }
+.tiny { font-size: var(--text-2xs); padding: 0.4rem 0.45rem; }
 
 .credits-line {
   margin: 0.35rem 0 0;
   font-family: var(--font-ui);
-  font-size: clamp(0.78rem, 1.6vw, 0.95rem);
+  font-size: var(--text-sm);
   color: var(--pink-2);
 }
 
 .games-page > .kicker {
-  font-size: clamp(0.95rem, 2vw, 1.15rem);
+  font-size: var(--text-xs);
+  letter-spacing: var(--track-kicker);
 }
 
 .games-page > h1 {
-  font-size: clamp(2.4rem, 7vw, 3.6rem);
-  line-height: 1.05;
+  font-size: var(--text-4xl);
+  line-height: var(--lh-display);
 }
 
 .games-page .section-intro {
-  font-size: clamp(1.05rem, 2.4vw, 1.25rem);
-  line-height: 1.55;
+  font-size: var(--text-lg);
+  line-height: var(--lh-body);
   max-width: 40rem;
 }
 
@@ -2128,18 +2303,18 @@ body.title-on .title-screen {
 .games-section__title {
   margin: 0 0 0.55rem;
   font-family: var(--font-display);
-  font-size: clamp(1.85rem, 4.5vw, 2.6rem);
+  font-size: var(--text-2xl);
   color: #fff;
-  line-height: 1.1;
+  line-height: var(--lh-heading);
 }
 
 .games-section__blurb {
   margin: 0 0 1.5rem;
   max-width: 44rem;
   color: var(--pink-2);
-  font-family: var(--font-ui);
-  font-size: clamp(1rem, 2.2vw, 1.2rem);
-  line-height: 1.5;
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: var(--lh-body);
 }
 
 .games-section--extra {
@@ -2194,7 +2369,7 @@ body.title-on .title-screen {
   margin: 0;
   padding: 0.28rem 0.7rem;
   font-family: var(--font-ui);
-  font-size: 0.78rem;
+  font-size: var(--text-sm);
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -2214,18 +2389,19 @@ body.title-on .title-screen {
   margin: 0;
   max-width: 16ch;
   font-family: var(--font-display);
-  font-size: clamp(1.35rem, 3.2vw, 1.85rem);
-  line-height: 1.15;
+  font-size: var(--text-xl);
+  line-height: var(--lh-heading);
   color: #fff;
   text-wrap: balance;
 }
 
 .game-cab__genre {
   margin: 0;
-  font-family: var(--font-ui);
-  font-size: clamp(0.95rem, 2vw, 1.08rem);
+  font-family: var(--font-body);
+  font-size: var(--text-md);
   font-weight: 600;
   color: var(--pink-2);
+  line-height: var(--lh-ui);
 }
 
 .game-cab__machine {
@@ -2258,9 +2434,10 @@ body.title-on .title-screen {
   margin-top: 0.15rem;
   padding: 0.85rem 1.2rem;
   font-family: var(--font-ui);
-  font-size: clamp(0.95rem, 2.2vw, 1.1rem);
-  font-weight: 800;
-  letter-spacing: 0.03em;
+  font-size: var(--text-sm);
+  font-weight: 400;
+  letter-spacing: var(--track-ui);
+  line-height: var(--lh-ui);
   text-decoration: none;
   text-transform: uppercase;
   color: #140814;
@@ -2302,7 +2479,7 @@ body.title-on .title-screen {
   width: 100%;
   text-align: left;
   font-family: var(--font-display);
-  font-size: 0.58rem;
+  font-size: var(--text-xs);
   line-height: 1.5;
   color: white;
   background: #1a0b22;
@@ -2334,7 +2511,7 @@ body.title-on .title-screen {
 
 .tabs button {
   font-family: var(--font-display);
-  font-size: 0.48rem;
+  font-size: var(--text-2xs);
   color: var(--paper);
   background: #1a0b22;
   border: 3px solid var(--purple);

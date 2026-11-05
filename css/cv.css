@@ -22,7 +22,7 @@
 body.cv-page .hud .nav a,
 body.cv-page .hud .nav a.is-on,
 body.cv-page .hud .nav a:hover {
-  font-family: "Spicy Rice", cursive !important;
+  font-family: var(--font-display) !important;
   text-transform: uppercase;
 }
 
@@ -40,7 +40,7 @@ body.cv-page .hud .nav a:hover {
   isolation: isolate;
   min-height: calc(100dvh - var(--hud-h) - env(safe-area-inset-top, 0px));
   padding: clamp(1.1rem, 3vw, 2.4rem) clamp(0.9rem, 3vw, 2rem) 3.5rem;
-  font-family: Fredoka, var(--font-body), sans-serif;
+  font-family: var(--font-body);
   background:
     linear-gradient(rgba(255, 78, 184, 0.07) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 78, 184, 0.07) 1px, transparent 1px),
@@ -57,7 +57,7 @@ body.cv-page .hud .nav a:hover {
 .cv-desktop .cv-name,
 .cv-desktop .cv-download,
 .cv-desktop .cv-skill-group h3 {
-  font-family: "Spicy Rice", var(--font-display), cursive;
+  font-family: var(--font-display);
   text-transform: uppercase;
 }
 
@@ -175,7 +175,7 @@ body.cv-page .hud .nav a:hover {
 .cv-win__title {
   margin: 0;
   font-family: var(--font-display);
-  font-size: clamp(0.95rem, 2.2vw, 1.15rem);
+  font-size: var(--text-lg);
   letter-spacing: 0.04em;
   color: var(--cv-ink);
   text-transform: uppercase;
@@ -222,22 +222,23 @@ body.cv-page .hud .nav a:hover {
 
 .cv-kicker {
   margin: 0 0 0.35rem;
-  font-family: var(--font-body);
-  font-size: 0.78rem;
-  font-weight: 600;
-  letter-spacing: 0.14em;
+  font-family: var(--font-display);
+  font-size: var(--text-xs);
+  font-weight: 400;
+  letter-spacing: var(--track-kicker);
   text-transform: uppercase;
   color: var(--cv-edge);
+  line-height: var(--lh-ui);
 }
 
 .cv-name {
   margin: 0;
   font-family: var(--font-display);
-  font-size: clamp(2.1rem, 6vw, 3.4rem);
-  line-height: 0.95;
+  font-size: var(--text-4xl);
+  line-height: var(--lh-display);
   color: var(--cv-edge);
   text-shadow: 3px 3px 0 rgba(255, 255, 255, 0.85);
-  letter-spacing: 0.02em;
+  letter-spacing: var(--track-display);
 }
 
 .cv-roles {
@@ -255,14 +256,14 @@ body.cv-page .hud .nav a:hover {
   background: #fff;
   color: var(--cv-ink);
   font-family: var(--font-body);
-  font-size: 0.78rem;
+  font-size: var(--text-sm);
   font-weight: 600;
 }
 
 .cv-bio {
   margin: 0.9rem 0 0;
   font-family: var(--font-body);
-  font-size: clamp(0.95rem, 1.6vw, 1.05rem);
+  font-size: var(--text-base);
   line-height: 1.55;
   color: var(--cv-muted);
   max-width: 48ch;
@@ -274,7 +275,7 @@ body.cv-page .hud .nav a:hover {
   flex-wrap: wrap;
   gap: 0.55rem 1rem;
   font-family: var(--font-body);
-  font-size: 0.88rem;
+  font-size: var(--text-md);
   color: var(--cv-ink);
 }
 
@@ -304,7 +305,7 @@ body.cv-page .hud .nav a:hover {
   background: linear-gradient(180deg, #ffe5f5 0%, #ffd2eb 55%, #ffc9e9 100%);
   color: var(--cv-ink);
   font-family: var(--font-display);
-  font-size: 0.95rem;
+  font-size: var(--text-md);
   letter-spacing: 0.04em;
   text-decoration: none;
   text-transform: uppercase;
@@ -337,21 +338,21 @@ body.cv-page .hud .nav a:hover {
 
 .cv-list strong {
   font-family: var(--font-body);
-  font-size: 0.95rem;
+  font-size: var(--text-md);
   color: var(--cv-ink);
 }
 
 .cv-list em {
   font-style: normal;
   font-family: var(--font-body);
-  font-size: 0.82rem;
+  font-size: var(--text-sm);
   color: var(--cv-edge);
   font-weight: 600;
 }
 
 .cv-list span {
   font-family: var(--font-body);
-  font-size: 0.84rem;
+  font-size: var(--text-sm);
   color: var(--cv-muted);
 }
 
@@ -363,7 +364,7 @@ body.cv-page .hud .nav a:hover {
 .cv-skill-group h3 {
   margin: 0 0 0.4rem;
   font-family: var(--font-display);
-  font-size: 0.95rem;
+  font-size: var(--text-md);
   color: var(--cv-edge);
   letter-spacing: 0.03em;
 }
@@ -381,7 +382,7 @@ body.cv-page .hud .nav a:hover {
   border-radius: 0.45rem;
   background: #fff;
   font-family: var(--font-body);
-  font-size: 0.78rem;
+  font-size: var(--text-sm);
   font-weight: 500;
   color: var(--cv-ink);
 }
@@ -410,13 +411,13 @@ body.cv-page .hud .nav a:hover {
 
 .cv-job__head strong {
   font-family: var(--font-body);
-  font-size: 1rem;
+  font-size: var(--text-base);
   color: var(--cv-edge);
 }
 
 .cv-job__head time {
   font-family: var(--font-body);
-  font-size: 0.8rem;
+  font-size: var(--text-sm);
   color: var(--cv-muted);
   font-weight: 600;
 }
@@ -424,7 +425,7 @@ body.cv-page .hud .nav a:hover {
 .cv-job__role {
   margin: 0;
   font-family: var(--font-body);
-  font-size: 0.88rem;
+  font-size: var(--text-md);
   font-weight: 600;
   color: var(--cv-ink);
 }
@@ -433,7 +434,7 @@ body.cv-page .hud .nav a:hover {
   margin: 0.25rem 0 0;
   padding-left: 1.1rem;
   font-family: var(--font-body);
-  font-size: 0.88rem;
+  font-size: var(--text-md);
   line-height: 1.45;
   color: var(--cv-muted);
 }
@@ -453,7 +454,7 @@ body.cv-page .hud .nav a:hover {
   gap: 0.5rem;
   align-items: center;
   font-family: var(--font-body);
-  font-size: 0.9rem;
+  font-size: var(--text-md);
   color: var(--cv-ink);
 }
 
@@ -510,7 +511,7 @@ body.cv-page .hud .nav a:hover {
   }
 
   .cv-name {
-    font-size: clamp(1.85rem, 11vw, 2.5rem);
+    font-size: var(--text-3xl);
   }
 }
 

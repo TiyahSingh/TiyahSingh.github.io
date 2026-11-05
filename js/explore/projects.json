@@ -111,6 +111,27 @@
     "credits": "Tiyah Singh"
   },
   {
+    "slug": "noesis",
+    "title": "Noesis",
+    "genre": "Atmosphere prototype",
+    "card": "Depth of the Mind: a Unity prototype built around dread, space, and sound.",
+    "role": "Tiyah contributed to the Depth prototype and its reference documentation.",
+    "tech": [
+      "Unity",
+      "C#",
+      "Audio ambience",
+      "Environment art pack",
+      "GitHub"
+    ],
+    "demo": "https://github.com/Jamie-LeeD/Depth",
+    "demoLabel": "Depth repository",
+    "download": "https://github.com/Jamie-LeeD/Depth",
+    "downloadLabel": "Unity project",
+    "poster": "/assets/posters/noesis.jpg",
+    "showcase": false,
+    "credits": "Tiyah Singh"
+  },
+  {
     "slug": "no-exit",
     "title": "No Exit",
     "genre": "Endless runner",
@@ -212,27 +233,6 @@
     "download": "https://github.com/Jamie-LeeD/Aqua_Alchemy",
     "downloadLabel": "Unity project",
     "poster": "/assets/posters/aqua-alchemy.jpg",
-    "showcase": false,
-    "credits": "Tiyah Singh"
-  },
-  {
-    "slug": "noesis",
-    "title": "Noesis",
-    "genre": "Atmosphere prototype",
-    "card": "Depth of the Mind: a Unity prototype built around dread, space, and sound.",
-    "role": "Tiyah contributed to the Depth prototype and its reference documentation.",
-    "tech": [
-      "Unity",
-      "C#",
-      "Audio ambience",
-      "Environment art pack",
-      "GitHub"
-    ],
-    "demo": "https://github.com/Jamie-LeeD/Depth",
-    "demoLabel": "Depth repository",
-    "download": "https://github.com/Jamie-LeeD/Depth",
-    "downloadLabel": "Unity project",
-    "poster": "/assets/posters/noesis.jpg",
     "showcase": false,
     "credits": "Tiyah Singh"
   },

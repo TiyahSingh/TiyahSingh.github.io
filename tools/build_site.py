@@ -658,11 +658,11 @@ def header(title="", nav=""):
         body = ""
     extra_css = ""
     if nav == "skills":
-        extra_css = '\n  <link rel="stylesheet" href="/css/galaxy.css?v=15">'
+        extra_css = '\n  <link rel="stylesheet" href="/css/galaxy.css?v=16">'
     elif nav == "cv":
-        extra_css = '\n  <link rel="stylesheet" href="/css/cv.css?v=4">'
+        extra_css = '\n  <link rel="stylesheet" href="/css/cv.css?v=5">'
     elif nav == "contact":
-        extra_css = '\n  <link rel="stylesheet" href="/css/contact.css?v=7">'
+        extra_css = '\n  <link rel="stylesheet" href="/css/contact.css?v=8">'
     heading = "Tiyah Singh — Game Developer" if not title else f"{title} — Tiyah Singh"
     return f"""<!DOCTYPE html>
 <html lang="en">
@@ -675,7 +675,7 @@ def header(title="", nav=""):
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Spicy+Rice&display=swap" rel="stylesheet">
   <link rel="icon" href="/assets/brand/favicon.png" type="image/png">
-  <link rel="stylesheet" href="/css/site.css?v=72">{extra_css}
+  <link rel="stylesheet" href="/css/site.css?v=73">{extra_css}
 </head>
 <body{body}>
   <a class="skip" href="#content">Skip to content</a>
@@ -1445,6 +1445,18 @@ def index():
         </div>
       </div>
       <div class="world-map-frame">
+        <div class="map-controller" aria-hidden="false">
+          <span class="map-controller-grip map-controller-grip-l" aria-hidden="true"></span>
+          <div class="map-controller-face">
+            <span class="map-controller-led" aria-hidden="true"></span>
+            <p class="map-controller-kicker">WORLD MAP</p>
+            <h2 class="map-controller-title">Travel through my world</h2>
+            <p class="map-controller-sub">Drag to look · click a marker to enter</p>
+            <span class="map-controller-btns" aria-hidden="true"><i></i><i></i></span>
+          </div>
+          <span class="map-controller-grip map-controller-grip-r" aria-hidden="true"></span>
+        </div>
+
         <div class="world-art" aria-hidden="true"></div>
         <div id="world-map" class="world-canvas" role="img" aria-label="Floating neon city map. Drag to look around. Click a glowing marker to open that page."></div>
         <div class="world-veil" aria-hidden="true"></div>
@@ -1462,7 +1474,7 @@ def index():
     }
   }
   </script>
-  <script type="module" src="/js/home/world-map.js?v=34"></script>
+  <script type="module" src="/js/home/world-map.js?v=35"></script>
   <script>
   if (location.hash === "#play" || location.hash.indexOf("#explore/") === 0) {
     location.replace("/explore.html" + location.hash);
