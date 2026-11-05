@@ -675,7 +675,7 @@ def header(title="", nav=""):
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Spicy+Rice&display=swap" rel="stylesheet">
   <link rel="icon" href="/assets/brand/favicon.png" type="image/png">
-  <link rel="stylesheet" href="/css/site.css?v=79">{extra_css}
+  <link rel="stylesheet" href="/css/site.css?v=80">{extra_css}
 </head>
 <body{body}>
   <a class="skip" href="#content">Skip to content</a>
@@ -1092,16 +1092,16 @@ def index():
 
     def game_card(game):
         kind = "showcase" if game.get("showcase") else "extra"
-        label = "Showcase" if game.get("showcase") else "Additional"
         return f"""
         <article class="game-cab game-cab--{kind}">
-          <p class="game-cab__tag">{label}</p>
-          <h3 class="game-cab__title">{game["title"]}</h3>
-          <p class="game-cab__genre">{game["genre"]}</p>
+          <div class="game-cab__meta">
+            <h3 class="game-cab__title">{game["title"]}</h3>
+            <p class="game-cab__genre">{game["genre"]}</p>
+          </div>
+          <a class="game-cab__btn" href="/games/{game["slug"]}.html">Learn about game</a>
           <a class="game-cab__machine" href="/games/{game["slug"]}.html" aria-label="Learn about {game["title"]}">
             <img class="game-cab__art" src="/assets/cabinets/{game["slug"]}.png" alt="">
           </a>
-          <a class="game-cab__btn" href="/games/{game["slug"]}.html">Learn about game</a>
         </article>"""
 
     showcase_cards = [game_card(game) for game in LISTED_GAMES if game.get("showcase")]
@@ -1321,19 +1321,29 @@ def index():
     </script>""")
     sheet("Games", "games", f"""
     <div class="wrap games-page">
-      <p class="kicker">PORTFOLIO GAMES</p>
-      <h1>Games</h1>
-      <p class="section-intro zone-blurb">Pick a cabinet, then tap <strong>Learn about game</strong> for the full project page.</p>
+      <header class="games-controller" aria-label="Games title">
+        <div class="games-controller__shoulders" aria-hidden="true"><span></span><span></span></div>
+        <div class="games-controller__shell">
+          <div class="games-controller__dpad" aria-hidden="true"><span></span></div>
+          <div class="games-controller__screen">
+            <p class="games-controller__kicker">PORTFOLIO</p>
+            <h1 class="games-controller__title">Games</h1>
+          </div>
+          <div class="games-controller__btns" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+        </div>
+      </header>
       <section id="showcase" class="games-section">
-        <h2 class="games-section__title">Showcase work</h2>
-        <p class="games-section__blurb">Clinical Trial, Don't Forget to Say Goodbye, and Bushveld Brothers.</p>
+        <div class="games-frame" aria-label="Showcase work">
+          <h2 class="games-frame__title">Showcase work</h2>
+        </div>
         <div class="arcade-floor arcade-floor--showcase">
           {"".join(showcase_cards)}
         </div>
       </section>
       <section id="additional" class="games-section games-section--extra">
-        <h2 class="games-section__title">Additional work</h2>
-        <p class="games-section__blurb">Selkie Song, Charmfire, and Noesis.</p>
+        <div class="games-frame" aria-label="Additional work">
+          <h2 class="games-frame__title">Additional work</h2>
+        </div>
         <div class="arcade-floor arcade-floor--extra">
           {"".join(extra_cards)}
         </div>

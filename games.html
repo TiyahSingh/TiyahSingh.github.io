@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Spicy+Rice&display=swap" rel="stylesheet">
   <link rel="icon" href="/assets/brand/favicon.png" type="image/png">
-  <link rel="stylesheet" href="/css/site.css?v=79">
+  <link rel="stylesheet" href="/css/site.css?v=80">
 </head>
 <body>
   <a class="skip" href="#content">Skip to content</a>
@@ -35,74 +35,90 @@
   <main id="content" class="sheet">
     
     <div class="wrap games-page">
-      <p class="kicker">PORTFOLIO GAMES</p>
-      <h1>Games</h1>
-      <p class="section-intro zone-blurb">Pick a cabinet, then tap <strong>Learn about game</strong> for the full project page.</p>
+      <header class="games-controller" aria-label="Games title">
+        <div class="games-controller__shoulders" aria-hidden="true"><span></span><span></span></div>
+        <div class="games-controller__shell">
+          <div class="games-controller__dpad" aria-hidden="true"><span></span></div>
+          <div class="games-controller__screen">
+            <p class="games-controller__kicker">PORTFOLIO</p>
+            <h1 class="games-controller__title">Games</h1>
+          </div>
+          <div class="games-controller__btns" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+        </div>
+      </header>
       <section id="showcase" class="games-section">
-        <h2 class="games-section__title">Showcase work</h2>
-        <p class="games-section__blurb">Clinical Trial, Don't Forget to Say Goodbye, and Bushveld Brothers.</p>
+        <div class="games-frame" aria-label="Showcase work">
+          <h2 class="games-frame__title">Showcase work</h2>
+        </div>
         <div class="arcade-floor arcade-floor--showcase">
           
         <article class="game-cab game-cab--showcase">
-          <p class="game-cab__tag">Showcase</p>
-          <h3 class="game-cab__title">Clinical Trial</h3>
-          <p class="game-cab__genre">Hospital simulation</p>
+          <div class="game-cab__meta">
+            <h3 class="game-cab__title">Clinical Trial</h3>
+            <p class="game-cab__genre">Hospital simulation</p>
+          </div>
+          <a class="game-cab__btn" href="/games/clinical-trial.html">Learn about game</a>
           <a class="game-cab__machine" href="/games/clinical-trial.html" aria-label="Learn about Clinical Trial">
             <img class="game-cab__art" src="/assets/cabinets/clinical-trial.png" alt="">
           </a>
-          <a class="game-cab__btn" href="/games/clinical-trial.html">Learn about game</a>
         </article>
         <article class="game-cab game-cab--showcase">
-          <p class="game-cab__tag">Showcase</p>
-          <h3 class="game-cab__title">Don't Forget to Say Goodbye</h3>
-          <p class="game-cab__genre">Narrative horror</p>
+          <div class="game-cab__meta">
+            <h3 class="game-cab__title">Don't Forget to Say Goodbye</h3>
+            <p class="game-cab__genre">Narrative horror</p>
+          </div>
+          <a class="game-cab__btn" href="/games/dont-forget-to-say-goodbye.html">Learn about game</a>
           <a class="game-cab__machine" href="/games/dont-forget-to-say-goodbye.html" aria-label="Learn about Don't Forget to Say Goodbye">
             <img class="game-cab__art" src="/assets/cabinets/dont-forget-to-say-goodbye.png" alt="">
           </a>
-          <a class="game-cab__btn" href="/games/dont-forget-to-say-goodbye.html">Learn about game</a>
         </article>
         <article class="game-cab game-cab--showcase">
-          <p class="game-cab__tag">Showcase</p>
-          <h3 class="game-cab__title">Bushveld Brothers</h3>
-          <p class="game-cab__genre">Ranger adventure</p>
+          <div class="game-cab__meta">
+            <h3 class="game-cab__title">Bushveld Brothers</h3>
+            <p class="game-cab__genre">Ranger adventure</p>
+          </div>
+          <a class="game-cab__btn" href="/games/bushveld-brothers.html">Learn about game</a>
           <a class="game-cab__machine" href="/games/bushveld-brothers.html" aria-label="Learn about Bushveld Brothers">
             <img class="game-cab__art" src="/assets/cabinets/bushveld-brothers.png" alt="">
           </a>
-          <a class="game-cab__btn" href="/games/bushveld-brothers.html">Learn about game</a>
         </article>
         </div>
       </section>
       <section id="additional" class="games-section games-section--extra">
-        <h2 class="games-section__title">Additional work</h2>
-        <p class="games-section__blurb">Selkie Song, Charmfire, and Noesis.</p>
+        <div class="games-frame" aria-label="Additional work">
+          <h2 class="games-frame__title">Additional work</h2>
+        </div>
         <div class="arcade-floor arcade-floor--extra">
           
         <article class="game-cab game-cab--extra">
-          <p class="game-cab__tag">Additional</p>
-          <h3 class="game-cab__title">Selkie Song</h3>
-          <p class="game-cab__genre">Folklore platformer</p>
+          <div class="game-cab__meta">
+            <h3 class="game-cab__title">Selkie Song</h3>
+            <p class="game-cab__genre">Folklore platformer</p>
+          </div>
+          <a class="game-cab__btn" href="/games/selkie-song.html">Learn about game</a>
           <a class="game-cab__machine" href="/games/selkie-song.html" aria-label="Learn about Selkie Song">
             <img class="game-cab__art" src="/assets/cabinets/selkie-song.png" alt="">
           </a>
-          <a class="game-cab__btn" href="/games/selkie-song.html">Learn about game</a>
         </article>
         <article class="game-cab game-cab--extra">
-          <p class="game-cab__tag">Additional</p>
-          <h3 class="game-cab__title">Charmfire</h3>
-          <p class="game-cab__genre">Action prototype</p>
+          <div class="game-cab__meta">
+            <h3 class="game-cab__title">Charmfire</h3>
+            <p class="game-cab__genre">Action prototype</p>
+          </div>
+          <a class="game-cab__btn" href="/games/charmfire.html">Learn about game</a>
           <a class="game-cab__machine" href="/games/charmfire.html" aria-label="Learn about Charmfire">
             <img class="game-cab__art" src="/assets/cabinets/charmfire.png" alt="">
           </a>
-          <a class="game-cab__btn" href="/games/charmfire.html">Learn about game</a>
         </article>
         <article class="game-cab game-cab--extra">
-          <p class="game-cab__tag">Additional</p>
-          <h3 class="game-cab__title">Noesis</h3>
-          <p class="game-cab__genre">Atmosphere prototype</p>
+          <div class="game-cab__meta">
+            <h3 class="game-cab__title">Noesis</h3>
+            <p class="game-cab__genre">Atmosphere prototype</p>
+          </div>
+          <a class="game-cab__btn" href="/games/noesis.html">Learn about game</a>
           <a class="game-cab__machine" href="/games/noesis.html" aria-label="Learn about Noesis">
             <img class="game-cab__art" src="/assets/cabinets/noesis.png" alt="">
           </a>
-          <a class="game-cab__btn" href="/games/noesis.html">Learn about game</a>
         </article>
         </div>
       </section>
