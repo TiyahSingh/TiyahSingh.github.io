@@ -675,7 +675,7 @@ def header(title="", nav=""):
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Spicy+Rice&display=swap" rel="stylesheet">
   <link rel="icon" href="/assets/brand/favicon.png" type="image/png">
-  <link rel="stylesheet" href="/css/site.css?v=73">{extra_css}
+  <link rel="stylesheet" href="/css/site.css?v=74">{extra_css}
 </head>
 <body{body}>
   <a class="skip" href="#content">Skip to content</a>
@@ -1445,16 +1445,19 @@ def index():
         </div>
       </div>
       <div class="world-map-frame">
-        <div class="map-controller" aria-hidden="false">
-          <span class="map-controller-grip map-controller-grip-l" aria-hidden="true"></span>
-          <div class="map-controller-face">
-            <span class="map-controller-led" aria-hidden="true"></span>
-            <p class="map-controller-kicker">WORLD MAP</p>
-            <h2 class="map-controller-title">Travel through my world</h2>
-            <p class="map-controller-sub">Drag to look · click a marker to enter</p>
-            <span class="map-controller-btns" aria-hidden="true"><i></i><i></i></span>
+        <div class="map-controller" role="group" aria-label="World map title">
+          <div class="map-controller-shoulders" aria-hidden="true">
+            <span></span><span></span>
           </div>
-          <span class="map-controller-grip map-controller-grip-r" aria-hidden="true"></span>
+          <div class="map-controller-shell">
+            <div class="map-controller-dpad" aria-hidden="true"><span></span></div>
+            <div class="map-controller-screen">
+              <p class="map-controller-kicker">WORLD MAP</p>
+              <h2 class="map-controller-title">Travel through my world</h2>
+              <p class="map-controller-sub">Drag to look · click a marker to enter</p>
+            </div>
+            <div class="map-controller-btns" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+          </div>
         </div>
 
         <div class="world-art" aria-hidden="true"></div>

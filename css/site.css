@@ -1466,123 +1466,211 @@ body.explore-page .explore { min-height: 420px; }
   box-shadow: none;
 }
 
-/* DualSense-ish title bar — only on the home map, not the GBA bio panel */
+/* Glossy pink DualSense title bar — home map only */
 .map-controller {
   position: absolute;
-  top: clamp(0.55rem, 1.6vh, 1.1rem);
+  top: clamp(0.45rem, 1.4vh, 1rem);
   left: 50%;
   z-index: 5;
-  display: flex;
-  align-items: stretch;
-  width: min(92%, 420px);
+  width: min(94%, 460px);
   transform: translateX(-50%);
   pointer-events: none;
-  filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.55));
-  animation: map-controller-in 0.7s ease-out both;
+  animation: map-controller-in 0.75s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 @keyframes map-controller-in {
-  from { opacity: 0; transform: translateX(-50%) translateY(-10px); }
-  to { opacity: 1; transform: translateX(-50%) translateY(0); }
+  from { opacity: 0; transform: translateX(-50%) translateY(-14px) scale(0.96); }
+  to { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); }
 }
 
-.map-controller-grip {
-  width: clamp(28px, 5vw, 40px);
-  flex-shrink: 0;
-  background:
-    linear-gradient(180deg, #2a2438 0%, #15101f 55%, #0c0a14 100%);
-  border: 2px solid #5a4a78;
-  box-shadow: inset 0 0 0 1px rgba(122, 240, 255, 0.18);
+.map-controller-shoulders {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0 1.35rem;
+  margin-bottom: -0.28rem;
 }
 
-.map-controller-grip-l {
-  border-radius: 22px 6px 18px 28px;
-  border-right: 0;
+.map-controller-shoulders span {
+  width: clamp(3.2rem, 12vw, 4.6rem);
+  height: 0.72rem;
+  border-radius: 0.65rem 0.65rem 0 0;
+  background: linear-gradient(180deg, #ffc0ea, #ff4eb8);
+  border: 2px solid rgba(255, 255, 255, 0.75);
+  border-bottom: 0;
+  box-shadow: 0 -2px 0 #c02890, 0 0 14px rgba(255, 78, 184, 0.45);
 }
 
-.map-controller-grip-r {
-  border-radius: 6px 22px 28px 18px;
-  border-left: 0;
-}
-
-.map-controller-face {
+.map-controller-shell {
   position: relative;
-  flex: 1;
-  min-width: 0;
-  padding: 0.55rem 0.85rem 0.6rem;
-  text-align: center;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.55rem 0.7rem 0.65rem;
+  border-radius: 2.35rem;
   background:
-    linear-gradient(180deg, #1c1628 0%, #100c18 100%);
-  border: 2px solid #5a4a78;
-  border-left-color: #7af0ff;
-  border-right-color: #ff3ec8;
+    radial-gradient(circle at 18% 18%, rgba(255, 255, 255, 0.42), transparent 30%),
+    radial-gradient(circle at 82% 78%, rgba(255, 120, 210, 0.35), transparent 36%),
+    linear-gradient(180deg, #ff9adf 0%, #ff62c0 42%, #e0189a 100%);
+  border: 3px solid #fff;
   box-shadow:
-    inset 0 0 0 1px rgba(255, 255, 255, 0.06),
-    inset 0 -10px 24px rgba(255, 62, 200, 0.08);
+    0 0 0 4px #c02890,
+    5px 7px 0 #7a1460,
+    0 0 28px rgba(255, 78, 184, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
 }
 
-.map-controller-led {
+.map-controller-shell::before,
+.map-controller-shell::after {
+  content: "";
   position: absolute;
-  top: 0.35rem;
-  left: 50%;
-  width: 28px;
-  height: 4px;
+  top: 18%;
+  bottom: 18%;
+  width: 0.85rem;
   border-radius: 999px;
-  background: linear-gradient(90deg, #7af0ff, #ff3ec8);
+  background: linear-gradient(180deg, rgba(90, 16, 72, 0.12), rgba(90, 16, 72, 0.38));
+  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.14);
+  pointer-events: none;
+}
+
+.map-controller-shell::before { left: 0.28rem; }
+.map-controller-shell::after { right: 0.28rem; }
+
+.map-controller-dpad {
+  width: 2.35rem;
+  height: 2.35rem;
+  position: relative;
+  justify-self: center;
+  margin-left: 0.35rem;
+}
+
+.map-controller-dpad span,
+.map-controller-dpad::before,
+.map-controller-dpad::after {
+  content: "";
+  position: absolute;
+  background: #4a1458;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-radius: 0.3rem;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22), 0 2px 0 #2a0a34;
+}
+
+.map-controller-dpad::before {
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 0.78rem;
   transform: translateX(-50%);
-  box-shadow: 0 0 10px rgba(122, 240, 255, 0.7);
+}
+
+.map-controller-dpad::after {
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 0.78rem;
+  transform: translateY(-50%);
+}
+
+.map-controller-dpad span {
+  left: 50%;
+  top: 50%;
+  width: 0.72rem;
+  height: 0.72rem;
+  transform: translate(-50%, -50%);
+  border-radius: 0.18rem;
+  background: #2a0a34;
+  z-index: 1;
+}
+
+.map-controller-screen {
+  position: relative;
+  min-width: 0;
+  text-align: center;
+  padding: 0.42rem 0.7rem 0.48rem;
+  border-radius: 0.9rem;
+  background:
+    linear-gradient(180deg, #2a1048 0%, #160820 100%);
+  border: 2px solid #5a2080;
+  box-shadow:
+    inset 0 0 0 2px rgba(255, 160, 220, 0.28),
+    inset 0 10px 20px rgba(0, 0, 0, 0.28),
+    0 0 16px rgba(255, 78, 184, 0.28);
+}
+
+.map-controller-screen::before {
+  content: "";
+  position: absolute;
+  top: 0.28rem;
+  left: 50%;
+  width: 2rem;
+  height: 3px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #7af0ff, #ff4eb8, #ff9adf);
+  transform: translateX(-50%);
+  box-shadow: 0 0 10px rgba(255, 78, 184, 0.8);
 }
 
 .map-controller-kicker {
-  margin: 0.35rem 0 0.15rem;
+  margin: 0.28rem 0 0.12rem;
   font-family: var(--font-ui);
-  font-size: var(--text-xs);
-  letter-spacing: 0.22em;
+  font-size: var(--text-2xs);
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: #9ad8ff;
+  color: #ff9adf;
+  line-height: var(--lh-ui);
 }
 
 .map-controller-title {
   margin: 0;
   font-family: var(--font-display);
-  font-size: var(--text-sm);
+  font-size: clamp(0.78rem, 1.8vw, 1.05rem);
   font-weight: 400;
   letter-spacing: var(--track-display);
   line-height: var(--lh-display);
   text-transform: uppercase;
-  color: #fff5fb;
-  text-shadow: 0 0 12px rgba(255, 62, 200, 0.35);
+  color: #fff;
+  text-shadow: 0 0 14px rgba(255, 100, 210, 0.85);
 }
 
 .map-controller-sub {
-  margin: 0.28rem 0 0;
+  margin: 0.22rem 0 0;
   font-family: var(--font-body);
-  font-size: var(--text-xs);
-  letter-spacing: var(--track-kicker);
+  font-size: var(--text-2xs);
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: rgba(255, 200, 235, 0.72);
+  color: #ffb8e8;
   line-height: var(--lh-ui);
 }
 
 .map-controller-btns {
-  position: absolute;
-  right: 0.55rem;
-  bottom: 0.4rem;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 0.28rem;
+  width: 2.35rem;
+  margin-right: 0.35rem;
+  justify-self: center;
 }
 
 .map-controller-btns i {
-  width: 8px;
-  height: 8px;
+  width: 1rem;
+  height: 1rem;
   border-radius: 50%;
-  background: #ff3ec8;
-  box-shadow: 0 0 6px rgba(255, 62, 200, 0.7);
+  background: radial-gradient(circle at 35% 30%, #fff8, #ff4fb8 42%, #c01888);
+  border: 2px solid rgba(255, 255, 255, 0.55);
+  box-shadow: 0 2px 0 #8a1868, 0 0 8px rgba(255, 78, 184, 0.55);
 }
 
-.map-controller-btns i:last-child {
-  background: #7af0ff;
-  box-shadow: 0 0 6px rgba(122, 240, 255, 0.7);
+.map-controller-btns i:nth-child(2) {
+  background: radial-gradient(circle at 35% 30%, #fff8, #c45cff 42%, #6a18a8);
+}
+
+.map-controller-btns i:nth-child(3) {
+  background: radial-gradient(circle at 35% 30%, #fff8, #7af0ff 42%, #1888a8);
+}
+
+.map-controller-btns i:nth-child(4) {
+  background: radial-gradient(circle at 35% 30%, #fff8, #ffd15c 42%, #c08818);
 }
 
 .world-stars {
@@ -1878,10 +1966,13 @@ body.explore-page .explore { min-height: 420px; }
   .world-hint { max-width: 80vw; font-size: var(--text-xs); }
   .world-hearts { display: none; }
   .map-pin-label { font-size: var(--text-sm); padding: 0.4rem 0.7rem; }
-  .map-controller { width: min(94%, 340px); top: 0.45rem; }
-  .map-controller-face { padding: 0.45rem 0.65rem 0.5rem; }
-  .map-controller-title { font-size: var(--text-xs); }
-  .map-controller-btns { display: none; }
+  .map-controller { width: min(96%, 360px); top: 0.35rem; }
+  .map-controller-shell { gap: 0.35rem; padding: 0.45rem 0.55rem 0.55rem; border-radius: 2rem; }
+  .map-controller-dpad { width: 1.9rem; height: 1.9rem; margin-left: 0.15rem; }
+  .map-controller-btns { width: 1.9rem; margin-right: 0.15rem; }
+  .map-controller-btns i { width: 0.82rem; height: 0.82rem; }
+  .map-controller-title { font-size: var(--text-sm); }
+  .map-controller-shoulders { padding: 0 1rem; }
 }
 
 @media (max-width: 520px) {
