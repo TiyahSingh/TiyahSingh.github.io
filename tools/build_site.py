@@ -9,7 +9,11 @@ ROOT = Path(r"C:\Users\User\Desktop\website")
 POSTERS = ROOT / "assets" / "posters"
 PROCESS = ROOT / "assets" / "process"
 QR = ROOT / "assets" / "qr"
-for folder in (POSTERS, PROCESS, QR, ROOT / "games"):
+CABINETS = ROOT / "assets" / "cabinets"
+CABINET_SRC = Path(r"C:\Users\User\.cursor\projects\c-Users-User-Desktop-website\assets\image-02e0436a-8cfe-4a86-acb2-ac50cef0138b.png")
+CABINET_CROP = (55, 48, 520, 948)
+CABINET_SCREEN = (60, 258, 405, 454)  # relative to cropped cabinet
+for folder in (POSTERS, PROCESS, QR, CABINETS, ROOT / "games"):
     folder.mkdir(parents=True, exist_ok=True)
 
 FONT = ImageFont.truetype(r"C:\Windows\Fonts\consola.ttf", 28)
@@ -27,6 +31,32 @@ def cover(url, dest):
         return dest
     urllib.request.urlretrieve(url, dest)
     return dest
+
+
+def cover_fit(image, size):
+    """Scale + center-crop so the poster fills the landscape cabinet screen."""
+    tw, th = size
+    src = image.convert("RGBA")
+    sw, sh = src.size
+    scale = max(tw / sw, th / sh)
+    nw, nh = max(1, int(sw * scale)), max(1, int(sh * scale))
+    resized = src.resize((nw, nh), Image.Resampling.LANCZOS)
+    left = max(0, (nw - tw) // 2)
+    top = max(0, (nh - th) // 2)
+    return resized.crop((left, top, left + tw, top + th))
+
+
+def make_cabinet(poster_path, dest):
+    if not CABINET_SRC.exists():
+        return False
+    frame = Image.open(CABINET_SRC).convert("RGBA").crop(CABINET_CROP)
+    sx0, sy0, sx1, sy1 = CABINET_SCREEN
+    screen = cover_fit(Image.open(poster_path), (sx1 - sx0, sy1 - sy0))
+    out = frame.copy()
+    out.paste(screen, (sx0, sy0))
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    out.save(dest, "PNG", optimize=True)
+    return True
 
 
 def fit(src, size=(1400, 788)):
@@ -596,7 +626,7 @@ def header(title="", nav=""):
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Spicy+Rice&display=swap" rel="stylesheet">
   <link rel="icon" href="/assets/brand/favicon.png" type="image/png">
-  <link rel="stylesheet" href="/css/site.css?v=69">{extra_css}
+  <link rel="stylesheet" href="/css/site.css?v=70">{extra_css}
 </head>
 <body{body}>
   <a class="skip" href="#content">Skip to content</a>
@@ -725,6 +755,7 @@ def build_images():
                 print("screenshot failed", game["slug"], shot_path, error)
         make_qr(game["demo"], QR / f"{game['slug']}-demo.png")
         make_qr(game["download"], QR / f"{game['slug']}-download.png")
+        make_cabinet(poster_path, CABINETS / f"{game['slug']}.png")
         print("built", game["slug"])
 
 
@@ -998,29 +1029,22 @@ def index():
     }
     (ROOT / "js" / "explore" / "profile.json").write_text(json.dumps(profile, indent=2), encoding="utf-8")
 
-    def game_card(game, index, tag):
+    def game_card(game):
+        kind = "showcase" if game.get("showcase") else "extra"
+        label = "Showcase" if game.get("showcase") else "Additional"
         return f"""
-        <a class="cab cart{" cab--showcase" if game.get("showcase") else " cab--extra"}" href="/games/{game["slug"]}.html">
-          <span class="cab-machine">
-            <span class="cab-marquee"><h3>{game["title"]}</h3></span>
-            <span class="cab-screen"><img src="/assets/posters/{game["slug"]}.jpg" alt=""></span>
-            <span class="cab-controls" aria-hidden="true"><span class="stick"></span><span class="coin-btn"></span><span class="coin-btn alt"></span></span>
-          </span>
-          <span class="cab-body">
-            <p class="meta">{tag}  ·  {game["genre"]}</p>
-            <p class="cab-copy">{game["card"]}</p>
-            <span class="play-tag">{"SHOWCASE" if game.get("showcase") else "ADDITIONAL"}</span>
-          </span>
-        </a>"""
+        <article class="game-cab game-cab--{kind}">
+          <p class="game-cab__tag">{label}</p>
+          <h3 class="game-cab__title">{game["title"]}</h3>
+          <p class="game-cab__genre">{game["genre"]}</p>
+          <div class="game-cab__machine" aria-hidden="true">
+            <img class="game-cab__art" src="/assets/cabinets/{game["slug"]}.png" alt="">
+          </div>
+          <a class="game-cab__btn" href="/games/{game["slug"]}.html">Learn about game</a>
+        </article>"""
 
-    showcase_cards = [
-        game_card(game, i, f"{i:02d}")
-        for i, game in enumerate([g for g in GAMES if g.get("showcase")], start=1)
-    ]
-    extra_cards = [
-        game_card(game, i, f"{i:02d}")
-        for i, game in enumerate([g for g in GAMES if not g.get("showcase")], start=1)
-    ]
+    showcase_cards = [game_card(game) for game in GAMES if game.get("showcase")]
+    extra_cards = [game_card(game) for game in GAMES if not game.get("showcase")]
     contact_socials = "".join(
         f'<a class="contact-social" href="{item["href"]}"'
         + (' target="_blank" rel="noopener noreferrer"' if item["href"].startswith("http") else "")
@@ -1235,20 +1259,20 @@ def index():
     }})();
     </script>""")
     sheet("Games", "games", f"""
-    <div class="wrap">
+    <div class="wrap games-page">
       <p class="kicker">PORTFOLIO GAMES</p>
       <h1>Games</h1>
-      <p class="section-intro zone-blurb">Three showcase projects for the roles I want, plus additional work with posters for context.</p>
+      <p class="section-intro zone-blurb">Pick a cabinet, then tap <strong>Learn about game</strong> for the full project page.</p>
       <section id="showcase" class="games-section">
         <h2 class="games-section__title">Showcase work</h2>
-        <p class="games-section__blurb">Clinical Trial, Don't Forget to Say Goodbye, and Bushveld Brothers — full poster, team credits, brief, role, contributions, tech, process, screenshots, demo and download.</p>
+        <p class="games-section__blurb">Clinical Trial, Don't Forget to Say Goodbye, and Bushveld Brothers.</p>
         <div class="arcade-floor arcade-floor--showcase">
           {"".join(showcase_cards)}
         </div>
       </section>
       <section id="additional" class="games-section games-section--extra">
         <h2 class="games-section__title">Additional work</h2>
-        <p class="games-section__blurb">Extra projects with posters — supporting builds, jams, and prototypes outside the main three.</p>
+        <p class="games-section__blurb">Extra projects with posters — jams, prototypes, and supporting builds.</p>
         <div class="arcade-floor arcade-floor--extra">
           {"".join(extra_cards)}
         </div>
