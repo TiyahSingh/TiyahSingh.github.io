@@ -105,6 +105,13 @@ def fit(src, size=(1400, 788)):
     return canvas
 
 
+def fit_natural(src, max_side=1400):
+    """Keep the poster's real aspect ratio — no letterbox bars."""
+    image = Image.open(src).convert("RGB")
+    image.thumbnail((max_side, max_side), Image.Resampling.LANCZOS)
+    return image
+
+
 def pixel_scene(colors, motif):
     w, h = 40, 22
     grid = [[colors[0] for _ in range(w)] for _ in range(h)]
@@ -758,10 +765,15 @@ def build_images():
                 photo = str(raw)
             except Exception as error:
                 print("cover failed", game["slug"], error)
+        cabinet_source = None
         if photo and Path(photo).exists():
-            fitted = fit(photo)
-            # Showcase posters are already finished cover art — keep them clean
-            image = fitted if game.get("showcase") else stamp(fitted, game["title"], game["credits"])
+            if game.get("listed"):
+                # Keep real poster proportions so arcade screens can fill edge-to-edge
+                image = fit_natural(photo)
+                cabinet_source = photo
+            else:
+                image = stamp(fit(photo), game["title"], game["credits"])
+                cabinet_source = poster_path
         else:
             palettes = {
                 "sea": [(8, 16, 48), (18, 40, 90), (20, 90, 140), (40, 180, 190), (255, 62, 200)],
@@ -777,6 +789,7 @@ def build_images():
                 "mirror": [(8, 10, 28), (20, 24, 70), (90, 220, 255), (255, 62, 200), (247, 241, 255)],
             }
             image = stamp(pixel_scene(palettes[game["motif"]], game["motif"]), game["title"], game["credits"])
+            cabinet_source = poster_path
         save_jpg(image, poster_path)
         process_photo = game.get("process_photo") or ""
         if process_photo and Path(process_photo).exists():
@@ -798,7 +811,7 @@ def build_images():
         make_qr(game["demo"], QR / f"{game['slug']}-demo.png")
         make_qr(game["download"], QR / f"{game['slug']}-download.png")
         if game.get("listed"):
-            make_cabinet(poster_path, CABINETS / f"{game['slug']}.png")
+            make_cabinet(cabinet_source or poster_path, CABINETS / f"{game['slug']}.png")
         print("built", game["slug"])
 
 
