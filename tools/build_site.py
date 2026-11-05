@@ -658,11 +658,11 @@ def header(title="", nav=""):
         body = ""
     extra_css = ""
     if nav == "skills":
-        extra_css = '\n  <link rel="stylesheet" href="/css/galaxy.css?v=16">'
+        extra_css = '\n  <link rel="stylesheet" href="/css/galaxy.css?v=17">'
     elif nav == "cv":
-        extra_css = '\n  <link rel="stylesheet" href="/css/cv.css?v=5">'
+        extra_css = '\n  <link rel="stylesheet" href="/css/cv.css?v=6">'
     elif nav == "contact":
-        extra_css = '\n  <link rel="stylesheet" href="/css/contact.css?v=8">'
+        extra_css = '\n  <link rel="stylesheet" href="/css/contact.css?v=9">'
     heading = "Tiyah Singh — Game Developer" if not title else f"{title} — Tiyah Singh"
     return f"""<!DOCTYPE html>
 <html lang="en">
@@ -675,7 +675,7 @@ def header(title="", nav=""):
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Spicy+Rice&display=swap" rel="stylesheet">
   <link rel="icon" href="/assets/brand/favicon.png" type="image/png">
-  <link rel="stylesheet" href="/css/site.css?v=74">{extra_css}
+  <link rel="stylesheet" href="/css/site.css?v=75">{extra_css}
 </head>
 <body{body}>
   <a class="skip" href="#content">Skip to content</a>
@@ -1476,7 +1476,7 @@ def index():
     }
   }
   </script>
-  <script type="module" src="/js/home/world-map.js?v=35"></script>
+  <script type="module" src="/js/home/world-map.js?v=36"></script>
   <script>
   if (location.hash === "#play" || location.hash.indexOf("#explore/") === 0) {
     location.replace("/explore.html" + location.hash);
@@ -1486,15 +1486,22 @@ def index():
     explore = header("Explore", "play") + """
   <main id="content">
     <section class="explore" id="play">
-      <div id="explore-root" aria-label="A neon arcade street. Tap the road to walk, or use WASD on a keyboard."></div>
-      <p class="explore-hud">Arrows move. Hover a doorway for Enter.</p>
+      <div id="explore-root" aria-label="A neon arcade street. Tap the road to walk, use the on-screen pad, or WASD on a keyboard."></div>
+      <p class="explore-hud">Tap the road to walk · tap a door to enter</p>
       <button type="button" class="explore-act" id="explore-act" hidden>Enter</button>
+      <div class="explore-pad" id="explore-pad" aria-label="Movement pad">
+        <button type="button" class="explore-pad__btn explore-pad__up" data-dir="forward" aria-label="Move forward">▲</button>
+        <button type="button" class="explore-pad__btn explore-pad__left" data-dir="left" aria-label="Move left">◀</button>
+        <button type="button" class="explore-pad__btn explore-pad__core" tabindex="-1" aria-hidden="true"></button>
+        <button type="button" class="explore-pad__btn explore-pad__right" data-dir="right" aria-label="Move right">▶</button>
+        <button type="button" class="explore-pad__btn explore-pad__down" data-dir="back" aria-label="Move back">▼</button>
+      </div>
     </section>
   </main>
   <dialog class="help" id="help">
     <p class="kicker">CONTROLS</p>
     <h2>How to play</h2>
-    <p>On a phone, tap the road to walk. On a keyboard, use arrows or WASD. Walk through a glowing doorway. When a Read button appears, tap it (or press E) to open a sign or cabinet.</p>
+    <p>On a phone or tablet, tap the road to walk or hold the on-screen pad. Tap a glowing doorway, then tap Enter. On a keyboard, use arrows or WASD, and press Enter or E near a door.</p>
     <form method="dialog"><button class="pixel-btn" type="submit">Close</button></form>
   </dialog>
   <script type="importmap">
@@ -1505,7 +1512,7 @@ def index():
     }
   }
   </script>
-  <script type="module" src="/js/explore/main.js?v=29"></script>
+  <script type="module" src="/js/explore/main.js?v=30"></script>
 """ + footer()
     (ROOT / "index.html").write_text(home, encoding="utf-8")
     (ROOT / "explore.html").write_text(explore, encoding="utf-8")

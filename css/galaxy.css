@@ -913,20 +913,47 @@
     padding: 0.5rem 0.65rem 3rem;
   }
 
+  .galaxy-controller {
+    width: min(96vw, 34rem);
+    margin-top: 0.65rem;
+  }
+
+  .gc-dpad,
+  .gc-btns {
+    display: none;
+  }
+
+  .gc-shell {
+    grid-template-columns: 1fr;
+    border-radius: 1.5rem;
+    padding: 0.45rem 0.55rem;
+  }
+
   .galaxy-system-wrap {
     aspect-ratio: 1;
     max-height: 62vh;
+    width: min(100vw - 1rem, 560px);
   }
 
   .galaxy-planet {
-    width: 3rem;
-    height: 3rem;
+    width: 3.15rem;
+    height: 3.15rem;
+  }
+
+  .galaxy-planet__name {
+    font-size: var(--text-2xs);
+    max-width: 4.8rem;
   }
 
   .galaxy-core__label {
     font-size: var(--text-xs);
   }
 
+  .galaxy-panel {
+    width: min(96vw, 28rem);
+    max-height: min(78dvh, 560px);
+    padding: 0.85rem;
+  }
 }
 
 /* reduced motion */

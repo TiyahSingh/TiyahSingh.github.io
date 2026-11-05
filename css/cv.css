@@ -512,6 +512,17 @@ body.cv-page .hud .nav a:hover {
 
   .cv-name {
     font-size: var(--text-3xl);
+    overflow-wrap: anywhere;
+  }
+
+  .cv-win {
+    border-radius: 0.9rem;
+  }
+
+  .cv-download {
+    min-height: 2.75rem;
+    width: 100%;
+    justify-content: center;
   }
 }
 

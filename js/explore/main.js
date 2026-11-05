@@ -2,7 +2,7 @@ import * as THREE from "three";
 import { createStreet } from "./environment.js?v=16";
 import { createPlayer } from "./player.js?v=7";
 import { createCamera } from "./camera.js?v=6";
-import { createLocations } from "./locations.js?v=21";
+import { createLocations } from "./locations.js?v=22";
 
 const WRITTEN = {
   "#about": "/about.html",
@@ -159,6 +159,13 @@ async function boot(mount) {
   const input = { forward: false, back: false, left: false, right: false };
   const raycaster = new THREE.Raycaster();
   const pointer = new THREE.Vector2();
+  const coarse = window.matchMedia("(pointer: coarse), (max-width: 860px)").matches;
+  if (hud) {
+    hud.textContent = coarse
+      ? "Tap the road to walk · tap a door to enter"
+      : "WASD / arrows move · hover a doorway for Enter";
+  }
+  bindPad(input);
 
   function setKey(event, down) {
     const box = mount.getBoundingClientRect();
@@ -265,6 +272,9 @@ async function boot(mount) {
     rig.resize(width / height);
   }
   window.addEventListener("resize", resize);
+  if (window.visualViewport) {
+    window.visualViewport.addEventListener("resize", resize);
+  }
   resize();
 
   let last = 0;
@@ -354,4 +364,51 @@ function showFallback(mount, message) {
   note.className = "explore-fallback";
   note.textContent = message || "This browser could not start the 3D street. The portfolio pages below are still available from the menu.";
   mount.appendChild(note);
+}
+
+function bindPad(input) {
+  const pad = document.getElementById("explore-pad");
+  if (!pad) return;
+  const map = {
+    forward: "forward",
+    back: "back",
+    left: "left",
+    right: "right",
+  };
+  function setDir(dir, down) {
+    if (!map[dir]) return;
+    input[map[dir]] = down;
+  }
+  pad.querySelectorAll("[data-dir]").forEach(function (btn) {
+    const dir = btn.getAttribute("data-dir");
+    btn.addEventListener("pointerdown", function (event) {
+      event.preventDefault();
+      event.stopPropagation();
+      btn.setPointerCapture(event.pointerId);
+      setDir(dir, true);
+      btn.classList.add("is-held");
+    });
+    btn.addEventListener("pointerup", function (event) {
+      event.preventDefault();
+      setDir(dir, false);
+      btn.classList.remove("is-held");
+    });
+    btn.addEventListener("pointercancel", function () {
+      setDir(dir, false);
+      btn.classList.remove("is-held");
+    });
+    btn.addEventListener("lostpointercapture", function () {
+      setDir(dir, false);
+      btn.classList.remove("is-held");
+    });
+  });
+  window.addEventListener("blur", function () {
+    input.forward = false;
+    input.back = false;
+    input.left = false;
+    input.right = false;
+    pad.querySelectorAll(".is-held").forEach(function (btn) {
+      btn.classList.remove("is-held");
+    });
+  });
 }

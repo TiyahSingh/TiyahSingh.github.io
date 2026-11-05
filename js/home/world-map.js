@@ -274,7 +274,9 @@ async function boot() {
       pos.project(camera);
       const x = (pos.x * 0.5 + 0.5) * lastW;
       const y = (-pos.y * 0.5 + 0.5) * lastH;
-      const visible = pos.z < 1 && x > -40 && y > -40 && x < lastW + 40 && y < lastH + 40;
+      /* Keep pins clear of the controller title bar at the top */
+      const topClear = Math.min(110, lastH * 0.22);
+      const visible = pos.z < 1 && x > -40 && y > topClear && x < lastW + 40 && y < lastH + 40;
       item.pin.style.display = visible ? "grid" : "none";
       item.pin.style.left = x + "px";
       item.pin.style.top = y + "px";
