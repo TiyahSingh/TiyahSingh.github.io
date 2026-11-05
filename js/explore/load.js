@@ -71,20 +71,20 @@ export function tuneCity(root, road, lite) {
     const list = Array.isArray(child.material) ? child.material : [child.material];
     list.forEach(function (material) {
       if (!material || material.userData.tuned) return;
-      if (lite || !material.map) {
-        material.color = new THREE.Color(road ? 0x2a1838 : 0x4a2868);
-        material.emissive = new THREE.Color(road ? 0x180818 : 0xff3ec8);
-        material.emissiveIntensity = road ? 0.15 : 0.35;
+      /* Keep textures on mobile/lite — flat pink wash looked broken */
+      if (!material.map) {
+        material.color = new THREE.Color(road ? 0x2a1838 : 0x3a2458);
+        material.emissive = new THREE.Color(road ? 0x180818 : 0x6a3088);
+        material.emissiveIntensity = road ? 0.12 : 0.22;
         material.roughness = road ? 0.35 : 0.62;
         material.metalness = road ? 0.45 : 0.12;
-        if (material.map) material.map = null;
         material.emissiveMap = null;
       } else {
-        const maps = neonize(material.map, 512);
+        const maps = neonize(material.map, lite ? 256 : 512);
         material.map = maps.color;
         material.emissiveMap = maps.glow;
         material.emissive = new THREE.Color(0xffffff);
-        material.emissiveIntensity = road ? 0.4 : 0.9;
+        material.emissiveIntensity = road ? 0.35 : (lite ? 0.72 : 0.9);
         material.color = new THREE.Color(0xffffff);
         material.roughness = road ? 0.22 : 0.55;
         material.metalness = road ? 0.7 : 0.16;

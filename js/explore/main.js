@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { createStreet } from "./environment.js?v=16";
+import { createStreet } from "./environment.js?v=17";
 import { createPlayer } from "./player.js?v=7";
 import { createCamera } from "./camera.js?v=6";
 import { createLocations } from "./locations.js?v=24";
@@ -343,46 +343,64 @@ function flashGuidePaths(scene, player, places, street, reduced) {
   street.doors.forEach(function (door, index) {
     const end = places.doorCenter(door);
     end.y = 0.1;
+    const isGames = door.id === "games";
     const points = [];
-    const steps = 10;
+    const steps = isGames ? 16 : 10;
     for (let i = 0; i <= steps; i += 1) {
       const t = i / steps;
       points.push(new THREE.Vector3(
         start.x + (end.x - start.x) * t,
-        0.12 + Math.sin(t * Math.PI) * 0.08,
+        0.12 + Math.sin(t * Math.PI) * (isGames ? 0.16 : 0.08),
         start.z + (end.z - start.z) * t
       ));
     }
     const curve = new THREE.CatmullRomCurve3(points);
     const tube = new THREE.Mesh(
-      new THREE.TubeGeometry(curve, 24, 0.07, 6, false),
+      new THREE.TubeGeometry(curve, isGames ? 36 : 24, isGames ? 0.16 : 0.07, 8, false),
       new THREE.MeshBasicMaterial({
-        color: index % 2 === 0 ? 0xff4eb8 : 0x7af0ff,
+        color: isGames ? 0xffd15c : (index % 2 === 0 ? 0xff4eb8 : 0x7af0ff),
         transparent: true,
-        opacity: 0.9,
+        opacity: isGames ? 1 : 0.85,
         depthWrite: false,
       })
     );
+    tube.userData.guideBoost = isGames ? 1 : 0.82;
     guides.add(tube);
+    if (isGames) {
+      const outer = new THREE.Mesh(
+        new THREE.TubeGeometry(curve, 36, 0.28, 8, false),
+        new THREE.MeshBasicMaterial({
+          color: 0xff3ec8,
+          transparent: true,
+          opacity: 0.35,
+          depthWrite: false,
+        })
+      );
+      outer.userData.guideBoost = 0.4;
+      guides.add(outer);
+    }
     const beacon = new THREE.Mesh(
-      new THREE.SphereGeometry(0.22, 12, 12),
+      new THREE.SphereGeometry(isGames ? 0.38 : 0.22, 14, 14),
       new THREE.MeshBasicMaterial({
-        color: 0xff9adf,
+        color: isGames ? 0xffd15c : 0xff9adf,
         transparent: true,
-        opacity: 0.95,
+        opacity: 0.98,
       })
     );
-    beacon.position.set(end.x, 0.55, end.z);
+    beacon.position.set(end.x, isGames ? 0.75 : 0.55, end.z);
+    beacon.userData.guideBoost = isGames ? 1.1 : 1;
     guides.add(beacon);
   });
 
   const born = performance.now();
-  const life = 2800;
+  const life = 3400;
   function fadeGuides(now) {
     const age = now - born;
-    const opacity = age < 900 ? 0.95 : Math.max(0, 1 - (age - 900) / (life - 900));
+    const opacity = age < 1100 ? 1 : Math.max(0, 1 - (age - 1100) / (life - 1100));
     guides.children.forEach(function (child) {
-      if (child.material) child.material.opacity = opacity * (child.geometry.type === "SphereGeometry" ? 1 : 0.85);
+      if (!child.material) return;
+      const boost = child.userData.guideBoost || 0.85;
+      child.material.opacity = opacity * boost;
     });
     if (age < life) requestAnimationFrame(fadeGuides);
     else {

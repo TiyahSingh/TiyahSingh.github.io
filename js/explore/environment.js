@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { loadModel, tuneFlat, tuneCity, makeSign } from "./load.js?v=7";
+import { loadModel, tuneFlat, tuneCity, makeSign } from "./load.js?v=8";
 
 const EH = "/assets/models/eh98/";
 const KENNEY = "/assets/models/kenney/commercial/";
@@ -95,11 +95,14 @@ export async function createStreet(scene, options) {
     placeKenney(group, kenney["detail-awning-wide"], 2.4, -15.2, 0, 5.6);
   }
 
-  const marquee = makeSign("GAMES", "#ff3ec8", 6.4, 1.7, "TIYAH SINGH");
-  marquee.position.set(0, 6.8, -13.4);
+  /* Big ARCADE marquee on top — door below stays GAMES so it isn't written twice */
+  const marquee = makeSign("ARCADE", "#7af0ff", 7.2, 2.05, "ENTER HERE");
+  marquee.position.set(0, 7.15, -13.4);
+  marquee.material.emissiveIntensity = 1.55;
   group.add(marquee);
+  glow(scene, 0, 7.5, -12.2, 0x7af0ff, lite ? 3.2 : 5.2, 16);
+  glow(scene, 0, 6.6, -12.4, 0xff3ec8, lite ? 2.2 : 3.4, 12);
   if (!lite) {
-    glow(scene, 0, 7.2, -12.2, 0xff3ec8, 4.5, 14);
     glow(scene, -3.2, 4, -14, 0xb14bff, 1.8, 7);
     glow(scene, 3.2, 4, -14, 0x7af0ff, 1.8, 7);
   }
@@ -123,18 +126,19 @@ export async function createStreet(scene, options) {
   doors.forEach(function (door) {
     markers.push(addPortal(group, door.x, door.z, door.yaw, door.label, door.color, door.id));
   });
-  const gamesSign = makeSign("GAMES", "#ff3ec8", 2.4, 0.9, "ARCADE");
+  const gamesSign = makeSign("GAMES", "#ff3ec8", 2.6, 0.95);
   gamesSign.material.side = THREE.DoubleSide;
+  gamesSign.material.emissiveIntensity = 1.45;
   gamesSign.position.set(0, 2.55, -12.5);
   gamesSign.userData.doorId = "games";
   group.add(gamesSign);
-  markers.push({ mesh: gamesSign, base: 2.55, phase: 0.4 });
+  markers.push({ mesh: gamesSign, base: 2.55, phase: 0.45 });
   doors.push({
     id: "games",
     x: 0,
     z: -14.6,
     label: "GAMES",
-    color: "#ff3ec8",
+    color: "#ffd15c",
     minX: -1.35,
     maxX: 1.35,
     minZ: -15.6,

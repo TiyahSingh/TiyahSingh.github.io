@@ -1418,8 +1418,6 @@ def index():
     <section class="world-stage" aria-label="Map of Tiyah's world">
       <div class="world-stars" aria-hidden="true"></div>
       <div class="world-copy gba-shell">
-        <span class="gba-heart gba-heart-tl" aria-hidden="true">♥</span>
-        <span class="gba-heart gba-heart-tr" aria-hidden="true">♥</span>
         <div class="gba-screen">
           <p class="gba-kicker">PLAYER 01</p>
           <div class="gba-title-row">
@@ -1430,7 +1428,7 @@ def index():
           <p class="gba-bio">Hi, I’m Tiyah, a game designer and developer who decided one creative outlet was not enough. My game world blends gameplay programming, systems design, UI/UX digital art and storytelling, allowing me to see an idea beyond what it could look like and understand how to make it work. I exist in a space between programmer and artist, using code to give my ideas structure and creativity to give them a soul. Games let me turn the art existing in my head into worlds others can inhabit and experience mentally, emotionally, psychologically and intellectually.</p>
           <p class="gba-bio gba-cta">Step into my world and explore what I create.</p>
           <nav class="world-menu" aria-label="World destinations">
-            <a href="/explore.html"><span>&#9654;</span> EXPLORE</a>
+            <a href="/explore.html">EXPLORE</a>
             <a href="/explore.html#explore/games">GAMES</a>
             <a href="/explore.html?door=about">ABOUT</a>
             <a href="/explore.html?door=skills">SKILLS</a>
@@ -1464,7 +1462,7 @@ def index():
         <div id="world-map" class="world-canvas" role="img" aria-label="Floating neon city map. Drag to look around. Click a glowing marker to open that page."></div>
         <div class="world-veil" aria-hidden="true"></div>
         <div id="world-pins" class="world-pins"></div>
-        <p class="world-hearts" aria-hidden="true">♥ ♥ ♥ · LVL 01</p>
+        <p class="world-hearts" aria-hidden="true">LVL 01</p>
       </div>
     </section>
   </main>
@@ -1512,7 +1510,7 @@ def index():
     }
   }
   </script>
-  <script type="module" src="/js/explore/main.js?v=32"></script>
+  <script type="module" src="/js/explore/main.js?v=33"></script>
 """ + footer()
     (ROOT / "index.html").write_text(home, encoding="utf-8")
     (ROOT / "explore.html").write_text(explore, encoding="utf-8")
