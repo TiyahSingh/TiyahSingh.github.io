@@ -2603,10 +2603,21 @@ body.title-on .title-screen {
 }
 
 .game-cab__machine {
+  display: block;
   width: min(100%, 260px);
   margin: 0.2rem 0 0.35rem;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
   filter: drop-shadow(0 14px 18px rgba(20, 4, 36, 0.45));
   transition: transform 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.game-cab__machine:focus-visible {
+  outline: 3px solid #ff4eb8;
+  outline-offset: 6px;
+  border-radius: 0.5rem;
 }
 
 .game-cab--showcase .game-cab__machine {

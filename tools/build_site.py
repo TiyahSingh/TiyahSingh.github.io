@@ -675,7 +675,7 @@ def header(title="", nav=""):
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Spicy+Rice&display=swap" rel="stylesheet">
   <link rel="icon" href="/assets/brand/favicon.png" type="image/png">
-  <link rel="stylesheet" href="/css/site.css?v=77">{extra_css}
+  <link rel="stylesheet" href="/css/site.css?v=78">{extra_css}
 </head>
 <body{body}>
   <a class="skip" href="#content">Skip to content</a>
@@ -1095,9 +1095,9 @@ def index():
           <p class="game-cab__tag">{label}</p>
           <h3 class="game-cab__title">{game["title"]}</h3>
           <p class="game-cab__genre">{game["genre"]}</p>
-          <div class="game-cab__machine" aria-hidden="true">
+          <a class="game-cab__machine" href="/games/{game["slug"]}.html" aria-label="Learn about {game["title"]}">
             <img class="game-cab__art" src="/assets/cabinets/{game["slug"]}.png" alt="">
-          </div>
+          </a>
           <a class="game-cab__btn" href="/games/{game["slug"]}.html">Learn about game</a>
         </article>"""
 
