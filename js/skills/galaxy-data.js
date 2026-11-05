@@ -5,8 +5,8 @@
  * Add/remove skills freely; the galaxy rebuilds from this file.
  */
 window.SKILL_GALAXY = {
-  title: "skill galaxy",
-  tagline: "tap a planet",
+  title: "SKILL GALAXY",
+  tagline: "TAP A PLANET",
   levels: {
     discovered: {
       label: "new",

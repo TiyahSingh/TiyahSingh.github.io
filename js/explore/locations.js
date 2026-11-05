@@ -272,30 +272,31 @@ export function createLocations(options) {
   function prompt(hoveredId) {
     const touch = window.matchMedia("(pointer: coarse), (max-width: 860px)").matches;
     const next = action(hoveredId);
+    let text = "";
     if (next && next.kind === "enter") {
-      return touch
+      text = touch
         ? "Enter " + next.detail + " — tap Enter"
         : "Enter " + next.detail + " — tap the button or walk in";
-    }
-    if (next && next.kind === "exit") {
-      return touch
+    } else if (next && next.kind === "exit") {
+      text = touch
         ? next.detail + " — tap Exit"
         : next.detail + " — tap Exit or walk through the door";
-    }
-    if (next && next.kind === "read") return next.detail;
-    if (place === "games") {
-      return touch
+    } else if (next && next.kind === "read") {
+      text = next.detail;
+    } else if (place === "games") {
+      text = touch
         ? "Walk to a cabinet, then tap Read · EXIT door leaves"
         : "Walk to a cabinet, then tap Read. Find the cyan EXIT door to leave.";
-    }
-    if (place !== "street") {
-      return touch
+    } else if (place !== "street") {
+      text = touch
         ? "Walk to a glowing sign, then tap Read"
         : "Walk to a glowing sign, then tap Read. Walk out the door to return.";
+    } else {
+      text = touch
+        ? "Tap the road or use the pad · tap a door to enter"
+        : "Arrows move. Tap the road to walk. Hover a doorway for Enter.";
     }
-    return touch
-      ? "Tap the road or use the pad · tap a door to enter"
-      : "WASD / arrows move · tap the road · hover a doorway for Enter";
+    return String(text || "").toUpperCase();
   }
 
   return {

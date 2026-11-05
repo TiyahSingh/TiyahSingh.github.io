@@ -2010,16 +2010,32 @@ body.explore-page .explore { min-height: 420px; }
   margin: 0;
   max-width: min(92vw, 34rem);
   padding: 0.55rem 0.9rem;
-  color: white;
-  background: rgba(12, 4, 22, 0.78);
-  border: 2px solid rgba(252, 84, 216, 0.85);
+  color: #fff;
+  background: rgba(12, 4, 22, 0.88);
+  border: 2px solid rgba(252, 84, 216, 0.95);
   border-radius: 999px;
   font-family: var(--font-ui);
   font-size: var(--text-sm);
-  font-weight: 600;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
   text-align: center;
   pointer-events: none;
-  box-shadow: 0 0 18px rgba(252, 84, 216, 0.28);
+  text-shadow: 0 0 10px rgba(255, 78, 184, 0.75);
+  box-shadow: 0 0 18px rgba(252, 84, 216, 0.35);
+}
+
+.explore-hud.is-intro {
+  border-color: #fff;
+  box-shadow:
+    0 0 0 3px rgba(255, 78, 184, 0.45),
+    0 0 28px rgba(255, 78, 184, 0.7);
+  animation: hud-intro-pulse 1.2s ease-in-out 2;
+}
+
+@keyframes hud-intro-pulse {
+  0%, 100% { transform: translateX(-50%) scale(1); }
+  50% { transform: translateX(-50%) scale(1.04); }
 }
 
 .explore-act {
@@ -2150,6 +2166,13 @@ body.explore-page .explore { min-height: 420px; }
     font-size: var(--text-xs);
     border-radius: 1rem;
     text-align: left;
+  }
+  .explore-hud.is-intro {
+    animation: hud-intro-pulse-corner 1.2s ease-in-out 2;
+  }
+  @keyframes hud-intro-pulse-corner {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.04); }
   }
   .explore-act {
     left: 50%;

@@ -13,13 +13,14 @@
   if (!system) return;
 
   /* deliberate constellation layout — not nested spinning rings */
+  /* Inset from edges so labels never clip under the site header / controller */
   const LAYOUT = [
-    { x: 50, y: 12, hue: 320 }, /* Design — top */
-    { x: 86, y: 32, hue: 280 }, /* Games — upper right */
-    { x: 86, y: 70, hue: 190 }, /* Code — lower right */
-    { x: 50, y: 90, hue: 145 }, /* Data — bottom */
-    { x: 14, y: 70, hue: 45 },  /* Story — lower left */
-    { x: 14, y: 32, hue: 0 },   /* Extra — upper left */
+    { x: 50, y: 18, hue: 320 }, /* Design — top */
+    { x: 82, y: 34, hue: 280 }, /* Games — upper right */
+    { x: 82, y: 68, hue: 190 }, /* Code — lower right */
+    { x: 50, y: 84, hue: 145 }, /* Data — bottom */
+    { x: 18, y: 68, hue: 45 },  /* Story — lower left */
+    { x: 18, y: 34, hue: 0 },   /* Extra — upper left */
   ];
 
   function levelMeta(level) {
@@ -45,12 +46,12 @@
     const core = document.createElement("button");
     core.type = "button";
     core.className = "galaxy-core";
-    core.setAttribute("aria-label", "my skills galaxy");
+    core.setAttribute("aria-label", "My skills galaxy");
     core.innerHTML = `
       <span class="galaxy-core__glow"></span>
       <span class="galaxy-core__body"></span>
       <span class="galaxy-core__ring"></span>
-      <span class="galaxy-core__label">my skills galaxy</span>
+      <span class="galaxy-core__label">MY SKILLS GALAXY</span>
     `;
     core.addEventListener("click", () => closeAll());
     system.appendChild(core);
@@ -75,7 +76,7 @@
         <span class="galaxy-planet__body"></span>
         <span class="galaxy-planet__shine"></span>
         <span class="galaxy-planet__name">
-          <span class="galaxy-planet__title">${escapeHtml(orbit.short)}</span>
+          <span class="galaxy-planet__title">${escapeHtml(String(orbit.short || orbit.name || "").toUpperCase())}</span>
         </span>
       `;
       planet.addEventListener("click", (e) => {

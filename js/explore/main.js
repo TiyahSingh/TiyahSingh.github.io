@@ -2,7 +2,7 @@ import * as THREE from "three";
 import { createStreet } from "./environment.js?v=16";
 import { createPlayer } from "./player.js?v=7";
 import { createCamera } from "./camera.js?v=6";
-import { createLocations } from "./locations.js?v=22";
+import { createLocations } from "./locations.js?v=23";
 
 const WRITTEN = {
   "#about": "/about.html",
@@ -161,9 +161,11 @@ async function boot(mount) {
   const pointer = new THREE.Vector2();
   const coarse = window.matchMedia("(pointer: coarse), (max-width: 860px)").matches;
   if (hud) {
-    hud.textContent = coarse
+    hud.textContent = (coarse
       ? "Tap the road to walk · tap a door to enter"
-      : "WASD / arrows move · hover a doorway for Enter";
+      : "Arrows move. Tap the road to walk. Hover a doorway for Enter."
+    ).toUpperCase();
+    hud.classList.add("is-intro");
   }
   bindPad(input);
 
@@ -313,7 +315,76 @@ async function boot(mount) {
     }
   } else if (EXPLORE[location.hash]) {
     places.go(EXPLORE[location.hash]);
+  } else {
+    flashGuidePaths(scene, player, places, street, reduced);
   }
+
+  window.setTimeout(function () {
+    if (hud) hud.classList.remove("is-intro");
+  }, 3200);
+}
+
+function flashGuidePaths(scene, player, places, street, reduced) {
+  if (reduced || !street || !street.doors || !street.doors.length) return;
+  const guides = new THREE.Group();
+  guides.name = "guide-paths";
+  scene.add(guides);
+  const start = player.group.position.clone();
+  start.y = 0.1;
+  street.doors.forEach(function (door, index) {
+    const end = places.doorCenter(door);
+    end.y = 0.1;
+    const points = [];
+    const steps = 10;
+    for (let i = 0; i <= steps; i += 1) {
+      const t = i / steps;
+      points.push(new THREE.Vector3(
+        start.x + (end.x - start.x) * t,
+        0.12 + Math.sin(t * Math.PI) * 0.08,
+        start.z + (end.z - start.z) * t
+      ));
+    }
+    const curve = new THREE.CatmullRomCurve3(points);
+    const tube = new THREE.Mesh(
+      new THREE.TubeGeometry(curve, 24, 0.07, 6, false),
+      new THREE.MeshBasicMaterial({
+        color: index % 2 === 0 ? 0xff4eb8 : 0x7af0ff,
+        transparent: true,
+        opacity: 0.9,
+        depthWrite: false,
+      })
+    );
+    guides.add(tube);
+    const beacon = new THREE.Mesh(
+      new THREE.SphereGeometry(0.22, 12, 12),
+      new THREE.MeshBasicMaterial({
+        color: 0xff9adf,
+        transparent: true,
+        opacity: 0.95,
+      })
+    );
+    beacon.position.set(end.x, 0.55, end.z);
+    guides.add(beacon);
+  });
+
+  const born = performance.now();
+  const life = 2800;
+  function fadeGuides(now) {
+    const age = now - born;
+    const opacity = age < 900 ? 0.95 : Math.max(0, 1 - (age - 900) / (life - 900));
+    guides.children.forEach(function (child) {
+      if (child.material) child.material.opacity = opacity * (child.geometry.type === "SphereGeometry" ? 1 : 0.85);
+    });
+    if (age < life) requestAnimationFrame(fadeGuides);
+    else {
+      scene.remove(guides);
+      guides.traverse(function (child) {
+        if (child.geometry) child.geometry.dispose();
+        if (child.material) child.material.dispose();
+      });
+    }
+  }
+  requestAnimationFrame(fadeGuides);
 }
 
 function createPanel() {

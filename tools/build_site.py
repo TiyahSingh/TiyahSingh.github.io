@@ -658,7 +658,7 @@ def header(title="", nav=""):
         body = ""
     extra_css = ""
     if nav == "skills":
-        extra_css = '\n  <link rel="stylesheet" href="/css/galaxy.css?v=17">'
+        extra_css = '\n  <link rel="stylesheet" href="/css/galaxy.css?v=18">'
     elif nav == "cv":
         extra_css = '\n  <link rel="stylesheet" href="/css/cv.css?v=6">'
     elif nav == "contact":
@@ -675,7 +675,7 @@ def header(title="", nav=""):
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Spicy+Rice&display=swap" rel="stylesheet">
   <link rel="icon" href="/assets/brand/favicon.png" type="image/png">
-  <link rel="stylesheet" href="/css/site.css?v=75">{extra_css}
+  <link rel="stylesheet" href="/css/site.css?v=76">{extra_css}
 </head>
 <body{body}>
   <a class="skip" href="#content">Skip to content</a>
@@ -1232,8 +1232,8 @@ def index():
       <div class="gc-shell">
         <div class="gc-dpad" aria-hidden="true"><span></span></div>
         <div class="gc-screen">
-          <h1>explore my skills galaxy</h1>
-          <p>tap a planet</p>
+          <h1>EXPLORE MY SKILLS GALAXY</h1>
+          <p>TAP A PLANET TO OPEN SKILLS</p>
         </div>
         <div class="gc-btns" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
       </div>
@@ -1245,8 +1245,8 @@ def index():
     <div class="galaxy-panel" id="galaxy-category-panel" role="dialog" aria-modal="true" hidden></div>
     <div class="galaxy-panel" id="galaxy-skill-panel" role="dialog" aria-modal="true" hidden></div>
   </main>
-  <script src="/js/skills/galaxy-data.js?v=7"></script>
-  <script src="/js/skills/galaxy.js?v=11"></script>
+  <script src="/js/skills/galaxy-data.js?v=8"></script>
+  <script src="/js/skills/galaxy.js?v=12"></script>
   <script>
   (function () {
     var params = new URLSearchParams(location.search);
@@ -1487,7 +1487,7 @@ def index():
   <main id="content">
     <section class="explore" id="play">
       <div id="explore-root" aria-label="A neon arcade street. Tap the road to walk, use the on-screen pad, or WASD on a keyboard."></div>
-      <p class="explore-hud">Tap the road to walk · tap a door to enter</p>
+      <p class="explore-hud is-intro">ARROWS MOVE. TAP THE ROAD TO WALK. HOVER A DOORWAY FOR ENTER.</p>
       <button type="button" class="explore-act" id="explore-act" hidden>Enter</button>
       <div class="explore-pad" id="explore-pad" aria-label="Movement pad">
         <button type="button" class="explore-pad__btn explore-pad__up" data-dir="forward" aria-label="Move forward">▲</button>
@@ -1512,7 +1512,7 @@ def index():
     }
   }
   </script>
-  <script type="module" src="/js/explore/main.js?v=30"></script>
+  <script type="module" src="/js/explore/main.js?v=31"></script>
 """ + footer()
     (ROOT / "index.html").write_text(home, encoding="utf-8")
     (ROOT / "explore.html").write_text(explore, encoding="utf-8")
