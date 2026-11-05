@@ -2,7 +2,7 @@ import * as THREE from "three";
 import { createStreet } from "./environment.js?v=16";
 import { createPlayer } from "./player.js?v=7";
 import { createCamera } from "./camera.js?v=6";
-import { createLocations } from "./locations.js?v=23";
+import { createLocations } from "./locations.js?v=24";
 
 const WRITTEN = {
   "#about": "/about.html",
@@ -161,11 +161,20 @@ async function boot(mount) {
   const pointer = new THREE.Vector2();
   const coarse = window.matchMedia("(pointer: coarse), (max-width: 860px)").matches;
   if (hud) {
-    hud.textContent = (coarse
-      ? "Tap the road to walk · tap a door to enter"
-      : "Arrows move. Tap the road to walk. Hover a doorway for Enter."
-    ).toUpperCase();
+    hud.textContent = coarse
+      ? "TAP THE ROAD TO WALK · TAP A DOOR TO ENTER"
+      : "WASD / ARROWS MOVE · TAP THE ROAD · HOVER A DOORWAY FOR ENTER";
     hud.classList.add("is-intro");
+  }
+  if (hud) {
+    const syncCaps = function () {
+      if (hud.textContent !== hud.textContent.toUpperCase()) {
+        hud.textContent = hud.textContent.toUpperCase();
+      }
+    };
+    syncCaps();
+    const capsWatch = new MutationObserver(syncCaps);
+    capsWatch.observe(hud, { characterData: true, childList: true, subtree: true });
   }
   bindPad(input);
 

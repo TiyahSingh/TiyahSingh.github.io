@@ -2017,8 +2017,8 @@ body.explore-page .explore { min-height: 420px; }
   font-family: var(--font-ui);
   font-size: var(--text-sm);
   font-weight: 400;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  text-transform: uppercase !important;
   text-align: center;
   pointer-events: none;
   text-shadow: 0 0 10px rgba(255, 78, 184, 0.75);

@@ -275,26 +275,26 @@ export function createLocations(options) {
     let text = "";
     if (next && next.kind === "enter") {
       text = touch
-        ? "Enter " + next.detail + " — tap Enter"
-        : "Enter " + next.detail + " — tap the button or walk in";
+        ? "ENTER " + next.detail + " — TAP ENTER"
+        : "ENTER " + next.detail + " — TAP THE BUTTON OR WALK IN";
     } else if (next && next.kind === "exit") {
       text = touch
-        ? next.detail + " — tap Exit"
-        : next.detail + " — tap Exit or walk through the door";
+        ? next.detail + " — TAP EXIT"
+        : next.detail + " — TAP EXIT OR WALK THROUGH THE DOOR";
     } else if (next && next.kind === "read") {
       text = next.detail;
     } else if (place === "games") {
       text = touch
-        ? "Walk to a cabinet, then tap Read · EXIT door leaves"
-        : "Walk to a cabinet, then tap Read. Find the cyan EXIT door to leave.";
+        ? "WALK TO A CABINET, THEN TAP READ · EXIT DOOR LEAVES"
+        : "WALK TO A CABINET, THEN TAP READ. FIND THE CYAN EXIT DOOR TO LEAVE.";
     } else if (place !== "street") {
       text = touch
-        ? "Walk to a glowing sign, then tap Read"
-        : "Walk to a glowing sign, then tap Read. Walk out the door to return.";
+        ? "WALK TO A GLOWING SIGN, THEN TAP READ"
+        : "WALK TO A GLOWING SIGN, THEN TAP READ. WALK OUT THE DOOR TO RETURN.";
     } else {
       text = touch
-        ? "Tap the road or use the pad · tap a door to enter"
-        : "Arrows move. Tap the road to walk. Hover a doorway for Enter.";
+        ? "TAP THE ROAD OR USE THE PAD · TAP A DOOR TO ENTER"
+        : "WASD / ARROWS MOVE · TAP THE ROAD · HOVER A DOORWAY FOR ENTER";
     }
     return String(text || "").toUpperCase();
   }
