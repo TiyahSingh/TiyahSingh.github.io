@@ -779,13 +779,18 @@ body.about-page .scanlines {
 .game-page .chips li { font-size: var(--text-sm); }
 
 .poster {
-  margin: 1.2rem 0;
+  margin: 1.2rem auto;
+  max-width: min(280px, 58vw);
   border: 4px solid var(--pink);
   box-shadow: 8px 8px 0 #4a1464;
   background: #100814;
 }
 
-.poster img { width: 100%; height: auto; }
+.poster img { width: 100%; height: auto; display: block; }
+
+@media (min-width: 720px) {
+  .poster { max-width: 300px; }
+}
 
 .block h2 { font-size: var(--text-xl); margin-top: 0; line-height: var(--lh-heading); }
 

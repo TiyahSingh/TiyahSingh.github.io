@@ -36,6 +36,19 @@ export function createGamesInterior(scene, cache, projects) {
   sign.rotation.y = 0;
   group.add(sign);
 
+  const showcase = (projects || []).filter(function (project) { return project && project.showcase; });
+  const additional = (projects || []).filter(function (project) { return project && !project.showcase; });
+
+  const showSign = makeSign("SHOWCASE", "#ff3ec8", 3.2, 0.85, "MAIN WORK");
+  showSign.position.set(-3.3, 3.35, -4.6);
+  showSign.rotation.y = Math.PI / 2;
+  group.add(showSign);
+
+  const extraSign = makeSign("ADDITIONAL", "#7af0ff", 3.4, 0.85, "MORE WORK");
+  extraSign.position.set(3.3, 3.35, -4.6);
+  extraSign.rotation.y = -Math.PI / 2;
+  group.add(extraSign);
+
   /* Exit tucked against the entrance wall so it does not block the arcade floor */
   const exitZ = 6.4;
   [[-3.4, exitZ], [3.4, exitZ]].forEach(function (spot) {
@@ -67,16 +80,13 @@ export function createGamesInterior(scene, cache, projects) {
   group.add(exitSign);
 
   const machines = [];
-  const left = [-2.6, -1.0, 0.6, 2.2];
-  left.forEach(function (z, index) {
-    machines.push(addMachine(group, cache.eh.vending, projects[index], -3.3, z, Math.PI / 2));
+  showcase.forEach(function (project, index) {
+    const z = -2.8 + index * 2.4;
+    machines.push(addMachine(group, cache.eh.vending, project, -3.3, z, Math.PI / 2, true));
   });
-  const right = [-2.6, -1.0, 0.6, 2.2];
-  right.forEach(function (z, index) {
-    machines.push(addMachine(group, cache.eh.vending, projects[index + 5], 3.3, z, -Math.PI / 2));
-  });
-  [-1.6, 0, 1.6].forEach(function (x, index) {
-    machines.push(addMachine(group, cache.eh.vending, projects[index + 10], x, -4.6, 0));
+  additional.forEach(function (project, index) {
+    const z = -2.8 + index * 1.85;
+    machines.push(addMachine(group, cache.eh.vending, project, 3.3, z, -Math.PI / 2, false));
   });
 
   const lampA = new THREE.PointLight(0xff3ec8, 4, 12, 2);
@@ -117,21 +127,30 @@ export function createGamesInterior(scene, cache, projects) {
   };
 }
 
-function addMachine(parent, source, project, x, z, rot) {
+function addMachine(parent, source, project, x, z, rot, highlight) {
+  if (!project) return { object: new THREE.Group(), project: null, poster: null };
   const object = source.clone(true);
   object.position.set(x, 0, z);
   object.rotation.y = rot;
+  if (highlight) {
+    object.scale.set(1.12, 1.12, 1.12);
+    const glow = new THREE.PointLight(0xff3ec8, 1.8, 4.5, 2);
+    glow.position.set(0, 1.4, 0.6);
+    object.add(glow);
+  }
   const poster = new THREE.Mesh(
-    new THREE.PlaneGeometry(0.7, 0.9),
+    new THREE.PlaneGeometry(highlight ? 0.82 : 0.7, highlight ? 1.05 : 0.9),
     new THREE.MeshBasicMaterial({ color: 0xffffff, side: THREE.DoubleSide })
   );
-  poster.position.set(0, 1.12, 0.5);
+  poster.position.set(0, highlight ? 1.22 : 1.12, 0.5);
   object.add(poster);
-  textureLoader.load(project.poster, function (texture) {
-    texture.colorSpace = THREE.SRGBColorSpace;
-    poster.material.map = texture;
-    poster.material.needsUpdate = true;
-  });
+  if (project.poster) {
+    textureLoader.load(project.poster, function (texture) {
+      texture.colorSpace = THREE.SRGBColorSpace;
+      poster.material.map = texture;
+      poster.material.needsUpdate = true;
+    });
+  }
   parent.add(object);
   return { object: object, project: project, poster: poster };
 }

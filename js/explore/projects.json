@@ -2,7 +2,7 @@
   {
     "slug": "clinical-trial",
     "title": "Clinical Trial",
-    "genre": "Hospital simulation",
+    "genre": "Serious hospital simulation game",
     "card": "Run an under-resourced public clinic by switching between four hospital jobs.",
     "role": "Programming, UI/UX design, technical documentation, and visual presentations (slides and gameplay videos).",
     "tech": [
@@ -14,20 +14,21 @@
       "itch.io",
       "Canva"
     ],
-    "demo": "https://feelgoodbinjuice.itch.io/clinical-trial",
-    "demoLabel": "Playable itch.io build",
+    "demo": "https://canva.link/aj8897ql2leuhzn",
+    "demoLabel": "Gameplay video",
     "download": "https://feelgoodbinjuice.itch.io/clinical-trial",
-    "downloadLabel": "Windows download",
+    "downloadLabel": "Playable itch.io build",
     "poster": "/assets/posters/clinical-trial.jpg",
+    "href": "/games/clinical-trial.html",
     "showcase": true,
-    "credits": "Tiyah Singh, L.A. van der Zee, Jamie-Lee Davies, Jacques Willemse"
+    "credits": "Team members: Tiyah Singh, Lazjessicah van der Zee, Jamie-Lee Davies, Jacques Willemse"
   },
   {
     "slug": "dont-forget-to-say-goodbye",
     "title": "Don't Forget to Say Goodbye",
-    "genre": "Narrative horror",
+    "genre": "Horror interactive LLM game",
     "card": "A haunted manor, ritual puzzles, and a Ouija board answered by a local language model.",
-    "role": "Lead design and art direction \u2014 occult interface, ritual props, manor visual language, and player-facing board UX.",
+    "role": "Lead design, art direction, and coding \u2014 occult interface, ritual props, manor visual language, player-facing board UX, and the custom AI dialogue systems that manage models, prompts, and in-game replies.",
     "tech": [
       "Unity 6 (6000.4.1f1)",
       "C#",
@@ -42,8 +43,53 @@
     "download": "https://github.com/DavidBarker05/Ouija-Game",
     "downloadLabel": "Unity project on GitHub",
     "poster": "/assets/posters/dont-forget-to-say-goodbye.jpg",
+    "href": "/games/dont-forget-to-say-goodbye.html",
     "showcase": true,
-    "credits": "Tiyah Singh, David Barker"
+    "credits": "Team: Tiyah Singh and David Barker"
+  },
+  {
+    "slug": "selkie-song",
+    "title": "Selkie Song",
+    "genre": "3D platformer folklore game",
+    "card": "A selkie crosses broken docks, collecting the pieces of her stolen skin.",
+    "role": "Tiyah developed the Unity project. The build includes a player state machine, dialogue, checkpoints, collectibles, moving platforms, and patrolling enemies. Her reports and presentations are linked from the repository.",
+    "tech": [
+      "Unity 6 (6000.0.38f1)",
+      "C#",
+      "State machine",
+      "Dialogue data",
+      "NavMesh enemies"
+    ],
+    "demo": "https://canva.link/55m6gytbp41gzc6",
+    "demoLabel": "Video presentation",
+    "download": "https://github.com/TiyahSingh/GADE7321POE",
+    "downloadLabel": "Project repository",
+    "poster": "/assets/posters/selkie-song.jpg",
+    "href": "/games/selkie-song.html",
+    "showcase": false,
+    "credits": "Tiyah Singh"
+  },
+  {
+    "slug": "noesis",
+    "title": "Noesis",
+    "genre": "Abstract horror game jam",
+    "card": "Depth of the Mind: a Unity prototype built around dread, space, and sound.",
+    "role": "Tiyah contributed to the Depth prototype and its reference documentation.",
+    "tech": [
+      "Unity",
+      "C#",
+      "Audio ambience",
+      "Environment art pack",
+      "GitHub"
+    ],
+    "demo": "https://github.com/Jamie-LeeD/Depth",
+    "demoLabel": "Depth repository",
+    "download": "https://github.com/Jamie-LeeD/Depth",
+    "downloadLabel": "Unity project",
+    "poster": "/assets/posters/noesis.jpg",
+    "href": "/games/noesis.html",
+    "showcase": false,
+    "credits": "Tiyah Singh"
   },
   {
     "slug": "bushveld-brothers",
@@ -65,216 +111,8 @@
     "download": "https://omega0.itch.io/bushveld-brothers",
     "downloadLabel": "Windows & Android builds",
     "poster": "/assets/posters/bushveld-brothers.jpg",
-    "showcase": true,
+    "href": "/games/bushveld-brothers.html",
+    "showcase": false,
     "credits": "Tiyah Singh, David Barker, Barrie-George Davies, Jamie-Lee Davies"
-  },
-  {
-    "slug": "selkie-song",
-    "title": "Selkie Song",
-    "genre": "Folklore platformer",
-    "card": "A selkie crosses broken docks, collecting the pieces of her stolen skin.",
-    "role": "Tiyah developed the Unity project. The build includes a player state machine, dialogue, checkpoints, collectibles, moving platforms, and patrolling enemies. Her reports and presentations are linked from the repository.",
-    "tech": [
-      "Unity 6 (6000.0.38f1)",
-      "C#",
-      "State machine",
-      "Dialogue data",
-      "NavMesh enemies"
-    ],
-    "demo": "https://canva.link/55m6gytbp41gzc6",
-    "demoLabel": "Video presentation",
-    "download": "https://github.com/TiyahSingh/GADE7321POE",
-    "downloadLabel": "Project repository",
-    "poster": "/assets/posters/selkie-song.jpg",
-    "showcase": false,
-    "credits": "Tiyah Singh"
-  },
-  {
-    "slug": "charmfire",
-    "title": "Charmfire",
-    "genre": "Action prototype",
-    "card": "A Blueprint combat prototype where fighters and bots change tactics as the fight turns.",
-    "role": "Tiyah developed the Unreal project. The gameplay is built in Blueprints, with state objects for movement and combat and strategy objects for bot decisions.",
-    "tech": [
-      "Unreal Engine 5",
-      "Blueprints",
-      "State pattern",
-      "Strategy pattern",
-      "GitHub"
-    ],
-    "demo": "https://github.com/Jamie-LeeD/GADE_POE",
-    "demoLabel": "Project repository",
-    "download": "https://github.com/Jamie-LeeD/GADE_POE",
-    "downloadLabel": "Unreal project",
-    "poster": "/assets/posters/charmfire.jpg",
-    "showcase": false,
-    "credits": "Tiyah Singh"
-  },
-  {
-    "slug": "noesis",
-    "title": "Noesis",
-    "genre": "Atmosphere prototype",
-    "card": "Depth of the Mind: a Unity prototype built around dread, space, and sound.",
-    "role": "Tiyah contributed to the Depth prototype and its reference documentation.",
-    "tech": [
-      "Unity",
-      "C#",
-      "Audio ambience",
-      "Environment art pack",
-      "GitHub"
-    ],
-    "demo": "https://github.com/Jamie-LeeD/Depth",
-    "demoLabel": "Depth repository",
-    "download": "https://github.com/Jamie-LeeD/Depth",
-    "downloadLabel": "Unity project",
-    "poster": "/assets/posters/noesis.jpg",
-    "showcase": false,
-    "credits": "Tiyah Singh"
-  },
-  {
-    "slug": "no-exit",
-    "title": "No Exit",
-    "genre": "Endless runner",
-    "card": "A cyberpunk runner. Stop moving and the energy core overloads.",
-    "role": "Tiyah developed the runner and wrote the descriptive rules for the player, obstacles, bosses, power-ups, world hazards, and scoring.",
-    "tech": [
-      "Unity",
-      "C#",
-      "Prefabs",
-      "GameManager",
-      "PlayerController",
-      "Obstacle spawner"
-    ],
-    "demo": "https://www.canva.com/design/DAGq19TwetI/VwHPPKo5JAdROqIYztfwTA/edit",
-    "demoLabel": "Process presentation",
-    "download": "https://github.com/Jamie-LeeD/EndlessRunnerPOE",
-    "downloadLabel": "EndlessRunnerPOE repository",
-    "poster": "/assets/posters/no-exit.jpg",
-    "showcase": false,
-    "credits": "Tiyah Singh"
-  },
-  {
-    "slug": "echos-lament",
-    "title": "Echo's Lament",
-    "genre": "Mirror puzzle",
-    "card": "Move Narcissus. Echo answers every step in the opposite direction.",
-    "role": "Tiyah worked on the jam game. The playable build is the public page.",
-    "tech": [
-      "Unity",
-      "HTML5",
-      "Grid movement",
-      "itch.io"
-    ],
-    "demo": "https://jamesleed.itch.io/echos-lament",
-    "demoLabel": "Play in the browser",
-    "download": "https://jamesleed.itch.io/echos-lament",
-    "downloadLabel": "Playable itch.io build",
-    "poster": "/assets/posters/echos-lament.jpg",
-    "showcase": false,
-    "credits": "Tiyah Singh"
-  },
-  {
-    "slug": "hive-mind",
-    "title": "Hive Mind",
-    "genre": "Possession puzzle",
-    "card": "A witch borrows skeletons to hold open the doors of a dungeon.",
-    "role": "Tiyah worked on Hive Mind. The GitHub project is HiveMind and the playable page is Hex Mind.",
-    "tech": [
-      "Unity",
-      "HTML5",
-      "First-person movement",
-      "Possession",
-      "Pressure plates"
-    ],
-    "demo": "https://jamesleed.itch.io/hex-mind",
-    "demoLabel": "Play Hex Mind",
-    "download": "https://github.com/Jamie-LeeD/HiveMind",
-    "downloadLabel": "HiveMind repository",
-    "poster": "/assets/posters/hive-mind.jpg",
-    "showcase": false,
-    "credits": "Tiyah Singh"
-  },
-  {
-    "slug": "a-cats-tale",
-    "title": "A Cat's Tale",
-    "genre": "Grid adventure",
-    "card": "A tile adventure of grunts, health pickups, and a hero who has to think ahead.",
-    "role": "Tiyah wrote the game and the Part 3 report. The map, enemies, health pickups, and save system are part of that build.",
-    "tech": [
-      "C#",
-      "Windows Forms",
-      "2D tile arrays",
-      "Save and load",
-      "GitHub"
-    ],
-    "demo": "https://drive.google.com/file/d/1O6--lpsyQUCy9AQoNQFzCTdsZlAl406K/view",
-    "demoLabel": "Demonstration video",
-    "download": "https://github.com/Jamie-LeeD/ACatsTalePOE_Copy",
-    "downloadLabel": "Public project copy",
-    "poster": "/assets/posters/a-cats-tale.jpg",
-    "showcase": false,
-    "credits": "Tiyah Singh"
-  },
-  {
-    "slug": "aqua-alchemy",
-    "title": "Aqua Alchemy",
-    "genre": "Client prototype",
-    "card": "A pitched prototype about alchemy and water, built as a playable Unity project.",
-    "role": "Tiyah contributed the prototype, the pitch, and the production documents published with the project.",
-    "tech": [
-      "Unity",
-      "C#",
-      "Canva pitch",
-      "Project schedule",
-      "GitHub"
-    ],
-    "demo": "https://www.canva.com/design/DAG27j2PPAA/j7RCqfqVMnJL_GDgLp8u8Q/edit",
-    "demoLabel": "Client pitch",
-    "download": "https://github.com/Jamie-LeeD/Aqua_Alchemy",
-    "downloadLabel": "Unity project",
-    "poster": "/assets/posters/aqua-alchemy.jpg",
-    "showcase": false,
-    "credits": "Tiyah Singh"
-  },
-  {
-    "slug": "dreamy-mosaics",
-    "title": "Dreamy Mosaics",
-    "genre": "Level prototype",
-    "card": "A glowing character, keyboard movement, and levels with win and lose screens.",
-    "role": "Tiyah is presenting this prototype with the rest of her released work.",
-    "tech": [
-      "Unity 6.3",
-      "C#",
-      "Post-processing",
-      "UI panels",
-      "GitHub"
-    ],
-    "demo": "https://github.com/Jamie-LeeD/Dreamy-Mosaics-Prototype",
-    "demoLabel": "Prototype repository",
-    "download": "https://github.com/Jamie-LeeD/Dreamy-Mosaics-Prototype",
-    "downloadLabel": "Unity project",
-    "poster": "/assets/posters/dreamy-mosaics.jpg",
-    "showcase": false,
-    "credits": "Tiyah Singh"
-  },
-  {
-    "slug": "dragon-slayers",
-    "title": "Dragon Slayers",
-    "genre": "Turn-based battle",
-    "card": "A turn-based dragon battle.",
-    "role": "Tiyah built the Windows Forms battle, from the opening form through the player turn, with a game report and a presentation.",
-    "tech": [
-      "C#",
-      "Windows Forms",
-      ".NET",
-      "GitHub"
-    ],
-    "demo": "https://files.fm/u/4abdprzq6a",
-    "demoLabel": "Presentation video",
-    "download": "https://github.com/TiyahSingh/POEDragonSlayers",
-    "downloadLabel": "Private repository",
-    "poster": "/assets/posters/dragon-slayers.jpg",
-    "showcase": false,
-    "credits": "Tiyah Singh"
   }
 ]

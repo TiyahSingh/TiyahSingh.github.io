@@ -199,6 +199,14 @@ async function boot(mount) {
   function openMachine() {
     const project = places.interact();
     if (!project) return;
+    if (project.href) {
+      location.href = project.href;
+      return;
+    }
+    if (project.slug) {
+      location.href = "/games/" + project.slug + ".html";
+      return;
+    }
     fillPanel(panel, project);
     panel.hidden = false;
   }

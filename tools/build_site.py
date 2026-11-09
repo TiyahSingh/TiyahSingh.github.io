@@ -337,16 +337,16 @@ GAMES = [
     {
         "slug": "dont-forget-to-say-goodbye",
         "title": "Don't Forget to Say Goodbye",
-        "genre": "Narrative horror",
+        "genre": "Horror interactive LLM game",
         "engine": "Unity 6",
         "languages": ["C#"],
         "showcase": True,
         "card": "A haunted manor, ritual puzzles, and a Ouija board answered by a local language model.",
-        "credits": "Tiyah Singh, David Barker",
-        "team": "Tiyah Singh and David Barker — Unity project hosted as Ouija-Game.",
-        "synopsis": "You explore a haunted manor, solve ritual puzzles, and speak to a spirit through a Ouija board. A local Llama 3.2 model (via Ollama) writes the opening story and very short board replies. Scripted gates keep critical plot answers stable. Saying GOODBYE closes the session. The experience stays fully local — no cloud API.",
-        "brief": "GADS Game Design POE: build a haunted-house prototype with functional local LLM integration using Ollama. The board had to stay safe and consistent, so free replies are short, critical answers are authored in advance, setup is reproducible, and the work includes technical + showcase videos plus prompt / integration documentation.",
-        "role": "Lead design and art direction — occult interface, ritual props, manor visual language, and player-facing board UX.",
+        "credits": "Team: Tiyah Singh and David Barker",
+        "team": "",
+        "synopsis": "In Don't Forget to Say GOODBYE, players assume the role of a widower seeking answers after his wife mysteriously disappears following her involvement with occult rituals. Using a spirit board, players communicate with an AI-driven spirit while completing ritual puzzles to uncover the truth behind her disappearance. As paranormal interference escalates, they must maintain the protective ritual and ultimately find her grave to achieve closure.",
+        "brief": "This project focused on developing a small-scale interactive game or system that explores the use of locally hosted Large Language Models (LLMs) in game design. It aimed to create meaningful AI-enhanced player experiences through features such as adaptive dialogue, procedural storytelling, or intelligent interactions, while targeting players interested in innovative, AI-driven interactive experiences.",
+        "role": "Lead design, art direction, and coding — occult interface, ritual props, manor visual language, player-facing board UX, and the custom AI dialogue systems that manage models, prompts, and in-game replies.",
         "contributions": "Shaped the occult UI and ritual prop language; art-directed the manor look; designed how the Ouija board presents AI replies so the system feels diegetic; supported the LLM-in-the-loop play fantasy while keeping authored plot gates intact.",
         "tech": ["Unity 6 (6000.4.1f1)", "C#", "Ollama", "Llama 3.2", "Whisper.unity", "TextMesh Pro", "GitHub"],
         "demo": "https://canva.link/gj0ke405qwcgs47",
@@ -354,7 +354,7 @@ GAMES = [
         "download": "https://github.com/DavidBarker05/Ouija-Game",
         "download_label": "Unity project on GitHub",
         "photo": r"C:\Users\User\Desktop\website\game stuff\dftsg poster.png",
-        "process_photo": r"C:\Users\User\Downloads\DFTSG UI Elements\BloodRune1Image.png",
+        "process_photo": r"C:\Users\User\Desktop\website\assets\process\dont-forget-to-say-goodbye-src.png",
         "screenshots": [
             r"C:\Users\User\Desktop\GADS\DFTSGgif.gif",
             r"C:\Users\User\Downloads\DFTSG UI Elements\BloodRune1Image.png",
@@ -365,24 +365,24 @@ GAMES = [
     {
         "slug": "clinical-trial",
         "title": "Clinical Trial",
-        "genre": "Hospital simulation",
+        "genre": "Serious hospital simulation game",
         "engine": "Unity",
         "languages": ["C#"],
         "showcase": True,
         "card": "Run an under-resourced public clinic by switching between four hospital jobs.",
-        "credits": "Tiyah Singh, L.A. van der Zee, Jamie-Lee Davies, Jacques Willemse",
-        "team": "Clinical Trial Devs — Tiyah Singh, L.A. van der Zee (LazjessicahvdZ), Jamie-Lee Davies, Jacques Willemse (FeelGoodBinJuice).",
-        "synopsis": "Clinical Trial is a 3D multi-role hospital management simulation about South African public healthcare under pressure. You switch between Manager, Doctor, Nurse, and Janitor to treat patients, scrub filth, balance the budget, and survive stolen medicine, power outages, and patient influxes while keeping sanitation, comfort, morale, and related clinic stats alive. One bad shift and the clinic shuts down.",
-        "brief": "WIL / XBCGD7311–7312 serious-game brief: design and ship a 3D hospital simulation that raises awareness of systemic public-healthcare challenges (HAIs, overcrowding, staff shortages, corruption, outages, resource scarcity). Players must feel scarcity, switch roles, and keep the clinic running through planned work and sudden emergencies, with research-backed documentation and public itch.io / GitHub delivery.",
+        "credits": "Team members: Tiyah Singh, Lazjessicah van der Zee, Jamie-Lee Davies, Jacques Willemse",
+        "team": "",
+        "synopsis": "Clinical Trial is a single-player serious hospital-management game. Players switch between Manager, Doctor, Nurse and Janitor roles, completing role-specific tasks while managing resources, patients, sanitation, staff wellbeing and equipment. It was designed for mobile devices and computers.",
+        "brief": "The project focused on creating a 3D game under the theme of Games for Community Engagement, using interactive gameplay to address a meaningful real world issue. It aimed to combine an engaging player experience with social and community-focused themes, creating a game that encourages players to interact with and consider the issue presented through the game.",
         "role": "Programming, UI/UX design, technical documentation, and visual presentations (slides and gameplay videos).",
         "contributions": "Debugged and refined interconnected Unity/C# clinic systems (nurse medication sorting, patient treatment, doctor referrals, infection identification); designed and implemented the in-game staff manual and role dictionary after playtest feedback; improved nurse interfaces and hospital waypoint / directional UI; produced pitch presentations and gameplay demonstration videos; built a QR feedback path for presentations; contributed related pharmacy simulation work (Pharmacist Mini Game).",
         "tech": ["Unity", "C#", "3D clinic scenes", "UI/UX", "GitHub", "itch.io", "Canva"],
-        "demo": "https://feelgoodbinjuice.itch.io/clinical-trial",
-        "demo_label": "Playable itch.io build",
+        "demo": "https://canva.link/aj8897ql2leuhzn",
+        "demo_label": "Gameplay video",
         "download": "https://feelgoodbinjuice.itch.io/clinical-trial",
-        "download_label": "Windows download",
+        "download_label": "Playable itch.io build",
         "photo": r"C:\Users\User\Desktop\website\game stuff\clinical trial poster.png",
-        "process_photo": r"C:\Users\User\Desktop\WIL\S1\images\medicalscreenpanel1.png",
+        "process_photo": r"C:\Users\User\Desktop\website\assets\process\clinical-trial-src.png",
         "screenshots": [
             r"C:\Users\User\Desktop\GADS\ClinicalTrialGIF.gif",
             r"C:\Users\User\Desktop\WIL\S1\images\medicalscreenpanel1.png",
@@ -395,7 +395,7 @@ GAMES = [
     {
         "slug": "selkie-song",
         "title": "Selkie Song",
-        "genre": "Folklore platformer",
+        "genre": "3D platformer folklore game",
         "engine": "Unity 6 · C#",
         "languages": ["C#"],
         "showcase": False,
@@ -548,7 +548,7 @@ GAMES = [
     {
         "slug": "noesis",
         "title": "Noesis",
-        "genre": "Atmosphere prototype",
+        "genre": "Abstract horror game jam",
         "engine": "Unity",
         "card": "Depth of the Mind: a Unity prototype built around dread, space, and sound.",
         "credits": "Tiyah Singh",
@@ -610,8 +610,8 @@ GAMES = [
     },
 ]
 
-SHOWCASE_ORDER = ["clinical-trial", "dont-forget-to-say-goodbye", "bushveld-brothers"]
-ADDITIONAL_ORDER = ["selkie-song", "charmfire", "noesis"]
+SHOWCASE_ORDER = ["clinical-trial", "dont-forget-to-say-goodbye"]
+ADDITIONAL_ORDER = ["selkie-song", "noesis", "bushveld-brothers"]
 LISTED_ORDER = SHOWCASE_ORDER + ADDITIONAL_ORDER
 for game in GAMES:
     game["showcase"] = game["slug"] in SHOWCASE_ORDER
@@ -621,7 +621,7 @@ for game in GAMES:
     game.setdefault("contributions", game.get("role", ""))
     game.setdefault("screenshots", [])
 _by_slug = {game["slug"]: game for game in GAMES}
-# Portfolio list order: showcase trio, then only the three additional poster games
+# Portfolio list order: showcase pair, then additional poster games
 GAMES = [_by_slug[slug] for slug in LISTED_ORDER if slug in _by_slug] + [
     game for game in GAMES if game["slug"] not in LISTED_ORDER
 ]
@@ -675,7 +675,7 @@ def header(title="", nav=""):
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Spicy+Rice&display=swap" rel="stylesheet">
   <link rel="icon" href="/assets/brand/favicon.png" type="image/png">
-  <link rel="stylesheet" href="/css/site.css?v=80">{extra_css}
+  <link rel="stylesheet" href="/css/site.css?v=81">{extra_css}
 </head>
 <body{body}>
   <a class="skip" href="#content">Skip to content</a>
@@ -722,7 +722,9 @@ def footer():
 
 
 def build_images():
-    portrait_src = Path(r"C:\Users\User\Desktop\Tiyah\TiyahSingh_ProfilePicture.jpeg")
+    portrait_src = Path(r"C:\Users\User\Desktop\website\CV picture Tiyah.jpeg")
+    if not portrait_src.exists():
+        portrait_src = Path(r"C:\Users\User\Desktop\Tiyah\TiyahSingh_ProfilePicture.jpeg")
     portrait = Image.open(portrait_src).convert("RGB")
     side = min(portrait.size)
     left = (portrait.width - side) // 2
@@ -732,6 +734,7 @@ def build_images():
 
     about_dir = ROOT / "assets" / "about"
     about_dir.mkdir(parents=True, exist_ok=True)
+    portrait.save(about_dir / "portrait-cv.jpg", "JPEG", quality=90, optimize=True)
     # Scrapbook snaps from the same portrait (different crops) for the My Scene-style strip
     snap_specs = [
         ("snap-1.jpg", (0.08, 0.02, 0.78, 0.72)),
@@ -796,13 +799,17 @@ def build_images():
         save_jpg(image, poster_path)
         process_photo = game.get("process_photo") or ""
         if process_photo and Path(process_photo).exists():
-            shot = fit(process_photo)
+            shot = fit_natural(process_photo, max_side=1800)
             shot = ImageEnhance.Contrast(shot).enhance(1.05)
-            save_jpg(stamp(shot, "PROCESS", game["title"]), process_path)
+            # Keep authored process boards clean (no stamp overlay).
+            save_jpg(shot, process_path)
         else:
             lines = PROCESS_LINES[game["slug"]]
             save_jpg(process_card(lines, PINK), process_path)
         shot_dir = shots_root / game["slug"]
+        if shot_dir.exists():
+            for old in shot_dir.glob("*.jpg"):
+                old.unlink()
         shot_dir.mkdir(parents=True, exist_ok=True)
         for index, shot_path in enumerate(game.get("screenshots") or [], start=1):
             if not Path(shot_path).exists():
@@ -843,7 +850,7 @@ def page(game, index, total):
     <div class="page-hero">
       <h1>{game["title"]}</h1>
       <p class="meta">{game["genre"]}  ·  {game["engine"]}</p>
-      <p class="credits-line">Credits: {game["credits"]}</p>
+      <p class="credits-line">{game["credits"]}</p>
     </div>
     <figure class="poster">
       <img src="/assets/posters/{game["slug"]}.jpg" alt="Poster for {game["title"]}. Credits: {game["credits"]}.">
@@ -936,7 +943,7 @@ def page(game, index, total):
 
 ABOUT = {
     "intro": "I'm Tiyah, a 23-year-old creative with a passion for art, design and making things that didn't exist before. I've always been someone who loves creating, experimenting with ideas and finding ways to bring the things in my head into the real world. But what I find even more exciting is that my work doesn't have to stop with me. I get to put something I've imagined out into the world for someone else to experience, interact with and hopefully connect with. Whether it's making someone feel something, see things from a different perspective, spark their curiosity or learn something new, I want what I create to leave a little something behind. There's something pretty amazing about knowing that something you made could mean something to someone else.",
-    "portfolio": "Showcase work leads with Clinical Trial, Don't Forget to Say Goodbye, and Bushveld Brothers — each with poster, team credits, brief, synopsis, role, contributions, engine, languages, tech, process, screenshots, demo, and download. Additional games sit in a separate section.",
+    "portfolio": "Showcase work leads with Clinical Trial and Don't Forget to Say Goodbye — each with poster, team credits, brief, synopsis, role, contributions, engine, languages, tech, process, screenshots, demo, and download. Additional games (Selkie Song, Noesis, Bushveld Brothers) sit in a separate section.",
     "file": "The work sits across code, design, interface, and the story a player walks through. The skills terminal and the CV record list the study and the tools behind the showcase and additional games.",
     "who": "Who is Tiyah?",
     "headline": "The person behind the pixels",
@@ -1279,7 +1286,7 @@ def index():
           <div class="cv-win__body">
             <div class="cv-hero__grid">
               <figure class="cv-hero__photo">
-                <img src="/assets/about/portrait-look.jpg" alt="Portrait of Tiyah Singh." width="400" height="400">
+                <img src="/assets/about/portrait-cv.jpg" alt="Portrait of Tiyah Singh." width="400" height="400">
               </figure>
               <div>
                 <p class="cv-kicker">About me</p>
@@ -1523,7 +1530,7 @@ def index():
     }
   }
   </script>
-  <script type="module" src="/js/explore/main.js?v=33"></script>
+  <script type="module" src="/js/explore/main.js?v=34"></script>
 """ + footer()
     (ROOT / "index.html").write_text(home, encoding="utf-8")
     (ROOT / "explore.html").write_text(explore, encoding="utf-8")
@@ -1539,7 +1546,7 @@ def index():
 
 def write_projects_json():
     payload = []
-    for game in GAMES:
+    for game in LISTED_GAMES:
         payload.append({
             "slug": game["slug"],
             "title": game["title"],
@@ -1552,6 +1559,7 @@ def write_projects_json():
             "download": game["download"],
             "downloadLabel": game["download_label"],
             "poster": f"/assets/posters/{game['slug']}.jpg",
+            "href": f"/games/{game['slug']}.html",
             "showcase": bool(game.get("showcase")),
             "credits": game.get("credits", ""),
         })
