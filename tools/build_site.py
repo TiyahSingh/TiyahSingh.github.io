@@ -611,7 +611,7 @@ GAMES = [
 ]
 
 SHOWCASE_ORDER = ["clinical-trial", "dont-forget-to-say-goodbye"]
-ADDITIONAL_ORDER = ["selkie-song", "noesis", "bushveld-brothers"]
+ADDITIONAL_ORDER = ["bushveld-brothers", "noesis"]
 LISTED_ORDER = SHOWCASE_ORDER + ADDITIONAL_ORDER
 for game in GAMES:
     game["showcase"] = game["slug"] in SHOWCASE_ORDER
@@ -852,9 +852,6 @@ def page(game, index, total):
       <p class="meta">{game["genre"]}  ·  {game["engine"]}</p>
       <p class="credits-line">{game["credits"]}</p>
     </div>
-    <figure class="poster">
-      <img src="/assets/posters/{game["slug"]}.jpg" alt="Poster for {game["title"]}. Credits: {game["credits"]}.">
-    </figure>
     {warning}
     <div class="tabs" role="tablist" aria-label="Project details">
       <button type="button" role="tab" id="tab-overview" aria-selected="true" aria-controls="panel-overview" data-tab="overview">Overview</button>
@@ -943,7 +940,7 @@ def page(game, index, total):
 
 ABOUT = {
     "intro": "I'm Tiyah, a 23-year-old creative with a passion for art, design and making things that didn't exist before. I've always been someone who loves creating, experimenting with ideas and finding ways to bring the things in my head into the real world. But what I find even more exciting is that my work doesn't have to stop with me. I get to put something I've imagined out into the world for someone else to experience, interact with and hopefully connect with. Whether it's making someone feel something, see things from a different perspective, spark their curiosity or learn something new, I want what I create to leave a little something behind. There's something pretty amazing about knowing that something you made could mean something to someone else.",
-    "portfolio": "Showcase work leads with Clinical Trial and Don't Forget to Say Goodbye — each with poster, team credits, brief, synopsis, role, contributions, engine, languages, tech, process, screenshots, demo, and download. Additional games (Selkie Song, Noesis, Bushveld Brothers) sit in a separate section.",
+    "portfolio": "Showcase work leads with Clinical Trial and Don't Forget to Say Goodbye — each with team credits, brief, synopsis, role, contributions, engine, languages, tech, process, screenshots, demo, and download. Additional games (Bushveld Brothers, Noesis) sit in a separate section.",
     "file": "The work sits across code, design, interface, and the story a player walks through. The skills terminal and the CV record list the study and the tools behind the showcase and additional games.",
     "who": "Who is Tiyah?",
     "headline": "The person behind the pixels",
@@ -1530,7 +1527,7 @@ def index():
     }
   }
   </script>
-  <script type="module" src="/js/explore/main.js?v=34"></script>
+  <script type="module" src="/js/explore/main.js?v=35"></script>
 """ + footer()
     (ROOT / "index.html").write_text(home, encoding="utf-8")
     (ROOT / "explore.html").write_text(explore, encoding="utf-8")

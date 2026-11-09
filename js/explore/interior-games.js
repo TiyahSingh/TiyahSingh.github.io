@@ -36,18 +36,28 @@ export function createGamesInterior(scene, cache, projects) {
   sign.rotation.y = 0;
   group.add(sign);
 
-  const showcase = (projects || []).filter(function (project) { return project && project.showcase; });
-  const additional = (projects || []).filter(function (project) { return project && !project.showcase; });
+  const list = (projects || []).filter(Boolean);
+  const bySlug = {};
+  list.forEach(function (project) { bySlug[project.slug] = project; });
+  const showcase = list.filter(function (project) { return project.showcase; });
+  const bushveld = bySlug["bushveld-brothers"] || null;
+  const noesis = bySlug["noesis"] || null;
 
-  const showSign = makeSign("SHOWCASE", "#ff3ec8", 3.2, 0.85, "MAIN WORK");
-  showSign.position.set(-3.3, 3.35, -4.6);
-  showSign.rotation.y = Math.PI / 2;
-  group.add(showSign);
+  /* Clear lower sign under Insert Coin for the showcase pair */
+  const showcaseSign = makeSign("SHOWCASE GAMES", "#ff3ec8", 4.6, 0.95, "MAIN WORK");
+  showcaseSign.position.set(0, 2.55, -5.35);
+  showcaseSign.rotation.y = 0;
+  group.add(showcaseSign);
 
-  const extraSign = makeSign("ADDITIONAL", "#7af0ff", 3.4, 0.85, "MORE WORK");
-  extraSign.position.set(3.3, 3.35, -4.6);
-  extraSign.rotation.y = -Math.PI / 2;
-  group.add(extraSign);
+  const leftSign = makeSign("BUSHVELD", "#7af0ff", 2.8, 0.72, "BROTHERS");
+  leftSign.position.set(-3.35, 3.2, -1.2);
+  leftSign.rotation.y = Math.PI / 2;
+  group.add(leftSign);
+
+  const rightSign = makeSign("NOESIS", "#7af0ff", 2.6, 0.72, "ADDITIONAL");
+  rightSign.position.set(3.35, 3.2, -1.2);
+  rightSign.rotation.y = -Math.PI / 2;
+  group.add(rightSign);
 
   /* Exit tucked against the entrance wall so it does not block the arcade floor */
   const exitZ = 6.4;
@@ -80,20 +90,26 @@ export function createGamesInterior(scene, cache, projects) {
   group.add(exitSign);
 
   const machines = [];
+  /* Showcase cabinets centered under INSERT COIN, facing the player */
   showcase.forEach(function (project, index) {
-    const z = -2.8 + index * 2.4;
-    machines.push(addMachine(group, cache.eh.vending, project, -3.3, z, Math.PI / 2, true));
+    const x = showcase.length === 1 ? 0 : (index === 0 ? -1.35 : 1.35);
+    machines.push(addMachine(group, cache.eh.vending, project, x, -4.35, 0, true));
   });
-  additional.forEach(function (project, index) {
-    const z = -2.8 + index * 1.85;
-    machines.push(addMachine(group, cache.eh.vending, project, 3.3, z, -Math.PI / 2, false));
-  });
+  /* Side walls: Bushveld left, Noesis right */
+  if (bushveld) {
+    machines.push(addMachine(group, cache.eh.vending, bushveld, -3.3, -1.1, Math.PI / 2, false));
+  }
+  if (noesis) {
+    machines.push(addMachine(group, cache.eh.vending, noesis, 3.3, -1.1, -Math.PI / 2, false));
+  }
 
-  const lampA = new THREE.PointLight(0xff3ec8, 4, 12, 2);
-  lampA.position.set(-2, 3.2, 0);
+  const lampA = new THREE.PointLight(0xff3ec8, 4.4, 12, 2);
+  lampA.position.set(0, 3.2, -3.2);
   const lampB = new THREE.PointLight(0x7af0ff, 3.2, 12, 2);
-  lampB.position.set(2, 3.2, -2);
-  group.add(lampA, lampB);
+  lampB.position.set(-2.4, 3.0, -0.4);
+  const lampC = new THREE.PointLight(0x7af0ff, 3.2, 12, 2);
+  lampC.position.set(2.4, 3.0, -0.4);
+  group.add(lampA, lampB, lampC);
 
   group.updateMatrixWorld(true);
   const colliders = [];

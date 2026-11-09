@@ -48,50 +48,6 @@
     "credits": "Team: Tiyah Singh and David Barker"
   },
   {
-    "slug": "selkie-song",
-    "title": "Selkie Song",
-    "genre": "3D platformer folklore game",
-    "card": "A selkie crosses broken docks, collecting the pieces of her stolen skin.",
-    "role": "Tiyah developed the Unity project. The build includes a player state machine, dialogue, checkpoints, collectibles, moving platforms, and patrolling enemies. Her reports and presentations are linked from the repository.",
-    "tech": [
-      "Unity 6 (6000.0.38f1)",
-      "C#",
-      "State machine",
-      "Dialogue data",
-      "NavMesh enemies"
-    ],
-    "demo": "https://canva.link/55m6gytbp41gzc6",
-    "demoLabel": "Video presentation",
-    "download": "https://github.com/TiyahSingh/GADE7321POE",
-    "downloadLabel": "Project repository",
-    "poster": "/assets/posters/selkie-song.jpg",
-    "href": "/games/selkie-song.html",
-    "showcase": false,
-    "credits": "Tiyah Singh"
-  },
-  {
-    "slug": "noesis",
-    "title": "Noesis",
-    "genre": "Abstract horror game jam",
-    "card": "Depth of the Mind: a Unity prototype built around dread, space, and sound.",
-    "role": "Tiyah contributed to the Depth prototype and its reference documentation.",
-    "tech": [
-      "Unity",
-      "C#",
-      "Audio ambience",
-      "Environment art pack",
-      "GitHub"
-    ],
-    "demo": "https://github.com/Jamie-LeeD/Depth",
-    "demoLabel": "Depth repository",
-    "download": "https://github.com/Jamie-LeeD/Depth",
-    "downloadLabel": "Unity project",
-    "poster": "/assets/posters/noesis.jpg",
-    "href": "/games/noesis.html",
-    "showcase": false,
-    "credits": "Tiyah Singh"
-  },
-  {
     "slug": "bushveld-brothers",
     "title": "Bushveld Brothers",
     "genre": "Ranger adventure",
@@ -114,5 +70,27 @@
     "href": "/games/bushveld-brothers.html",
     "showcase": false,
     "credits": "Tiyah Singh, David Barker, Barrie-George Davies, Jamie-Lee Davies"
+  },
+  {
+    "slug": "noesis",
+    "title": "Noesis",
+    "genre": "Abstract horror game jam",
+    "card": "Depth of the Mind: a Unity prototype built around dread, space, and sound.",
+    "role": "Tiyah contributed to the Depth prototype and its reference documentation.",
+    "tech": [
+      "Unity",
+      "C#",
+      "Audio ambience",
+      "Environment art pack",
+      "GitHub"
+    ],
+    "demo": "https://github.com/Jamie-LeeD/Depth",
+    "demoLabel": "Depth repository",
+    "download": "https://github.com/Jamie-LeeD/Depth",
+    "downloadLabel": "Unity project",
+    "poster": "/assets/posters/noesis.jpg",
+    "href": "/games/noesis.html",
+    "showcase": false,
+    "credits": "Tiyah Singh"
   }
 ]
