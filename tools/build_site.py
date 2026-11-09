@@ -675,7 +675,7 @@ def header(title="", nav=""):
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Spicy+Rice&display=swap" rel="stylesheet">
   <link rel="icon" href="/assets/brand/favicon.png" type="image/png">
-  <link rel="stylesheet" href="/css/site.css?v=81">{extra_css}
+  <link rel="stylesheet" href="/css/site.css?v=82">{extra_css}
 </head>
 <body{body}>
   <a class="skip" href="#content">Skip to content</a>
@@ -852,9 +852,6 @@ def page(game, index, total):
       <p class="meta">{game["genre"]}  ·  {game["engine"]}</p>
       <p class="credits-line">{game["credits"]}</p>
     </div>
-    <figure class="poster">
-      <img src="/assets/posters/{game["slug"]}.jpg" alt="Poster for {game["title"]}. Credits: {game["credits"]}.">
-    </figure>
     {warning}
     <div class="tabs" role="tablist" aria-label="Project details">
       <button type="button" role="tab" id="tab-overview" aria-selected="true" aria-controls="panel-overview" data-tab="overview">Overview</button>
@@ -1105,10 +1102,12 @@ def index():
             <h3 class="game-cab__title">{game["title"]}</h3>
             <p class="game-cab__genre">{game["genre"]}</p>
           </div>
-          <a class="game-cab__btn" href="/games/{game["slug"]}.html">Learn about game</a>
-          <a class="game-cab__machine" href="/games/{game["slug"]}.html" aria-label="Learn about {game["title"]}">
-            <img class="game-cab__art" src="/assets/cabinets/{game["slug"]}.png" alt="">
-          </a>
+          <div class="game-cab__row">
+            <a class="game-cab__machine" href="/games/{game["slug"]}.html" aria-label="Learn about {game["title"]}">
+              <img class="game-cab__art" src="/assets/cabinets/{game["slug"]}.png" alt="">
+            </a>
+            <a class="game-cab__btn" href="/games/{game["slug"]}.html">Learn about game</a>
+          </div>
         </article>"""
 
     showcase_cards = [game_card(game) for game in LISTED_GAMES if game.get("showcase")]
