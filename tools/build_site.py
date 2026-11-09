@@ -354,7 +354,7 @@ GAMES = [
         "download": "https://github.com/DavidBarker05/Ouija-Game",
         "download_label": "Unity project on GitHub",
         "photo": r"C:\Users\User\Desktop\website\game stuff\dftsg poster.png",
-        "process_photo": r"C:\Users\User\Desktop\website\assets\process\dont-forget-to-say-goodbye-src.png",
+        "process_photo": r"C:\Users\User\Desktop\website\assets\process\dont-forget-to-say-goodbye-src.jpg",
         "screenshots": [
             r"C:\Users\User\Desktop\GADS\DFTSGgif.gif",
             r"C:\Users\User\Downloads\DFTSG UI Elements\BloodRune1Image.png",
@@ -382,7 +382,7 @@ GAMES = [
         "download": "https://feelgoodbinjuice.itch.io/clinical-trial",
         "download_label": "Playable itch.io build",
         "photo": r"C:\Users\User\Desktop\website\game stuff\clinical trial poster.png",
-        "process_photo": r"C:\Users\User\Desktop\website\assets\process\clinical-trial-src.png",
+        "process_photo": r"C:\Users\User\Desktop\website\assets\process\clinical-trial-src.jpg",
         "screenshots": [
             r"C:\Users\User\Desktop\GADS\ClinicalTrialGIF.gif",
             r"C:\Users\User\Desktop\WIL\S1\images\medicalscreenpanel1.png",
