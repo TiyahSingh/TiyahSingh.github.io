@@ -1,4 +1,4 @@
-import { createGamesInterior } from "./interior-games.js?v=12";
+import { createGamesInterior } from "./interior-games.js?v=13";
 import { createInterior } from "./interior-rooms.js?v=1";
 
 const LABEL = {
