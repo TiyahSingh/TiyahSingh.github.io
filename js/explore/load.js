@@ -181,10 +181,21 @@ export function signTexture(label, color, subtitle) {
   ctx.fillStyle = color;
   ctx.textAlign = "center";
   ctx.textBaseline = "middle";
-  ctx.font = "700 " + (subtitle ? 148 : 160) + "px Arial, sans-serif";
+  const maxWidth = canvas.width - 96;
+  let labelSize = subtitle ? 148 : 160;
+  ctx.font = "700 " + labelSize + "px Arial, sans-serif";
+  while (labelSize > 48 && ctx.measureText(label).width > maxWidth) {
+    labelSize -= 4;
+    ctx.font = "700 " + labelSize + "px Arial, sans-serif";
+  }
   ctx.fillText(label, 512, subtitle ? 165 : 140);
   if (subtitle) {
-    ctx.font = "700 58px Arial, sans-serif";
+    let subSize = 58;
+    ctx.font = "700 " + subSize + "px Arial, sans-serif";
+    while (subSize > 28 && ctx.measureText(subtitle).width > maxWidth) {
+      subSize -= 2;
+      ctx.font = "700 " + subSize + "px Arial, sans-serif";
+    }
     ctx.fillStyle = "#7af0ff";
     ctx.shadowColor = "#7af0ff";
     ctx.fillText(subtitle, 512, 305);
