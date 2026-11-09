@@ -2770,17 +2770,22 @@ body.title-on .title-screen {
 
 .arcade-floor {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 2rem 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+  gap: 2rem 1.75rem;
   margin-top: 0.35rem;
   padding: 0.35rem 0 2rem;
   align-items: start;
+  justify-items: center;
 }
 
 .arcade-floor--showcase,
 .arcade-floor--extra {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 2.2rem 1.6rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2.4rem clamp(1.4rem, 4vw, 3.25rem);
+  max-width: 900px;
+  width: 100%;
+  margin-inline: auto;
+  justify-items: center;
 }
 
 .game-cab {
@@ -2791,6 +2796,7 @@ body.title-on .title-screen {
   text-align: center;
   gap: 0.55rem;
   width: 100%;
+  max-width: 320px;
 }
 
 .game-cab__meta {
@@ -2840,6 +2846,10 @@ body.title-on .title-screen {
   outline: 3px solid #ff4eb8;
   outline-offset: 6px;
   border-radius: 0.5rem;
+}
+
+.game-cab--showcase {
+  max-width: 340px;
 }
 
 .game-cab--showcase .game-cab__machine {
@@ -2892,16 +2902,20 @@ body.title-on .title-screen {
   background: linear-gradient(180deg, #f3e8ff, #c45cff);
 }
 
-@media (max-width: 900px) {
+@media (max-width: 760px) {
   .arcade-floor,
   .arcade-floor--showcase,
   .arcade-floor--extra {
     grid-template-columns: 1fr;
     justify-items: center;
+    max-width: 420px;
+    gap: 2rem 1rem;
   }
 
-  .game-cab {
+  .game-cab,
+  .game-cab--showcase {
     width: min(100%, 340px);
+    max-width: 340px;
   }
 
   .game-cab__meta {
@@ -3040,11 +3054,11 @@ button.pixel-btn {
     padding: 0.75rem max(0.65rem, 1.2vw) 1rem;
   }
   .map-controller { width: min(94%, 400px); }
-  .arcade-floor,
   .arcade-floor--showcase,
   .arcade-floor--extra {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1.6rem 1.1rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.8rem 1.4rem;
+    max-width: 760px;
   }
 }
 
