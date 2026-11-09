@@ -326,7 +326,7 @@ GAMES = [
         "download": "https://omega0.itch.io/bushveld-brothers",
         "download_label": "Windows & Android builds",
         "photo": r"C:\Users\User\Desktop\website\game stuff\bushveld brothers poster.png",
-        "process_photo": r"C:\Users\User\Desktop\GADS\GADS_Project\Part2\pdf_images\storyboard_contact_sheet.jpg",
+        "process_photo": r"C:\Users\User\Desktop\website\assets\process\bushveld-brothers-src.png",
         "screenshots": [
             r"C:\Users\User\Desktop\GADS\Part2\Bushveld_Brothers_Steam_Main_Capsule_1232x706.png",
             r"C:\Users\User\Desktop\GADS\GADS_Project\Part2\assets\key_art_wide.png",
@@ -562,7 +562,7 @@ GAMES = [
         "download": "https://github.com/Jamie-LeeD/Depth",
         "download_label": "Unity project",
         "photo": r"C:\Users\User\Desktop\website\noesis poster.png",
-        "process_photo": "",
+        "process_photo": r"C:\Users\User\Desktop\website\assets\process\noesis-src.png",
         "motif": "mind",
         "note": "A standalone trailer is not published. The repository is the public build.",
     },
