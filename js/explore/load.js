@@ -166,6 +166,16 @@ function retint(r, g, b) {
   return [Math.round(shade * 1.1), Math.round(shade * 0.45), Math.round(shade * 1.6), 0];
 }
 
+function fitSignFont(ctx, text, startSize, minSize, maxWidth) {
+  let size = startSize;
+  ctx.font = "700 " + size + "px Arial, sans-serif";
+  while (size > minSize && ctx.measureText(text).width > maxWidth) {
+    size -= 2;
+    ctx.font = "700 " + size + "px Arial, sans-serif";
+  }
+  return size;
+}
+
 export function signTexture(label, color, subtitle) {
   const canvas = document.createElement("canvas");
   canvas.width = 1024;
@@ -181,24 +191,16 @@ export function signTexture(label, color, subtitle) {
   ctx.fillStyle = color;
   ctx.textAlign = "center";
   ctx.textBaseline = "middle";
-  const maxWidth = canvas.width - 96;
-  let labelSize = subtitle ? 148 : 160;
+  const maxWidth = canvas.width - 120;
+  const labelSize = fitSignFont(ctx, label, subtitle ? 120 : 140, 42, maxWidth);
   ctx.font = "700 " + labelSize + "px Arial, sans-serif";
-  while (labelSize > 48 && ctx.measureText(label).width > maxWidth) {
-    labelSize -= 4;
-    ctx.font = "700 " + labelSize + "px Arial, sans-serif";
-  }
-  ctx.fillText(label, 512, subtitle ? 165 : 140);
+  ctx.fillText(label, 512, subtitle ? 155 : 140, maxWidth);
   if (subtitle) {
-    let subSize = 58;
+    const subSize = fitSignFont(ctx, subtitle, 72, 36, maxWidth);
     ctx.font = "700 " + subSize + "px Arial, sans-serif";
-    while (subSize > 28 && ctx.measureText(subtitle).width > maxWidth) {
-      subSize -= 2;
-      ctx.font = "700 " + subSize + "px Arial, sans-serif";
-    }
-    ctx.fillStyle = "#7af0ff";
-    ctx.shadowColor = "#7af0ff";
-    ctx.fillText(subtitle, 512, 305);
+    ctx.fillStyle = "#ffffff";
+    ctx.shadowColor = color;
+    ctx.fillText(subtitle, 512, 300, maxWidth);
   }
   const texture = new THREE.CanvasTexture(canvas);
   texture.colorSpace = THREE.SRGBColorSpace;

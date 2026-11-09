@@ -1,8 +1,8 @@
 import * as THREE from "three";
-import { createStreet } from "./environment.js?v=17";
+import { createStreet } from "./environment.js?v=18";
 import { createPlayer } from "./player.js?v=7";
 import { createCamera } from "./camera.js?v=6";
-import { createLocations } from "./locations.js?v=24";
+import { createLocations } from "./locations.js?v=26";
 
 const WRITTEN = {
   "#about": "/about.html",

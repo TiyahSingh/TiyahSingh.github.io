@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { makeSign } from "./load.js?v=10";
+import { makeSign } from "./load.js?v=11";
 
 const textureLoader = new THREE.TextureLoader();
 
@@ -44,7 +44,7 @@ export function createGamesInterior(scene, cache, projects) {
   const noesis = bySlug["noesis"] || null;
 
   /* Clear lower sign under Insert Coin for the showcase pair */
-  const showcaseSign = makeSign("MAIN GAMES", "#ff3ec8", 5.6, 1.15);
+  const showcaseSign = makeSign("SHOWCASE", "#ff3ec8", 6.2, 1.25, "GAMES");
   showcaseSign.position.set(0, 2.55, -5.35);
   showcaseSign.rotation.y = 0;
   group.add(showcaseSign);

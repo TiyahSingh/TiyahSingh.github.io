@@ -1527,7 +1527,7 @@ def index():
     }
   }
   </script>
-  <script type="module" src="/js/explore/main.js?v=37"></script>
+  <script type="module" src="/js/explore/main.js?v=38"></script>
 """ + footer()
     (ROOT / "index.html").write_text(home, encoding="utf-8")
     (ROOT / "explore.html").write_text(explore, encoding="utf-8")

@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { loadModel, tuneFlat, tuneCity, makeSign } from "./load.js?v=8";
+import { loadModel, tuneFlat, tuneCity, makeSign } from "./load.js?v=11";
 
 const EH = "/assets/models/eh98/";
 const KENNEY = "/assets/models/kenney/commercial/";
