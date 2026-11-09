@@ -564,6 +564,7 @@ GAMES = [
         "photo": r"C:\Users\User\Desktop\website\noesis poster.png",
         "process_photo": r"C:\Users\User\Desktop\website\assets\process\noesis-src.png",
         "motif": "mind",
+        "media": False,
         "note": "A standalone trailer is not published. The repository is the public build.",
     },
     {
@@ -844,6 +845,18 @@ def page(game, index, total):
     if not shots_html:
         shots_html = f'<figure class="shot"><img src="/assets/process/{game["slug"]}.jpg" alt="Process / screenshot for {game["title"]}."></figure>'
     team_block = f'<p class="note"><strong>Team:</strong> {game["team"]}</p>' if game.get("team") else ""
+    show_media = game.get("media", True)
+    media_tab = (
+        '<button type="button" role="tab" id="tab-media" aria-selected="false" aria-controls="panel-media" data-tab="media">Media</button>'
+        if show_media else ""
+    )
+    media_panel = f"""
+    <div class="tab-panel" id="panel-media" role="tabpanel" aria-labelledby="tab-media" data-panel="media" hidden>
+      <article class="panel block">
+        <h2>Screenshots</h2>
+        <div class="shot-grid">{shots_html}</div>
+      </article>
+    </div>""" if show_media else ""
     html = header(game["title"], "games") + f"""
   <main id="content" class="wrap game-page{" is-showcase" if showcase else " is-extra"}">
     <p class="kicker"><a href="/games.html#{("showcase" if showcase else "additional")}">{kicker}</a> · Game {index + 1:02d} / {total:02d}</p>
@@ -858,7 +871,7 @@ def page(game, index, total):
       <button type="button" role="tab" id="tab-gameplay" aria-selected="false" aria-controls="panel-gameplay" data-tab="gameplay">Synopsis</button>
       <button type="button" role="tab" id="tab-dev" aria-selected="false" aria-controls="panel-dev" data-tab="dev">Development</button>
       <button type="button" role="tab" id="tab-role" aria-selected="false" aria-controls="panel-role" data-tab="role">My role</button>
-      <button type="button" role="tab" id="tab-media" aria-selected="false" aria-controls="panel-media" data-tab="media">Media</button>
+      {media_tab}
       <button type="button" role="tab" id="tab-links" aria-selected="false" aria-controls="panel-links" data-tab="links">Demo &amp; download</button>
     </div>
     <div class="tab-panel" id="panel-overview" role="tabpanel" aria-labelledby="tab-overview" data-panel="overview">
@@ -908,12 +921,7 @@ def page(game, index, total):
         <p>{game.get("contributions") or game["role"]}</p>
       </article>
     </div>
-    <div class="tab-panel" id="panel-media" role="tabpanel" aria-labelledby="tab-media" data-panel="media" hidden>
-      <article class="panel block">
-        <h2>Screenshots</h2>
-        <div class="shot-grid">{shots_html}</div>
-      </article>
-    </div>
+    {media_panel}
     <div class="tab-panel" id="panel-links" role="tabpanel" aria-labelledby="tab-links" data-panel="links" hidden>
       <div class="qr-grid">
         <article class="qr-card">
