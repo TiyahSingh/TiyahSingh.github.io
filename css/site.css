@@ -2777,14 +2777,7 @@ body.title-on .title-screen {
   align-items: start;
 }
 
-.arcade-floor--showcase {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 2.4rem 3rem;
-  max-width: 980px;
-  margin-inline: auto;
-  width: 100%;
-}
-
+.arcade-floor--showcase,
 .arcade-floor--extra {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 2.2rem 1.6rem;
@@ -2792,11 +2785,11 @@ body.title-on .title-screen {
 
 .game-cab {
   display: grid;
-  grid-template-rows: auto auto;
+  grid-template-rows: auto auto auto;
   justify-items: center;
   align-content: start;
   text-align: center;
-  gap: 0.7rem;
+  gap: 0.55rem;
   width: 100%;
 }
 
@@ -2807,15 +2800,6 @@ body.title-on .title-screen {
   gap: 0.28rem;
   width: 100%;
   min-height: 5.6rem;
-}
-
-.game-cab__row {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem 1.15rem;
-  width: 100%;
 }
 
 .game-cab__title {
@@ -2842,9 +2826,8 @@ body.title-on .title-screen {
 
 .game-cab__machine {
   display: block;
-  width: min(100%, 240px);
-  flex: 0 1 240px;
-  margin: 0;
+  width: min(100%, 260px);
+  margin: 0.15rem 0 0;
   text-decoration: none;
   color: inherit;
   cursor: pointer;
@@ -2860,13 +2843,7 @@ body.title-on .title-screen {
 }
 
 .game-cab--showcase .game-cab__machine {
-  width: min(100%, 260px);
-  flex-basis: 260px;
-}
-
-.game-cab__row .game-cab__btn {
-  flex: 0 0 auto;
-  align-self: center;
+  width: min(100%, 300px);
 }
 
 .game-cab:hover .game-cab__machine,
@@ -2924,11 +2901,7 @@ body.title-on .title-screen {
   }
 
   .game-cab {
-    width: min(100%, 420px);
-  }
-
-  .game-cab__row {
-    flex-direction: column;
+    width: min(100%, 340px);
   }
 
   .game-cab__meta {
