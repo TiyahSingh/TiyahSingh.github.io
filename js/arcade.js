@@ -55,14 +55,27 @@
     });
   });
 
-  function activateVideos(root) {
-    if (!root) return;
-    root.querySelectorAll("iframe[data-src]").forEach(function (frame) {
-      if (!frame.getAttribute("src")) {
-        frame.setAttribute("src", frame.getAttribute("data-src"));
-      }
-    });
+  function mountYoutube(box) {
+    if (!box || box.getAttribute("data-ready") === "1") return;
+    var id = box.getAttribute("data-youtube");
+    if (!id) return;
+    var frame = document.createElement("iframe");
+    frame.src = "https://www.youtube.com/embed/" + id + "?autoplay=1&playsinline=1&rel=0";
+    frame.title = "Gameplay video";
+    frame.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen";
+    frame.setAttribute("allowfullscreen", "");
+    frame.setAttribute("playsinline", "");
+    frame.referrerPolicy = "strict-origin-when-cross-origin";
+    box.innerHTML = "";
+    box.appendChild(frame);
+    box.setAttribute("data-ready", "1");
   }
+
+  document.querySelectorAll(".video-embed[data-youtube]").forEach(function (box) {
+    var btn = box.querySelector(".video-play");
+    if (!btn) return;
+    btn.addEventListener("click", function () { mountYoutube(box); });
+  });
 
   document.querySelectorAll("[data-tab]").forEach(function (tab) {
     tab.addEventListener("click", function () {
@@ -72,9 +85,7 @@
         other.setAttribute("aria-selected", on ? "true" : "false");
       });
       document.querySelectorAll("[data-panel]").forEach(function (panel) {
-        var show = panel.getAttribute("data-panel") === name;
-        panel.hidden = !show;
-        if (show) activateVideos(panel);
+        panel.hidden = panel.getAttribute("data-panel") !== name;
       });
     });
   });

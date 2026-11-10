@@ -823,6 +823,7 @@ body.about-page .scanlines {
 .video-embed {
   position: relative;
   width: 100%;
+  max-width: 100%;
   height: 0;
   padding-bottom: 56.25%;
   border: 4px solid var(--pink);
@@ -831,6 +832,7 @@ body.about-page .scanlines {
   overflow: hidden;
 }
 
+.video-play,
 .video-embed iframe {
   position: absolute;
   top: 0;
@@ -838,8 +840,46 @@ body.about-page .scanlines {
   width: 100%;
   height: 100%;
   border: 0;
-  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  display: block;
   background: #120818;
+}
+
+.video-play {
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  border: 0;
+}
+
+.video-play img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.video-play__icon {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 4.2rem;
+  height: 3rem;
+  margin: -1.5rem 0 0 -2.1rem;
+  border-radius: 0.85rem;
+  background: #ff0033;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.35);
+}
+
+.video-play__icon::before {
+  content: "";
+  position: absolute;
+  left: 1.55rem;
+  top: 0.7rem;
+  border-style: solid;
+  border-width: 0.8rem 0 0.8rem 1.25rem;
+  border-color: transparent transparent transparent #fff;
 }
 
 .warn {
