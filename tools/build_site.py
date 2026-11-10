@@ -349,10 +349,10 @@ GAMES = [
         "role": "Lead design, art direction, and coding — occult interface, ritual props, manor visual language, player-facing board UX, and the custom AI dialogue systems that manage models, prompts, and in-game replies.",
         "contributions": "Shaped the occult UI and ritual prop language; art-directed the manor look; designed how the Ouija board presents AI replies so the system feels diegetic; supported the LLM-in-the-loop play fantasy while keeping authored plot gates intact.",
         "tech": ["Unity 6 (6000.4.1f1)", "C#", "Ollama", "Llama 3.2", "Whisper.unity", "TextMesh Pro", "GitHub"],
-        "demo": "https://canva.link/gj0ke405qwcgs47",
+        "demo": "https://youtu.be/Ag8M1L6aY4Q",
         "demo_label": "Showcase video",
-        "download": "https://github.com/DavidBarker05/Ouija-Game",
-        "download_label": "Unity project on GitHub",
+        "download": "https://tiyahsingh.itch.io/dont-forget-to-say-goodbye",
+        "download_label": "Play / download on itch.io",
         "photo": r"C:\Users\User\Desktop\website\game stuff\dftsg poster.png",
         "process_photo": r"C:\Users\User\Desktop\website\assets\process\dont-forget-to-say-goodbye-src.jpg",
         "screenshots": [
@@ -377,7 +377,7 @@ GAMES = [
         "role": "Programming, UI/UX design, technical documentation, and visual presentations (slides and gameplay videos).",
         "contributions": "Debugged and refined interconnected Unity/C# clinic systems (nurse medication sorting, patient treatment, doctor referrals, infection identification); designed and implemented the in-game staff manual and role dictionary after playtest feedback; improved nurse interfaces and hospital waypoint / directional UI; produced pitch presentations and gameplay demonstration videos; built a QR feedback path for presentations; contributed related pharmacy simulation work (Pharmacist Mini Game).",
         "tech": ["Unity", "C#", "3D clinic scenes", "UI/UX", "GitHub", "itch.io", "Canva"],
-        "demo": "https://canva.link/aj8897ql2leuhzn",
+        "demo": "https://youtu.be/0Cfd-eRe7jc",
         "demo_label": "Gameplay video",
         "download": "https://feelgoodbinjuice.itch.io/clinical-trial",
         "download_label": "Playable itch.io build",
@@ -676,7 +676,7 @@ def header(title="", nav=""):
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Spicy+Rice&display=swap" rel="stylesheet">
   <link rel="icon" href="/assets/brand/favicon.png" type="image/png">
-  <link rel="stylesheet" href="/css/site.css?v=83">{extra_css}
+  <link rel="stylesheet" href="/css/site.css?v=84">{extra_css}
 </head>
 <body{body}>
   <a class="skip" href="#content">Skip to content</a>
@@ -857,6 +857,20 @@ def page(game, index, total):
         <div class="shot-grid">{shots_html}</div>
       </article>
     </div>""" if show_media else ""
+    yt_id = ""
+    demo = game.get("demo") or ""
+    if "youtu.be/" in demo:
+        yt_id = demo.rsplit("/", 1)[-1].split("?")[0]
+    elif "youtube.com/watch" in demo and "v=" in demo:
+        yt_id = demo.split("v=", 1)[1].split("&", 1)[0]
+    video_block = f"""
+      <article class="panel block video-block">
+        <h2>Gameplay video</h2>
+        <div class="video-embed">
+          <iframe src="https://www.youtube.com/embed/{yt_id}" title="{game["title"]} gameplay video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <p><a href="{demo}" target="_blank" rel="noopener noreferrer">{game["demo_label"]} on YouTube</a></p>
+      </article>""" if yt_id else ""
     html = header(game["title"], "games") + f"""
   <main id="content" class="wrap game-page{" is-showcase" if showcase else " is-extra"}">
     <p class="kicker"><a href="/games.html#{("showcase" if showcase else "additional")}">{kicker}</a> · Game {index + 1:02d} / {total:02d}</p>
@@ -923,6 +937,7 @@ def page(game, index, total):
     </div>
     {media_panel}
     <div class="tab-panel" id="panel-links" role="tabpanel" aria-labelledby="tab-links" data-panel="links" hidden>
+      {video_block}
       <div class="qr-grid">
         <article class="qr-card">
           <h2>Demo video / page</h2>
