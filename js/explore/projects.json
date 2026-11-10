@@ -46,51 +46,5 @@
     "href": "/games/dont-forget-to-say-goodbye.html",
     "showcase": true,
     "credits": "Team: Tiyah Singh and David Barker"
-  },
-  {
-    "slug": "bushveld-brothers",
-    "title": "Bushveld Brothers",
-    "genre": "Ranger adventure",
-    "card": "A short 3D patrol where you read spoor, rescue wildlife, and detain poachers.",
-    "role": "Project manager, lead UI/UX designer, gameplay programmer, and documentation lead on the Starr Studios roster.",
-    "tech": [
-      "Unity",
-      "C#",
-      "3ds Max",
-      "GitHub",
-      "itch.io",
-      "Canva",
-      "Steam store art"
-    ],
-    "demo": "https://omega0.itch.io/bushveld-brothers",
-    "demoLabel": "Playable itch.io page",
-    "download": "https://omega0.itch.io/bushveld-brothers",
-    "downloadLabel": "Windows & Android builds",
-    "poster": "/assets/posters/bushveld-brothers.jpg",
-    "href": "/games/bushveld-brothers.html",
-    "showcase": false,
-    "credits": "Tiyah Singh, David Barker, Barrie-George Davies, Jamie-Lee Davies"
-  },
-  {
-    "slug": "noesis",
-    "title": "Noesis",
-    "genre": "Abstract horror game jam",
-    "card": "Depth of the Mind: a Unity prototype built around dread, space, and sound.",
-    "role": "Tiyah contributed to the Depth prototype and its reference documentation.",
-    "tech": [
-      "Unity",
-      "C#",
-      "Audio ambience",
-      "Environment art pack",
-      "GitHub"
-    ],
-    "demo": "https://github.com/Jamie-LeeD/Depth",
-    "demoLabel": "Depth repository",
-    "download": "https://github.com/Jamie-LeeD/Depth",
-    "downloadLabel": "Unity project",
-    "poster": "/assets/posters/noesis.jpg",
-    "href": "/games/noesis.html",
-    "showcase": false,
-    "credits": "Tiyah Singh"
   }
 ]

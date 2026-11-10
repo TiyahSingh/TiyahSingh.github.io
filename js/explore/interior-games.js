@@ -21,7 +21,6 @@ export function createGamesInterior(scene, cache, projects) {
   group.add(floor);
 
   const occluders = [];
-  /* Side + far walls — leave the near (+Z) side for a slim exit niche */
   [[8.2, 0, Math.PI / 2], [-8.2, 0, -Math.PI / 2], [8.2, -4, Math.PI / 2], [-8.2, -4, -Math.PI / 2], [0, -8.2, Math.PI]].forEach(function (spot) {
     const wall = cache.kenney["low-detail-building-wide-a"].clone(true);
     wall.scale.setScalar(4.2);
@@ -33,33 +32,13 @@ export function createGamesInterior(scene, cache, projects) {
 
   const sign = makeSign("GAMES", "#ff3ec8", 4.2, 1.1, "INSERT COIN");
   sign.position.set(0, 3.6, -5.4);
-  sign.rotation.y = 0;
   group.add(sign);
 
-  const list = (projects || []).filter(Boolean);
-  const bySlug = {};
-  list.forEach(function (project) { bySlug[project.slug] = project; });
-  const showcase = list.filter(function (project) { return project.showcase; });
-  const bushveld = bySlug["bushveld-brothers"] || null;
-  const noesis = bySlug["noesis"] || null;
-
-  /* Clear lower sign under Insert Coin for the showcase pair */
+  const showcase = (projects || []).filter(function (project) { return project && project.showcase; });
   const showcaseSign = makeSign("SHOWCASE", "#ff3ec8", 6.2, 1.25, "GAMES");
   showcaseSign.position.set(0, 2.55, -5.35);
-  showcaseSign.rotation.y = 0;
   group.add(showcaseSign);
 
-  const leftSign = makeSign("BUSHVELD", "#7af0ff", 2.8, 0.72, "BROTHERS");
-  leftSign.position.set(-3.35, 3.2, -1.2);
-  leftSign.rotation.y = Math.PI / 2;
-  group.add(leftSign);
-
-  const rightSign = makeSign("NOESIS", "#7af0ff", 2.6, 0.72, "ADDITIONAL");
-  rightSign.position.set(3.35, 3.2, -1.2);
-  rightSign.rotation.y = -Math.PI / 2;
-  group.add(rightSign);
-
-  /* Exit tucked against the entrance wall so it does not block the arcade floor */
   const exitZ = 6.4;
   [[-3.4, exitZ], [3.4, exitZ]].forEach(function (spot) {
     const wing = cache.kenney["low-detail-building-a"].clone(true);
@@ -70,10 +49,7 @@ export function createGamesInterior(scene, cache, projects) {
     occluders.push(wing);
   });
   const exitMat = new THREE.MeshStandardMaterial({
-    color: 0x7af0ff,
-    emissive: 0x7af0ff,
-    emissiveIntensity: 1.35,
-    roughness: 0.4,
+    color: 0x7af0ff, emissive: 0x7af0ff, emissiveIntensity: 1.35, roughness: 0.4,
   });
   [-1.05, 1.05].forEach(function (offset) {
     const post = new THREE.Mesh(new THREE.BoxGeometry(0.14, 2.5, 0.14), exitMat);
@@ -90,26 +66,14 @@ export function createGamesInterior(scene, cache, projects) {
   group.add(exitSign);
 
   const machines = [];
-  /* Showcase cabinets centered under INSERT COIN, facing the player */
   showcase.forEach(function (project, index) {
     const x = showcase.length === 1 ? 0 : (index === 0 ? -1.35 : 1.35);
     machines.push(addMachine(group, cache.eh.vending, project, x, -4.35, 0, true));
   });
-  /* Side walls: Bushveld left, Noesis right */
-  if (bushveld) {
-    machines.push(addMachine(group, cache.eh.vending, bushveld, -3.3, -1.1, Math.PI / 2, false));
-  }
-  if (noesis) {
-    machines.push(addMachine(group, cache.eh.vending, noesis, 3.3, -1.1, -Math.PI / 2, false));
-  }
 
   const lampA = new THREE.PointLight(0xff3ec8, 4.4, 12, 2);
   lampA.position.set(0, 3.2, -3.2);
-  const lampB = new THREE.PointLight(0x7af0ff, 3.2, 12, 2);
-  lampB.position.set(-2.4, 3.0, -0.4);
-  const lampC = new THREE.PointLight(0x7af0ff, 3.2, 12, 2);
-  lampC.position.set(2.4, 3.0, -0.4);
-  group.add(lampA, lampB, lampC);
+  group.add(lampA);
 
   group.updateMatrixWorld(true);
   const colliders = [];
@@ -121,7 +85,6 @@ export function createGamesInterior(scene, cache, projects) {
     const box = new THREE.Box3().setFromObject(machine.object);
     colliders.push({ minX: box.min.x, maxX: box.max.x, minZ: box.min.z, maxZ: box.max.z });
   });
-  /* Keep the exit doorway walkable — split any collider covering the center gap */
   for (let i = colliders.length - 1; i >= 0; i -= 1) {
     const box = colliders[i];
     if (box.minZ > 5.2 && box.minX < -0.4 && box.maxX > 0.4) {
@@ -132,11 +95,7 @@ export function createGamesInterior(scene, cache, projects) {
   }
 
   return {
-    group: group,
-    grounds: grounds,
-    occluders: occluders,
-    colliders: colliders,
-    machines: machines,
+    group, grounds, occluders, colliders, machines,
     exit: { minX: -1.2, maxX: 1.2, minZ: 5.8, maxZ: 7.0 },
     bounds: { minX: -5.2, maxX: 5.2, minZ: -6.4, maxZ: 6.6 },
     spawn: new THREE.Vector3(0, 0, 1.2),
@@ -168,5 +127,5 @@ function addMachine(parent, source, project, x, z, rot, highlight) {
     });
   }
   parent.add(object);
-  return { object: object, project: project, poster: poster };
+  return { object, project, poster };
 }

@@ -2808,6 +2808,12 @@ body.title-on .title-screen {
   justify-items: center;
 }
 
+.arcade-floor--extra:has(.game-cab:only-child) {
+  grid-template-columns: 1fr;
+  max-width: 420px;
+  justify-items: center;
+}
+
 .game-cab {
   display: grid;
   grid-template-rows: auto auto auto;

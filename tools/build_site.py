@@ -314,15 +314,16 @@ GAMES = [
         "languages": ["C#"],
         "showcase": True,
         "card": "A short 3D patrol where you read spoor, rescue wildlife, and detain poachers.",
-        "credits": "Tiyah Singh, David Barker, Barrie-George Davies, Jamie-Lee Davies",
-        "team": "Starr Studios / Games for Africa jam team — Tiyah Singh, David Barker (Omega0), Barrie-George Davies (TheBgster), Jamie-Lee Davies.",
+        "credits": "Tiyah Singh, Barrie-George Davies, Jamie-Lee Davies, David Barker",
+        "credits_html": 'Tiyah Singh, <a href="https://www.barrie-georgedavies.co.za" target="_blank" rel="noopener noreferrer">Barrie-George Davies</a>, <a href="http://www.jamie-leedavies.co.za" target="_blank" rel="noopener noreferrer">Jamie-Lee Davies</a>, David Barker',
+        "team": "",
         "synopsis": "Bushveld Brothers is a short 3D ranger adventure set in the South African bushveld. You play Barries on a timed patrol: read spoor, free snared animals, and detain poachers before sunset. The fantasy inverts hunting games — animals are wards, poachers are the quarry, and the ending is an arrest, not a kill.",
-        "brief": "Made in three days for a YellowDot Africa campus jam on the theme Games for Africa: Stories, Cultures and Connections, with a mobile-first requirement. The jam prototype was later treated as a Starr Studios commercial concept for a premium short Steam adventure: a readable patrol loop, South African bushveld identity, Ubuntu-centred non-lethal conflict, and store-ready pitch / UI / documentation artefacts.",
-        "role": "Project manager, lead UI/UX designer, gameplay programmer, and documentation lead on the Starr Studios roster.",
-        "contributions": "Kept the production schedule and documentation; designed menus, HUD, win/lose and settings flow; implemented gameplay systems in C#; wrote production records and portfolio packaging for the jam build and the later commercialisation POE (studio identity, roadmap, Steam assets, and UI style work).",
-        "tech": ["Unity", "C#", "3ds Max", "GitHub", "itch.io", "Canva", "Steam store art"],
-        "demo": "https://omega0.itch.io/bushveld-brothers",
-        "demo_label": "Playable itch.io page",
+        "brief": "Made for a YellowDot game jam. It was chosen to be presented to YellowDot — Games for Africa.",
+        "role": "Project manager, lead UI/UX designer, gameplay programmer, and documentation lead.",
+        "contributions": "Kept the production schedule; designed menus, HUD, win/lose and settings flow; implemented gameplay systems in C#.",
+        "tech": ["Unity", "C#", "3ds Max", "GitHub", "itch.io", "Canva"],
+        "demo": "https://youtu.be/NjzXGlX6-MQ",
+        "demo_label": "Gameplay video",
         "download": "https://omega0.itch.io/bushveld-brothers",
         "download_label": "Windows & Android builds",
         "photo": r"C:\Users\User\Desktop\website\game stuff\bushveld brothers poster.png",
@@ -612,7 +613,7 @@ GAMES = [
 ]
 
 SHOWCASE_ORDER = ["clinical-trial", "dont-forget-to-say-goodbye"]
-ADDITIONAL_ORDER = ["bushveld-brothers", "noesis"]
+ADDITIONAL_ORDER = ["bushveld-brothers"]
 LISTED_ORDER = SHOWCASE_ORDER + ADDITIONAL_ORDER
 for game in GAMES:
     game["showcase"] = game["slug"] in SHOWCASE_ORDER
@@ -676,7 +677,7 @@ def header(title="", nav=""):
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Spicy+Rice&display=swap" rel="stylesheet">
   <link rel="icon" href="/assets/brand/favicon.png" type="image/png">
-  <link rel="stylesheet" href="/css/site.css?v=84">{extra_css}
+  <link rel="stylesheet" href="/css/site.css?v=85">{extra_css}
 </head>
 <body{body}>
   <a class="skip" href="#content">Skip to content</a>
@@ -877,7 +878,7 @@ def page(game, index, total):
     <div class="page-hero">
       <h1>{game["title"]}</h1>
       <p class="meta">{game["genre"]}  ·  {game["engine"]}</p>
-      <p class="credits-line">{game["credits"]}</p>
+      <p class="credits-line">{game.get("credits_html") or game["credits"]}</p>
     </div>
     {warning}
     <div class="tabs" role="tablist" aria-label="Project details">
@@ -895,7 +896,7 @@ def page(game, index, total):
       </article>
       <article class="panel block">
         <h2>Team credits</h2>
-        <p>{game["credits"]}</p>
+        <p>{game.get("credits_html") or game["credits"]}</p>
         {team_block}
       </article>
     </div>
@@ -963,7 +964,7 @@ def page(game, index, total):
 
 ABOUT = {
     "intro": "I'm Tiyah, a 23-year-old creative with a passion for art, design and making things that didn't exist before. I've always been someone who loves creating, experimenting with ideas and finding ways to bring the things in my head into the real world. But what I find even more exciting is that my work doesn't have to stop with me. I get to put something I've imagined out into the world for someone else to experience, interact with and hopefully connect with. Whether it's making someone feel something, see things from a different perspective, spark their curiosity or learn something new, I want what I create to leave a little something behind. There's something pretty amazing about knowing that something you made could mean something to someone else.",
-    "portfolio": "Showcase work leads with Clinical Trial and Don't Forget to Say Goodbye — each with team credits, brief, synopsis, role, contributions, engine, languages, tech, process, screenshots, demo, and download. Additional games (Bushveld Brothers, Noesis) sit in a separate section.",
+    "portfolio": "Showcase work leads with Clinical Trial and Don't Forget to Say Goodbye. Additional work includes Bushveld Brothers.",
     "file": "The work sits across code, design, interface, and the story a player walks through. The skills terminal and the CV record list the study and the tools behind the showcase and additional games.",
     "who": "Who is Tiyah?",
     "headline": "The person behind the pixels",
@@ -1550,7 +1551,7 @@ def index():
     }
   }
   </script>
-  <script type="module" src="/js/explore/main.js?v=38"></script>
+  <script type="module" src="/js/explore/main.js?v=39"></script>
 """ + footer()
     (ROOT / "index.html").write_text(home, encoding="utf-8")
     (ROOT / "explore.html").write_text(explore, encoding="utf-8")
@@ -1567,6 +1568,8 @@ def index():
 def write_projects_json():
     payload = []
     for game in LISTED_GAMES:
+        if not game.get("showcase"):
+            continue
         payload.append({
             "slug": game["slug"],
             "title": game["title"],
@@ -1580,7 +1583,7 @@ def write_projects_json():
             "downloadLabel": game["download_label"],
             "poster": f"/assets/posters/{game['slug']}.jpg",
             "href": f"/games/{game['slug']}.html",
-            "showcase": bool(game.get("showcase")),
+            "showcase": True,
             "credits": game.get("credits", ""),
         })
     (ROOT / "js" / "explore" / "projects.json").write_text(
