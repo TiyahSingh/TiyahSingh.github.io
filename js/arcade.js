@@ -55,6 +55,15 @@
     });
   });
 
+  function activateVideos(root) {
+    if (!root) return;
+    root.querySelectorAll("iframe[data-src]").forEach(function (frame) {
+      if (!frame.getAttribute("src")) {
+        frame.setAttribute("src", frame.getAttribute("data-src"));
+      }
+    });
+  }
+
   document.querySelectorAll("[data-tab]").forEach(function (tab) {
     tab.addEventListener("click", function () {
       var name = tab.getAttribute("data-tab");
@@ -63,7 +72,9 @@
         other.setAttribute("aria-selected", on ? "true" : "false");
       });
       document.querySelectorAll("[data-panel]").forEach(function (panel) {
-        panel.hidden = panel.getAttribute("data-panel") !== name;
+        var show = panel.getAttribute("data-panel") === name;
+        panel.hidden = !show;
+        if (show) activateVideos(panel);
       });
     });
   });

@@ -677,7 +677,7 @@ def header(title="", nav=""):
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Spicy+Rice&display=swap" rel="stylesheet">
   <link rel="icon" href="/assets/brand/favicon.png" type="image/png">
-  <link rel="stylesheet" href="/css/site.css?v=85">{extra_css}
+  <link rel="stylesheet" href="/css/site.css?v=86">{extra_css}
 </head>
 <body{body}>
   <a class="skip" href="#content">Skip to content</a>
@@ -717,7 +717,7 @@ def footer():
     </nav>
     <p class="footer-copy">2026 by Tiyah Singh</p>
   </footer>
-  <script src="/js/arcade.js?v=2"></script>
+  <script src="/js/arcade.js?v=3"></script>
 </body>
 </html>
 """
@@ -868,7 +868,7 @@ def page(game, index, total):
       <article class="panel block video-block">
         <h2>Gameplay video</h2>
         <div class="video-embed">
-          <iframe src="https://www.youtube.com/embed/{yt_id}" title="{game["title"]} gameplay video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+          <iframe data-src="https://www.youtube-nocookie.com/embed/{yt_id}?playsinline=1&amp;rel=0" title="{game["title"]} gameplay video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
         </div>
         <p><a href="{demo}" target="_blank" rel="noopener noreferrer">{game["demo_label"]} on YouTube</a></p>
       </article>""" if yt_id else ""
