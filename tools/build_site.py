@@ -380,7 +380,7 @@ GAMES = [
         "tech": ["Unity", "C#", "3D clinic scenes", "UI/UX", "GitHub", "itch.io", "Canva"],
         "demo": "https://youtu.be/0Cfd-eRe7jc",
         "demo_label": "Gameplay video",
-        "download": "https://feelgoodbinjuice.itch.io/clinical-trial",
+        "download": "https://tiyahsingh.itch.io/clinical-trial",
         "download_label": "Playable itch.io build",
         "photo": r"C:\Users\User\Desktop\website\game stuff\clinical trial poster.png",
         "process_photo": r"C:\Users\User\Desktop\website\assets\process\clinical-trial-src.jpg",
@@ -822,6 +822,8 @@ def build_images():
                 print("screenshot failed", game["slug"], shot_path, error)
         make_qr(game["demo"], QR / f"{game['slug']}-demo.png")
         make_qr(game["download"], QR / f"{game['slug']}-download.png")
+        if game["slug"] == "clinical-trial":
+            make_qr(game["download"], QR / "clinical-trial-itch.png")
         if game.get("listed"):
             make_cabinet(cabinet_source or poster_path, CABINETS / f"{game['slug']}.png")
         print("built", game["slug"])
@@ -951,7 +953,7 @@ def page(game, index, total):
         <article class="qr-card">
           <h2>Game download</h2>
           <p><a href="{game["download"]}" target="_blank" rel="noopener noreferrer">{game["download_label"]}</a></p>
-          <img src="/assets/qr/{game["slug"]}-download.png" alt="QR code for the {game["title"]} download.">
+          <img src="/assets/qr/{'clinical-trial-itch' if game['slug'] == 'clinical-trial' else game['slug'] + '-download'}.png" alt="QR code for the {game["title"]} download.">
         </article>
       </div>
     </div>
